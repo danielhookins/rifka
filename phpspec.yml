@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: rifka
+        psr4_prefix: rifka
+        src_path: app
