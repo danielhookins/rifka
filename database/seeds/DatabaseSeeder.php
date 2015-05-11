@@ -1016,6 +1016,299 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
+        // Kons_Hukum
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kons_Hukum',
+            'name'          => 'kons_hukum_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'A unique identifier of legal counselling session.',
+            'example'       => '6745'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kons_Hukum',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '4265'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kons_Hukum',
+            'name'          => 'tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The date of the counselling session in DD-MM-YYYY format.',
+            'example'       => '12-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kons_Hukum',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'Any additional information.',
+            'example'       => 'TODO'
+            ]);
+
+        // Homevisit
+        rifka\Kamus_attribute::create([
+            'table'         => 'Homevisit',
+            'name'          => 'homevisit_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'A unique identifier of the home visit.',
+            'example'       => '6745'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Homevisit',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '4265'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Homevisit',
+            'name'          => 'tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The date of the home visit in DD-MM-YYYY format.',
+            'example'       => '12-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Homevisit',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'Any additional information.',
+            'example'       => 'TODO'
+            ]);
+
+        // Support_Group
+        rifka\Kamus_attribute::create([
+            'table'         => 'Support_Group',
+            'name'          => 'support_group_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'A unique identifier of the support group attendance.',
+            'example'       => '6745'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Support_Group',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '4265'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Support_Group',
+            'name'          => 'tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The date the support group was attended DD-MM-YYYY format.',
+            'example'       => '12-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Support_Group',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'Any additional information.',
+            'example'       => 'TODO'
+            ]);
+
+        // Mens_Program
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mens_Program',
+            'name'          => 'mens_program_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'A unique identifier of the mens program attendance.',
+            'example'       => '6745'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mens_Program',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '4265'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mens_Program',
+            'name'          => 'tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The date the mens program was attended DD-MM-YYYY format.',
+            'example'       => '12-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mens_Program',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'Any additional information.',
+            'example'       => 'TODO'
+            ]);
+
+        // Medis
+        rifka\Kamus_attribute::create([
+            'table'         => 'Medis',
+            'name'          => 'medis_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'A unique identifier of the medical service.',
+            'example'       => '6745'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Medis',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '4265'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Medis',
+            'name'          => 'tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The date of the medical service DD-MM-YYYY format.',
+            'example'       => '12-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Medis',
+            'name'          => 'jenis_medis',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'The type of medical service given.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Medis',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'Any additional information.',
+            'example'       => 'TODO'
+            ]);
+
+        // Mediasi
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mediasi',
+            'name'          => 'mediasi_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'A unique identifier of the mediation.',
+            'example'       => '6745'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mediasi',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '4265'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mediasi',
+            'name'          => 'tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The date of the mediation DD-MM-YYYY format.',
+            'example'       => '12-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mediasi',
+            'name'          => 'hasil',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'The result of the mediation.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Mediasi',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'Any additional information.',
+            'example'       => 'TODO'
+            ]);
+
+        // Shelter
+        rifka\Kamus_attribute::create([
+            'table'         => 'Shelter',
+            'name'          => 'shelter_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'A unique identifier of the shelter stay.',
+            'example'       => '6745'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Shelter',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '4265'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Shelter',
+            'name'          => 'mulai_tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The start date of the shelter stay DD-MM-YYYY format.',
+            'example'       => '12-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Shelter',
+            'name'          => 'sampai_tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The end date of the shelter stay DD-MM-YYYY format.',
+            'example'       => '15-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Shelter',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'Any additional information.',
+            'example'       => 'TODO'
+            ]);
+
     }
 
 }
