@@ -60,6 +60,11 @@ class Kamus_TablesSeeder extends Seeder {
             'description'   => 'A client case.'
             ]);
         rifka\Kamus_table::create([
+            'name'          => 'Pelaku_Kasus',
+            'type'          => 'Kasus',
+            'description'   => 'A perpetrator of a case.'
+            ]);
+        rifka\Kamus_table::create([
             'name'          => 'Bentuk_Kekerasan',
             'type'          => 'Kasus',
             'description'   => 'A type (shape) of violence.'
@@ -154,7 +159,7 @@ class Kamus_AttributesSeeder extends Seeder {
     {
         DB::table('kamus_attributes')->delete();
         
-        // Klien
+        // Klien Attributes
         rifka\Kamus_attribute::create([
         	'table'         => 'Klien',
         	'name' 			=> 'klien_id',
@@ -337,7 +342,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => '"Teman"'
             ]);
 
-        // Konselor
+        // Konselor Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Konselor',
             'name'          => 'konselor_id',
@@ -357,7 +362,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'Maria Mawar'
             ]);
 
-        // Konselor_Kasus
+        // Konselor_Kasus Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Konselor_Kasus',
             'name'          => 'konselor_kasus_id',
@@ -386,7 +391,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => '025'
             ]);
 
-        // Anak_Klien
+        // Anak_Klien Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Anak_Klien',
             'name'          => 'anak_id',
@@ -451,7 +456,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Alamat
+        // Alamat Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Alamat',
             'name'          => 'alamat_id',
@@ -489,7 +494,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'Sleman'
             ]);
 
-        // Kasus
+        // Kasus Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Kasus',
             'name'          => 'kasus_id',
@@ -591,7 +596,36 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => '[tulisan narasi]'
             ]);
 
-        // Bentuk_Kekerasan
+        // Pelaku_Kasus Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Pelaku_Kasus',
+            'name'          => 'pelaku_kasus_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'The unique identifier of the perpetrator\'s case.',
+            'example'       => '035'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Pelaku_Kasus',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'The unique identifier of the case.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Pelaku_Kasus',
+            'name'          => 'pelaku_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'klien_id',
+            'type'          => 'Integer',
+            'description'   => 'The unique identifier of the perpetrator.',
+            'example'       => '025'
+            ]);
+
+        // Bentuk_Kekerasan Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Bentuk_Kekerasan',
             'name'          => 'bentuk_id',
@@ -629,7 +663,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'Dipukul (tangan kosong)'
             ]);
 
-        // Faktor_Pemicu
+        // Faktor_Pemicu Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Faktor_Pemicu',
             'name'          => 'pemicu_id',
@@ -667,7 +701,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Upaya_Dilakukan
+        // Upaya_Dilakukan Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Upaya_Dilakukan',
             'name'          => 'upaya_id',
@@ -705,7 +739,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Layanan_Dibutuhkan
+        // Layanan_Dibutuhkan Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Layanan_Dibutuhkan',
             'name'          => 'layanan_dbth_id',
@@ -734,7 +768,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'Konseling Psikologi'
             ]);
 
-        // Dampak
+        // Dampak Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Dampak',
             'name'          => 'dampak_id',
@@ -772,7 +806,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Perkembangan
+        // Perkembangan Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Perkembangan',
             'name'          => 'perkembangan_id',
@@ -828,7 +862,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Litigasi
+        // Litigasi Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Litigasi',
             'name'          => 'litigasi_id',
@@ -929,7 +963,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Kegiatan_Litigasi
+        // Kegiatan_Litigasi Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Kegiatan_Litigasi',
             'name'          => 'kegiatan_litigasi_id',
@@ -978,7 +1012,7 @@ class Kamus_AttributesSeeder extends Seeder {
 
         // Layanan yang diberikan:
 
-        //Kons_Psikologi
+        //Kons_Psikologi Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Kons_Psikologi',
             'name'          => 'kons_psikologi_id',
@@ -1016,7 +1050,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Kons_Hukum
+        // Kons_Hukum Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Kons_Hukum',
             'name'          => 'kons_hukum_id',
@@ -1054,7 +1088,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Homevisit
+        // Homevisit Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Homevisit',
             'name'          => 'homevisit_id',
@@ -1092,7 +1126,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Support_Group
+        // Support_Group Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Support_Group',
             'name'          => 'support_group_id',
@@ -1130,7 +1164,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Mens_Program
+        // Mens_Program Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Mens_Program',
             'name'          => 'mens_program_id',
@@ -1168,7 +1202,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Medis
+        // Medis Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Medis',
             'name'          => 'medis_id',
@@ -1215,7 +1249,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Mediasi
+        // Mediasi Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Mediasi',
             'name'          => 'mediasi_id',
@@ -1262,7 +1296,7 @@ class Kamus_AttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Shelter
+        // Shelter Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Shelter',
             'name'          => 'shelter_id',

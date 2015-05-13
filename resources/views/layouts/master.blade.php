@@ -51,8 +51,18 @@
     </nav>
 
     <div class="container">
-    	@yield('content')
-    </div> <!-- /container -->
+      <div class="row">
+
+        <div class="col-sm-10 main-content">
+        	@yield('content')
+        </div> <!-- /main-content -->
+
+        <div class="col-sm-2 side-nav">
+          @yield('nav')
+        </div> <!-- /side-nav -->
+
+      </div><!-- /row -->
+    </div><!-- /container -->
   
     <!-- Javascript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

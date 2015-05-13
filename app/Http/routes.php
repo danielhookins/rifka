@@ -19,6 +19,10 @@ Route::get('/tentang', 'TentangController@index');
 
 Route::get('/kamus', 'KamusController@index');
 
+// Developer Routes
+Route::get('/developer', 'DeveloperController@index');
+Route::get('/changelog', 'DeveloperController@changelog');
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

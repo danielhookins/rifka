@@ -3,6 +3,18 @@
 -->
 @extends('layouts.master')
 
+@section('nav')
+  <h3>Tables</h3>
+  <ul style="list-style-position:inside;padding-left:0;">
+  @foreach ($tables as $table)
+  <li>
+	  <a href="#{{ $table->name }}">{{ $table->name }}</a>
+	  <!-- {{ $table->description }} -->
+	</li>
+  @endforeach
+	</ul>
+@endsection
+
 @section('content')
   <div class="">
     <h1>Kamus Data</h1>
@@ -11,8 +23,8 @@
   
   <!-- Table Start -->
   @foreach ($tables as $table)
-  	<div class="container" style="padding:2px 10px 5px 10px;border-style:solid;border-width:1px;margin-bottom:5px;">
-		<h3>{{ $table->name }}</h3>
+  	<div class="" style="padding:2px 10px 5px 10px;border-style:solid;border-width:1px;margin-bottom:5px;">
+		<h3><a class="in-link" name="{{ $table->name }}">{{ $table->name }}</a></h3>
 		<p>{{ $table->description }}</p>
 		<table class="table table-hover">
 
