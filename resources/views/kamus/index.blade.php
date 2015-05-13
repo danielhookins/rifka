@@ -5,14 +5,22 @@
 
 @section('nav')
   <h3>Tables</h3>
-  <ul style="list-style-position:inside;padding-left:0;">
-  @foreach ($tables as $table)
-  <li>
-	  <a href="#{{ $table->name }}">{{ $table->name }}</a>
-	  <!-- {{ $table->description }} -->
-	</li>
+  
+  @foreach ($tabletypes as $tabletype)
+  	<h4>{{ $tabletype->type }}</h4>
+  	<ul style="list-style-position:inside;padding-left:0;">
+	  @foreach ($tables as $table)
+	  
+	  	@if ($table->type == $tabletype->type)
+	  		<li>
+				  <a href="#{{ $table->name }}">{{ $table->name }}</a>
+				  <!-- {{ $table->description }} -->
+				</li>
+			@endif
+	  @endforeach
+		</ul>
   @endforeach
-	</ul>
+
 @endsection
 
 @section('content')
@@ -52,6 +60,7 @@
 				<!-- Attribute End -->
 	    	@endif
 	    @endforeach
+	    <tr><td></td><td class="text-right"><a href="#">Kembali ke atas</a></td></tr>
 		</table>
 	  </div>
 	  <!-- Table End -->

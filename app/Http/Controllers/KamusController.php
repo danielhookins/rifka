@@ -13,7 +13,8 @@ class KamusController extends Controller {
 
 		return view('kamus.index', [
 			'tables'		=> \rifka\Kamus_table::all(),
-			'attributes' 	=> \rifka\Kamus_attribute::all()
+			'attributes' 	=> \rifka\Kamus_attribute::all(),
+			'tabletypes'	=> \rifka\Kamus_table::select('type')->distinct()->get()
 			]);
 	}
 
