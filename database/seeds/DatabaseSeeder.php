@@ -52,6 +52,22 @@ class Kamus_TablesSeeder extends Seeder {
         	'type' 			=> 'Orang',
         	'description' 	=> 'An address of a client.'
         	]);
+        rifka\Kamus_table::create([
+            'name'          => 'Latar_Keluarga',
+            'type'          => 'Orang',
+            'description'   => 'The family background of a client.'
+            ]);
+        rifka\Kamus_table::create([
+            'name'          => 'Pelaku_Kasus',
+            'type'          => 'Orang',
+            'description'   => 'A perpetrator of a case.'
+            ]);
+        rifka\Kamus_table::create([
+            'name'          => 'Problem_Pelaku',
+            'type'          => 'Orang',
+            'description'   => 'A perpetrator\'s personal problem.'
+            ]);
+
 
         // Untuk Kasus
         rifka\Kamus_table::create([
@@ -93,6 +109,11 @@ class Kamus_TablesSeeder extends Seeder {
             'name'          => 'Perkembangan',
             'type'          => 'Kasus',
             'description'   => 'A development in a case.'
+            ]);
+        rifka\Kamus_table::create([
+            'name'          => 'Kasus_Pentutup',
+            'type'          => 'Kasus',
+            'description'   => 'A closed case.'
             ]);
         
         // Untuk Litigasi
@@ -204,15 +225,6 @@ class Kamus_AttributesSeeder extends Seeder {
             'type'          => 'Date',
             'description'   => 'The date of birth of the client in DD-MM-YYYY format',
             'example'       => '"31-01-1972"'
-            ]);
-        rifka\Kamus_attribute::create([
-            'table'         => 'Klien',
-            'name'          => 'latar_belakang_keluarga',
-            'primary_key'   => False,
-            'foreign_key'   => '',
-            'type'          => 'Varchar',
-            'description'   => 'Notes about the family background of the client.',
-            'example'       => '"TODO"'
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Klien',
@@ -1341,6 +1353,147 @@ class Kamus_AttributesSeeder extends Seeder {
             'type'          => 'Varchar',
             'description'   => 'Any additional information.',
             'example'       => 'TODO'
+            ]);
+
+        // Latar_Keluarga Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Latar_Keluarga',
+            'name'          => 'latar_keluarga_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'The unique identifier of the family background description.',
+            'example'       => '772'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Latar_Keluarga',
+            'name'          => 'klien_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'klien_id',
+            'type'          => 'Integer',
+            'description'   => 'The unique identifier of the client.',
+            'example'       => '4672'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Latar_Keluarga',
+            'name'          => 'kekerasan_masa_lalu',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Boolean',
+            'description'   => 'Has the client experienced violence in the past?',
+            'example'       => 'True'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Latar_Keluarga',
+            'name'          => 'menyaksikan_kekerasan_rt',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Boolean',
+            'description'   => 'Has the client witnessed violence in the family home?',
+            'example'       => 'False'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Latar_Keluarga',
+            'name'          => 'lingkungan_toleran_kekerasan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Boolean',
+            'description'   => 'Is the client\'s community tolerant of violence?',
+            'example'       => 'True'
+            ]);
+
+        // Problem_Pelaku Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Problem_Pelaku',
+            'name'          => 'problem_palaku_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'The unique identifier of the perpetrator\'s problem.',
+            'example'       => '772'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Problem_Pelaku',
+            'name'          => 'palaku_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'klien_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the perpetrator.',
+            'example'       => '3472'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Problem_Pelaku',
+            'name'          => 'jenis_problem',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'The type of problem.',
+            'example'       => '"Alkoholik"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Problem_Pelaku',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Varchar',
+            'description'   => 'More information about the problem.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Problem_Pelaku',
+            'name'          => 'timestamps',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Timestamps',
+            'description'   => 'Date and time record was created/updated.',
+            'example'       => 'TODO'
+            ]);
+
+        // Kasus_Pentutup Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus_Pentutup',
+            'name'          => 'kasus_pentutup_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'Integer',
+            'description'   => 'The unique identifier of the closed case.',
+            'example'       => '772'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus_Pentutup',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the case being closed.',
+            'example'       => '3472'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus_Pentutup',
+            'name'          => 'evaluasi_kons_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'konselor_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the counsellor who evaluated the case.',
+            'example'       => '3472'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus_Pentutup',
+            'name'          => 'evaluasi_akhir_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'konselor_id',
+            'type'          => 'Integer',
+            'description'   => 'A reference to the counsellor who finalized the case closure.',
+            'example'       => '3472'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus_Pentutup',
+            'name'          => 'tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'Date',
+            'description'   => 'The date the case was closed in DD-MM-YYYY format.',
+            'example'       => '22-08-2014'
             ]);
 
     }

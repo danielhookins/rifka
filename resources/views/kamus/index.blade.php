@@ -4,22 +4,24 @@
 @extends('layouts.master')
 
 @section('nav')
-  <h3>Tables</h3>
-  
-  @foreach ($tabletypes as $tabletype)
-  	<h4>{{ $tabletype->type }}</h4>
-  	<ul style="list-style-position:inside;padding-left:0;">
-	  @foreach ($tables as $table)
-	  
-	  	@if ($table->type == $tabletype->type)
-	  		<li>
-				  <a href="#{{ $table->name }}">{{ $table->name }}</a>
-				  <!-- {{ $table->description }} -->
-				</li>
-			@endif
+  <div>
+  	<h3>Tables</h3>
+ 
+	  @foreach ($tabletypes as $tabletype)
+	  	<h4>{{ $tabletype->type }}</h4>
+	  	<ul style="list-style-position:inside;padding-left:0;">
+		  @foreach ($tables as $table)
+		  
+		  	@if ($table->type == $tabletype->type)
+		  		<li>
+					  <a href="#{{ $table->name }}">{{ $table->name }}</a>
+					  <!-- {{ $table->description }} -->
+					</li>
+				@endif
+		  @endforeach
+			</ul>
 	  @endforeach
-		</ul>
-  @endforeach
+  </div>
 
 @endsection
 
