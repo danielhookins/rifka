@@ -5,12 +5,11 @@ use rifka\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class TentangController extends Controller {
+class KonselingController extends Controller {
 
 	//
 	function index() 
 	{
-		return view('tentang.index');
+		return view('konseling.index');
 	}
-
 }

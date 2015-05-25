@@ -31,13 +31,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">{!! HTML::image('images/logo.png', 'Rifka Annisa Logo', ['height=28','width=128']) !!}</a>
+          <a class="navbar-brand" href="home">{!! HTML::image('images/logo.png', 'Rifka Annisa Logo', ['height=28','width=128']) !!}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class=""><a href="#">Administrasi</a></li>
-            <li class=""><a href="#">Konseling Klien</a></li>
-            <li class=""><a href="#">Men's Program</a></li>
+            <li class=""><a href="administrasi">Administrasi</a></li>
+            <li class=""><a href="konseling">Konseling Klien</a></li>
+            <li class=""><a href="mensprogram">Men's Program</a></li>
             <li class=""><a href="kamus">Kamus Data</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
