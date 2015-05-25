@@ -35,12 +35,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class=""><a href="tentang">Tentang</a></li>
-            <li class=""><a href="#">Kasus</a></li>
-            <li class=""><a href="#">Klien</a></li>
-            <li class=""><a href="#">Layanan</a></li>
-            <li class=""><a href="#">Litigasi</a></li>
-            <li class=""><a href="#">Laporan</a></li>
+            <li class=""><a href="#">Administrasi</a></li>
+            <li class=""><a href="#">Konseling Klien</a></li>
+            <li class=""><a href="#">Men's Program</a></li>
             <li class=""><a href="kamus">Kamus Data</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

@@ -15,8 +15,6 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 
-Route::get('/tentang', 'TentangController@index');
-
 Route::get('/kamus', 'KamusController@index');
 
 // Developer Routes
