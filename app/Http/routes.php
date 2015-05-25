@@ -17,9 +17,16 @@ Route::get('home', 'HomeController@index');
 
 Route::get('/kamus', 'KamusController@index');
 
-// Processes
+// PROCESSES
+
+// Administrasi
 Route::get('/administrasi', 'AdministrasiController@index');
+Route::get('/administrasi/new', 'AdministrasiController@newKlien');
+
+// Konseling
 Route::get('/konseling', 'KonselingController@index');
+
+// Men's Program
 Route::get('/mensprogram', 'MensProgramController@index');
 
 

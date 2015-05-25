@@ -12,4 +12,11 @@ class AdministrasiController extends Controller {
 	{
 		return view('administrasi.index');
 	}
+
+	//
+	function newKlien() 
+	{
+		return view('administrasi.new');
+	}
+	
 }
