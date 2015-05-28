@@ -84,6 +84,15 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Klien',
+            'name'          => 'email',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The email address of the client.',
+            'example'       => '"email@address.com"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Klien',
             'name'          => 'pendidikan',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -421,15 +430,6 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Kasus',
-            'name'          => 'korban_id',
-            'primary_key'   => False,
-            'foreign_key'   => 'klien_id',
-            'type'          => 'integer',
-            'description'   => 'A reference to the victim of the case.',
-            'example'       => '4524'
-            ]);
-        rifka\Kamus_attribute::create([
-            'table'         => 'Kasus',
             'name'          => 'jenis_kasus',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -443,7 +443,7 @@ class KamusAttributesSeeder extends Seeder {
             'primary_key'   => False,
             'foreign_key'   => '',
             'type'          => 'string',
-            'description'   => 'The relationship between the victim and the purpetrator',
+            'description'   => 'The relationship between the victim(s) and the purpetrator(s)',
             'example'       => 'Tetangga'
             ]);
         rifka\Kamus_attribute::create([
@@ -500,6 +500,35 @@ class KamusAttributesSeeder extends Seeder {
             'type'          => 'longText',
             'description'   => 'A narration of the case as told by the client.',
             'example'       => '[tulisan narasi]'
+            ]);
+
+        // Korban_Kasus Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Korban_Kasus',
+            'name'          => 'korban_kasus_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'The unique identifier of the victim\'s case.',
+            'example'       => '035'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Korban_Kasus',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the case.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Korban_Kasus',
+            'name'          => 'korban_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'klien_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the victim.',
+            'example'       => '025'
             ]);
 
         // Pelaku_Kasus Attributes

@@ -15,7 +15,6 @@ class CreateKasusTable extends Migration {
 		Schema::create('Kasus', function(Blueprint $table)
 		{
 			$table->increments('kasus_id');
-			$table->integer('korban_id')->unsigned();
 			$table->string('jenis_kasus');
 			$table->string('hubungan');
 			$table->integer('lama_hubungan');

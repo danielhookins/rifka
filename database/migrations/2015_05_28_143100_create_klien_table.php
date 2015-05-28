@@ -22,6 +22,7 @@ class CreateKlienTable extends Migration {
 			$table->string('no_telp');
 			$table->integer('alamat_ktp')->unsigned();
 			$table->integer('alamat_domisili')->unsigned();
+			$table->string('email');
 			$table->string('pendidikan');
 			$table->boolean('tamat');
 			$table->string('agama');
