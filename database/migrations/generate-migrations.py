@@ -10,11 +10,37 @@
 import time
 import MySQLdb
 
+# Read configuration from .env file
+with open('../../.env') as envfile:
+    for line in envfile:
+        
+		# Get Host Name
+		left,sep,right = line.partition('DB_HOST=')
+		if sep:
+			env_host = right.rstrip()
+		
+		# Get Database Name
+		left,sep,right = line.partition('DB_DATABASE=')
+		if sep:
+			env_db = right.rstrip()
+			
+		# Get Username
+		left,sep,right = line.partition('DB_USERNAME=')
+		if sep:
+			env_user = right.rstrip()
+			
+		# Get Password
+		left,sep,right = line.partition('DB_PASSWORD=')
+		if sep:
+			env_passwd = right.rstrip()
+
+envfile.close()
+
 # Connect to the DB
-db = MySQLdb.connect(host="localhost",
-						user="root",
-						passwd="",
-						db="rifka")
+db = MySQLdb.connect(host = env_host, 
+		user = env_user, 
+		passwd = env_passwd, 
+		db = env_db)
 cur = db.cursor() 
 
 # Define Variables
@@ -68,7 +94,6 @@ for table in tables :
 
 	# Class Close
 	migration_file.write("\n}\n")
-
 
 	# Time to go home
 	migration_file.close
