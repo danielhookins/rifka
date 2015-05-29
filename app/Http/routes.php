@@ -14,6 +14,7 @@ Route::get('/', 'WelcomeController@index');
 
 // *** RESOURCES ***
 	Route::resource('kasus', 'KasusController');
+	Route::resource('klien', 'KlienController');
 
 
 // *** AUTHENTICATION ***
