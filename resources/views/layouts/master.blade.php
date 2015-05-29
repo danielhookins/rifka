@@ -36,7 +36,13 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class=""><a href="administrasi">Administrasi</a></li>
-            <li class=""><a href="konseling">Konseling Klien</a></li>
+            <li class="dropdown">
+              <a href="konseling" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Konseling Klien <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="kasus">Kasus</a></li>
+                <li><a href="klien">Klien</a></li>
+              </ul>
+            </li>
             <li class=""><a href="mensprogram">Men's Program</a></li>
             <li class=""><a href="kamus">Kamus Data</a></li>
           </ul>
