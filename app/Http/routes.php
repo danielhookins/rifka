@@ -1,40 +1,30 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
+// SITE ROOT
 Route::get('/', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+// *** PROCESSES ***
+	// Administrasi
+	Route::get('/administrasi', 'AdministrasiController@index');
+	Route::get('/administrasi/new', 'AdministrasiController@newKlien');
+	// Konseling
+	Route::get('/konseling', 'KonselingController@index');
+	// Men's Program
+	Route::get('/mensprogram', 'MensProgramController@index');
 
-Route::get('/kamus', 'KamusController@index');
-
-// PROCESSES
-
-// Administrasi
-Route::get('/administrasi', 'AdministrasiController@index');
-Route::get('/administrasi/new', 'AdministrasiController@newKlien');
-
-// Konseling
-Route::get('/konseling', 'KonselingController@index');
-
-// Men's Program
-Route::get('/mensprogram', 'MensProgramController@index');
+// *** RESOURCES ***
+	Route::resource('kasus', 'KasusController');
 
 
-// Developer Routes
-Route::get('/developer', 'DeveloperController@index');
-Route::get('/changelog', 'DeveloperController@changelog');
+// *** AUTHENTICATION ***
+	Route::get('home', 'HomeController@index');
+	Route::controllers([
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
+	]);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+// *** DEVELOPER ***
+	// Developer Routes
+	Route::get('/kamus', 'KamusController@index');
+	Route::get('/developer', 'DeveloperController@index');
+	Route::get('/changelog', 'DeveloperController@changelog');

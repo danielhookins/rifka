@@ -165,6 +165,13 @@ class KamusTablesSeeder extends Seeder {
             'description'   => 'Attendance of a mens program.'
             ]);
 
+        // Untuk Arsip
+        rifka\Kamus_table::create([
+            'name'          => 'Arsip',
+            'type'          => 'Arsip',
+            'description'   => 'A physical record of the case.'
+            ]);
+
     }
 
 }

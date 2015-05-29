@@ -1457,6 +1457,35 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '22-08-2014'
             ]);
 
+        // Arsip Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Arsip',
+            'name'          => 'arsip_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'The unique identifier of the physical case\'s record.',
+            'example'       => '035'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Arsip',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the case.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Arsip',
+            'name'          => 'no_reg',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'integer',
+            'description'   => 'The registration number of the physical document.',
+            'example'       => '4252'
+            ]);
+
     }
 
 }
