@@ -21,4 +21,9 @@ class Kasus extends Model {
 							'rencana_korban',
 							'narasi'];
 
+	public function korbanKasus()
+    {
+        return $this->belongsToMany('rifka\Klien', 'korban_kasus', 'kasus_id', 'korban_id');
+    }
+
 }

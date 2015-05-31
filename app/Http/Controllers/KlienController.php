@@ -15,9 +15,14 @@ class KlienController extends Controller {
 	public function index()
 	{
 		//
-		$semuaKlien = \rifka\Klien::all();
+		$semuaKlien = \rifka\Klien::paginate(15);
+		$attributes = $semuaKlien->first()->toArray();
 
-		return view('klien.index', array('semuaKlien' => $semuaKlien));
+		return view('klien.index', array(
+										'list'		 => True,
+										'semuaKlien' => $semuaKlien,
+										'attributes' => $attributes
+										));
 	}
 
 	/**
@@ -50,9 +55,13 @@ class KlienController extends Controller {
 	{
 		//
 		$klien = \rifka\Klien::findOrFail($id);
+		$kasus2 = \rifka\Klien::find($id)->korbanKasus;
 
-		return view('klien.show')
-            ->with('klien', $klien);
+		return view('klien.index', array(
+									'show'		=> True,
+									'klien' 	=> $klien,
+									'kasus2'	=> $kasus2
+									));
 	}
 
 	/**
@@ -64,6 +73,14 @@ class KlienController extends Controller {
 	public function edit($id)
 	{
 		//
+		$klien = \rifka\Klien::findOrFail($id);
+		$kasus2 = \rifka\Klien::find($id)->korbanKasus;
+
+		return view('klien.index', array(
+									'edit'		=> True,
+									'klien' 	=> $klien,
+									'kasus2'	=> $kasus2
+									));
 	}
 
 	/**

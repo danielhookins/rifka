@@ -33,4 +33,9 @@ class Klien extends Model {
 							'created_at',
 							'updated_at'];
 
+	public function korbanKasus()
+    {
+        return $this->belongsToMany('rifka\Kasus', 'korban_kasus', 'korban_id', 'kasus_id');
+    }
+
 }

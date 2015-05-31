@@ -15,9 +15,14 @@ class KasusController extends Controller {
 	public function index()
 	{
 		//
-		$semuaKasus = \rifka\Kasus::all();
+		$semuaKasus = \rifka\Kasus::paginate(15);
+		$attributes = $semuaKasus->first()->toArray();
 
-		return view('kasus.index', array('semuaKasus' => $semuaKasus));
+		return view('kasus.index', array(
+										'list'		 => True,
+										'semuaKasus' => $semuaKasus,
+										'attributes' => $attributes
+										));
 	}
 
 	/**
@@ -50,9 +55,13 @@ class KasusController extends Controller {
 	{
 		//
 		$kasus = \rifka\Kasus::findOrFail($id);
+		$klien2 = \rifka\Kasus::find($id)->korbanKasus;
 
-		return view('kasus.show')
-            ->with('kasus', $kasus);
+		return view('kasus.index', array(
+									'show'		=> True,
+									'kasus' 	=> $kasus,
+									'klien2'	=> $klien2
+									));
 	}
 
 	/**
