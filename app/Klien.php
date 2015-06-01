@@ -33,9 +33,14 @@ class Klien extends Model {
 							'created_at',
 							'updated_at'];
 
-	public function korbanKasus()
+	public function klienKasus()
     {
-        return $this->belongsToMany('rifka\Kasus', 'korban_kasus', 'korban_id', 'kasus_id');
+        return $this->belongsToMany('rifka\Kasus', 'klien_kasus', 'klien_id', 'kasus_id')->withPivot('jenis_klien');
+    }
+
+    public function alamatKlien()
+    {
+        return $this->belongsToMany('rifka\Alamat', 'alamat_klien', 'klien_id', 'alamat_id')->withPivot('created_at', 'updated_at');
     }
 
 }

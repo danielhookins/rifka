@@ -5,7 +5,7 @@ use rifka\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class KasusController extends Controller {
+class AlamatController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -15,20 +15,10 @@ class KasusController extends Controller {
 	public function index()
 	{
 		//
-		$semuaKasus = \rifka\Kasus::paginate(15);
+		$semuaAlamat = \rifka\Alamat::paginate(15);
 
-		if ($semuaKasus->count()) {
-			$attributes = $semuaKasus->first()->toArray();
-		} else {
-			$attributes = array();
-		}
-		
 
-		return view('kasus.index', array(
-										'list'		 => True,
-										'semuaKasus' => $semuaKasus,
-										'attributes' => $attributes
-										));
+		return $semuaAlamat;
 	}
 
 	/**
@@ -60,14 +50,10 @@ class KasusController extends Controller {
 	public function show($id)
 	{
 		//
-		$kasus = \rifka\Kasus::findOrFail($id);
-		$klien2 = \rifka\Kasus::find($id)->klienKasus;
+		$alamat = \rifka\Alamat::findOrFail($id);
+		$klien2 = \rifka\Alamat::find($id)->alamatKlien;
 
-		return view('kasus.index', array(
-									'show'		=> True,
-									'kasus' 	=> $kasus,
-									'klien2'	=> $klien2
-									));
+		return $alamat;
 	}
 
 	/**

@@ -60,12 +60,14 @@ class KlienController extends Controller {
 	{
 		//
 		$klien = \rifka\Klien::findOrFail($id);
-		$kasus2 = \rifka\Klien::find($id)->korbanKasus;
+		$kasus2 = \rifka\Klien::find($id)->klienKasus;
+		$alamat2 = \rifka\Klien::find($id)->alamatKlien;
 
 		return view('klien.index', array(
 									'show'		=> True,
 									'klien' 	=> $klien,
-									'kasus2'	=> $kasus2
+									'kasus2'	=> $kasus2,
+									'alamat2'	=> $alamat2
 									));
 	}
 
