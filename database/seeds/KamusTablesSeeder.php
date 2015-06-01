@@ -59,19 +59,14 @@ class KamusTablesSeeder extends Seeder {
             'description'   => 'A counsellor at Rifka Annisa.'
             ]);
         rifka\Kamus_table::create([
-            'name'          => 'Korban_Kasus',
+            'name'          => 'Klien_Kasus',
             'type'          => 'Kasus',
-            'description'   => 'A victim involved in a particular case at Rifka Annisa.'
+            'description'   => 'A client involved in a particular case at Rifka Annisa.'
             ]);
         rifka\Kamus_table::create([
             'name'          => 'Konselor_Kasus',
             'type'          => 'Kasus',
             'description'   => 'A counsellor\'s case at Rifka Annisa.'
-            ]);
-        rifka\Kamus_table::create([
-            'name'          => 'Pelaku_Kasus',
-            'type'          => 'Kasus',
-            'description'   => 'A perpetrator of a particular case.'
             ]);
         rifka\Kamus_table::create([
             'name'          => 'Perkembangan',

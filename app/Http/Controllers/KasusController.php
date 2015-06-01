@@ -16,7 +16,13 @@ class KasusController extends Controller {
 	{
 		//
 		$semuaKasus = \rifka\Kasus::paginate(15);
-		$attributes = $semuaKasus->first()->toArray();
+
+		if ($semuaKasus->count()) {
+			$attributes = $semuaKasus->first()->toArray();
+		} else {
+			$attributes = array();
+		}
+		
 
 		return view('kasus.index', array(
 										'list'		 => True,

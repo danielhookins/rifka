@@ -21,15 +21,6 @@ class KamusAttributesSeeder extends Seeder {
         	]);
         rifka\Kamus_attribute::create([
             'table'         => 'Klien',
-            'name'          => 'jenis_klien',
-            'primary_key'   => False,
-            'foreign_key'   => '',
-            'type'          => 'string',
-            'description'   => 'The type of client: korban or pelaku.',
-            'example'       => '"Korban"'
-            ]);
-        rifka\Kamus_attribute::create([
-            'table'         => 'Klien',
             'name'          => 'nama_klien',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -502,18 +493,18 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '[tulisan narasi]'
             ]);
 
-        // Korban_Kasus Attributes
+        // Klien_Kasus Attributes
         rifka\Kamus_attribute::create([
-            'table'         => 'Korban_Kasus',
-            'name'          => 'korban_kasus_id',
+            'table'         => 'Klien_Kasus',
+            'name'          => 'klien_kasus_id',
             'primary_key'   => True,
             'foreign_key'   => '',
             'type'          => 'increments',
-            'description'   => 'The unique identifier of the victim\'s case.',
+            'description'   => 'The unique identifier of the client involved in the case.',
             'example'       => '035'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Korban_Kasus',
+            'table'         => 'Klien_Kasus',
             'name'          => 'kasus_id',
             'primary_key'   => False,
             'foreign_key'   => 'kasus_id',
@@ -522,42 +513,22 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '4256'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Korban_Kasus',
-            'name'          => 'korban_id',
+            'table'         => 'Klien_Kasus',
+            'name'          => 'klien_id',
             'primary_key'   => False,
             'foreign_key'   => 'klien_id',
             'type'          => 'integer',
-            'description'   => 'The unique identifier of the victim.',
+            'description'   => 'The unique identifier of the client.',
             'example'       => '025'
             ]);
-
-        // Pelaku_Kasus Attributes
         rifka\Kamus_attribute::create([
-            'table'         => 'Pelaku_Kasus',
-            'name'          => 'pelaku_kasus_id',
-            'primary_key'   => True,
+            'table'         => 'Klien_Kasus',
+            'name'          => 'jenis_klien',
+            'primary_key'   => False,
             'foreign_key'   => '',
-            'type'          => 'increments',
-            'description'   => 'The unique identifier of the perpetrator\'s case.',
-            'example'       => '035'
-            ]);
-        rifka\Kamus_attribute::create([
-            'table'         => 'Pelaku_Kasus',
-            'name'          => 'kasus_id',
-            'primary_key'   => False,
-            'foreign_key'   => 'kasus_id',
-            'type'          => 'integer',
-            'description'   => 'The unique identifier of the case.',
-            'example'       => '4256'
-            ]);
-        rifka\Kamus_attribute::create([
-            'table'         => 'Pelaku_Kasus',
-            'name'          => 'pelaku_id',
-            'primary_key'   => False,
-            'foreign_key'   => 'klien_id',
-            'type'          => 'integer',
-            'description'   => 'The unique identifier of the perpetrator.',
-            'example'       => '025'
+            'type'          => 'string',
+            'description'   => 'The type of client: korban or pelaku.',
+            'example'       => '"Korban"'
             ]);
 
         // Bentuk_Kekerasan Attributes

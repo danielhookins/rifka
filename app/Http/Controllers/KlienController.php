@@ -16,7 +16,12 @@ class KlienController extends Controller {
 	{
 		//
 		$semuaKlien = \rifka\Klien::paginate(15);
-		$attributes = $semuaKlien->first()->toArray();
+		
+		if ($semuaKlien->count()) {
+			$attributes = $semuaKlien->first()->toArray();
+		} else {
+			$attributes = array();
+		}
 
 		return view('klien.index', array(
 										'list'		 => True,

@@ -12,7 +12,7 @@
     @forelse ($semuaKlien as $klien)
       <tr>
         @foreach ($attributes as $attribute => $value)
-          <td style="padding:5px;">{!! $klien->$attribute !!}</td>
+          <td style="padding:5px;"><a href="klien/{{ $klien->klien_id }}">{!! $klien->$attribute !!}</a></td>
         @endforeach
         <td style="padding:5px;">[<a href="klien/{{ $klien->klien_id }}/edit">Edit</a>]</td>
         <td style="padding:5px;">[<a href="klien/{{ $klien->klien_id }}/delete">Delete</a>]</td>
