@@ -17,6 +17,7 @@ class CreateArsipTable extends Migration {
 			$table->increments('arsip_id');
 			$table->integer('kasus_id')->unsigned();
 			$table->integer('no_reg');
+			$table->string('lokasi');
 		});
 	}
 

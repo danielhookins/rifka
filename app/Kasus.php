@@ -26,4 +26,9 @@ class Kasus extends Model {
         return $this->belongsToMany('rifka\Klien', 'klien_kasus', 'kasus_id', 'klien_id')->withPivot('jenis_klien');
     }
 
+    public function arsip()
+    {
+        return $this->hasMany('rifka\Arsip', 'kasus_id', 'kasus_id');
+    }
+
 }

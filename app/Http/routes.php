@@ -15,7 +15,10 @@ Route::get('/', 'WelcomeController@index');
 // *** RESOURCES ***
 	Route::resource('kasus', 'KasusController');
 	Route::resource('klien', 'KlienController');
+	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
+	Route::resource('klien.anak', 'AnakKlienController');
+
 
 
 // *** AUTHENTICATION ***

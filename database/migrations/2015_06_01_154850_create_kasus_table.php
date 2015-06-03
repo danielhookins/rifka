@@ -23,6 +23,8 @@ class CreateKasusTable extends Migration {
 			$table->string('harapan_korban');
 			$table->string('rencana_korban');
 			$table->longText('narasi');
+			$table->timestamp('created_at');
+			$table->timestamp('updated_at');
 		});
 	}
 

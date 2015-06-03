@@ -492,6 +492,24 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'A narration of the case as told by the client.',
             'example'       => '[tulisan narasi]'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
+            'name'          => 'created_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time record was created.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
+            'name'          => 'updated_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time record was updated.',
+            'example'       => 'TODO'
+            ]);
 
         // Klien_Kasus Attributes
         rifka\Kamus_attribute::create([
@@ -1455,6 +1473,15 @@ class KamusAttributesSeeder extends Seeder {
             'type'          => 'integer',
             'description'   => 'The registration number of the physical document.',
             'example'       => '4252'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Arsip',
+            'name'          => 'lokasi',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The location of the physical document.',
+            'example'       => '"Ruang PD"'
             ]);
 
     }
