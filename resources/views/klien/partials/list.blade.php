@@ -1,29 +1,44 @@
-<h2>Klien</h2>
-
-<table border="1">
+<div class="col-sm-12">
+<h2>Daftar Klien</h2>
+  <table class="table table-condensed">
   <tr>
-    @foreach ($attributes as $attribute => $value)
-      <td style="padding:5px;"><strong>{!! $attribute !!}</strong></td>
-    @endforeach
-      <td></td>
-      <td></td>
+    <th># ID</th>
+    <th>Nama</th>
+    <th>Email</th>
+    <th>Telp</th>
+    <th>Alamat</th>
   </tr>
-  <tr>
-    @forelse ($semuaKlien as $klien)
-      <tr>
-        @foreach ($attributes as $attribute => $value)
-          <td style="padding:5px;"><a href="klien/{{ $klien->klien_id }}">{!! $klien->$attribute !!}</a></td>
-        @endforeach
-        <td style="padding:5px;">[<a href="klien/{{ $klien->klien_id }}/edit">Edit</a>]</td>
-        <td style="padding:5px;">[<a href="klien/{{ $klien->klien_id }}/delete">Delete</a>]</td>
-      </tr>
-      @empty
-      <td></td>
-      <th scope="row"><em>Belum ada Klien.</em></th>
-      @endforelse
-  </tr>
-  <tr>
-    <td colspan=2 style="padding:5px;"><a href="klien/create">Klien Baru</a></td>
-  </tr>
-</table>
+  @forelse ($semuaKlien as $klien)
+    <tr>
+      <td><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{!! $klien->klien_id !!}</a></td>
+      <td><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{!! $klien->nama_klien !!}</a></td>
+      <td>{!! $klien->email !!}</td>
+      <td>{!! $klien->no_telp !!}</td>
+      <td>
+        <ul>
+          @forelse ($klien->alamatKlien()->get() as $klienAlamat)
+            <li>
+              {{ $klienAlamat->alamat }}
+              @if ($klienAlamat->kecematan)
+                <br />{{ $klienAlamat->kecematan }}
+              @endif
+              @if ($klienAlamat->kabupaten)
+                <br />{{ $klienAlamat->kabupaten }}
+              @endif
+            </li>
+          @empty
+            <li></li>
+          @endforelse
+        </ul>
+      </td>
+    </tr>
+    @empty
+    <td></td>
+    <th scope="row"><em>Belum ada klien.</em></th>
+    <td colspan=3></td>
+  @endforelse
+  </table>
+</div>
+<div class="col-sm-12">
 {!! str_replace('/?', '?', $semuaKlien->render()) !!}
+</div>

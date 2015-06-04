@@ -12,9 +12,12 @@ class BentukKekerasanController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($kasusID)
 	{
 		//
+		$semuaBentuk = \rifka\BentukKekerasan::where('kasus_id', '=', $kasusID)->get();
+
+		return $semuaBentuk;
 	}
 
 	/**
@@ -40,12 +43,16 @@ class BentukKekerasanController extends Controller {
 	/**
 	 * Display the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  int  $kasusID
+	 * @param  int  $bentukID
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($kasusID, $bentukID)
 	{
 		//
+		$bentuk = \rifka\Bentuk::findOrFail($id);
+
+		return $bentuk; 
 	}
 
 	/**

@@ -16,7 +16,12 @@ class AdministrasiController extends Controller {
 	//
 	function newKlien() 
 	{
-		return view('administrasi.new');
+		return view('administrasi.partials.new');
+	}
+
+	function searchKlien() 
+	{
+		return view('administrasi.partials.search');
 	}
 	
 }

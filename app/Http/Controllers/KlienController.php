@@ -15,7 +15,7 @@ class KlienController extends Controller {
 	public function index()
 	{
 		//
-		$semuaKlien = \rifka\Klien::paginate(15);
+		$semuaKlien = \rifka\Klien::orderBy('klien_id', 'DESC')->paginate(15);
 		
 		if ($semuaKlien->count()) {
 			$attributes = $semuaKlien->first()->toArray();
@@ -24,6 +24,7 @@ class KlienController extends Controller {
 		}
 
 		return view('klien.index', array(
+										'search'	 => True,
 										'list'		 => True,
 										'semuaKlien' => $semuaKlien,
 										'attributes' => $attributes
@@ -110,6 +111,17 @@ class KlienController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function search()
+	{
+		$query = \Input::get('searchQuery');
+		$results = \rifka\Klien::search($query)->get();
+        
+    	return view('klien.searchResults', array(
+    								'query'		=> $query,
+									'results'	=> $results
+									));
 	}
 
 }

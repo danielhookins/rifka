@@ -1,19 +1,27 @@
 @extends('layouts.records')
 
 @section('content')
+	@if (isset($search))
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-4">
+			@include('klien.partials.search')
+		</div>
+	</div>
+	@endif
 
-  @if (isset($list))
-    
-    @include('klien.partials.list')
-
-  @elseif (isset($show))
-    
-    @include('klien.partials.show')
-
+	<div class=row>
+	@if (isset($list))
+		<div class="col-sm-12"> 
+		@include('klien.partials.list')
+		</div>
+	@elseif (isset($show))
+	  <div class="col-sm-12">
+		@include('klien.partials.show')
+		</div>
 	@elseif (isset($edit))
-    
-    @include('klien.partials.edit')
-
-  @endif
-
+	  <div class="col-sm-12">  
+		@include('klien.partials.edit')
+		</div>
+	@endif
+	</div>
 @endsection

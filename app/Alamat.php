@@ -6,15 +6,20 @@ class Alamat extends Model {
 
 	protected $table = 'alamat';
 	protected $primaryKey = 'alamat_id';
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
 	protected $fillable = ['alamat',
 							'kecamatan',
 							'kabupaten'];
+	protected $searchable = [
+        'columns' => [
+            'alamat.alamat' => 10,
+            'alamat.kecematan' => 7,
+            'alamat.kabupaten' => 5,
+        ],
+        'joins' => [
+            'alamat_klien' => ['alamat_klien.alamat_id', 'alamat.alamat_id'],
+            'klien' => ['klien.klien_id', 'alamat_klien.klien_id']
+        ],
+    ];
 
 	public function alamatKlien()
     {

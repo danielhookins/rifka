@@ -63,12 +63,14 @@ class KasusController extends Controller {
 		$kasus = \rifka\Kasus::findOrFail($id);
 		$klien2 = \rifka\Kasus::find($id)->klienKasus;
 		$arsip2 = \rifka\Kasus::find($id)->arsip;
+		$bentuk2 = \rifka\Kasus::find($id)->bentuk;
 
 		return view('kasus.index', array(
 									'show'		=> True,
 									'kasus' 	=> $kasus,
 									'klien2'	=> $klien2,
-									'arsip2'	=> $arsip2
+									'arsip2'	=> $arsip2,
+									'bentuk2'	=> $bentuk2
 									));
 	}
 

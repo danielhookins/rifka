@@ -31,20 +31,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="home">{!! HTML::image('images/logo.png', 'Rifka Annisa Logo', ['height=28','width=128']) !!}</a>
+          <a class="navbar-brand" href="{{ route('root') }}">{!! HTML::image('images/logo.png', 'Rifka Annisa Logo', ['height=28','width=128']) !!}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class=""><a href="administrasi">Administrasi</a></li>
+            <li class=""><a href="{{ route('administrasi') }}">Administrasi</a></li>
             <li class="dropdown">
-              <a href="konseling" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Konseling Klien <span class="caret"></span></a>
+              <a href="{{ route('konseling') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Konseling Klien <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="kasus">Kasus</a></li>
                 <li><a href="klien">Klien</a></li>
               </ul>
             </li>
-            <li class=""><a href="mensprogram">Men's Program</a></li>
-            <li class=""><a href="kamus">Kamus Data</a></li>
+            <li class=""><a href="{{ route('mensprogram') }}">Men's Program</a></li>
+            <li class=""><a href="{{ route('kamus') }}">Kamus Data</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#">User Name</a></li>

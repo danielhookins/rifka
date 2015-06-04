@@ -16,7 +16,11 @@ class CreateBentukKekerasanTable extends Migration {
 		{
 			$table->increments('bentuk_id');
 			$table->integer('kasus_id')->unsigned();
-			$table->string('jenis_bentuk');
+			$table->boolean('emosional');
+			$table->boolean('fisik');
+			$table->boolean('ekonomi');
+			$table->boolean('seksual');
+			$table->boolean('sosial');
 			$table->string('keterangan');
 		});
 	}

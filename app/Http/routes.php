@@ -1,24 +1,25 @@
 <?php
 
 // SITE ROOT
-Route::get('/', 'WelcomeController@index');
+Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 
 // *** PROCESSES ***
 	// Administrasi
-	Route::get('/administrasi', 'AdministrasiController@index');
-	Route::get('/administrasi/new', 'AdministrasiController@newKlien');
+	Route::post('klien/search', 'KlienController@search');
+	Route::get('administrasi', ['as' => 'administrasi', 'uses' => 'AdministrasiController@index']);
+	
 	// Konseling
-	Route::get('/konseling', 'KonselingController@index');
+	Route::get('konseling', ['as' => 'konseling', 'uses' => 'KonselingController@index']);
+	
 	// Men's Program
-	Route::get('/mensprogram', 'MensProgramController@index');
+	Route::get('mensprogram', ['as' => 'mensprogram', 'uses' => 'MensProgramController@index']);
 
 // *** RESOURCES ***
 	Route::resource('kasus', 'KasusController');
 	Route::resource('klien', 'KlienController');
 	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
-	Route::resource('klien.anak', 'AnakKlienController');
-
+	Route::resource('kasus.bentuk', 'BentukKekerasanController');
 
 
 // *** AUTHENTICATION ***
@@ -30,6 +31,6 @@ Route::get('/', 'WelcomeController@index');
 
 // *** DEVELOPER ***
 	// Developer Routes
-	Route::get('/kamus', 'KamusController@index');
+	Route::get('/kamus', ['as' => 'kamus', 'uses' => 'KamusController@index']);
 	Route::get('/developer', 'DeveloperController@index');
 	Route::get('/changelog', 'DeveloperController@changelog');

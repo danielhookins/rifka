@@ -570,12 +570,48 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Bentuk_Kekerasan',
-            'name'          => 'jenis_bentuk',
+            'name'          => 'emosional',
             'primary_key'   => False,
             'foreign_key'   => '',
-            'type'          => 'string',
-            'description'   => 'The type of the violence that occurred:<ul><li>Kekerasan Fisik</li><li>Kekerasan Psikologis</li><li>Kekerasan Seksual</li><li>Kekerasan Sosial</li><li>Kekerasan Ekonomi</li><li>Lain-lain</li></ul>',
-            'example'       => 'Kekerasan Fisik'
+            'type'          => 'boolean',
+            'description'   => 'Did emotional violence occur?',
+            'example'       => 'True'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Bentuk_Kekerasan',
+            'name'          => 'fisik',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'boolean',
+            'description'   => 'Did physical violence occur?',
+            'example'       => 'True'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Bentuk_Kekerasan',
+            'name'          => 'ekonomi',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'boolean',
+            'description'   => 'Did economic violence occur?',
+            'example'       => 'True'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Bentuk_Kekerasan',
+            'name'          => 'seksual',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'boolean',
+            'description'   => 'Did sexual violence occur?',
+            'example'       => 'True'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Bentuk_Kekerasan',
+            'name'          => 'sosial',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'boolean',
+            'description'   => 'Did emotional violence occur?',
+            'example'       => 'True'
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Bentuk_Kekerasan',
