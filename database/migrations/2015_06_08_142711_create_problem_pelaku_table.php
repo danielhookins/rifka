@@ -15,10 +15,10 @@ class CreateProblemPelakuTable extends Migration {
 		Schema::create('Problem_Pelaku', function(Blueprint $table)
 		{
 			$table->increments('problem_palaku_id');
-			$table->integer('palaku_id')->unsigned();
-			$table->integer('problem_id')->unsigned();
-			$table->timestamp('created_at');
-			$table->timestamp('updated_at');
+			$table->integer('palaku_id')->nullable()->unsigned();
+			$table->integer('problem_id')->nullable()->unsigned();
+			$table->timestamp('created_at')->nullable();
+			$table->timestamp('updated_at')->nullable();
 		});
 	}
 

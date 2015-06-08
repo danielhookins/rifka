@@ -15,9 +15,9 @@ class CreateFaktorPemicuTable extends Migration {
 		Schema::create('Faktor_Pemicu', function(Blueprint $table)
 		{
 			$table->increments('pemicu_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->string('jenis_pemicu');
-			$table->string('keterangan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->string('jenis_pemicu')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

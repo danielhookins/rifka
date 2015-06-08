@@ -15,10 +15,10 @@ class CreateMedisTable extends Migration {
 		Schema::create('Medis', function(Blueprint $table)
 		{
 			$table->increments('medis_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->date('tanggal');
-			$table->string('jenis_medis');
-			$table->string('keterangan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->date('tanggal')->nullable();
+			$table->string('jenis_medis')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

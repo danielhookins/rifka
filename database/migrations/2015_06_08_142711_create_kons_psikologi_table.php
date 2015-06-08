@@ -15,9 +15,9 @@ class CreateKonsPsikologiTable extends Migration {
 		Schema::create('Kons_Psikologi', function(Blueprint $table)
 		{
 			$table->increments('kons_psikologi_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->date('tanggal');
-			$table->string('keterangan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->date('tanggal')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

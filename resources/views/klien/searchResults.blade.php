@@ -7,22 +7,21 @@
  	<tr>
  		<th># ID</th>
  		<th>Nama</th>
- 		<th>Email</th>
  		<th>Telp</th>
  		<th>Alamat</th>
+ 		<th>Email</th>
  	</tr>
 	@forelse ($results as $result)
 		<tr>
 			<td><a href="{{ $result->klien_id }}">{!! $result->klien_id !!}</a></td>
 			<td><a href="{{ $result->klien_id }}">{!! $result->nama_klien !!}</a></td>
-			<td>{!! $result->email !!}</td>
 			<td>{!! $result->no_telp !!}</td>
 			<td>
 				<ul>
 					@forelse ($result->alamatKlien()->get() as $resultAlamat)
 						{{ $resultAlamat->alamat }}
-						@if ($resultAlamat->kecematan)
-							<br />{{ $resultAlamat->kecematan }}
+						@if ($resultAlamat->kecamatan)
+							<br />{{ $resultAlamat->kecamatan }}
 						@endif
 						@if ($resultAlamat->kabupaten)
 							<br />{{ $resultAlamat->kabupaten }}
@@ -32,10 +31,11 @@
 					@endforelse
 				</ul>
 			</td>
+			<td>{!! $result->email !!}</td>
 		</tr>
 		@empty
 		<td></td>
-		<th scope="row"><em>Tidak ada result.</em></th>
+		<th scope="row"><em>Tidak ada hasil.</em></th>
 		<td colspan=3></td>
 	@endforelse
 	</table>

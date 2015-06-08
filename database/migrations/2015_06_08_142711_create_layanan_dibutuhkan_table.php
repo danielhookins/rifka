@@ -15,9 +15,9 @@ class CreateLayananDibutuhkanTable extends Migration {
 		Schema::create('Layanan_Dibutuhkan', function(Blueprint $table)
 		{
 			$table->increments('layanan_dbth_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->string('jenis_layanan');
-			$table->string('status');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->string('jenis_layanan')->nullable();
+			$table->string('status')->nullable();
 		});
 	}
 

@@ -15,10 +15,10 @@ class CreateKasusPentutupTable extends Migration {
 		Schema::create('Kasus_Pentutup', function(Blueprint $table)
 		{
 			$table->increments('kasus_pentutup_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->integer('evaluasi_kons_id')->unsigned();
-			$table->integer('evaluasi_akhir_id')->unsigned();
-			$table->date('tanggal');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->integer('evaluasi_kons_id')->nullable()->unsigned();
+			$table->integer('evaluasi_akhir_id')->nullable()->unsigned();
+			$table->date('tanggal')->nullable();
 		});
 	}
 

@@ -15,11 +15,11 @@ class CreatePerkembanganTable extends Migration {
 		Schema::create('Perkembangan', function(Blueprint $table)
 		{
 			$table->increments('perkembangan_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->date('tanggal');
-			$table->string('intervensi');
-			$table->string('kesimpulan');
-			$table->string('kesepakatan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->date('tanggal')->nullable();
+			$table->string('intervensi')->nullable();
+			$table->string('kesimpulan')->nullable();
+			$table->string('kesepakatan')->nullable();
 		});
 	}
 

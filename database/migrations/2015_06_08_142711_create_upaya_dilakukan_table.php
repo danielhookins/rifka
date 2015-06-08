@@ -15,9 +15,9 @@ class CreateUpayaDilakukanTable extends Migration {
 		Schema::create('Upaya_Dilakukan', function(Blueprint $table)
 		{
 			$table->increments('upaya_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->string('jenis_upaya');
-			$table->string('hasil');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->string('jenis_upaya')->nullable();
+			$table->string('hasil')->nullable();
 		});
 	}
 

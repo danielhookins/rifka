@@ -15,12 +15,12 @@ class CreateAnakKlienTable extends Migration {
 		Schema::create('Anak_Klien', function(Blueprint $table)
 		{
 			$table->increments('anak_id');
-			$table->integer('ibu_id')->unsigned();
-			$table->string('nama_anak');
-			$table->date('tanggal_lahir');
-			$table->string('pendidikan');
-			$table->string('pekerjaan');
-			$table->string('keterangan');
+			$table->integer('ibu_id')->nullable()->unsigned();
+			$table->string('nama_anak')->nullable();
+			$table->date('tanggal_lahir')->nullable();
+			$table->string('pendidikan')->nullable();
+			$table->string('pekerjaan')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

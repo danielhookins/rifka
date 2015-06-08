@@ -4,23 +4,22 @@
   <tr>
     <th># ID</th>
     <th>Nama</th>
-    <th>Email</th>
     <th>Telp</th>
     <th>Alamat</th>
+    <th>Email</th>
   </tr>
   @forelse ($semuaKlien as $klien)
     <tr>
       <td><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{!! $klien->klien_id !!}</a></td>
       <td><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{!! $klien->nama_klien !!}</a></td>
-      <td>{!! $klien->email !!}</td>
       <td>{!! $klien->no_telp !!}</td>
       <td>
         <ul>
           @forelse ($klien->alamatKlien()->get() as $klienAlamat)
             <li>
               {{ $klienAlamat->alamat }}
-              @if ($klienAlamat->kecematan)
-                <br />{{ $klienAlamat->kecematan }}
+              @if ($klienAlamat->kecamatan)
+                <br />{{ $klienAlamat->kecamatan }}
               @endif
               @if ($klienAlamat->kabupaten)
                 <br />{{ $klienAlamat->kabupaten }}
@@ -31,6 +30,7 @@
           @endforelse
         </ul>
       </td>
+      <td>{!! $klien->email !!}</td>
     </tr>
     @empty
     <td></td>

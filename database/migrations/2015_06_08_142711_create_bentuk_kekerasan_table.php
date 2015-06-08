@@ -15,13 +15,13 @@ class CreateBentukKekerasanTable extends Migration {
 		Schema::create('Bentuk_Kekerasan', function(Blueprint $table)
 		{
 			$table->increments('bentuk_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->boolean('emosional');
-			$table->boolean('fisik');
-			$table->boolean('ekonomi');
-			$table->boolean('seksual');
-			$table->boolean('sosial');
-			$table->string('keterangan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->boolean('emosional')->nullable();
+			$table->boolean('fisik')->nullable();
+			$table->boolean('ekonomi')->nullable();
+			$table->boolean('seksual')->nullable();
+			$table->boolean('sosial')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

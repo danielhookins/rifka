@@ -15,9 +15,9 @@ class CreateKonsHukumTable extends Migration {
 		Schema::create('Kons_Hukum', function(Blueprint $table)
 		{
 			$table->increments('kons_hukum_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->date('tanggal');
-			$table->string('keterangan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->date('tanggal')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

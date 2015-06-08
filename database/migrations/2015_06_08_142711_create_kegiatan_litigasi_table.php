@@ -15,10 +15,10 @@ class CreateKegiatanLitigasiTable extends Migration {
 		Schema::create('Kegiatan_Litigasi', function(Blueprint $table)
 		{
 			$table->increments('kegiatan_litigasi_id');
-			$table->integer('litigasi_id')->unsigned();
-			$table->date('tanggal');
-			$table->string('kegiatan');
-			$table->string('informasi');
+			$table->integer('litigasi_id')->nullable()->unsigned();
+			$table->date('tanggal')->nullable();
+			$table->string('kegiatan')->nullable();
+			$table->string('informasi')->nullable();
 		});
 	}
 

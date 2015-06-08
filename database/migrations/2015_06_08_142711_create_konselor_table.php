@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArsipTable extends Migration {
+class CreateKonselorTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class CreateArsipTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Arsip', function(Blueprint $table)
+		Schema::create('Konselor', function(Blueprint $table)
 		{
-			$table->increments('arsip_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->integer('no_reg');
-			$table->string('lokasi');
+			$table->increments('konselor_id');
+			$table->string('nama_konselor')->nullable();
+			$table->integer('user_id')->nullable()->unsigned();
 		});
 	}
 
@@ -28,7 +27,7 @@ class CreateArsipTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Arsip');
+		Schema::drop('Konselor');
 	}
 
 }

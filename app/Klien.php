@@ -11,9 +11,11 @@ class Klien extends Model {
 	protected $primaryKey = 'klien_id';
 	protected $fillable = ['jenis_klien',
 							'nama_klien',
+							'kelamin',
 							'tempat_lahir',
 							'tanggal_lahir',
 							'no_telp',
+							'email',
 							'alamat_ktp',
 							'alamat_domisili',
 							'pendidikan',
@@ -25,7 +27,7 @@ class Klien extends Model {
 							'jumlah_tanggungan',
 							'status_perkawinan',
 							'jumlah_anak',
-							'kondisi_kilen',
+							'kondisi_klien',
 							'dirujuk_oleh',
 							'created_at',
 							'updated_at'];

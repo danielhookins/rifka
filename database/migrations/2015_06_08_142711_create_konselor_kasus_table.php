@@ -15,8 +15,8 @@ class CreateKonselorKasusTable extends Migration {
 		Schema::create('Konselor_Kasus', function(Blueprint $table)
 		{
 			$table->increments('konselor_kasus_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->integer('konselor_id')->unsigned();
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->integer('konselor_id')->nullable()->unsigned();
 		});
 	}
 

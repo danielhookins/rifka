@@ -15,10 +15,10 @@ class CreateLatarKeluargaTable extends Migration {
 		Schema::create('Latar_Keluarga', function(Blueprint $table)
 		{
 			$table->increments('latar_keluarga_id');
-			$table->integer('klien_id')->unsigned();
-			$table->boolean('kkrsn_masa_lalu');
-			$table->boolean('menyaksikan_kkrsn_rt');
-			$table->boolean('lingkungan_toleran_kkrsn');
+			$table->integer('klien_id')->nullable()->unsigned();
+			$table->boolean('kkrsn_masa_lalu')->nullable();
+			$table->boolean('menyaksikan_kkrsn_rt')->nullable();
+			$table->boolean('lingkungan_toleran_kkrsn')->nullable();
 		});
 	}
 

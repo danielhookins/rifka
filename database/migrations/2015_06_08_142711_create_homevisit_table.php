@@ -15,9 +15,9 @@ class CreateHomevisitTable extends Migration {
 		Schema::create('Homevisit', function(Blueprint $table)
 		{
 			$table->increments('homevisit_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->date('tanggal');
-			$table->string('keterangan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->date('tanggal')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

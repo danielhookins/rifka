@@ -15,10 +15,10 @@ class CreateShelterTable extends Migration {
 		Schema::create('Shelter', function(Blueprint $table)
 		{
 			$table->increments('shelter_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->date('mulai_tanggal');
-			$table->date('sampai_tanggal');
-			$table->string('keterangan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->date('mulai_tanggal')->nullable();
+			$table->date('sampai_tanggal')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

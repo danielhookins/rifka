@@ -15,9 +15,9 @@ class CreateMensProgramTable extends Migration {
 		Schema::create('Mens_Program', function(Blueprint $table)
 		{
 			$table->increments('mens_program_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->date('tanggal');
-			$table->string('keterangan');
+			$table->integer('kasus_id')->nullable()->unsigned();
+			$table->date('tanggal')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 

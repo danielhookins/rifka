@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDampakTable extends Migration {
+class CreateProblemTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,11 @@ class CreateDampakTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('Dampak', function(Blueprint $table)
+		Schema::create('Problem', function(Blueprint $table)
 		{
-			$table->increments('dampak_id');
-			$table->integer('kasus_id')->unsigned();
-			$table->string('jenis_dampak');
-			$table->string('keterangan');
+			$table->increments('kasus_pentutup_id');
+			$table->string('jenis_problem')->nullable();
+			$table->string('keterangan')->nullable();
 		});
 	}
 
@@ -28,7 +27,7 @@ class CreateDampakTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('Dampak');
+		Schema::drop('Problem');
 	}
 
 }

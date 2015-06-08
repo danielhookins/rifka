@@ -2,7 +2,7 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
+// use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request;
 
 class KlienController extends Controller {
@@ -16,18 +16,11 @@ class KlienController extends Controller {
 	{
 		//
 		$semuaKlien = \rifka\Klien::orderBy('klien_id', 'DESC')->paginate(15);
-		
-		if ($semuaKlien->count()) {
-			$attributes = $semuaKlien->first()->toArray();
-		} else {
-			$attributes = array();
-		}
 
 		return view('klien.index', array(
 										'search'	 => True,
 										'list'		 => True,
-										'semuaKlien' => $semuaKlien,
-										'attributes' => $attributes
+										'semuaKlien' => $semuaKlien
 										));
 	}
 
@@ -39,6 +32,9 @@ class KlienController extends Controller {
 	public function create()
 	{
 		//
+		return view('klien.index', array(
+								'create' => True
+								));
 	}
 
 	/**
@@ -48,7 +44,54 @@ class KlienController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		//TODO: Ensure validation and CSRF
+
+		// KLIEN BARU
+		$klienBaru = \rifka\Klien::create([
+				'nama_klien' 		=> \Input::get('nama_klien'),
+				'kelamin'			=> \Input::get('kelamin'),
+				'tanggal_lahir' 	=> \Input::get('tanggal_lahir'),
+				'agama' 			=> \Input::get('agama'),
+				'status_perkawinan' => \Input::get('status_perkawinan'),
+				'no_telp' 			=> \Input::get('no_telp'),
+
+				'email' => \Input::get('email'),
+
+				'jumlah_anak'		=> \Input::get('jumlah_anak'),
+				'jumlah_tanggungan' => \Input::get('tanggungan'),
+
+				'pekerjaan' 	=> \Input::get('pekerjaan'),
+				'jabatan' 		=> \Input::get('jabatan'),
+				'penghasilan' 	=> \Input::get('penghasilan'),
+
+				'kondisi_klien' => \Input::get('kondisi_klien'),
+				'dirujuk_oleh' 	=> \Input::get('dirujuk_oleh')
+			]);
+
+		// ALAMAT BARU
+		$provinsi = \Input::get('provinsi');
+		if ($provinsi == 'Yogyakarta') {
+			$kecamatan = \Input::get('kecamatan');
+			$kabupaten = \Input::get('kabupaten');
+		} else {
+			$kecamatan = '';
+			$kabupaten = \Input::get('provinsi');
+		}
+
+		$alamatBaru = \rifka\Alamat::create([
+				'alamat' 	=> \Input::get('alamat'),
+				'kecamatan' => $kecamatan,
+				'kabupaten' => $kabupaten
+			]);
+
+		// ALAMAT-KLIEN BARU
+		$alamatKlienBaru = \rifka\AlamatKlien::create([
+				'alamat_id' => $alamatBaru->alamat_id,
+				'klien_id'	=> $klienBaru->klien_id
+			]);
+        
+		return redirect('klien/'.$klienBaru->klien_id)
+					->with('success', 'New client created.');
 	}
 
 	/**
