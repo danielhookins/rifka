@@ -5,64 +5,137 @@
 	</div>
 @endif
 
-<h2>Klien</h2>
+<h2>Klien Record</h2>
 
-{!! Form::model($klien, array('class'=>'form-horizontal')) !!}
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{$klien->nama_klien}}</h3>
+	</div>
+	<div class="panel-body">
+		<div class="row">
+			
+			<div class="col-sm-4">
+				<div class="well">
+					<p style="text-align:center">
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+						<strong>Klien</strong>
+					</p>
+					<ul>
+						<li><a href="#informasi-pribadi">Informasi Pribadi</a></li>
+						<li><a href="#informasi-kontak">Informasi Kontak</a></li>
+						<li><a href="#informasi-tambahan">Informasi Tambahan</a></li>
+					</ul>
+				</div> <!-- /well -->	
+			</div>
 
-	@foreach (array_keys($klien->toArray()) as $attribute)
-		
-		<div class="form-group">
-			{!! Form::label($attribute) !!}
-			{!! Form::text($attribute, null, array('class' => 'form-control', 'readonly')) !!}
+			<div class="col-sm-4">
+				<div class="well">
+					<p style="text-align:center">
+						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"> </span>
+						<strong>Kasus</strong>
+					</p>
+					
+						<ul>
+							@forelse ($kasus2 as $kasus)
+								<li><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}"><strong>Kasus no:</strong> {{ $kasus->kasus_id }}</a>
+								<br /><strong>Jenis klien:</strong> {{$kasus->pivot->jenis_klien}}
+								<br /><strong>Jenis kasus:</strong> {{$kasus->jenis_kasus}}</li>
+							@empty
+								<li>Belum ada kasus</li>
+							@endforelse
+						</ul>
+						<a href="#">Kasus Baru</a>
+
+				</div> <!-- /well -->	
+			</div>
+			
+			<div class="col-sm-4">
+				<div class="well">
+					<p style="text-align:center">
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						<strong>Modify</strong>
+					</p>
+					<ul>
+						<li>Edit Klien</li>
+						<li style="color:red">Delete Klien</li>
+					</ul>
+				</div> <!-- /well -->	
+			</div>
+
 		</div>
-		
-	@endforeach
+	</div>
+</div> <!-- /Panel Primary -->
 
-	<h3>Alamat Klien</h3>
-	<table border="1">
-		<tr>
-			<th style="padding:5px;">Alamat</th>
-			<th style="padding:5px;">Kecamatan</th>
-			<th style="padding:5px;">Kabupaten</th>
-			<th colspan=2></th>
-		</tr>
-		
-		@foreach ($alamat2 as $alamat)
-			<tr>
-				<td style="padding:5px;">{{ $alamat->alamat }}</td>
-				<td style="padding:5px;">{{ $alamat->kecamatan }}</td>
-				<td style="padding:5px;">{{ $alamat->kabupaten }}</td>
-				<td style="padding:5px;">[Edit]</td>
-				<td style="padding:5px;">[Delete]</td>
-			</tr>
-		@endforeach
-		
-		<tr>
-			<td colspan=2 style="padding:5px;">Alamat Baru</td>
-		</tr>
-	</table>
+<div class="panel panel-default"> <!-- Pribadi Panel -->
+    <div class="panel-heading"><a class="in-link" name="informasi-pribadi">Informasi Pribadi</a></div>
+  <ul class="list-group">
+    <li class="list-group-item">
+	    	<h4 class="list-group-item-heading">Klien ID</h4>
+	    	<p class="list-group-item-text">{{$klien->klien_id}}</p>
+  	</li>
+  	<li class="list-group-item">
+	    	<h4 class="list-group-item-heading">Name</h4>
+	    	<p class="list-group-item-text">{{$klien->nama_klien}}</p>
+  	</li>
+  	<li class="list-group-item">
+	    	<h4 class="list-group-item-heading">Kelamin</h4>
+	    	<p class="list-group-item-text">{{$klien->kelamin}}</p>
+  	</li>
+  	<li class="list-group-item">
+	    	<h4 class="list-group-item-heading">Tanggal Lahir</h4>
+	    	<p class="list-group-item-text">{{$klien->tanggal_lahir}}</p>
+  	</li>
+  	<li class="list-group-item">
+	    	<h4 class="list-group-item-heading">Agama</h4>
+	    	<p class="list-group-item-text">{{$klien->agama}}</p>
+  	</li>
+  	<li class="list-group-item">
+	    	<h4 class="list-group-item-heading">Status Perkawinan</h4>
+	    	<p class="list-group-item-text">{{$klien->status_perkawinan}}</p>
+  	</li>
+  	<li class="list-group-item" style="text-align:right">[ <a href="#">Edit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
+  </ul>
+  
+</div> <!-- /Pribadi Panel -->
 
-	<h3>Klien Kasus</h3>
-	<table border="1">
-		<tr>
-			<th style="padding:5px;">Kasus ID</th>
-			<th style="padding:5px;">Jenis Klien</th>
-			<th style="padding:5px;">Jenis Kasus</th>
-			<th style="padding:5px;">Tanggal</th>
-		</tr>
-		
-		@foreach ($kasus2 as $kasus)
-			<tr>
-				<td style="padding:5px;"><a href="../kasus/{{ $kasus->kasus_id }}">{{ $kasus->kasus_id }}</a></td>
-				<td style="padding:5px;">{{ $kasus->pivot->jenis_klien }}</td>
-				<td style="padding:5px;">{{ $kasus->jenis_kasus }}</td>
-				<td style="padding:5px;">{{ $kasus->created_at }}</td>
-			</tr>
-		@endforeach
+<div class="panel panel-default"> <!-- Kontak Panel -->
+    <div class="panel-heading"><a class="in-link" name="informasi-kontak">Informasi Kontak</a></div>
+  <ul class="list-group">
+  	<li class="list-group-item">
+  		<h4 class="list-group-item-heading">Nomor Telepon</h4> 
+  		<p class="list-group-item-text">{{$klien->no_telp}}</p>
+  	</li>
+  	<li class="list-group-item">
+  		<h4 class="list-group-item-heading">Alamat</h4> 
+  		<p class="list-group-item-text">
+  			<ul>
+    			<li>
+    				@forelse ($alamat2 as $alamat)
+							{{ $alamat->alamat }}
+							<br />{{ $alamat->kecamatan }}
+							<br />{{ $alamat->kabupaten }}
+						@empty
+							<br /><a href="#">Add Alamat</a>
+						@endforelse
+					</li>
+    		</ul>
+  		</p>
+  	</li>
+    <li class="list-group-item">
+  		<h4 class="list-group-item-heading">Email</h4> 
+  		<p class="list-group-item-text"><a href="mailto:{{$klien->email}}">{{$klien->email}}</a></p>
+  	</li>
+  	<li class="list-group-item" style="text-align:right">[ <a href="#">Edit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
+  </ul>
+</div> <!-- /Kontak Panel -->
 
-		<tr>
-			<td colspan=2 style="padding:5px;">Kasus Baru</td>
-		</tr>
-	</table>
-
-{!! Form::close() !!}
+<div class="panel panel-default"> <!-- Tambahan Panel -->
+    <div class="panel-heading"><a class="in-link" name="informasi-tambahan">Informasi Tambahan</a></div>
+  <ul class="list-group">
+    <li class="list-group-item">
+	    	<h4 class="list-group-item-heading">Pekerjaan</h4>
+	    	<p class="list-group-item-text">{{$klien->pekerjaan}}</p>
+	  	</li>
+	  	<li class="list-group-item" style="text-align:right">[ <a href="#">Edit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
+  </ul>
+</div> <!-- /Tambahan Panel -->
