@@ -1,9 +1,8 @@
-    </div><!-- /container -->
-  
-    <!-- Javascript -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
-  </body>
+		</div><!-- /container -->
+
+		<!-- Javascript -->
+		<script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ asset('js/custom.js') }}"></script>
+	</body>
 </html>

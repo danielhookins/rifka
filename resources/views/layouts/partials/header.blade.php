@@ -47,7 +47,7 @@
             <li class=""><a href="{{ route('kamus') }}">Kamus Data</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User Name</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

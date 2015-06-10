@@ -7,7 +7,14 @@
 <h3>Informasi Pribadi</h3>
 
 	<div class="form-group">
-		{!! Form::text('nama_klien', null, array('class' => 'form-control','placeholder' => 'Nama Klien','autofocus')) !!}
+		{!! Form::text('nama_klien', null, array(
+			'class' 							=> 'form-control',
+			'placeholder' 				=> 'Nama Klien',
+			'data-toggle'					=>'tooltip',
+			'data-placement'			=>'right',
+			'data-original-title'	=>'Silakan tulis nama klien',
+			'autofocus')) 
+		!!}
 	</div>
 	
 	<div class="form-group form-inline">
