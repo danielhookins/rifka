@@ -33,4 +33,3 @@ Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 	// Developer Routes
 	Route::get('/kamus', ['as' => 'kamus', 'uses' => 'KamusController@index']);
 	Route::get('/developer', 'DeveloperController@index');
-	Route::get('/changelog', 'DeveloperController@changelog');

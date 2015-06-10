@@ -14,13 +14,4 @@ class DeveloperController extends Controller {
 		return view('developer.index');
 	}
 
-	//
-	function changelog() 
-	{
-
-		return view('developer.changelog', [
-			'changes'		=> \rifka\Changes::all(),
-			]);
-	}
-
 }
