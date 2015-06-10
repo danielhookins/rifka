@@ -39,15 +39,15 @@
             <li class="dropdown">
               <a href="{{ route('konseling') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Konseling Klien <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="kasus">Kasus</a></li>
-                <li><a href="klien">Klien</a></li>
+                <li><a href="{{ route('kasus.index') }}">Kasus</a></li>
+                <li><a href="{{ route('klien.index') }}">Klien</a></li>
               </ul>
             </li>
             <li class=""><a href="{{ route('mensprogram') }}">Men's Program</a></li>
             <li class=""><a href="{{ route('kamus') }}">Kamus Data</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">User Name</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> User Name</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

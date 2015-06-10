@@ -3,6 +3,7 @@
 {!! Form::open(array('route' => 'klien.store')) !!}
 {!! Form::token() !!}
 
+<div class="well">
 <h3>Informasi Pribadi</h3>
 
 	<div class="form-group">
@@ -41,6 +42,7 @@
 			'Janda'				=>	'Janda'
 		), null, array('class' => 'form-control'))!!}
 	</div>
+</div>
 
 <h3>Informasi Kontak</h3>
 

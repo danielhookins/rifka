@@ -8,6 +8,8 @@
     <div class="form-group hidden-xs" style="padding-top:1px;">
     </div>
     <div class="form-group">
-    	{!! Form::submit('Search', array('class' => 'form-control btn btn-default')) !!}
+    	<button type="submit" class="btn btn-default form-control">
+		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+		</button>
     </div>
 {!! Form::close() !!}

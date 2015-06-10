@@ -5,7 +5,7 @@
 	</div>
 @endif
 
-<h2>Klien Record</h2>
+<h2>Catatan Klien</h2>
 
 <div class="panel panel-primary">
 	<div class="panel-heading">
@@ -17,8 +17,7 @@
 			<div class="col-sm-4">
 				<div class="well">
 					<p style="text-align:center">
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-						<strong>Klien</strong>
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <strong>Klien</strong>
 					</p>
 					<ul>
 						<li><a href="#informasi-pribadi">Informasi Pribadi</a></li>
@@ -31,13 +30,12 @@
 			<div class="col-sm-4">
 				<div class="well">
 					<p style="text-align:center">
-						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"> </span>
-						<strong>Kasus</strong>
+						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> <strong>Kasus</strong>
 					</p>
 					
 						<ul>
 							@forelse ($kasus2 as $kasus)
-								<li><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}"><strong>Kasus no:</strong> {{ $kasus->kasus_id }}</a>
+								<li><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}"><strong> Kasus no:</strong> {{ $kasus->kasus_id }}</a>
 								<br /><strong>Jenis klien:</strong> {{$kasus->pivot->jenis_klien}}
 								<br /><strong>Jenis kasus:</strong> {{$kasus->jenis_kasus}}</li>
 							@empty
@@ -52,12 +50,11 @@
 			<div class="col-sm-4">
 				<div class="well">
 					<p style="text-align:center">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-						<strong>Modify</strong>
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <strong>Modify</strong>
 					</p>
 					<ul>
-						<li>Edit Klien</li>
-						<li style="color:red">Delete Klien</li>
+						<li>Mengedit Klien</li>
+						<li style="color:red">Menghapus Klien</li>
 					</ul>
 				</div> <!-- /well -->	
 			</div>
@@ -66,7 +63,7 @@
 	</div>
 </div> <!-- /Panel Primary -->
 
-<div class="panel panel-default"> <!-- Pribadi Panel -->
+<div class="panel panel-informasi" style="background:#b6fcb6;"> <!-- Pribadi Panel -->
     <div class="panel-heading"><a class="in-link" name="informasi-pribadi">Informasi Pribadi</a></div>
   <ul class="list-group">
     <li class="list-group-item">
@@ -74,7 +71,7 @@
 	    	<p class="list-group-item-text">{{$klien->klien_id}}</p>
   	</li>
   	<li class="list-group-item">
-	    	<h4 class="list-group-item-heading">Name</h4>
+	    	<h4 class="list-group-item-heading">Nama</h4>
 	    	<p class="list-group-item-text">{{$klien->nama_klien}}</p>
   	</li>
   	<li class="list-group-item">
@@ -93,49 +90,74 @@
 	    	<h4 class="list-group-item-heading">Status Perkawinan</h4>
 	    	<p class="list-group-item-text">{{$klien->status_perkawinan}}</p>
   	</li>
-  	<li class="list-group-item" style="text-align:right">[ <a href="#">Edit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
+  	<li class="list-group-item" style="background:#d3eaf1;">[ <a href="#">Mengedit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
   </ul>
   
 </div> <!-- /Pribadi Panel -->
 
-<div class="panel panel-default"> <!-- Kontak Panel -->
+<div class="panel panel-informasi" style="background:#b6fcb6;"> <!-- Kontak Panel -->
     <div class="panel-heading"><a class="in-link" name="informasi-kontak">Informasi Kontak</a></div>
   <ul class="list-group">
-  	<li class="list-group-item">
-  		<h4 class="list-group-item-heading">Nomor Telepon</h4> 
-  		<p class="list-group-item-text">{{$klien->no_telp}}</p>
-  	</li>
-  	<li class="list-group-item">
-  		<h4 class="list-group-item-heading">Alamat</h4> 
-  		<p class="list-group-item-text">
-  			<ul>
-    			<li>
-    				@forelse ($alamat2 as $alamat)
-							{{ $alamat->alamat }}
-							<br />{{ $alamat->kecamatan }}
-							<br />{{ $alamat->kabupaten }}
-						@empty
-							<br /><a href="#">Add Alamat</a>
-						@endforelse
-					</li>
-    		</ul>
-  		</p>
-  	</li>
-    <li class="list-group-item">
-  		<h4 class="list-group-item-heading">Email</h4> 
-  		<p class="list-group-item-text"><a href="mailto:{{$klien->email}}">{{$klien->email}}</a></p>
-  	</li>
-  	<li class="list-group-item" style="text-align:right">[ <a href="#">Edit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
+  	@if ($klien->no_telp || (count($alamat2) && $alamat2[0]->alamat) || $klien->email)
+	  	@if ($klien->no_telp)
+	  	<li class="list-group-item">
+	  		<h4 class="list-group-item-heading">Nomor Telepon</h4> 
+	  		<p class="list-group-item-text">{{$klien->no_telp}}</p>
+	  	</li>
+	  	@endif
+	  	@if (count($alamat2) && $alamat2[0]->alamat)
+	  	<li class="list-group-item">
+	  		<h4 class="list-group-item-heading">Alamat</h4> 
+	  		<p class="list-group-item-text">
+	  			<ul>
+	    			<li>
+	    				@foreach ($alamat2 as $alamat)
+								{{ $alamat->alamat }}
+								<br />{{ $alamat->kecamatan }}
+								<br />{{ $alamat->kabupaten }}
+							@endforeach
+						</li>
+	    		</ul>
+	  		</p>
+	  	</li>
+	  	@endif
+	  	@if($klien->email)
+	    <li class="list-group-item">
+	  		<h4 class="list-group-item-heading">Email</h4> 
+	  		<p class="list-group-item-text"><a href="mailto:{{$klien->email}}">{{$klien->email}}</a></p>
+	  	</li>
+	  	@endif	
+  	@endif
+  	<li class="list-group-item" style="background:#d3eaf1;">[ <a href="#">Mengedit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
   </ul>
 </div> <!-- /Kontak Panel -->
 
-<div class="panel panel-default"> <!-- Tambahan Panel -->
+<div class="panel panel-informasi" style="background:#b6fcb6;"> <!-- Tambahan Panel -->
     <div class="panel-heading"><a class="in-link" name="informasi-tambahan">Informasi Tambahan</a></div>
   <ul class="list-group">
+    @if ($klien->jumlah_anak || $klien->jumlah_tanggungan)
     <li class="list-group-item">
-	    	<h4 class="list-group-item-heading">Pekerjaan</h4>
-	    	<p class="list-group-item-text">{{$klien->pekerjaan}}</p>
-	  	</li>
-	  	<li class="list-group-item" style="text-align:right">[ <a href="#">Edit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
+    	<h4 class="list-group-item-heading">Keluarga</h4>
+    	<p class="list-group-item-text">{!! ($klien->jumlah_anak) ? $klien->jumlah_anak." anak" : null !!}</p>
+    	<p class="list-group-item-text">{!! ($klien->jumlah_tanggungan) ? $klien->jumlah_tanggungan." tanggungan" : null !!}</p>
+  	</li>
+  	@endif
+    @if ($klien->pekerjaan || $klien->jabatan || $klien->penghasilan)
+    <li class="list-group-item">
+    	<h4 class="list-group-item-heading">Pekerjaan</h4>
+    	<p class="list-group-item-text">{!! ($klien->pekerjaan) ? $klien->pekerjaan : null !!}</p>
+    	<p class="list-group-item-text">{!! ($klien->jabatan) ? "(".$klien->jabatan.")" : null !!}</p>
+    	<p class="list-group-item-text">{{$klien->penghasilan or null}}</p>
+  	</li>
+  	@endif
+  	@if ($klien->dirujuk_oleh || $klien->kondisi_klien)
+  	<li class="list-group-item">
+    	<h4 class="list-group-item-heading">Lain</h4>
+    	<p class="list-group-item-text">{!! ($klien->kondisi_klien) ? "Kondisi ".$klien->kondisi_klien : null !!}</p>
+    	<p class="list-group-item-text">
+    		{!! ($klien->dirujuk_oleh) ? "Dirujuk oleh ".$klien->dirujuk_oleh : null !!}</p>
+  	</li>
+  	@endif
+  	<li class="list-group-item" style="background:#d3eaf1;">[ <a href="#">Mengedit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
   </ul>
 </div> <!-- /Tambahan Panel -->
