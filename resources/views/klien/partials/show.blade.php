@@ -35,7 +35,7 @@
 					
 						<ul>
 							@forelse ($kasus2 as $kasus)
-								<li><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}"><strong> Kasus no:</strong> {{ $kasus->kasus_id }}</a>
+								<li><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}"><strong> Kasus no {{ $kasus->kasus_id }}</strong></a>
 								<br /><strong>Jenis klien:</strong> {{$kasus->pivot->jenis_klien}}
 								<br /><strong>Jenis kasus:</strong> {{$kasus->jenis_kasus}}</li>
 							@empty

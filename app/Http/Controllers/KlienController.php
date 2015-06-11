@@ -2,7 +2,6 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-// use Illuminate\Support\Facades\Request;
 use Illuminate\Http\Request;
 
 class KlienController extends Controller {
