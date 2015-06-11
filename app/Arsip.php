@@ -1,20 +1,26 @@
 <?php namespace rifka;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Arsip extends Model {
 
+	use SearchableTrait;
+
 	protected $table = 'arsip';
 	protected $primaryKey = 'arsip_id';
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
 	protected $fillable = ['kasus_id',
 							'kasus_id',
 							'lokasi'];
+	protected $searchable = [
+        'columns' => [
+            'arsip.no_reg' => 10,
+            'kasus.kasus_id' => 6,
+        ],
+        'joins' => [
+            'kasus' => ['arsip.kasus_id','kasus.kasus_id']
+        ],
+    ];
 
     public function kasus()
     {

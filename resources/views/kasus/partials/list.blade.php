@@ -1,32 +1,43 @@
+<div class="col-sm-12">
+<h2>Daftar Kasus</h2>
 
-<h2>Kasus</h2>
-
-  <table border="1">
+<table class="table table-condensed">
+  <tr>
+    <th># Kasus</th>
+    <th>Jenis Kasus</th>
+    <th>Klien</th>
+    <th>Arsip</th>
+    <th>Tgl. Created</th>
+  </tr>
+  @forelse ($semuaKasus as $kasus)
     <tr>
-        <th style="padding:5px;">Kasus ID</th>
-        <th style="padding:5px;">Jenis Kasus</th>
-        <th style="padding:5px;">Tgl. Created</th>
-        <th style="padding:5px;">Tgl. Updated</th>
-        <td colspan=2></td>
+      <td><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}">{!! $kasus->kasus_id !!}</a></td>
+      <td>{!! $kasus->jenis_kasus !!}</a></td>
+      <td>
+        <ul>
+          @forelse ($kasus->klienKasus()->get() as $klienKasus)
+            <li><a href="{!! route('klien.index') !!}/{{ $klienKasus->klien_id }}">{{ $klienKasus->nama_klien }}</li>
+          @empty
+            <li>Tidak ada klien.</li>
+          @endforelse
+        </ul>
+      </td>
+      <td>
+        <ul>
+          @foreach ($kasus->arsip()->get() as $arsip)
+            <li>{{ $arsip->no_reg }}</li>
+          @endforeach
+        </ul>
+      </td>
+      <td>
+        {{ $kasus->created_at }}
+      </td>
     </tr>
-    <tr>
-      @forelse ($semuaKasus as $kasus)
-        <tr>
-          <td style="padding:5px;"><a href="kasus/{!! $kasus->kasus_id !!}">{!! $kasus->kasus_id !!}</a></td>
-          <td style="padding:5px;">{!! $kasus->jenis_kasus !!}</td>
-          <td style="padding:5px;">{!! $kasus->created_at !!}</td>
-          <td style="padding:5px;">{!! $kasus->updated_at !!}</td>
-          <td style="padding:5px;">[<a href="kasus/{{ $kasus->kasus_id }}/edit">Edit</a>]</td>
-          <td style="padding:5px;">[<a href="kasus/{{ $kasus->kasus_id }}/delete">Delete</a>]</td>
-        </tr>
-        @empty
-        <td></td>
-        <th scope="row"><em>Belum ada Kasus.</em></th>
-        @endforelse
-    </tr>
-    <tr>
-      <td colspan=2 style="padding:5px;"><a href="kasus/create">Kasus Baru</a></td>
-    </tr>
+    @empty
+    <td></td>
+    <th scope="row"><em>Belum ada kasus.</em></th>
+    <td colspan=3></td>
+  @endforelse
   </table>
 
 {!! str_replace('/?', '?', $semuaKasus->render()) !!}

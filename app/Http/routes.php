@@ -4,8 +4,11 @@
 Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 
 // *** PROCESSES ***
-	// Administrasi
+	// Search
 	Route::post('klien/search', 'KlienController@search');
+	Route::post('kasus/search', 'KasusController@search');
+	
+	// Administrasi
 	Route::get('administrasi', ['as' => 'administrasi', 'uses' => 'AdministrasiController@index']);
 	
 	// Konseling

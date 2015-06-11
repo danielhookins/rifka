@@ -15,7 +15,7 @@ class KasusController extends Controller {
 	public function index()
 	{
 		//
-		$semuaKasus = \rifka\Kasus::paginate(15);
+		$semuaKasus = \rifka\Kasus::orderBy('kasus_id', 'DESC')->paginate(15);
 
 		if ($semuaKasus->count()) {
 			$attributes = $semuaKasus->first()->toArray();
@@ -25,6 +25,7 @@ class KasusController extends Controller {
 		
 
 		return view('kasus.index', array(
+										'search'		 => True,
 										'list'		 => True,
 										'semuaKasus' => $semuaKasus,
 										'attributes' => $attributes
@@ -105,6 +106,18 @@ class KasusController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function search()
+	{
+
+		$query = \Input::get('searchQuery');		
+		$results = \rifka\Kasus::search($query)->take(50)->get();
+
+    	return view('kasus.searchResults', array(
+    								'query'		=> $query,
+										'results'	=> $results
+									));
 	}
 
 }

@@ -1,17 +1,14 @@
 <?php namespace rifka;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Kasus extends Model {
 
+	use SearchableTrait;
+
 	protected $table = 'kasus';
 	protected $primaryKey = 'kasus_id';
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
 	protected $fillable = ['jenis_kasus',
 							'hubungan',
 							'lama_hubungan',
@@ -20,6 +17,19 @@ class Kasus extends Model {
 							'harapan_korban',
 							'rencana_korban',
 							'narasi'];
+	protected $searchable = [
+        'columns' => [
+            'kasus.kasus_id' => 10,
+            'klien.nama_klien' => 10,
+            'arsip.no_reg' => 7,
+            'kasus.jenis_kasus' => 5
+        ],
+        'joins' => [
+            'klien_kasus' => ['kasus.kasus_id','klien_kasus.kasus_id'],
+            'klien' => ['klien_kasus.klien_id','klien.klien_id'],
+            'arsip' => ['kasus.kasus_id','arsip.kasus_id']
+        ],
+    ];
 
 	public function klienKasus()
     {

@@ -159,7 +159,7 @@ class KlienController extends Controller {
 	public function search()
 	{
 		$query = \Input::get('searchQuery');
-		$results = \rifka\Klien::search($query)->get();
+		$results = \rifka\Klien::search($query)->take(50)->get();
         
     	return view('klien.searchResults', array(
     								'query'		=> $query,

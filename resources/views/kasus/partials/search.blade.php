@@ -1,9 +1,9 @@
-<h2>Cari Klien</h2>
+<h2>Cari Kasus</h2>
 
-{!! Form::open(array('url' => 'klien/search')) !!}
+{!! Form::open(array('url' => 'kasus/search')) !!}
     <div class="form-group">
     	{!! Form::text('searchQuery', null, array('class' => 'form-control',
-                                                'placeholder' => 'Search for client', 'autofocus')) !!}
+                                                'placeholder' => 'Search for case', 'autofocus')) !!}
     </div>
     <div class="form-group hidden-xs" style="padding-top:1px;">
     </div>
