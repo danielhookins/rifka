@@ -13,8 +13,8 @@
  	</tr>
 	@forelse ($results as $result)
 		<tr>
-			<td><a href="{{ $result->klien_id }}">{!! $result->klien_id !!}</a></td>
-			<td><a href="{{ $result->klien_id }}">{!! $result->nama_klien !!}</a></td>
+			<td><a href="{{ route('klien.index') }}/{{ $result->klien_id }}">{!! $result->klien_id !!}</a></td>
+			<td><a href="{{ route('klien.index') }}/{{ $result->klien_id }}">{!! $result->nama_klien !!}</a></td>
 			<td>{!! $result->no_telp !!}</td>
 			<td>
 				<ul>
@@ -31,7 +31,7 @@
 					@endforelse
 				</ul>
 			</td>
-			<td>{!! $result->email !!}</td>
+			<td><a href="mailto:{!! $result->email !!}">{!! $result->email !!}</a></td>
 		</tr>
 		@empty
 		<td></td>

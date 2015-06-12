@@ -14,7 +14,7 @@
  	</tr>
 	@forelse ($results as $result)
 		<tr>
-			<td><a href="{{ $result->kasus_id }}">{!! $result->kasus_id !!}</a></td>
+			<td><a href="{!! route('kasus.index') !!}/{{ $result->kasus_id }}">{!! $result->kasus_id !!}</a></td>
 			<td>{!! $result->jenis_kasus !!}</a></td>
 			<td>
 				<ul>

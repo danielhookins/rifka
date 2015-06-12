@@ -5,8 +5,17 @@ Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 
 // *** PROCESSES ***
 	// Search
+	Route::get('search', [
+			'as'	=> 'search',
+			'uses'	=> 'SearchController@index'
+		]);
+	Route::post('search', [
+			'as' 	=> 'search', 
+			'uses'  => 'SearchController@search'
+		]);
 	Route::post('klien/search', 'KlienController@search');
 	Route::post('kasus/search', 'KasusController@search');
+	Route::post('alamat/search', 'AlamatController@search');
 	
 	// Administrasi
 	Route::get('administrasi', ['as' => 'administrasi', 'uses' => 'AdministrasiController@index']);
@@ -26,7 +35,7 @@ Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 
 
 // *** AUTHENTICATION ***
-	Route::get('home', 'HomeController@index');
+	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 	Route::controllers([
 		'auth' => 'Auth\AuthController',
 		'password' => 'Auth\PasswordController',

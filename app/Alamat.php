@@ -1,9 +1,11 @@
 <?php namespace rifka;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Alamat extends Model {
 
+    use SearchableTrait;
 	
     protected $table = 'alamat';
 	protected $primaryKey = 'alamat_id';

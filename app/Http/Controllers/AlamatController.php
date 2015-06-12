@@ -89,4 +89,15 @@ class AlamatController extends Controller {
 		//
 	}
 
+	public function search()
+	{
+		$query = \Input::get('searchQuery');
+		$results = \rifka\Alamat::search($query)->get();
+        
+    	return view('alamat.searchResults', array(
+    								'query'		=> $query,
+									'results'	=> $results
+									));
+	}
+
 }

@@ -35,6 +35,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
+            <li><a href="{{ route('home') }}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
             <li class=""><a href="{{ route('administrasi') }}">Administrasi</a></li>
             <li class="dropdown">
               <a href="{{ route('konseling') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Konseling Klien <span class="caret"></span></a>
@@ -44,7 +45,7 @@
               </ul>
             </li>
             <li class=""><a href="{{ route('mensprogram') }}">Men's Program</a></li>
-            <li class=""><a href="{{ route('kamus') }}">Kamus Data</a></li>
+            <li class=""><a href="{{ route('kamus') }}">Kamus</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">

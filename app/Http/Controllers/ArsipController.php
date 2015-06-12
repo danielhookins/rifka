@@ -80,5 +80,16 @@ class ArsipController extends Controller {
 	{
 		//
 	}
+	
+	public function search()
+	{
+		$query = \Input::get('searchQuery');
+		$results = \rifka\Arsip::search($query)->get();
+        
+    	return view('arsip.searchResults', array(
+    								'query'		=> $query,
+									'results'	=> $results
+									));
+	}
 
 }

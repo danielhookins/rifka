@@ -110,12 +110,11 @@ class KasusController extends Controller {
 
 	public function search()
 	{
-
 		$query = \Input::get('searchQuery');		
-		$results = \rifka\Kasus::search($query)->take(50)->get();
+		$results = \rifka\Kasus::search($query)->get();
 
     	return view('kasus.searchResults', array(
-    								'query'		=> $query,
+    									'query'		=> $query,
 										'results'	=> $results
 									));
 	}
