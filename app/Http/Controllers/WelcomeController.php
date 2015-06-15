@@ -19,8 +19,7 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
-		//return view('welcome');
+		return view('welcome');
 	}
 
 }

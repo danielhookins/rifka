@@ -1,8 +1,16 @@
 @extends('layouts.master')
 
 @section('content')
-  <div class="">
-    <h1>Database Kasus</h1>
-    <p>Please log in to access the database.</p>
+  
+	<div class="row">
+		<div class="col-sm-12">
+		</div>
   </div>
+	
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-3">
+			@include('auth.login')
+		</div>
+	</div>
+	
 @endsection
