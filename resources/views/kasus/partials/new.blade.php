@@ -1,4 +1,4 @@
-<h2>Kasus Baru</h2>
+<h3>Kasus Baru</h3>
 <div class="form-group">
 	<p>Open a new client case.</p>
 </div>

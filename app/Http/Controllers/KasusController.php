@@ -50,6 +50,9 @@ class KasusController extends Controller {
 	public function create()
 	{
 		//
+		return view('kasus.index', array(
+				'create' => True
+			));
 	}
 
 	/**

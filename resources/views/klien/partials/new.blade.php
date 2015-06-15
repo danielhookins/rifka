@@ -1,4 +1,4 @@
-<h2>Klien Baru</h2>
+<h3>Klien Baru</h3>
 <div class="form-group">
 	<p>Add a new client to the database.</p>
 </div>

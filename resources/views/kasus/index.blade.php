@@ -18,6 +18,9 @@
     
     @include('kasus.partials.show')
 
+	@elseif (isset($create))
+		@include('kasus.partials.create')
+
   @endif
 
 @endsection

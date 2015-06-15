@@ -1,4 +1,4 @@
-<h2>Cari Kasus</h2>
+<h3>Cari Kasus</h3>
 
 {!! Form::open(array('url' => 'kasus/search')) !!}
     <div class="form-group">

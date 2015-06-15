@@ -19,15 +19,13 @@
 		@include('klien.partials.show')
 		</div>
 	@elseif (isset($edit))
-	  <div class="col-sm-12">  
-		@include('klien.partials.edit')
+		<div class="col-sm-12">  
+			@include('klien.partials.edit')
 		</div>
 	@elseif (isset($create))
-	  <div class="row">
-		<div class="col-sm-7 col-sm-offset-2">
+		<div class="row">
 			@include('klien.partials.create')
 		</div>
-	</div>
 	@endif
 	</div>
 @endsection

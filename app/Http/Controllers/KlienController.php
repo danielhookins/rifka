@@ -55,6 +55,8 @@ class KlienController extends Controller {
 	{
 		//TODO: Ensure validation and CSRF
 
+		$returnPage = \Input::get('returnPage');
+
 		// KLIEN BARU
 		$klienBaru = \rifka\Klien::create([
 				'nama_klien' 		=> \Input::get('nama_klien'),
@@ -99,8 +101,13 @@ class KlienController extends Controller {
 				'klien_id'	=> $klienBaru->klien_id
 			]);
         
-		return redirect('klien/'.$klienBaru->klien_id)
+		if($returnPage == "klien") {
+			return redirect('klien/'.$klienBaru->klien_id)
 					->with('success', 'New client created.');
+		}
+
+		return redirect(404);
+		
 	}
 
 	/**
