@@ -2,12 +2,12 @@
 
 @section('content')
 	<div class="container">
-		<h1>Administrasi</h1>
+		<h2>Administrasi</h2>
 		<div class="row">
-			<div class="col-sm-3 col-sm-offset-2">
+			<div class="col-sm-4 col-sm-offset-2 opt-left">
 				@include('klien.partials.search')
 			</div>
-			<div class="col-sm-3 col-sm-offset-2">
+			<div class="col-sm-4 col-sm-offset-1x">
 				@include('klien.partials.new')
 			</div>
 		</div>

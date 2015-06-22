@@ -23,7 +23,7 @@
 						<ul>
 							@forelse ($klien2 as $klien)
 								<li><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{{ $klien->nama_klien }}</a>
-								<br />({{$klien->pivot->jenis_klien}})
+								({{$klien->pivot->jenis_klien}})
 							@empty
 								<li>Belum ada klien</li>
 							@endforelse

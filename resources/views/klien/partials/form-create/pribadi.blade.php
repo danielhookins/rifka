@@ -3,11 +3,8 @@
 <div class="form-group">
 	{!! Form::label('nama_klien', 'Nama Klien', array('class' => 'strongLabel')) !!}
 	{!! Form::text('nama_klien', null, array(
-		'class' 							=> 'form-control',
-		'placeholder' 				=> 'Nama Klien',
-		'data-toggle'					=>'tooltip',
-		'data-placement'			=>'right',
-		'data-original-title'	=>'Silakan tulis nama klien',
+		'class' 		=> 'form-control',
+		'placeholder' 	=> 'Nama Klien',
 		'autofocus')) 
 	!!}
 </div>

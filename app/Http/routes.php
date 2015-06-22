@@ -3,6 +3,13 @@
 // SITE ROOT
 Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 
+// *** RESOURCES ***
+	Route::resource('kasus', 'KasusController');
+	Route::resource('klien', 'KlienController');
+	Route::resource('arsip', 'ArsipController');
+	Route::resource('alamat', 'AlamatController');
+	Route::resource('kasus.bentuk', 'BentukKekerasanController');
+
 // *** PROCESSES ***
 	// Search
 	Route::get('search', [
@@ -30,8 +37,38 @@ Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 	Route::get('konseling', [
 			'middleware' => 'auth', 
 			'as' => 'konseling', 
-			'uses' => 'KonselingController@index
-		']);
+			'uses' => 'KonselingController@index'
+		]);
+	
+	Route::get('kasus/create/page={page_id}', [
+			'middleware' => 'auth',
+			'as' => 'kasus.create-page',
+			'uses' => 'KasusController@showCreatePage'
+		]);
+
+	// KASUS
+	// Add a client to a case
+	Route::get('kasus/{kasus_id}/tambah/{klien_id}',
+		[
+			'middleware' => 'auth', 
+			'as' => 'tambah.kasus.klien', 
+			'uses' => 'KasusController@tambahKasusKlien'
+		]);
+	// Show Add Victim or Add Perp Sections to New Case form.
+	Route::get('tambahKlien/{type}', [
+		'middleware' => 'auth', 
+		'as' => 'tambah.klien',
+		'uses' => 'KasusController@tambahKlien']);
+	// SeshPushKlien
+	Route::get('seshPushKlien/{klien_id}/{jenis}', [
+		'middleware' => 'auth', 
+		'as' => 'seshPushKlien',
+		'uses' => 'KasusController@seshPushKlien']);
+	// SeshRemoveKlien
+	Route::post('seshRemoveKlien', [
+		'middleware' => 'auth',
+		'as' => 'seshRemoveKlien',
+		'uses' => 'KasusController@seshRemoveKlien']);
 	
 	// Men's Program
 	Route::get('mensprogram', [
@@ -39,13 +76,6 @@ Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 			'as' => 'mensprogram', 
 			'uses' => 'MensProgramController@index'
 		]);
-
-// *** RESOURCES ***
-	Route::resource('kasus', 'KasusController');
-	Route::resource('klien', 'KlienController');
-	Route::resource('arsip', 'ArsipController');
-	Route::resource('alamat', 'AlamatController');
-	Route::resource('kasus.bentuk', 'BentukKekerasanController');
 
 
 // *** AUTHENTICATION ***

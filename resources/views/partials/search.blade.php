@@ -1,4 +1,4 @@
-<h2>Search Database</h2>
+<h2 style="text-align:center;">Search Database</h2>
 
 {!! Form::open(array('url' => 'search')) !!}
   <div class="form-group">

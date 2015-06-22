@@ -557,6 +557,24 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'The type of client: korban or pelaku.',
             'example'       => '"Korban"'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Klien_Kasus',
+            'name'          => 'created_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the client-case record was created.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Klien_Kasus',
+            'name'          => 'updated_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the client-case record was last updated.',
+            'example'       => 'TODO'
+            ]);
 
         // Bentuk_Kekerasan Attributes
         rifka\Kamus_attribute::create([

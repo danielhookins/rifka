@@ -18,6 +18,8 @@ class CreateKlienKasusTable extends Migration {
 			$table->integer('kasus_id')->nullable()->unsigned();
 			$table->integer('klien_id')->nullable()->unsigned();
 			$table->string('jenis_klien')->nullable();
+			$table->timestamp('created_at')->nullable();
+			$table->timestamp('updated_at')->nullable();
 		});
 	}
 

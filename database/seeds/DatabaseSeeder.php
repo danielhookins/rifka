@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder {
 	{
 		Model::unguard();
         
+        $this->call('DefaultAdminSeeder'); //TODO: DELETE BEFORE PRODUCTION !
         $this->call('KamusTablesSeeder');
 		$this->call('KamusAttributesSeeder');
 	}
