@@ -5,7 +5,9 @@
     	{!! Form::text('searchQuery', null, array('class' => 'form-control',
                                                 'placeholder' => 'Search for client', 'autofocus')) !!}
     </div>
-    <div class="form-group hidden-xs" style="padding-top:1px;">
+    <div class="form-group form-inline">
+      {!! Form::radio('kelamin', 'Perempuan') !!} Perempuan 
+      {!! Form::radio('kelamin', 'Laki-laki') !!} Laki-laki
     </div>
     <div class="form-group">
     	<button type="submit" class="btn btn-default form-control" id="search-button">

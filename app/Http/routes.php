@@ -41,32 +41,25 @@ Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
 		]);
 	
 	Route::get('kasus/create/page={page_id}', [
-			'middleware' => 'auth',
 			'as' => 'kasus.create-page',
 			'uses' => 'KasusController@showCreatePage'
 		]);
 
 	// KASUS
 	// Add a client to a case
-	Route::get('kasus/{kasus_id}/tambah/{klien_id}',
-		[
-			'middleware' => 'auth', 
+	Route::get('kasus/{kasus_id}/tambah/{klien_id}', [
 			'as' => 'tambah.kasus.klien', 
-			'uses' => 'KasusController@tambahKasusKlien'
-		]);
+			'uses' => 'KasusController@tambahKasusKlien']);
 	// Show Add Victim or Add Perp Sections to New Case form.
 	Route::get('tambahKlien/{type}', [
-		'middleware' => 'auth', 
 		'as' => 'tambah.klien',
 		'uses' => 'KasusController@tambahKlien']);
 	// SeshPushKlien
 	Route::get('seshPushKlien/{klien_id}/{jenis}', [
-		'middleware' => 'auth', 
 		'as' => 'seshPushKlien',
 		'uses' => 'KasusController@seshPushKlien']);
 	// SeshRemoveKlien
 	Route::post('seshRemoveKlien', [
-		'middleware' => 'auth',
 		'as' => 'seshRemoveKlien',
 		'uses' => 'KasusController@seshRemoveKlien']);
 	

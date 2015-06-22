@@ -175,7 +175,14 @@ class KlienController extends Controller {
 	public function search(Request $request)
 	{
 		$query = \Input::get('searchQuery');
-		$results = \rifka\Klien::search($query)->get();
+
+		// Gender Search Constraint
+		if($kelamin = \Input::get('kelamin')){
+			$results = \rifka\Klien::where('kelamin', $kelamin)->search($query)->get();
+		}
+		else {
+			$results = \rifka\Klien::search($query)->get();
+		}
 
 		// Check if Search Request came from New Case Page
 		$previous = $request->session()->get('_previous');
@@ -202,10 +209,9 @@ class KlienController extends Controller {
 		}
 
 		// Search Request came from Other Page
-        
     	return view('klien.searchResults', array(
     								'query'		=> $query,
-									'results'	=> $results
+										'results'	=> $results
 									));
 	}
 
