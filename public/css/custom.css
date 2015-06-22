@@ -17,6 +17,19 @@ body {
 .opt-left {
   border-right: 1px dashed #333;
 }
+.main-search-title {
+  margin-top: -10px;
+  padding: 20px;
+  text-align: center;
+}
+
+/*
+ * KAMUS
+ */
+.kamus-contoh {
+  color: #b2b2ff;
+}
+
 
 /*
  * TOOL TIPS
