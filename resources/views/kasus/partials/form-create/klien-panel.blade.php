@@ -49,7 +49,7 @@
 						@endif
 						{!! Form::close() !!}
 				  
-					<a href="{{ route('tambah.klien', lcfirst($type))}}" class="btn btn-{!!(($type == "Korban" && !Session::has('korban2')) ? 'primary' : 'default')!!}">Tambah {{$type}}</a>
+					<a href="{{ route('tambah.klien', lcfirst($type))}}" class="btn btn-{!!(($type == "Korban" && !Session::has('korban2')) ? 'primary' : 'default')!!} pull-right">Tambah {{$type}}</a>
 				
 				@endif
 				

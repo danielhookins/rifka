@@ -178,7 +178,10 @@ class KlienController extends Controller {
 
 		// Gender Search Constraint
 		if($kelamin = \Input::get('kelamin')){
-			$results = \rifka\Klien::where('kelamin', $kelamin)->search($query)->get();
+			$results = \rifka\Klien::where('kelamin', $kelamin)
+				->orderBy('relevance', 'DESC')
+				->search($query)
+				->get();
 		}
 		else {
 			$results = \rifka\Klien::search($query)->get();

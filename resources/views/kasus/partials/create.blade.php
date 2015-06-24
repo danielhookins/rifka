@@ -19,8 +19,13 @@
 </div>
 
 <div class="row">
-	<div class="col-sm-12">
-	{!! Form::submit('Simpan Kasus', array('class' => 'btn btn-success')) !!}
+	<div class="col-sm-12">	
+	<button type="submit" class="btn btn-success pull-right" aria-label="OK">
+	  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Simpan Kasus
+	</button>
 	</div>
+</div>
+<div class="row">
+	<br />
 </div>
 {!! Form::close() !!}
