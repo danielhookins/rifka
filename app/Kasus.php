@@ -20,13 +20,10 @@ class Kasus extends Model {
 	protected $searchable = [
         'columns' => [
             'kasus.kasus_id' => 10,
-            'klien.nama_klien' => 10,
-            'arsip.no_reg' => 7,
+            'arsip.no_reg' => 9,
             'kasus.jenis_kasus' => 5
         ],
         'joins' => [
-            'klien_kasus' => ['kasus.kasus_id','klien_kasus.kasus_id'],
-            'klien' => ['klien_kasus.klien_id','klien.klien_id'],
             'arsip' => ['kasus.kasus_id','arsip.kasus_id']
         ],
     ];
