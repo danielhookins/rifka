@@ -9,7 +9,7 @@
 	</div>
 	@endif
 
-	<div class=row>
+	<div class="row">
 	@if (isset($list))
 		<div class="col-sm-12"> 
 		@include('klien.partials.list')
@@ -23,7 +23,7 @@
 			@include('klien.partials.edit')
 		</div>
 	@elseif (isset($create))
-		<div class="row">
+		<div class="col-sm-12">
 			@include('klien.partials.create')
 		</div>
 	@endif
