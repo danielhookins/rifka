@@ -137,6 +137,8 @@ return [
 		'Illuminate\View\ViewServiceProvider',
 		// Laravel Collective:
 		'Collective\Html\HtmlServiceProvider',
+		// For 5.1 Upgrade
+		'Illuminate\Broadcasting\BroadcastServiceProvider',
 
 		/*
 		 * Application Service Providers...
