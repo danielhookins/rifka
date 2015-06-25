@@ -1,5 +1,4 @@
-<div class="container">
-	<h2>Kasus Baru</h2>
+<h2>Kasus Baru</h2>
 
 <div class="row">
 	{!! (Session::has('korbanSearch')) ? '<div class="col-sm-12">' : '<div class="col-sm-6">' !!}
@@ -25,7 +24,6 @@
 	</button>
 	</div>
 </div>
-<div class="row">
-	<br />
+<div class="row" style="padding-bottom:25px;">
 </div>
 {!! Form::close() !!}

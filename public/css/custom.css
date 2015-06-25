@@ -23,11 +23,40 @@ body {
   text-align: center;
 }
 
+@media screen and (max-height: 600px) {
+    .hide-short {
+        display:none;
+    }
+}
+
 /*
  * KAMUS
  */
 .kamus-contoh {
   color: #b2b2ff;
+}
+.nav-kamus-title {
+ margin-top:62px;
+}
+@media screen and (max-width:767px) {
+    .nav-kamus-title {
+        margin-top:-30px;
+    }
+}
+@media screen and (max-width:992px) and (min-width:767px) {
+    .nav-kamus-title {
+        margin-top:93px;
+    }
+    .nav-kamus h3 {
+      font-size:14px;
+      font-weight:bold;
+    }
+    .nav-kamus .panel-title {
+      font-size:13px;
+    }
+    .nav-kamus li {
+      font-size:12px;
+    }
 }
 
 
@@ -73,22 +102,18 @@ body {
 .stepwizard-step p {
     margin-top: 10px;
 }
-
 .stepwizard-row {
     display: table-row;
 }
-
 .stepwizard {
     display: table;
     width: 100%;
     position: relative;
 }
-
 .stepwizard-step button[disabled] {
     opacity: 1 !important;
     filter: alpha(opacity=100) !important;
 }
-
 .stepwizard-row:before {
     top: 14px;
     bottom: 0;
@@ -99,13 +124,11 @@ body {
     background-color: #ccc;
     z-order: 0;
 }
-
 .stepwizard-step {
     display: table-cell;
     text-align: center;
     position: relative;
 }
-
 .btn-circle {
   width: 30px;
   height: 30px;

@@ -4,15 +4,15 @@
 <table class="table table-condensed">
   <tr>
     <th># Kasus</th>
-    <th>Jenis Kasus</th>
+    <th class="hidden-xs">Jenis Kasus</th>
     <th>Klien</th>
     <th>Arsip</th>
-    <th>Tgl. Created</th>
+    <th class="hidden-xs">Tgl. Created</th>
   </tr>
   @forelse ($semuaKasus as $kasus)
     <tr>
       <td><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}">{!! $kasus->kasus_id !!}</a></td>
-      <td>{!! $kasus->jenis_kasus !!}</a></td>
+      <td class="hidden-xs">{!! $kasus->jenis_kasus !!}</a></td>
       <td>
         <ul>
           @forelse ($kasus->klienKasus()->get() as $klienKasus)
@@ -29,7 +29,7 @@
           @endforeach
         </ul>
       </td>
-      <td>
+      <td class="hidden-xs">
         {{ $kasus->created_at }}
       </td>
     </tr>

@@ -1,9 +1,7 @@
-<div class="container">
-
 <h2>Klien Baru</h2>
 
 <div class="row">
-	<div class="col-xs-6 col-xs-offset-3">
+	<div class="hidden-xs col-sm-6 col-sm-offset-3">
 	@include('klien.partials.form-create.step-wizard')
 	</div>
 </div>
@@ -13,12 +11,10 @@
 {!! Form::token() !!}
 
   <div class="row setup-content" id="step-1">
-      <div class="col-xs-8 col-xs-offset-2">
-          <div class="col-md-8 col-md-offset-2 well">
-							@include('klien.partials.form-create.pribadi')
-              <button class="btn btn-primary nextBtn pull-right" type="button" >Lanjut</button>
-          </div>
-      </div>
+    <div class="col-xs-12 col-sm-8 col-sm-offset-2 well">
+			@include('klien.partials.form-create.pribadi')
+      <button class="btn btn-primary nextBtn pull-right" type="button" >Lanjut</button>
+    </div>
   </div>
 
   <div class="row setup-content" id="step-2">
@@ -41,4 +37,3 @@
   </div>
 
 {!! Form::close() !!}
-</div>

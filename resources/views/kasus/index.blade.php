@@ -4,7 +4,7 @@
 
   @if (isset($search))
 	<div class="row">
-		<div class="col-sm-4 col-sm-offset-4">
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
 			@include('kasus.partials.search')
 		</div>
 	</div>

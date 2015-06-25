@@ -1,8 +1,9 @@
-<h3>Kasus Baru</h3>
-<div class="form-group">
+
+<div class="form-group hidden-sm hide-short">
+	<h3>Kasus Baru</h3>
 	<p>Open a new client case.</p>
 </div>
-<div class="form-group hidden-xs" style="padding-top:35px;">
+<div class="form-group hidden-xs hidden-sm hide-short" style="padding-top:35px;">
 </div>
 <div class="form-group">
 	<a href="kasus/create" role="button" class="btn btn-default form-control">

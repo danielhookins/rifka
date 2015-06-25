@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
 @section('nav')
-	<h3>Tables</h3>
+<div class="nav-kamus">
+	<div class="nav-kamus-title">
+		<h3>Tables</h3>
+	</div>
 	@foreach ($tabletypes as $tabletype)
 	<div class="panel panel-success">
   	<div class="panel-heading">
@@ -16,6 +19,7 @@
 		</ul>
 	</div>
   @endforeach
+</div>
 @endsection
 
 @section('content')
@@ -59,9 +63,10 @@
 		    	@endif
 		    @endforeach
 	    </table>
-	    <div class="panel-footer">
-	    	<tr><td colspan=2><a class="btn btn-default" href="#">Kembali ke atas</a></td></tr>
+	    <div class="panel-body">
+	    	<tr><td colspan=2 class="text-right"><a class="btn btn-default pull-right" href="#">Kembali ke atas</a><div class="clearfix"></div></td></tr>
 	    </div>
+
 	  </div>
 	@endforeach
 

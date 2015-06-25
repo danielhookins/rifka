@@ -2,17 +2,17 @@
 <h2>Daftar Klien</h2>
   <table class="table table-condensed">
   <tr>
-    <th># ID</th>
+    <th class="hidden-xs"># ID</th>
     <th>Nama</th>
-    <th>Telp</th>
+    <th class="hidden-xs">Telp</th>
     <th>Alamat</th>
-    <th>Email</th>
+    <th class="hidden-xs">Email</th>
   </tr>
   @forelse ($semuaKlien as $klien)
     <tr>
-      <td><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{!! $klien->klien_id !!}</a></td>
+      <td class="hidden-xs"><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{!! $klien->klien_id !!}</a></td>
       <td><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{!! $klien->nama_klien !!}</a></td>
-      <td>{!! $klien->no_telp !!}</td>
+      <td class="hidden-xs">{!! $klien->no_telp !!}</td>
       <td>
         <ul>
           @forelse ($klien->alamatKlien()->get() as $klienAlamat)
@@ -30,7 +30,7 @@
           @endforelse
         </ul>
       </td>
-      <td>{!! $klien->email !!}</td>
+      <td class="hidden-xs">{!! $klien->email !!}</td>
     </tr>
     @empty
     <td></td>

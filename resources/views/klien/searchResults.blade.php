@@ -3,19 +3,19 @@
 @section('content')
 	<h2>Search Results</h2>
 	<p>Search for "{{ $query }}" found {{ $results->count() }} results</p>
-	<table class="table table-hover">
+	<table class="table table-responsive table-hover">
  	<tr>
- 		<th># ID</th>
+ 		<th class="hidden-xs"># ID</th>
  		<th>Nama</th>
- 		<th>Telp</th>
+ 		<th class="hidden-xs">Telp</th>
  		<th>Alamat</th>
- 		<th>Email</th>
+ 		<th class="hidden-xs">Email</th>
  	</tr>
 	@forelse ($results as $result)
 		<tr>
-			<td><a href="{{ route('klien.index') }}/{{ $result->klien_id }}">{!! $result->klien_id !!}</a></td>
+			<td class="hidden-xs"><a href="{{ route('klien.index') }}/{{ $result->klien_id }}">{!! $result->klien_id !!}</a></td>
 			<td><a href="{{ route('klien.index') }}/{{ $result->klien_id }}">{!! $result->nama_klien !!}</a></td>
-			<td>{!! $result->no_telp !!}</td>
+			<td class="hidden-xs">{!! $result->no_telp !!}</td>
 			<td>
 				<ul>
 					@forelse ($result->alamatKlien()->get() as $resultAlamat)
@@ -31,7 +31,7 @@
 					@endforelse
 				</ul>
 			</td>
-			<td><a href="mailto:{!! $result->email !!}">{!! $result->email !!}</a></td>
+			<td class="hidden-xs"><a href="mailto:{!! $result->email !!}">{!! $result->email !!}</a></td>
 		</tr>
 		@empty
 		<td></td>
