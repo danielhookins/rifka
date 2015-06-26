@@ -1,14 +1,8 @@
 <h3>Informasi Tambahan</h3>
 
-<div class="form-group row">
-	<div class="col-sm-6">
+<div class="form-group">
 	{!! Form::label('jumlah_anak', 'Jumlah Anak', array('class' => 'strongLabel')) !!}
 	{!! Form::number('jumlah_anak', 'null', array('class' => 'form-control','placeholder' => 'Anak')) !!}
-	</div>
-	<div class="col-sm-6">
-	{!! Form::label('tanggungan', 'Jumlah Tanggungan', array('class' => 'strongLabel')) !!}
-	{!! Form::number('tanggungan', 'null', array('class' => 'form-control','placeholder' => 'Tanggungan')) !!}
-	</div>
 </div>
 
 <div class="form-group">
