@@ -5,8 +5,7 @@
 	{!! Form::text('nama_klien', null, array(
 		'class' 		=> 'form-control',
 		'placeholder' 	=> 'Nama Klien',
-		'autofocus')) 
-	!!}
+		'autofocus')) !!}
 </div>
 
 <div class="form-group form-inline">

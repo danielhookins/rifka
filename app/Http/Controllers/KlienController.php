@@ -1,8 +1,12 @@
 <?php namespace rifka\Http\Controllers;
 
-use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
+use rifka\Klien;
+use rifka\Activity;
+use rifka\AttributeChange;
 use Illuminate\Http\Request;
+use Auth;
+use DB;
 
 class KlienController extends Controller {
 
@@ -13,6 +17,7 @@ class KlienController extends Controller {
 	 */
 	public function __construct()
 	{
+		// Only allow authenticated users
 		$this->middleware('auth');
 	}
 
@@ -24,13 +29,12 @@ class KlienController extends Controller {
 	public function index()
 	{
 		//
-		$semuaKlien = \rifka\Klien::orderBy('klien_id', 'DESC')->paginate(15);
+		$semuaKlien = Klien::orderBy('klien_id', 'DESC')->paginate(15);
 
 		return view('klien.index', array(
-										'search'	 => True,
-										'list'		 => True,
-										'semuaKlien' => $semuaKlien
-										));
+			'search'	 => True,
+			'list'		 => True,
+			'semuaKlien' => $semuaKlien));
 	}
 
 	/**
@@ -41,9 +45,7 @@ class KlienController extends Controller {
 	public function create()
 	{
 		//
-		return view('klien.index', array(
-								'create' => True
-								));
+		return view('klien.index', array('create' => True));
 	}
 
 	/**
@@ -55,31 +57,36 @@ class KlienController extends Controller {
 	{
 		//TODO: Ensure validation
 
+		$user = Auth::user();
 		$returnPage = \Input::get('returnPage');
 
-		// KLIEN BARU
-		$klienBaru = \rifka\Klien::create([
-				'nama_klien' 		=> \Input::get('nama_klien'),
-				'kelamin'			=> \Input::get('kelamin'),
-				'tanggal_lahir' 	=> \Input::get('tanggal_lahir'),
-				'agama' 			=> \Input::get('agama'),
+		// Create new Client
+		$klienBaru = Klien::create([
+				'nama_klien' 				=> \Input::get('nama_klien'),
+				'kelamin'						=> \Input::get('kelamin'),
+				'tanggal_lahir' 		=> \Input::get('tanggal_lahir'),
+				'agama' 						=> \Input::get('agama'),
 				'status_perkawinan' => \Input::get('status_perkawinan'),
-				'no_telp' 			=> \Input::get('no_telp'),
-
-				'email' => \Input::get('email'),
-
-				'jumlah_anak'		=> \Input::get('jumlah_anak'),
+				'no_telp' 					=> \Input::get('no_telp'),
+				'email' 						=> \Input::get('email'),
+				'jumlah_anak'				=> \Input::get('jumlah_anak'),
 				'jumlah_tanggungan' => \Input::get('tanggungan'),
-
-				'pekerjaan' 	=> \Input::get('pekerjaan'),
-				'jabatan' 		=> \Input::get('jabatan'),
-				'penghasilan' 	=> \Input::get('penghasilan'),
-
-				'kondisi_klien' => \Input::get('kondisi_klien'),
-				'dirujuk_oleh' 	=> \Input::get('dirujuk_oleh')
+				'pekerjaan' 				=> \Input::get('pekerjaan'),
+				'jabatan' 					=> \Input::get('jabatan'),
+				'penghasilan' 			=> \Input::get('penghasilan'),
+				'kondisi_klien' 		=> \Input::get('kondisi_klien'),
+				'dirujuk_oleh' 			=> \Input::get('dirujuk_oleh')
 			]);
 
-		// ALAMAT BARU
+		// Log Activity
+		// TODO: look at using 'Events' for logging instead
+        $activity = \rifka\Activity::create([
+				'user_id' => $user->id,
+				'klien_id' => $klienBaru->klien_id,
+				'action' => "Created Client"
+				]);
+
+		// Create new Address
 		$provinsi = \Input::get('provinsi');
 		if ($provinsi == 'Yogyakarta') {
 			$kecamatan = \Input::get('kecamatan');
@@ -95,7 +102,7 @@ class KlienController extends Controller {
 				'kabupaten' => $kabupaten
 			]);
 
-		// ALAMAT-KLIEN BARU
+		// Create new Client-Address
 		$alamatKlienBaru = \rifka\AlamatKlien::create([
 				'alamat_id' => $alamatBaru->alamat_id,
 				'klien_id'	=> $klienBaru->klien_id
@@ -119,16 +126,15 @@ class KlienController extends Controller {
 	public function show($id)
 	{
 		//
-		$klien = \rifka\Klien::findOrFail($id);
-		$kasus2 = \rifka\Klien::find($id)->klienKasus;
-		$alamat2 = \rifka\Klien::find($id)->alamatKlien;
+		$klien = Klien::findOrFail($id);
+		$kasus2 = Klien::find($id)->klienKasus;
+		$alamat2 = Klien::find($id)->alamatKlien;
 
 		return view('klien.index', array(
-									'show'		=> True,
-									'klien' 	=> $klien,
-									'kasus2'	=> $kasus2,
-									'alamat2'	=> $alamat2
-									));
+			'show'		=> True,
+			'klien' 	=> $klien,
+			'kasus2'	=> $kasus2,
+			'alamat2'	=> $alamat2));
 	}
 
 	/**
@@ -140,25 +146,48 @@ class KlienController extends Controller {
 	public function edit($id)
 	{
 		//
-		$klien = \rifka\Klien::findOrFail($id);
-		$kasus2 = \rifka\Klien::find($id)->korbanKasus;
+		$klien = Klien::findOrFail($id);
+		$kasus2 = Klien::find($id)->korbanKasus;
 
 		return view('klien.index', array(
-									'edit'		=> True,
-									'klien' 	=> $klien,
-									'kasus2'	=> $kasus2
-									));
+			'edit'		=> True,
+			'klien' 	=> $klien,
+			'kasus2'	=> $kasus2));
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the Klien resource in the database.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function update($id)
 	{
-		//
+		//TODO: Ensure validation
+
+		$user = Auth::user();
+		$klien = Klien::findOrFail($id);
+		$attributes = array_keys($klien->getAttributes());
+
+		// Update Klien and Log Attribute Changes
+		// TODO: look at using 'Events' for logging instead
+		foreach($attributes as $attribute)
+		{
+			if(\Input::get($attribute) && $klien->$attribute != \Input::get($attribute))
+			{
+				$attributeChange = \rifka\AttributeChange::create([
+					'user_id' => $user->id,
+					'klien_id' => $klien->klien_id,
+					'attribute_name' => $attribute,
+					'old_attribute_value' => $klien->$attribute,
+      		'new_attribute_value' => \Input::get($attribute)]);
+				$klien->$attribute = \Input::get($attribute);
+			}
+		}
+		$klien->save();
+        
+		return redirect()->route('klien.show', $id)
+			->with('success', 'Klien file updated.');
 	}
 
 	/**
@@ -170,52 +199,6 @@ class KlienController extends Controller {
 	public function destroy($id)
 	{
 		//
-	}
-
-	public function search(Request $request)
-	{
-		$query = \Input::get('searchQuery');
-
-		// Gender Search Constraint
-		if($kelamin = \Input::get('kelamin')){
-			$results = \rifka\Klien::where('kelamin', $kelamin)
-				->orderBy('relevance', 'DESC')
-				->search($query)
-				->get();
-		}
-		else {
-			$results = \rifka\Klien::search($query)->get();
-		}
-
-		// Check if Search Request came from New Case Page
-		$previous = $request->session()->get('_previous');
-		$routeCondition = route('kasus.create');
-		
-		if ($previous["url"] == $routeCondition)
-		{
-			$request->session()->flash('query', $query);
-			$request->session()->flash('results', $results);
-			
-			$type = \Input::get('type');
-
-			if ($type == "Korban") 
-			{
-				$request->session()->flash('korbanSearch', True);
-			}
-			elseif ($type == "Pelaku")
-			{
-				$request->session()->flash('pelakuSearch', True);
-				return redirect()->route('kasus.create', '#pelaku-panel');
-			}
-			
-			return redirect()->route('kasus.create');
-		}
-
-		// Search Request came from Other Page
-    	return view('klien.searchResults', array(
-    								'query'		=> $query,
-										'results'	=> $results
-									));
 	}
 
 }

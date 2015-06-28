@@ -49,10 +49,10 @@
 			<div class="col-sm-4">
 				<div class="well">
 					<p style="text-align:center">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <strong>Modify</strong>
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <strong>Options</strong>
 					</p>
 					<ul>
-						<li>Mengedit Kasus</li>
+						<li><a href="{{route('kasus.edit', $kasus->kasus_id)}}">Mengedit Kasus</a></li>
 						<li style="color:red">Menghapus Kasus</li>
 					</ul>
 				</div> <!-- /well -->	

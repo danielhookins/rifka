@@ -26,6 +26,10 @@
 		<div class="col-sm-12">
 			@include('klien.partials.create')
 		</div>
+	@elseif (isset($log))
+		<div class="col-sm-12">
+			@include('klien.partials.form-show.log')
+		</div>
 	@endif
 	</div>
 @endsection

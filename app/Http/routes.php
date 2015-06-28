@@ -1,104 +1,90 @@
 <?php
 
-// SITE ROOT
-Route::get('/', ['as' => 'root', 'uses' => 'WelcomeController@index']);
+// *** SITE SECTIONS ***
+	
+	// Site root
+	Route::get('/', [
+		'as' => 'root', 
+		'uses' => 'WelcomeController@index']);
+
+	// User specific Home
+	Route::get('home', [
+		'as' => 'home', 
+		'uses' => 'HomeController@index']);
 
 // *** RESOURCES ***
+	
 	Route::resource('kasus', 'KasusController');
 	Route::resource('klien', 'KlienController');
 	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
 	Route::resource('kasus.bentuk', 'BentukKekerasanController');
 
-// *** PROCESSES ***
-	// Search
+// *** SEARCH ***
+	
 	Route::get('search', [
-			'middleware' => 'auth', 
-			'as'	=> 'search',
-			'uses'	=> 'SearchController@index'
-		]);
+		'as'	=> 'search',
+		'uses'	=> 'SearchController@index']);
 	Route::post('search', [
-			'middleware' => 'auth', 
-			'as' 	=> 'search', 
-			'uses'  => 'SearchController@search'
-		]);
-	Route::post('klien/search', 'KlienController@search');
+		'as' 	=> 'search', 
+		'uses'  => 'SearchController@search']);
+	Route::post('klien/search', 'Klien\SearchController@searchKlien');
 	Route::post('kasus/search', 'KasusController@search');
 	Route::post('alamat/search', 'AlamatController@search');
-	
-	// Administrasi
-	Route::get('administrasi', [
-			'middleware' => 'auth', 
-			'as' => 'administrasi', 
-			'uses' => 'AdministrasiController@index'
-		]);
-	
-	// Konseling
-	Route::get('konseling', [
-			'middleware' => 'auth', 
-			'as' => 'konseling', 
-			'uses' => 'KonselingController@index'
-		]);
-	
-	Route::get('kasus/create/page={page_id}', [
-			'as' => 'kasus.create-page',
-			'uses' => 'KasusController@showCreatePage'
-		]);
 
-	// KASUS
+// *** KASUS ***
+	
 	// Add a client to a case
 	Route::get('kasus/{kasus_id}/tambah/{klien_id}', [
-			'as' => 'tambah.kasus.klien', 
-			'uses' => 'KasusController@tambahKasusKlien']);
+		'as' => 'tambah.kasus.klien', 
+		'uses' => 'KasusController@tambahKasusKlien']);
+	
 	// Show Add Victim or Add Perp Sections to New Case form.
 	Route::get('tambahKlien/{type}', [
 		'as' => 'tambah.klien',
 		'uses' => 'KasusController@tambahKlien']);
+	
 	// SeshPushKlien
 	Route::get('seshPushKlien/{klien_id}/{jenis}', [
 		'as' => 'seshPushKlien',
 		'uses' => 'KasusController@seshPushKlien']);
+	
 	// SeshRemoveKlien
 	Route::post('seshRemoveKlien', [
 		'as' => 'seshRemoveKlien',
 		'uses' => 'KasusController@seshRemoveKlien']);
-	
-	// Men's Program
-	Route::get('mensprogram', [
-			'middleware' => 'auth', 
-			'as' => 'mensprogram', 
-			'uses' => 'MensProgramController@index'
-		]);
 
+// *** KLIEN ***
+	
+	// Display changes to a client profile
+	Route::get('klien/{klien_id}/changes', [
+		'as' => 'klien.changes',
+		'uses' => 'Klien\ChangeLogController@showChanges']);
 
 // *** AUTHENTICATION ***
-	Route::get('home', [
-			'middleware' => 'auth', 
-			'as' => 'home', 
-			'uses' => 'HomeController@index'
-		]);
+	
+	// Auth controllers
 	Route::controllers([
-			'auth' => 'Auth\AuthController',
-			'password' => 'Auth\PasswordController',
-	]);
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController']);
+	
+	// Log a user out
 	Route::get('logout', [
-			'middleware' => 'auth', 
-			'as' => 'logout', 
-			function() {
-					Auth::logout();
-					return redirect('/');
-			}
-		]);
+		'middleware' => 'auth', 
+		'as' => 'logout', 
+		function() 
+		{
+			Auth::logout();
+			return redirect('/');
+		}]);
 
 // *** DEVELOPER ***
-	// Developer Routes
+	// Show the data dictionary
 	Route::get('/kamus', [
-			'middleware' => 'auth', 
-			'as' => 'kamus', 
-			'uses' => 'KamusController@index'
-		]);
+		'as' => 'kamus', 
+		'uses' => 'KamusController@index']);
+
 	Route::get('/developer', [
-			'middleware' => 'auth', 
-			'as' => 'developer',
-			'uses' => 'DeveloperController@index'
-		]);
+		'middleware' => 'auth', 
+		'as' => 'developer',
+		'uses' => 'DeveloperController@index']);

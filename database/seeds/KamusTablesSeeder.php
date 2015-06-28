@@ -167,6 +167,18 @@ class KamusTablesSeeder extends Seeder {
             'description'   => 'A physical record of the case.'
             ]);
 
+        // Untuk Logging and Record Keeping
+        rifka\Kamus_table::create([
+            'name'          => 'Activity',
+            'type'          => 'Log',
+            'description'   => 'A history of activities performed by users of the database.'
+            ]);
+        rifka\Kamus_table::create([
+            'name'          => 'Attribute_Change',
+            'type'          => 'Log',
+            'description'   => 'A history of client and case attributes changed by users of the database.'
+            ]);
+
     }
 
 }

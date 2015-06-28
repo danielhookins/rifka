@@ -1,15 +1,14 @@
-<h2>Klien</h2>
+{!! Form::model($klien, array('route' => array('klien.update', $klien->klien_id), 'class'=>'form-horizontal', 'method' => 'PUT')) !!}
+<h2>Mengedit Klien</h2>
 
-{!! Form::model($klien, array('class'=>'form-horizontal')) !!}
-{!! Form::token() !!}
+	@include('klien.partials.form-edit.pribadi')
 
-	@foreach (array_keys($klien->toArray()) as $attribute)
-		
-		<div class="form-group">
-			{!! Form::label($attribute) !!}
-			{!! Form::text($attribute, null, array('class' => 'form-control')) !!}
-		</div>
-		
-	@endforeach
+	@include('klien.partials.form-edit.kontak')
 
+	@include('klien.partials.form-edit.informasi')
+
+<div class="form-group form-inline">
+	<button type="submit" class="btn btn-success">Simpan</button>
+	<a href="{{route('klien.show', $klien->klien_id)}}" class="btn btn-danger">Cancel</a>
+</div>
 {!! Form::close() !!}

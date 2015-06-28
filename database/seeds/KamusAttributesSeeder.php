@@ -1547,6 +1547,154 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '"Ruang PD"'
             ]);
 
+        // Activity Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Activity',
+            'name'          => 'activity_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'The unique identifier of the activity.',
+            'example'       => '035'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Activity',
+            'name'          => 'user_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'user_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the user.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Activity',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the case.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Activity',
+            'name'          => 'klien_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the client.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Activity',
+            'name'          => 'action',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The action performed by a user.',
+            'example'       => '"New Client File Created"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Activity',
+            'name'          => 'created_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time the action was performed.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Activity',
+            'name'          => 'updated_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time this record was updated.',
+            'example'       => 'TODO'
+            ]);
+
+        // Attribute_Change
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'attribute_change_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'The unique identifier of the attribute change.',
+            'example'       => '035'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'user_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'user_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the user.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the case.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'klien_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the client.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'attribute_name',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The name of the attribute changed.',
+            'example'       => '"nama_klien"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'old_attribute_value',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The old attribute value.',
+            'example'       => '"SD"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'new_attribute_value',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The new attribute value.',
+            'example'       => '"SMP"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'created_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time the attribute was changed.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Attribute_Change',
+            'name'          => 'updated_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time this record was changed.',
+            'example'       => 'TODO'
+            ]);
+
     }
 
 }

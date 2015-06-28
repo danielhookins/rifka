@@ -31,4 +31,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+	/**
+     * Get the user Activities.
+     */
+    public function activities()
+    {
+        return $this->hasMany('rifka\Activity');
+    }
+
 }

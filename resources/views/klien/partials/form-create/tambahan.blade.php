@@ -15,9 +15,9 @@
 </div>
 
 <div class="form-group">
+	{!! Form::label('penghasilan', 'Penghasilan', array('class' => 'strongLabel')) !!}
 	{!! Form::select('penghasilan', array(
 		'Penghasilan' 					=> 'Penghasilan',
-		' '								=>	' ',
 		'< Rp 500.000'					=>	'< Rp 500.000',
 		'> Rp 500.000 < Rp 1.000.000'	=>	'> Rp 500.000 < Rp 1.000.000',
 		'> Rp 1.000.000'				=>	'> Rp 1.000.000'
