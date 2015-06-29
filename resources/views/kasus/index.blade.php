@@ -11,15 +11,8 @@
 	@endif
 
   @if (isset($list))
-    
+  
     @include('kasus.partials.list')
-
-  @elseif (isset($show))
-    
-    @include('kasus.partials.show')
-
-	@elseif (isset($create))
-		@include('kasus.partials.create')
 
   @endif
 

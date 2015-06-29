@@ -3,6 +3,9 @@
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use rifka\Kasus;
+use Auth;
+use DB;
 
 class KasusController extends Controller {
 
@@ -23,7 +26,6 @@ class KasusController extends Controller {
 	 */
 	public function index()
 	{
-		//
 		$semuaKasus = \rifka\Kasus::orderBy('kasus_id', 'DESC')->paginate(15);
 
 		if ($semuaKasus->count()) {
@@ -36,11 +38,10 @@ class KasusController extends Controller {
 		
 
 		return view('kasus.index', array(
-										'search'	 => True,
-										'list'		 => True,
-										'semuaKasus' => $semuaKasus,
-										'attributes' => $attributes
-										));
+			'search'	 => True,
+			'list'		 => True,
+			'semuaKasus' => $semuaKasus,
+			'attributes' => $attributes));
 	}
 
 	/**
@@ -50,10 +51,7 @@ class KasusController extends Controller {
 	 */
 	public function create()
 	{
-		//
-		return view('kasus.index', array(
-				'create' => True
-			));
+		return view('kasus.create');
 	}
 
 	/**
@@ -65,17 +63,25 @@ class KasusController extends Controller {
 	{
 		//TODO: Ensure validation
 
+		$user = Auth::user();
+
 		//KASUS BARU
 		$kasus = \rifka\Kasus::create([
-				'jenis_kasus' => \Input::get('jenis_kasus'),
-				'hubungan' => \Input::get('hubungan'),
-				'lama_hubungan' => \Input::get('lama_hubungan'),
-				'sejak_kapan' => \Input::get('sejak_kapan'),
-				'seberapa_sering' => \Input::get('seberapa_sering'),
-				'harapan_korban' => \Input::get('harapan_korban'),
-				'rencana_korban' => \Input::get('rencana_korban'),
-				'narasi' => \Input::get('narasi'),
-			]);
+			'jenis_kasus' 		=> \Input::get('jenis_kasus'),
+			'hubungan' 				=> \Input::get('hubungan'),
+			'lama_hubungan' 	=> \Input::get('lama_hubungan'),
+			'sejak_kapan' 		=> \Input::get('sejak_kapan'),
+			'seberapa_sering' => \Input::get('seberapa_sering'),
+			'harapan_korban' 	=> \Input::get('harapan_korban'),
+			'rencana_korban' 	=> \Input::get('rencana_korban'),
+			'narasi' 					=> \Input::get('narasi'),]);
+
+		// Log Activity
+		// TODO: look at using 'Events' for logging instead
+    $activity = \rifka\Activity::create([
+			'user_id' => $user->id,
+			'kasus_id' => $kasus->kasus_id,
+			'action' => "Created Case"]);
 
 		//KLIEN-KASUS BARU
 		$korban2 = $request->session()->pull('korban2');
@@ -86,21 +92,23 @@ class KasusController extends Controller {
 			$klienKasus = \rifka\KlienKasus::create([
 				'klien_id' 		=> $korban->klien_id,
 				'kasus_id' 		=> $kasus->kasus_id,
-				'jenis_klien' 	=> 'Korban'
-				]);
+				'jenis_klien' 	=> 'Korban']);
 		}
 
-		foreach($pelaku2 as $pelaku)
+		// Create a record of related perps if they exist
+		if(!empty($pelaku2))
 		{
-			$klienKasus = \rifka\KlienKasus::create([
-				'klien_id' 		=> $pelaku->klien_id,
-				'kasus_id' 		=> $kasus->kasus_id,
-				'jenis_klien' 	=> 'Pelaku'
-				]);
+			foreach($pelaku2 as $pelaku)
+			{
+				$klienKasus = \rifka\KlienKasus::create([
+					'klien_id' 		=> $pelaku->klien_id,
+					'kasus_id' 		=> $kasus->kasus_id,
+					'jenis_klien' => 'Pelaku']);
+			}
 		}
 
 		return redirect('kasus/'.$kasus->kasus_id)
-					->with('success', 'New case created.');;
+			->with('success', 'New case created.');;
 	}
 
 	/**
@@ -111,19 +119,16 @@ class KasusController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
 		$kasus = \rifka\Kasus::findOrFail($id);
 		$klien2 = \rifka\Kasus::find($id)->klienKasus;
 		$arsip2 = \rifka\Kasus::find($id)->arsip;
 		$bentuk2 = \rifka\Kasus::find($id)->bentuk;
 
-		return view('kasus.index', array(
-									'show'		=> True,
-									'kasus' 	=> $kasus,
-									'klien2'	=> $klien2,
-									'arsip2'	=> $arsip2,
-									'bentuk2'	=> $bentuk2
-									));
+		return view('kasus.show', array(
+			'kasus' 	=> $kasus,
+			'klien2'	=> $klien2,
+			'arsip2'	=> $arsip2,
+			'bentuk2'	=> $bentuk2));
 	}
 
 	/**
@@ -132,9 +137,13 @@ class KasusController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($id, $section = 'all')
 	{
-		//
+		$kasus = Kasus::findOrFail($id);
+
+		return view('kasus.edit', array(
+			'kasus' => $kasus,
+			'section' => $section));
 	}
 
 	/**
@@ -145,8 +154,33 @@ class KasusController extends Controller {
 	 */
 	public function update($id)
 	{
-		//
-	}
+		//TODO: Ensure validation
+
+		$user = Auth::user();
+		$kasus = Kasus::findOrFail($id);
+		$attributes = array_keys($kasus->getAttributes());
+
+		// Update Kasus and Log Attribute Changes
+		// TODO: look at using 'Events' for logging instead
+		foreach($attributes as $attribute)
+		{
+			if(\Input::get($attribute) && $kasus->$attribute != \Input::get($attribute))
+			{
+				$attributeChange = \rifka\AttributeChange::create([
+					'user_id' => $user->id,
+					'kasus_id' => $kasus->kasus_id,
+					'attribute_name' => $attribute,
+					'old_attribute_value' => $kasus->$attribute,
+					'new_attribute_value' => \Input::get($attribute)]);
+				
+				$kasus->$attribute = \Input::get($attribute);
+				$kasus->save();
+			}
+		}
+
+		return redirect()->route('kasus.show', $id)
+			->with('success', 'Kasus updated.');
+		}
 
 	/**
 	 * Remove the specified resource from storage.
@@ -165,15 +199,8 @@ class KasusController extends Controller {
 		$results = \rifka\Kasus::search($query)->get();
 
     	return view('kasus.searchResults', array(
-    									'query'		=> $query,
-										'results'	=> $results
-									));
-	}
-
-
-	public function showCreatePage($page_id)
-	{
-		return $page_id;
+				'query'		=> $query,
+				'results'	=> $results));
 	}
 
 	// if case doesnt exist, create it.

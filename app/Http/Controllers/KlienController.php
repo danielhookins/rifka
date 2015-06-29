@@ -179,9 +179,9 @@ class KlienController extends Controller {
 					'old_attribute_value' => $klien->$attribute,
       		'new_attribute_value' => \Input::get($attribute)]);
 				$klien->$attribute = \Input::get($attribute);
+				$klien->save();
 			}
 		}
-		$klien->save();
         
 		return redirect()->route('klien.show', $id)
 			->with('success', 'Klien file updated.');

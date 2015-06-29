@@ -54,6 +54,16 @@
 		'as' => 'seshRemoveKlien',
 		'uses' => 'KasusController@seshRemoveKlien']);
 
+	// Edit a certain section
+	Route::get('kasus/{kasus_id}/edit/{section}', [
+		'as' => 'kasus.edit',
+		'uses' => 'KasusController@edit']);
+	
+	// Display changes to a case
+	Route::get('kasus/{kasus_id}/changes', [
+		'as' => 'kasus.changes',
+		'uses' => 'ChangeLogController@showCaseChanges']);
+
 // *** KLIEN ***
 	
 	// Edit a certain section
@@ -64,7 +74,7 @@
 	// Display changes to a client profile
 	Route::get('klien/{klien_id}/changes', [
 		'as' => 'klien.changes',
-		'uses' => 'Klien\ChangeLogController@showChanges']);
+		'uses' => 'ChangeLogController@showClientChanges']);
 
 // *** AUTHENTICATION ***
 	
