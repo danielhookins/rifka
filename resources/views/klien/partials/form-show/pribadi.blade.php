@@ -1,5 +1,11 @@
-<div class="panel panel-informasi" style="background:#b6fcb6;"> <!-- Pribadi Panel -->
-    <div class="panel-heading"><a class="in-link" name="informasi-pribadi">Informasi Pribadi</a></div>
+<div class="panel panel-default">
+  
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a class="in-link" name="informasi-pribadi">Informasi Pribadi</a>
+    </h4>
+  </div>
+  
   <ul class="list-group">
     <li class="list-group-item">
 	    	<h4 class="list-group-item-heading">Klien ID</h4>
@@ -25,7 +31,13 @@
 	    	<h4 class="list-group-item-heading">Status Perkawinan</h4>
 	    	<p class="list-group-item-text">{{$klien->status_perkawinan}}</p>
   	</li>
-  	<li class="list-group-item" style="background:#d3eaf1;">[ <a href="#">Mengedit</a> ] [ <a href="#">Kembali ke atas</a> ]</li>
   </ul>
   
-</div> <!-- /Pribadi Panel -->
+  <div class="panel-body">
+    <div class="form-inline">
+      <a class="btn btn-info" href="{{route('klien.edit', array($klien->klien_id, 'pribadi'))}}">Mengedit</a>
+      <a class="btn btn-default" href="#">Kembali ke atas</a>
+    </div>
+  </div>
+
+</div>

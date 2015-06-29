@@ -56,6 +56,11 @@
 
 // *** KLIEN ***
 	
+	// Edit a certain section
+	Route::get('klien/{klien_id}/edit/{section}', [
+		'as' => 'klien.edit',
+		'uses' => 'KlienController@edit']);
+	
 	// Display changes to a client profile
 	Route::get('klien/{klien_id}/changes', [
 		'as' => 'klien.changes',

@@ -44,8 +44,7 @@ class KlienController extends Controller {
 	 */
 	public function create()
 	{
-		//
-		return view('klien.index', array('create' => True));
+		return view('klien.create');
 	}
 
 	/**
@@ -118,20 +117,19 @@ class KlienController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the specified Client
+	 * with associated cases and addresses
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
 	public function show($id)
 	{
-		//
 		$klien = Klien::findOrFail($id);
 		$kasus2 = Klien::find($id)->klienKasus;
 		$alamat2 = Klien::find($id)->alamatKlien;
 
-		return view('klien.index', array(
-			'show'		=> True,
+		return view('klien.show', array(
 			'klien' 	=> $klien,
 			'kasus2'	=> $kasus2,
 			'alamat2'	=> $alamat2));
@@ -143,16 +141,15 @@ class KlienController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit($id, $section = 'all')
 	{
-		//
 		$klien = Klien::findOrFail($id);
 		$kasus2 = Klien::find($id)->korbanKasus;
 
-		return view('klien.index', array(
-			'edit'		=> True,
+		return view('klien.edit', array(
 			'klien' 	=> $klien,
-			'kasus2'	=> $kasus2));
+			'kasus2'	=> $kasus2,
+			'section' => $section));
 	}
 
 	/**

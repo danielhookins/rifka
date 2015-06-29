@@ -1,23 +1,16 @@
-@if(Session::has('success'))
-    <div class="alert alert-success alert-dismissible" role="alert">
-	  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	  <strong>Success!</strong> {{ Session::get('success') }}
-	</div>
-@endif
-
-<h2>Catatan Klien</h2>
-
 <div class="panel panel-primary">
 	<div class="panel-heading">
 		<h3 class="panel-title">{{$klien->nama_klien}}</h3>
 	</div>
+
 	<div class="panel-body">
 		<div class="row">
 			
 			<div class="col-sm-4">
 				<div class="well">
 					<p style="text-align:center">
-						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> <strong>Klien</strong>
+						<span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+						<strong>Klien</strong>
 					</p>
 					<ul>
 						<li><a href="#informasi-pribadi">Informasi Pribadi</a></li>
@@ -30,7 +23,8 @@
 			<div class="col-sm-4">
 				<div class="well">
 					<p style="text-align:center">
-						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> <strong>Kasus</strong>
+						<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+						<strong>Kasus</strong>
 					</p>
 					
 						<ul>
@@ -50,7 +44,8 @@
 			<div class="col-sm-4">
 				<div class="well">
 					<p style="text-align:center">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <strong>Options</strong>
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						<strong>Options</strong>
 					</p>
 					<ul>
 						<li><a href="{{route('klien.edit', $klien->klien_id)}}">Mengedit Klien</a></li>
@@ -63,9 +58,3 @@
 		</div>
 	</div>
 </div> <!-- /Panel Primary -->
-
-@include('klien.partials.form-show.pribadi')
-
-@include('klien.partials.form-show.kontak')
-
-@include('klien.partials.form-show.informasi')

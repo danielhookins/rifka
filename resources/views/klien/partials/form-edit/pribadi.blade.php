@@ -1,5 +1,11 @@
-<div class="panel panel-informasi" style="background:#b6fcb6;"> <!-- Pribadi Panel -->
-    <div class="panel-heading"><a class="in-link" name="informasi-pribadi">Informasi Pribadi</a></div>
+<div class="panel panel-warning">
+  
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a class="in-link" name="informasi-pribadi">Informasi Pribadi</a>
+    </h4>
+  </div>
+
   <ul class="list-group">
     <li class="list-group-item">
 	    	<h4 class="list-group-item-heading">Klien ID</h4>

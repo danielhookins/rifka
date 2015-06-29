@@ -3,12 +3,16 @@
 use rifka\Http\Controllers\KlienController;
 use rifka\Activity;
 use rifka\User;
+use rifka\Klien;
 use DB;
 
 class ChangeLogController extends KlienController {
 
 	public function showChanges($id)
 	{
+
+		$klien = Klien::findOrFail($id);
+
 		// Get a union of Activity and Attribute_Change tables
 		$activity = DB::table('activity')
 			->join('users', 'user_id', '=', 'id')
@@ -36,8 +40,9 @@ class ChangeLogController extends KlienController {
 			->orderBy('created_at', 'desc')
 			->get();
 
-		return view('klien.index', array(
-			'log' => $log));
+		return view('klien.log', array(
+			'log' => $log,
+			'klien' => $klien));
 	}
 
 }

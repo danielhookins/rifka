@@ -1,6 +1,7 @@
 @extends('layouts.records')
 
 @section('content')
+	
 	@if (isset($search))
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
@@ -10,26 +11,14 @@
 	@endif
 
 	<div class="row">
+	
 	@if (isset($list))
 		<div class="col-sm-12"> 
 		@include('klien.partials.list')
 		</div>
-	@elseif (isset($show))
-	  <div class="col-sm-12">
-		@include('klien.partials.show')
-		</div>
-	@elseif (isset($edit))
-		<div class="col-sm-12">  
-			@include('klien.partials.edit')
-		</div>
-	@elseif (isset($create))
-		<div class="col-sm-12">
-			@include('klien.partials.create')
-		</div>
-	@elseif (isset($log))
-		<div class="col-sm-12">
-			@include('klien.partials.form-show.log')
-		</div>
+
 	@endif
+	
 	</div>
+
 @endsection
