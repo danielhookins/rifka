@@ -20,7 +20,7 @@
     	<h4 class="list-group-item-heading">Pekerjaan</h4>
     	<p class="list-group-item-text">{!! ($klien->pekerjaan) ? $klien->pekerjaan : null !!}</p>
     	<p class="list-group-item-text">{!! ($klien->jabatan) ? "(".$klien->jabatan.")" : null !!}</p>
-    	<p class="list-group-item-text">Penghasilan: {{$klien->penghasilan or null}}</p>
+    	<p class="list-group-item-text">{!! (isset($klien->penghasilan)) ?'Penghasilan: '.$klien->penghasilan : null !!}</p>
   	</li>
   	@endif
   	

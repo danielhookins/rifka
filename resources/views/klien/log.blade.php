@@ -14,7 +14,7 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a class="in-link" name="change-log">{{$klien->nama_klien or 'Change Log'}}</a>
+			<a href="{{route('klien.show', $klien->klien_id)}}">{{$klien->nama_klien or 'Change Log'}}</a>
 		</div>
 		
 		<table class="table table-compact">
@@ -38,7 +38,9 @@
 					</tr>
 				
 				@empty
+					<div class="panel-body">
 						<p>No changes logged.</p>
+					</div>
 				
 				@endforelse
 				

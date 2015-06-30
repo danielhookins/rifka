@@ -14,7 +14,7 @@
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			<a class="in-link" name="change-log">Kasus #{{$kasus->kasus_id or 'Unknown'}}</a>
+			<a href="{{route('kasus.show', $kasus->kasus_id)}}">Kasus #{{$kasus->kasus_id or 'Unknown'}}</a>
 		</div>
 		
 		<table class="table table-hover table-responsive">
