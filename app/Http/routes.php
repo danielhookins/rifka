@@ -76,6 +76,12 @@
 		'as' => 'klien.changes',
 		'uses' => 'ChangeLogController@showClientChanges']);
 
+	// Show the delete client dialog
+	Route::get('klien/{klien_id}/delete', [
+		'as' => 'klien.delete',
+		'uses' => "KlienController@confirmDestroy"
+		]);
+
 // *** AUTHENTICATION ***
 	
 	// Auth controllers

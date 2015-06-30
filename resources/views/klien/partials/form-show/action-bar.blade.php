@@ -48,9 +48,15 @@
 						<strong>Options</strong>
 					</p>
 					<ul>
-						<li><a href="{{route('klien.edit', $klien->klien_id)}}">Mengedit Klien</a></li>
-						<li><a href="{{route('klien.changes', $klien->klien_id)}}">Melihat Perubuhan</a></li>
-						<li style="color:red">Menghapus Klien</li>
+						<li>
+							<a href="{{route('klien.edit', $klien->klien_id)}}">Mengedit Klien</a>
+						</li>
+						<li>
+							<a href="{{route('klien.changes', $klien->klien_id)}}">Melihat Perubuhan</a>
+						</li>
+						<li>
+							<a href="{{route('klien.delete', $klien->klien_id)}}" style="color:red">Menghapus Klien</a>
+						</li>
 					</ul>
 				</div> <!-- /well -->	
 			</div>

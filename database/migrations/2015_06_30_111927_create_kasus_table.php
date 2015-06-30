@@ -25,6 +25,7 @@ class CreateKasusTable extends Migration {
 			$table->longText('narasi')->nullable();
 			$table->timestamp('created_at')->nullable();
 			$table->timestamp('updated_at')->nullable();
+			$table->softDeletes();
 		});
 	}
 

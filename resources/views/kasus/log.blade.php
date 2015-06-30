@@ -29,7 +29,7 @@
 						<td>{{$item->username}}</td>
 						<td>
 							@if($item->action)
-								<strong>{{$item->action}}</strong>
+								<strong>{{$item->action}}</strong> <em>{{ $item->klien_id or ''}}</em>
 							@elseif($item->attribute_name)
 								Changed <strong>{{$item->attribute_name}}</strong> from <em>
 								{!!(strlen($item->old_attribute_value) > 50) ? 

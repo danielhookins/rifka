@@ -20,6 +20,7 @@ class CreateKlienKasusTable extends Migration {
 			$table->string('jenis_klien')->nullable();
 			$table->timestamp('created_at')->nullable();
 			$table->timestamp('updated_at')->nullable();
+			$table->softDeletes();
 		});
 	}
 

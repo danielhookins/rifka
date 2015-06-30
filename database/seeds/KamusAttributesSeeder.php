@@ -209,6 +209,15 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'Date the client record was last updated.',
             'example'       => 'TODO'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Klien',
+            'name'          => 'deleted_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the client record was deleted.',
+            'example'       => 'TODO'
+            ]);
 
         // Konselor Attributes
         rifka\Kamus_attribute::create([
@@ -519,6 +528,15 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'date and time record was updated.',
             'example'       => 'TODO'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
+            'name'          => 'deleted_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the case record was deleted.',
+            'example'       => 'TODO'
+            ]);
 
         // Klien_Kasus Attributes
         rifka\Kamus_attribute::create([
@@ -573,6 +591,15 @@ class KamusAttributesSeeder extends Seeder {
             'foreign_key'   => '',
             'type'          => 'timestamp',
             'description'   => 'Date the client-case record was last updated.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Klien_Kasus',
+            'name'          => 'deleted_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the client-case was deleted.',
             'example'       => 'TODO'
             ]);
 

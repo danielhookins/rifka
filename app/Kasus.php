@@ -1,23 +1,27 @@
 <?php namespace rifka;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Kasus extends Model {
 
-	use SearchableTrait;
+	use SoftDeletes;
+    use SearchableTrait;
 
 	protected $table = 'kasus';
 	protected $primaryKey = 'kasus_id';
-	protected $fillable = ['jenis_kasus',
-							'hubungan',
-							'lama_hubungan',
-							'sejak_kapan',
-							'seberapa_sering',
-							'harapan_korban',
-							'rencana_korban',
-							'narasi'];
-	protected $searchable = [
+	protected $fillable = [
+        'jenis_kasus',
+    	'hubungan',
+    	'lama_hubungan',
+    	'sejak_kapan',
+    	'seberapa_sering',
+    	'harapan_korban',
+    	'rencana_korban',
+    	'narasi'];
+	protected $dates = ['deleted_at'];
+    protected $searchable = [
         'columns' => [
             'kasus.kasus_id' => 10,
             'arsip.no_reg' => 9,

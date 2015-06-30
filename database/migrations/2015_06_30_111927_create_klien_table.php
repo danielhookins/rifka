@@ -36,6 +36,7 @@ class CreateKlienTable extends Migration {
 			$table->string('dirujuk_oleh')->nullable();
 			$table->timestamp('created_at')->nullable();
 			$table->timestamp('updated_at')->nullable();
+			$table->softDeletes();
 		});
 	}
 

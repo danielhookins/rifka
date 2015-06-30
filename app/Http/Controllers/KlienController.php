@@ -7,6 +7,7 @@ use rifka\AttributeChange;
 use Illuminate\Http\Request;
 use Auth;
 use DB;
+use rifka\KlienKasus;
 
 class KlienController extends Controller {
 
@@ -112,8 +113,7 @@ class KlienController extends Controller {
 					->with('success', 'New client created.');
 		}
 
-		return redirect(404);
-		
+		return redirect('404');
 	}
 
 	/**
@@ -125,14 +125,18 @@ class KlienController extends Controller {
 	 */
 	public function show($id)
 	{
-		$klien = Klien::findOrFail($id);
-		$kasus2 = Klien::find($id)->klienKasus;
-		$alamat2 = Klien::find($id)->alamatKlien;
+		if($klien = Klien::find($id))
+		{
+			$kasus2 = Klien::find($id)->klienKasus;
+			$alamat2 = Klien::find($id)->alamatKlien;
 
-		return view('klien.show', array(
-			'klien' 	=> $klien,
-			'kasus2'	=> $kasus2,
-			'alamat2'	=> $alamat2));
+			return view('klien.show', array(
+				'klien' 	=> $klien,
+				'kasus2'	=> $kasus2,
+				'alamat2'	=> $alamat2));
+		}
+
+		return redirect('404');
 	}
 
 	/**
@@ -193,9 +197,50 @@ class KlienController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($klien_id)
 	{
-		//
+		$klien = Klien::findOrFail($klien_id);
+		$klienKasus2 = KlienKasus::where('klien_id', $klien_id);
+		$user = Auth::user();
+
+		foreach ($klienKasus2->select('kasus_id')->get() as $klienKasus)
+		{
+			$kasus_id = $klienKasus->kasus_id; // Save id for logging
+			
+				$klienKasus->delete();
+				
+				// Log Activity
+				// TODO: look at using 'Events' for logging instead
+
+	      $logRemoveClient = \rifka\Activity::create([
+					'user_id' => $user->id,
+					'klien_id' => $klien_id,
+					'kasus_id' => $kasus_id,
+					'action' => "Removed client"
+					]);
+		}
+		
+		$klien->delete();
+
+		// Log Activity
+		// TODO: look at using 'Events' for logging instead
+        $logDeleteClient = \rifka\Activity::create([
+				'user_id' => $user->id,
+				'klien_id' => $klien_id,
+				'action' => "Deleted Client"
+				]);
+
+		return redirect()->route('home')
+			->with('success', 'Klien #'.$klien_id.' has been deleted.');
+	}
+
+	/**
+	 * Show the confirm delete dialog
+	 * asking the user if they really want to delete?
+	 */
+	public function confirmDestroy($klien_id)
+	{
+		return view('klien.destroy', array('klien_id' => $klien_id));
 	}
 
 }

@@ -1,10 +1,12 @@
 <?php namespace rifka;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Klien extends Model {
 
+	use SoftDeletes;
 	use SearchableTrait;
 	
 	protected $table = 'klien';
@@ -31,6 +33,7 @@ class Klien extends Model {
 							'dirujuk_oleh',
 							'created_at',
 							'updated_at'];
+    protected $dates = ['deleted_at'];
     protected $searchable = [
         'columns' => [
             'klien.klien_id' => 10,

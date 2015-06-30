@@ -1,14 +1,9 @@
-@extends('layouts.master')
+@extends('layouts.records')
 
 @section('content')
-  
-	<div class="row">
-		<div class="col-sm-12">
-		</div>
-  </div>
 	
 	<div class="row">
-		<div class="col-sm-8 col-sm-offset-3">
+		<div class="col-sm-8 col-sm-offset-2">
 			@include('auth.login')
 		</div>
 	</div>
