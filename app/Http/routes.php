@@ -7,11 +7,6 @@
 		'as' => 'root', 
 		'uses' => 'WelcomeController@index']);
 
-	// User specific Home
-	Route::get('home', [
-		'as' => 'home', 
-		'uses' => 'HomeController@index']);
-
 // *** RESOURCES ***
 	
 	Route::resource('kasus', 'KasusController');
@@ -64,6 +59,11 @@
 		'as' => 'kasus.changes',
 		'uses' => 'ChangeLogController@showCaseChanges']);
 
+	// Show the delete case dialog
+	Route::get('kasus/{kasus_id}/delete', [
+		'as' => 'kasus.delete',
+		'uses' => "KasusController@confirmDestroy"]);
+
 // *** KLIEN ***
 	
 	// Edit a certain section
@@ -79,10 +79,9 @@
 	// Show the delete client dialog
 	Route::get('klien/{klien_id}/delete', [
 		'as' => 'klien.delete',
-		'uses' => "KlienController@confirmDestroy"
-		]);
+		'uses' => "KlienController@confirmDestroy"]);
 
-// *** AUTHENTICATION ***
+// *** USER ***
 	
 	// Auth controllers
 	Route::controllers([
@@ -98,6 +97,16 @@
 			Auth::logout();
 			return redirect('/');
 		}]);
+
+	// User specific Home
+	Route::get('home', [
+		'as' => 'home', 
+		'uses' => 'HomeController@index']);
+
+	// User Profile
+	Route::get('user/{user_id}', [
+		'as' => 'user.show',
+		'uses' => 'UserController@show']);
 
 // *** DEVELOPER ***
 	// Show the data dictionary

@@ -4,6 +4,7 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use rifka\Kasus;
+use rifka\KlienKasus;
 use Auth;
 use DB;
 
@@ -119,16 +120,23 @@ class KasusController extends Controller {
 	 */
 	public function show($id)
 	{
-		$kasus = \rifka\Kasus::findOrFail($id);
-		$klien2 = \rifka\Kasus::find($id)->klienKasus;
-		$arsip2 = \rifka\Kasus::find($id)->arsip;
-		$bentuk2 = \rifka\Kasus::find($id)->bentuk;
+		
+		//Ensure case exists
+		if($kasus = \rifka\Kasus::find($id))
+		{
+			$klien2 = \rifka\Kasus::findOrFail($id)->klienKasus;
+			$arsip2 = \rifka\Kasus::findOrFail($id)->arsip;
+			$bentuk2 = \rifka\Kasus::findOrFail($id)->bentuk;
 
-		return view('kasus.show', array(
-			'kasus' 	=> $kasus,
-			'klien2'	=> $klien2,
-			'arsip2'	=> $arsip2,
-			'bentuk2'	=> $bentuk2));
+			return view('kasus.show', array(
+				'kasus' 	=> $kasus,
+				'klien2'	=> $klien2,
+				'arsip2'	=> $arsip2,
+				'bentuk2'	=> $bentuk2));
+		}
+
+		return redirect('404');
+
 	}
 
 	/**
@@ -188,9 +196,50 @@ class KasusController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($kasus_id)
 	{
-		//
+		$kasus = Kasus::findOrFail($kasus_id);
+		$klienKasus2 = KlienKasus::where('kasus_id', $kasus_id);
+		$user = Auth::user();
+
+		foreach ($klienKasus2->select('kasus_id')->get() as $klienKasus)
+		{
+			$klien_id = $klienKasus->klien_id; // Save id for logging
+			
+			$klienKasus->delete();
+			
+			// Log Activity
+			// TODO: look at using 'Events' for logging instead
+      $logRemoveClient = \rifka\Activity::create([
+				'user_id' => $user->id,
+				'klien_id' => $klien_id,
+				'kasus_id' => $kasus_id,
+				'action' => "Removed Client"
+				]);
+		}
+
+		$kasus->delete();
+
+		// Log Activity
+		// TODO: look at using 'Events' for logging instead
+        $logDeleteClient = \rifka\Activity::create([
+				'user_id' => $user->id,
+				'kasus_id' => $kasus_id,
+				'action' => "Deleted Case"
+				]);
+
+		return redirect()->route('home')
+			->with('success', 'Kasus #'.$kasus_id.' has been deleted.');
+
+	}
+
+	/**
+	 * Show the confirm delete dialog
+	 * asking the user if they really want to delete?
+	 */
+	public function confirmDestroy($kasus_id)
+	{
+		return view('kasus.destroy', array('kasus_id' => $kasus_id));
 	}
 
 	public function search()

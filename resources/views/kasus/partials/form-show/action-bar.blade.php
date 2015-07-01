@@ -43,9 +43,15 @@
 						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span> <strong>Options</strong>
 					</p>
 					<ul>
-						<li><a href="{{route('kasus.edit', $kasus->kasus_id)}}">Mengedit Kasus</a></li>
-						<li><a href="{{route('kasus.changes', $kasus->kasus_id)}}">Melihat Perubuhan</a></li>
-						<li style="color:red">Menghapus Kasus</li>
+						<li>
+							<a href="{{route('kasus.edit', $kasus->kasus_id)}}">Mengedit Kasus</a>
+						</li>
+						<li>
+							<a href="{{route('kasus.changes', $kasus->kasus_id)}}">Melihat Perubuhan</a>
+						</li>
+						<li>
+							<a href="{{route('kasus.delete', $kasus->kasus_id)}}" style="color:red">Menghapus Kasus</a>
+						</li>
 					</ul>
 				</div> <!-- /well -->	
 			</div>

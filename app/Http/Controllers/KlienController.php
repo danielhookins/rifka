@@ -216,7 +216,7 @@ class KlienController extends Controller {
 					'user_id' => $user->id,
 					'klien_id' => $klien_id,
 					'kasus_id' => $kasus_id,
-					'action' => "Removed client"
+					'action' => "Removed Client"
 					]);
 		}
 		

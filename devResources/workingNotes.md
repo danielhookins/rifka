@@ -8,3 +8,7 @@ SOFTDELETES
 	- klien
 	- klien_kasus
 * Administration page for emptying the bin
+* Undo feature (show undo link in delete success message)
+
+LANGUAGE PREFERENCES
+* id and en
