@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use rifka\Kasus;
 use rifka\KlienKasus;
 use rifka\BentukKekerasan;
+use rifka\LayananDibutuhkan;
 use Auth;
 use DB;
 
@@ -193,17 +194,8 @@ class KasusController extends Controller {
 			$bentuk = BentukKekerasan::findOrFail($bentuk_id);
 			$attributes = array_keys($bentuk->getAttributes());
 
-
-
-			// TODO: [Refactor]
 			foreach($attributes as $attribute)
 			{
-	
-				echo "<br /> * INPUT ". $attribute ." VALUE " . \Input::get($attribute) . " :  ATTRIBUTE ";
-				echo $attribute;
-				echo ' VALUE ';
-				echo $bentuk->$attribute;
-				echo '<br />';
 				
 				if($bentuk->$attribute != \Input::get($attribute))
 				{
@@ -220,7 +212,33 @@ class KasusController extends Controller {
 				}
 			}
 		}
-		
+
+		// UPDATE LAYANAN DIBUTUHKAN
+		// TODO: again [refactor] duplicate code
+		if ($layanan_dbth_id = \Input::get('layanan_dbth_id')) 
+		{
+			$layanan = LayananDibutuhkan::findOrFail($layanan_dbth_id);
+			$attributes = array_keys($layanan->getAttributes());
+
+			foreach($attributes as $attribute)
+			{
+				
+				if($layanan->$attribute != \Input::get($attribute))
+				{
+
+					$attributeChange = \rifka\AttributeChange::create([
+						'user_id' => $user->id,
+						'kasus_id' => $kasus->kasus_id,
+						'attribute_name' => $attribute,
+						'old_attribute_value' => $layanan->$attribute,
+						'new_attribute_value' => \Input::get($attribute)]);
+					
+					$layanan->$attribute = \Input::get($attribute);
+					$layanan->save();
+				}
+			}
+		}
+
 		return redirect()->route('kasus.show', $id)
 			->with('success', 'Kasus updated.');
 		}

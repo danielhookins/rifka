@@ -47,4 +47,9 @@ class Kasus extends Model {
         return $this->hasMany('rifka\BentukKekerasan', 'kasus_id', 'kasus_id');
     }
 
+    public function layananDibutuhkan()
+    {
+        return $this->hasMany('rifka\layananDibutuhkan', 'kasus_id', 'kasus_id');
+    }
+
 }

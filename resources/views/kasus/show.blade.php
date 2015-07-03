@@ -12,22 +12,14 @@
 	{!! Form::model($kasus, array('class'=>'')) !!}
 
 	<h2>Catatan Kasus</h2>
+		
+		@include('kasus.partials.form-show.action-bar')
+		@include('kasus.partials.form-show.informasi-kasus')
+		@include('kasus.partials.form-show.bentuk-kekerasan')
+		@include('kasus.partials.form-show.layanan-dibutuhkan')
+		@include('kasus.partials.form-show.arsip')
+		@include('kasus.partials.form-show.narasi')
 
-	@include('kasus.partials.form-show.action-bar')
-
-	<div class="row">
-		<div class="col-sm-6">
-			@include('kasus.partials.form-show.informasi-kasus')
-		</div>
-		<div class="col-sm-6">
-			@include('kasus.partials.form-show.bentuk-kekerasan')
-		</div>
-	</div>
-
-	@include('kasus.partials.form-show.narasi')
-
-	@include('kasus.partials.form-show.arsip')
-
-	
 	{!! Form::close() !!}
+
 @endsection
