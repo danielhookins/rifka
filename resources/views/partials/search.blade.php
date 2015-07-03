@@ -2,7 +2,7 @@
 
 {!! Form::open(array('url' => 'search')) !!}
   <div class="form-group">
-  	{!! Form::text('searchQuery', null, array('class' => 'form-control input-lg',
+  	{!! Form::text('searchQuery', null, array('class' => 'form-control',
                                               'placeholder' => 'Search database', 'autofocus')) !!}
   </div>
   

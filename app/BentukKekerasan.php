@@ -8,6 +8,13 @@ class BentukKekerasan extends Model {
 	protected $primaryKey = 'bentuk_id';
 
 	/**
+   * Indicates if the model should be timestamped.
+   *
+   * @var bool
+   */
+  public $timestamps = false;
+
+	/**
 	 * The attributes that are mass assignable.
 	 *
 	 * @var array
@@ -20,9 +27,9 @@ class BentukKekerasan extends Model {
 							'sosial',
 							'keterangan'];
 
-    public function kasus()
-    {
-        return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
-    }
+  public function kasus()
+  {
+      return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
+  }
 
 }

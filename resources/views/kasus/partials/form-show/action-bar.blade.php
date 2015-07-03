@@ -10,17 +10,15 @@
 					<p style="text-align:center">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <strong>Klien</strong>
 					</p>
-					
-						<ul>
-							@forelse ($klien2 as $klien)
-								<li><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{{ $klien->nama_klien }}</a>
-								({{$klien->pivot->jenis_klien}})
-							@empty
-								<li>Belum ada klien</li>
-							@endforelse
-						</ul>
-						<a href="#">Tambah Klien</a>
-
+					<ul>
+						@forelse ($kasus->klienKasus as $klien)
+							<li><a href="{!! route('klien.index') !!}/{{ $klien->klien_id }}">{{ $klien->nama_klien }}</a>
+							({{$klien->pivot->jenis_klien}})
+						@empty
+							<li>Belum ada klien</li>
+						@endforelse
+					</ul>
+					<a href="#">Tambah Klien</a>
 				</div> <!-- /well -->	
 			</div>
 			
@@ -31,6 +29,7 @@
 					</p>
 					<ul>
 						<li><a href="#informasi-kasus">Informasi Kasus</a></li>
+						<li><a href="#bentuk-kekerasan">Bentuk Kekerasan</a></li>
 						<li><a href="#narasi">Narasi</a></li>
 						<li><a href="#arsip">Arsip</a></li>
 					</ul>
@@ -56,6 +55,6 @@
 				</div> <!-- /well -->	
 			</div>
 
-		</div>
-	</div>
+		</div> <!-- /Row -->
+	</div> <!-- /Panel Body -->
 </div> <!-- /Panel Primary -->

@@ -90,7 +90,6 @@
 	
 	// Log a user out
 	Route::get('logout', [
-		'middleware' => 'auth', 
 		'as' => 'logout', 
 		function() 
 		{

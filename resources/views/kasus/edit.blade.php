@@ -8,6 +8,8 @@
 
 	@if($section == 'all')
 		@include('kasus.partials.form-edit.informasi-kasus')
+
+		@include('kasus.partials.form-edit.bentuk-kekerasan')
 		
 		@include('kasus.partials.form-edit.narasi')
 

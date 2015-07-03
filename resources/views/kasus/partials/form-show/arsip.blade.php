@@ -7,7 +7,7 @@
   </div>
   
   <ul class="list-group">
-    @forelse ($arsip2 as $arsip)
+    @forelse ($kasus->arsip as $arsip)
     <li class="list-group-item">
 	    	<h4 class="list-group-item-heading">No Reg: {{$arsip->no_reg}}</h4>
 	    	<p class="list-group-item-text">Lokasi: {{$arsip->lokasi}}</p>

@@ -5,6 +5,7 @@ use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use rifka\Kasus;
 use rifka\KlienKasus;
+use rifka\BentukKekerasan;
 use Auth;
 use DB;
 
@@ -124,15 +125,11 @@ class KasusController extends Controller {
 		//Ensure case exists
 		if($kasus = \rifka\Kasus::find($id))
 		{
-			$klien2 = \rifka\Kasus::findOrFail($id)->klienKasus;
-			$arsip2 = \rifka\Kasus::findOrFail($id)->arsip;
-			$bentuk2 = \rifka\Kasus::findOrFail($id)->bentuk;
-
+			//dd($kasus->bentuk[0]->emosional);			
+		
 			return view('kasus.show', array(
 				'kasus' 	=> $kasus,
-				'klien2'	=> $klien2,
-				'arsip2'	=> $arsip2,
-				'bentuk2'	=> $bentuk2));
+				));
 		}
 
 		return redirect('404');
@@ -165,6 +162,9 @@ class KasusController extends Controller {
 		//TODO: Ensure validation
 
 		$user = Auth::user();
+		
+		
+		// UPDATE KASUS
 		$kasus = Kasus::findOrFail($id);
 		$attributes = array_keys($kasus->getAttributes());
 
@@ -186,6 +186,41 @@ class KasusController extends Controller {
 			}
 		}
 
+		// TODO: [Refactor] Use service for this?
+		// UPDATE BENTUK KEKERASAN
+		if ($bentuk_id = \Input::get('bentuk_id'))
+		{
+			$bentuk = BentukKekerasan::findOrFail($bentuk_id);
+			$attributes = array_keys($bentuk->getAttributes());
+
+
+
+			// TODO: [Refactor]
+			foreach($attributes as $attribute)
+			{
+	
+				echo "<br /> * INPUT ". $attribute ." VALUE " . \Input::get($attribute) . " :  ATTRIBUTE ";
+				echo $attribute;
+				echo ' VALUE ';
+				echo $bentuk->$attribute;
+				echo '<br />';
+				
+				if($bentuk->$attribute != \Input::get($attribute))
+				{
+
+					$attributeChange = \rifka\AttributeChange::create([
+						'user_id' => $user->id,
+						'kasus_id' => $kasus->kasus_id,
+						'attribute_name' => $attribute,
+						'old_attribute_value' => $bentuk->$attribute,
+						'new_attribute_value' => \Input::get($attribute)]);
+					
+					$bentuk->$attribute = \Input::get($attribute);
+					$bentuk->save();
+				}
+			}
+		}
+		
 		return redirect()->route('kasus.show', $id)
 			->with('success', 'Kasus updated.');
 		}
