@@ -125,11 +125,9 @@ class KasusController extends Controller {
 		
 		//Ensure case exists
 		if($kasus = \rifka\Kasus::find($id))
-		{
-			//dd($kasus->bentuk[0]->emosional);			
-		
+		{	
 			return view('kasus.show', array(
-				'kasus' 	=> $kasus,
+				'kasus' => $kasus,
 				));
 		}
 

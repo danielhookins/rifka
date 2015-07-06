@@ -49,7 +49,7 @@ class Kasus extends Model {
 
     public function layananDibutuhkan()
     {
-        return $this->hasMany('rifka\layananDibutuhkan', 'kasus_id', 'kasus_id');
+        return $this->hasMany('rifka\LayananDibutuhkan', 'kasus_id', 'kasus_id');
     }
 
 }
