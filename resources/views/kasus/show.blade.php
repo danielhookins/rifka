@@ -17,6 +17,7 @@
 		@include('kasus.partials.form-show.informasi-kasus')
 		@include('kasus.partials.form-show.bentuk-kekerasan')
 		@include('kasus.partials.form-show.layanan-dibutuhkan')
+		@include('kasus.partials.form-show.konselor')
 		@include('kasus.partials.form-show.arsip')
 		@include('kasus.partials.form-show.narasi')
 

@@ -12,6 +12,8 @@ class Alamat extends Model {
 	protected $fillable = ['alamat',
 							'kecamatan',
 							'kabupaten'];
+	public $timestamps = false;
+	
 	protected $searchable = [
         'columns' => [
             'alamat.alamat' => 10,
@@ -24,7 +26,7 @@ class Alamat extends Model {
         ],
     ];
 
-    public $timestamps = false;
+    
 
 	public function alamatKlien()
     {

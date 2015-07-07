@@ -7,7 +7,7 @@ use Nicolaslopezj\Searchable\SearchableTrait;
 class Kasus extends Model {
 
 	use SoftDeletes;
-    use SearchableTrait;
+	use SearchableTrait;
 
 	protected $table = 'kasus';
 	protected $primaryKey = 'kasus_id';
@@ -36,8 +36,13 @@ class Kasus extends Model {
     {
         return $this->belongsToMany('rifka\Klien', 'klien_kasus', 'kasus_id', 'klien_id')->withPivot('jenis_klien');
     }
-
-    public function arsip()
+	
+	public function konselorKasus()
+    {
+        return $this->hasMany('rifka\KonselorKasus', 'kasus_id', 'kasus_id');
+    }
+    
+	public function arsip()
     {
         return $this->hasMany('rifka\Arsip', 'kasus_id', 'kasus_id');
     }

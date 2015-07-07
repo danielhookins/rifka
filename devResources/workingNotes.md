@@ -1,3 +1,6 @@
+## KLIEN
+* Multiple addresses - mark as KTP or Domisili.
+
 ## INPUT VALIDATION
 * Enforce required inputs and valid formats
 
