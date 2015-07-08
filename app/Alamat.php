@@ -24,9 +24,7 @@ class Alamat extends Model {
             'alamat_klien' => ['alamat_klien.alamat_id', 'alamat.alamat_id'],
             'klien' => ['klien.klien_id', 'alamat_klien.klien_id']
         ],
-    ];
-
-    
+    ];  
 
 	public function alamatKlien()
     {

@@ -10,6 +10,9 @@
 
 ## USER ADMINISTRATION
 * Control panel to add new / edit existing users
+* Counsellor Manager to add and edit counsellors
+ - add new; edit existing; delete existing
+ - on delete: assign cases to different counselor?
 * 'Forgot Password' functionality
 
 ## SOFTDELETES

@@ -2,7 +2,10 @@
   
   <div class="panel-heading">
     <h4 class="panel-title">
-      <a class="in-link" name="informasi-kasus">Informasi Kasus</a>
+      <a class="in-link" name="informasi-kasus">
+        <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+        Informasi Kasus
+      </a>
     </h4>
   </div>
 

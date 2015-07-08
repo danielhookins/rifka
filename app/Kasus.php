@@ -42,7 +42,12 @@ class Kasus extends Model {
         return $this->hasMany('rifka\KonselorKasus', 'kasus_id', 'kasus_id');
     }
     
-	public function arsip()
+	public function perkembangan()
+    {
+        return $this->hasMany('rifka\Perkembangan', 'kasus_id', 'kasus_id');
+    }
+
+    public function arsip()
     {
         return $this->hasMany('rifka\Arsip', 'kasus_id', 'kasus_id');
     }
@@ -50,6 +55,11 @@ class Kasus extends Model {
     public function bentuk()
     {
         return $this->hasMany('rifka\BentukKekerasan', 'kasus_id', 'kasus_id');
+    }
+
+    public function faktorPemicu()
+    {
+        return $this->hasMany('rifka\FaktorPemicu', 'kasus_id', 'kasus_id');
     }
 
     public function layananDibutuhkan()

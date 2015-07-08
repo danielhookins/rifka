@@ -1,4 +1,11 @@
-@extends('layouts.records')
+@extends('layouts.kasus')
+
+@section('menu')
+
+	@include('kasus.partials.menu.menu-options')
+	@include('kasus.partials.menu.menu-show')
+
+@endsection
 
 @section('content')
 
@@ -10,16 +17,27 @@
 	@endif
 
 	{!! Form::model($kasus, array('class'=>'')) !!}
+	
+		<div class="row">
+			<div class="col-sm-8">
+				@include('kasus.partials.form-show.informasi-kasus')
+			</div>
+			<div class="col-sm-4">
+				@include('kasus.partials.form-show.klien-kasus')
+			</div>
+		</div>
 
-	<h2>Catatan Kasus</h2>
-		
-		@include('kasus.partials.form-show.action-bar')
-		@include('kasus.partials.form-show.informasi-kasus')
-		@include('kasus.partials.form-show.bentuk-kekerasan')
-		@include('kasus.partials.form-show.layanan-dibutuhkan')
 		@include('kasus.partials.form-show.konselor')
-		@include('kasus.partials.form-show.arsip')
 		@include('kasus.partials.form-show.narasi')
+		@include('kasus.partials.form-show.perkembangan')
+		
+		<h3>Arsip</h3>
+		@include('kasus.partials.form-show.arsip')
+
+		<h3>Keterangan</h3>
+		@include('kasus.partials.form-show.bentuk-kekerasan')
+		@include('kasus.partials.form-show.faktor-pemicu')
+		@include('kasus.partials.form-show.layanan-dibutuhkan')
 
 	{!! Form::close() !!}
 
