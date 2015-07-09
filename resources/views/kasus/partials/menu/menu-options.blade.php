@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-info">
 	
   <div class="panel-heading">
     <h4 class="panel-title">
@@ -10,20 +10,26 @@
   </div>
 	
 	<ul class="list-group">
-		<li class="list-group-item list-group-item-success">
-			<a href="{{route('kasus.edit', $kasus->kasus_id)}}">
+		<li class="list-group-item">
+			<a style="color:green" href="{{route('kasus.edit', $kasus->kasus_id)}}">
 				<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
 				Mengedit
 			</a>
 		</li>
-		<li class="list-group-item list-group-item-info">
+		<li class="list-group-item">
+			<a href="#">
+				<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+				Print
+			</a>
+		</li>
+		<li class="list-group-item">
 			<a href="{{route('kasus.changes', $kasus->kasus_id)}}">
 				<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 				Perubuhan
 			</a>
 		</li>
-		<li class="list-group-item list-group-item-danger">
-			<a href="{{route('kasus.delete', $kasus->kasus_id)}}">
+		<li class="list-group-item">
+			<a style="color:red;" href="{{route('kasus.delete', $kasus->kasus_id)}}">
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 				Menghapus
 			</a>

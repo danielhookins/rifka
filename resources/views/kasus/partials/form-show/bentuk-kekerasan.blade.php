@@ -8,10 +8,10 @@
   
   <ul class="list-group">
     @forelse ($kasus->bentuk as $bentuk)
-    <li class="list-group-item">
-	    	<h4 class="list-group-item-heading">Jenis Kekerasan</h4>
+    <li class="list-group-item" style="margin-bottom:-10px;">
 	    	<p class="list-group-item-text">
-            <div class="form-group form-inline">
+          <strong>Jenis Kekerasan</strong>
+            <div style="margin-top:3px;" class="form-group form-inline">
             <div class="checkbox">
               <label>
                 {!! Form::checkbox('emosional', 1, $bentuk->emosional, array('disabled')) !!} Emosional
@@ -41,15 +41,15 @@
   	</li>
     
     <li class="list-group-item">
-      <h4 class="list-group-item-heading">Keterangan</h4>
       <p class="list-group-item-text">
+        <strong>Keterangan</strong><br />
         {{ $bentuk->keterangan }}
       </p>
     </li>
   	
   	@empty
   	<li class="list-group-item">
-	    	<p class="list-group-item-text">Belum ada informasi.</p>
+	    <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'bentuk-kekerasan'))}}">Tambah Bentuk Kekerasan</a>
   	</li>
 
   	@endforelse

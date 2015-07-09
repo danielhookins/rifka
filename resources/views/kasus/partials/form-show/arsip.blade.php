@@ -7,18 +7,36 @@
   </div>
   
   <ul class="list-group">
-    @forelse ($kasus->arsip as $arsip)
-    <li class="list-group-item">
-	    	<h4 class="list-group-item-heading">No Reg: {{$arsip->no_reg}}</h4>
-	    	<p class="list-group-item-text">Lokasi: {{$arsip->lokasi}}</p>
-  	</li>
+    @if($kasus->arsip)
+      
+      @foreach($kasus->arsip as $arsip)
+      
+        @if($arsip->no_reg)
+        <li class="list-group-item">
+          <p class="list-group-item-text">
+  	    	  <strong>No Reg</strong> {{$arsip->no_reg}}
+          </p>
+      	</li>
+        @endif
+
+        @if($arsip->lokasi)
+        <li class="list-group-item">
+          <p class="list-group-item-text">
+            <strong>Lokasi</strong> {{$arsip->lokasi}}
+          </p>
+        </li>
+        @endif
+      
+      @endforeach
   	
-  	@empty
+  	@else
   	<li class="list-group-item">
-	    	<p class="list-group-item-text">Tidak ada Arsip untuk kasus ini.</p>
+	    <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'arsip'))}}">
+        Tambah Arsip
+      </a>
   	</li>
 
-  	@endforelse
+  	@endif
   </ul>
 
 	<div class="panel-body">

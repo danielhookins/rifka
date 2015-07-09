@@ -19,7 +19,7 @@
     
     @empty
     <li class="list-group-item">
-        <p class="list-group-item-text">Tidak ada faktor pemicu untuk kasus ini.</p>
+      <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'informasi-kasus'))}}">Tambah Faktor Pemicu</a>
     </li>
 
     @endforelse

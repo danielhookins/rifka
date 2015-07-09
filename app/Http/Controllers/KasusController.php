@@ -87,19 +87,19 @@ class KasusController extends Controller {
 			'action' => "Created Case"]);
 
 		//KLIEN-KASUS BARU
-		$korban2 = $request->session()->pull('korban2');
-		$pelaku2 = $request->session()->pull('pelaku2');
-
-		foreach($korban2 as $korban)
+		if($korban2 = $request->session()->pull('korban2'))
 		{
-			$klienKasus = \rifka\KlienKasus::create([
-				'klien_id' 		=> $korban->klien_id,
-				'kasus_id' 		=> $kasus->kasus_id,
-				'jenis_klien' 	=> 'Korban']);
+			foreach($korban2 as $korban)
+			{
+				$klienKasus = \rifka\KlienKasus::create([
+					'klien_id' 		=> $korban->klien_id,
+					'kasus_id' 		=> $kasus->kasus_id,
+					'jenis_klien' 	=> 'Korban']);
+			}
 		}
 
 		// Create a record of related perps if they exist
-		if(!empty($pelaku2))
+		if($pelaku2 = $request->session()->pull('pelaku2'))
 		{
 			foreach($pelaku2 as $pelaku)
 			{

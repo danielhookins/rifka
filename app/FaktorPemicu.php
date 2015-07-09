@@ -10,9 +10,9 @@ class FaktorPemicu extends Model {
 							'jenis_pemicu',
 							'keterangan'];
 
-    public function kasus()
-    {
-        return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
-    }
+  public function kasus()
+  {
+      return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
+  }
 
 }

@@ -10,6 +10,7 @@
 			<li class="list-group-item"><a href="#konselor">Konselor</a></li>
 			<li class="list-group-item"><a href="#narasi">Narasi</a></li>
 			<li class="list-group-item"><a href="#perkembangan">Perkembangan</a></li>
+			<li class="list-group-item"><a href="#kasus-pentutup">Kasus Pentutup</a></li>
 		</ul>
 
 		<div class="panel-heading">

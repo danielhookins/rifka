@@ -8,8 +8,16 @@
 
   <ul class="list-group">
     <li class="list-group-item">
-	    	<h4 class="list-group-item-heading">Narasi Kasus</h4>
-	    	<p class="list-group-item-text">{{$kasus->narasi}}</p>
+      <p class="list-group-item-text">
+      @if($kasus->narasi)
+        <strong>Narasi Kasus</strong><br />
+        {{$kasus->narasi}}
+      @else
+        <a class="tambah-link" href="{{route('kasus.edit'), array($kasus->kasus_id, 'narasi')}}">
+          Tambah Narasi
+        </a>
+      @endif
+      </p>
   	</li>
   </ul>
 

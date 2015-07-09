@@ -6,21 +6,27 @@
     </h4>
   </div>
 
+	@if (isset($konselor2) && $konselor2[0]->nama_konselor)
+  <table class="table table-responsive table-hover">
+  	<tr>
+      <th>Nama Konselor</th>
+    </tr>
+    <tr>
+  		<td>{{ $konselor2[0]->nama_konselor }}</td>
+  	</tr>
+  </table>
+  
+  @else
   <ul class="list-group">
     <li class="list-group-item">
-        <h4 class="list-group-item-heading">Konselor</h4>
-        <table class="table table-responsive table-hover">
-          <tr>
-            <th>Nama Konselor</th>
-          </tr>
-			@if (isset($konselor2) && $konselor2[0]->nama_konselor)
-			<tr>
-				<td>{{ $konselor2[0]->nama_konselor }}</td>
-			</tr>
-			@endif
-        </table>
+      <a href="" class="tambah-link">
+        Tambah Konselor
+      </a>
     </li>
   </ul>
+
+	@endif
+  
 
 	<div class="panel-body">
     <div class="form-inline">
