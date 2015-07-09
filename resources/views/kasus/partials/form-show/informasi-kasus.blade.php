@@ -11,11 +11,11 @@
 
 <ul class="list-group">
   
-  <li class="list-group-item">
-    	<p class="list-group-item-text">
+	<li class="list-group-item">
+	<p class="list-group-item-text">
         <strong>Kasus ID</strong>
         {{$kasus->kasus_id}}
-      </p>
+	</p>
 	</li>
 
 	@if($kasus->jenis_kasus)
@@ -131,5 +131,10 @@
     <a class="btn btn-default" href="#">Kembali ke atas</a>
   </div>
 </div>
+
+<!--
+<div class="visible-xs panel-body" style="padding-bottom:10px;">
+</div>
+-->
 
 </div> <!-- Panel Informasi Kasus -->
