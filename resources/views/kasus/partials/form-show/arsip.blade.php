@@ -6,44 +6,48 @@
     </h4>
   </div>
   
-  <ul class="list-group">
-    @if($kasus->arsip)
-      
-      @foreach($kasus->arsip as $arsip)
-      
-        @if($arsip->no_reg)
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-  	    	  <strong>No Reg</strong> {{$arsip->no_reg}}
-          </p>
-      	</li>
-        @endif
+  
+  @if(!empty($kasus->arsip->toArray()))
+    <ul class="list-group">
+    @foreach($kasus->arsip as $arsip)
+    
+      @if($arsip->no_reg)
+      <li class="list-group-item">
+        <p class="list-group-item-text">
+	    	  <strong>No Reg</strong> {{$arsip->no_reg}}
+        </p>
+    	</li>
+      @endif
 
-        @if($arsip->lokasi)
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <strong>Lokasi</strong> {{$arsip->lokasi}}
-          </p>
-        </li>
-        @endif
-      
-      @endforeach
-  	
-  	@else
-  	<li class="list-group-item">
-	    <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'arsip'))}}">
-        Tambah Arsip
-      </a>
-  	</li>
+      @if($arsip->lokasi)
+      <li class="list-group-item">
+        <p class="list-group-item-text">
+          <strong>Lokasi</strong> {{$arsip->lokasi}}
+        </p>
+      </li>
+      @endif
+    
+    @endforeach
+    </ul>
 
-  	@endif
-  </ul>
-
-	<div class="panel-body">
-    <div class="form-inline">
-      <a class="btn btn-info" href="{{route('kasus.edit', array($kasus->kasus_id, 'arsip'))}}">Mengedit</a>
-      <a class="btn btn-default" href="#">Kembali ke atas</a>
+    <div class="panel-body">
+      <div class="form-inline">
+        <a class="btn btn-default" href="{{route('kasus.edit', array($kasus->kasus_id, 'arsip'))}}">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          Edit
+        </a>
+      </div>
     </div>
-  </div>
+
+	@else
+  	<ul class="list-group">
+      <li class="list-group-item">
+  	    <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'arsip'))}}">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Tambah Arsip
+        </a>
+    	</li>
+    </ul>
+  	@endif
 
 </div> <!-- / Arsip Panel -->

@@ -159,6 +159,11 @@ class KamusTablesSeeder extends Seeder {
             'type'          => 'Layanan',
             'description'   => 'Attendance of a mens program.'
             ]);
+        rifka\Kamus_table::create([
+            'name'          => 'Rujukan',
+            'type'          => 'Layanan',
+            'description'   => 'A referal.'
+            ]);
 
         // Untuk Arsip
         rifka\Kamus_table::create([

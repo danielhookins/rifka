@@ -6,13 +6,15 @@
     </h4>
   </div>
   
-  <ul class="list-group">
-	@if ($kasus->kasusPentutup)
-
+	@if (isset($kasus->kasusPentutup))
+	<ul class="list-group">
+		
 		@if($evaluasi_kons = rifka\Konselor::find($kasus->kasusPentutup->evaluasi_kons_id))
 			<li class="list-group-item">
-	    	<h4 class="list-group-item-heading">Evaluasi Konselor</h4>
-	    	<p class="list-group-item-text">{{ $evaluasi_kons->nama_konselor }}</p>
+	    	<p class="list-group-item-text">
+	    		<strong>Evaluasi Konselor</strong>
+	    		{{ $evaluasi_kons->nama_konselor }}
+	    	</p>
 			</li>
 		@else
 			<li class="list-group-item">
@@ -24,8 +26,10 @@
 
 		@if($evaluasi_akhir = rifka\Konselor::find($kasus->kasusPentutup->evaluasi_akhir_id))
 			<li class="list-group-item">
-	    	<h4 class="list-group-item-heading">Evaluasi Akhir</h4>
-	    	<p class="list-group-item-text">{{ $evaluasi_akhir->nama_konselor }}</p>
+	    	<p class="list-group-item-text">
+	    		<strong>Evaluasi Akhir</strong>
+	    		{{ $evaluasi_akhir->nama_konselor }}
+	    	</p>
 			</li>
 		@else
 			<li class="list-group-item">
@@ -36,26 +40,34 @@
 		@endif
 
 		<li class="list-group-item">
-    	<h4 class="list-group-item-heading">Tanggal Ditututp</h4>
-    	<p class="list-group-item-text">{{ $kasus->kasusPentutup->tanggal or '' }}</p>
+    	<p class="list-group-item-text">
+    		<strong>Tanggal Ditututp<strong>
+    		{{ $kasus->kasusPentutup->tanggal or '' }}
+    	</p>
 		</li>
-
-
-	@else
-	<li class="list-group-item">
-		<p class="list-group-item-text">
-			<a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'kasus-pentutup'))}}">Tambah Kasus Pentutup</a>
-		</p>
-	</li>
-
-	@endif
 	</ul>
 
 	<div class="panel-body">
-    <div class="form-inline">
-      <a class="btn btn-info" href="{{route('kasus.edit', array($kasus->kasus_id, 'kasus-pentutup'))}}">Mengedit</a>
-      <a class="btn btn-default" href="#">Kembali ke atas</a>
-    </div>
-  </div>
+	  <div class="form-inline">
+	    <a class="btn btn-default" href="{{route('kasus.edit', array($kasus->kasus_id, 'kasus-pentutup'))}}">
+	      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+	      Edit
+	    </a>
+	  </div>
+	</div>
+
+	@else
+	<ul class="list-group">
+		<li class="list-group-item">
+			<p class="list-group-item-text">
+				<a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'kasus-pentutup'))}}">
+					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					Tambah Kasus Pentutup
+				</a>
+			</p>
+		</li>
+	</ul>
+
+	@endif
 
 </div> <!-- / Kasus Pentutup Panel -->

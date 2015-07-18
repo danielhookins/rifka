@@ -6,30 +6,36 @@
     </h4>
   </div>
 
-  <ul class="list-group">
     @forelse ($kasus->faktorPemicu as $pemicu)
-    <li class="list-group-item">
-        <h4 class="list-group-item-heading">Jenis Pemicu</h4>
-        <p class="list-group-item-text">{{$pemicu->jenis_pemicu}}</p>
-    </li>
-    <li class="list-group-item">
-        <h4 class="list-group-item-heading">Keterangan</h4>
-        <p class="list-group-item-text">{{$pemicu->keterangan}}</p>
-    </li>
+    <ul class="list-group">
+      <li class="list-group-item">
+          <h4 class="list-group-item-heading">Jenis Pemicu</h4>
+          <p class="list-group-item-text">{{$pemicu->jenis_pemicu}}</p>
+      </li>
+      <li class="list-group-item">
+          <h4 class="list-group-item-heading">Keterangan</h4>
+          <p class="list-group-item-text">{{$pemicu->keterangan}}</p>
+      </li>
+    </ul>
+
+    <div class="panel-body">
+      <div class="form-inline">
+        <a class="btn btn-default" href="{{route('kasus.edit', array($kasus->kasus_id, 'faktor-pemicu'))}}">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          Edit
+        </a>
+      </div>
+    </div>
     
     @empty
-    <li class="list-group-item">
-      <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'informasi-kasus'))}}">Tambah Faktor Pemicu</a>
-    </li>
-
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'informasi-kasus'))}}">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Tambah Faktor Pemicu
+        </a>
+      </li>
+    </ul>
     @endforelse
-  </ul>
-
-	<div class="panel-body">
-    <div class="form-inline">
-      <a class="btn btn-info" href="{{route('kasus.edit', array($kasus->kasus_id, 'informasi-kasus'))}}">Mengedit</a>
-      <a class="btn btn-default" href="#">Kembali ke atas</a>
-    </div>
-  </div>
 
 </div> <!-- / Faktor Pemicu Panel -->

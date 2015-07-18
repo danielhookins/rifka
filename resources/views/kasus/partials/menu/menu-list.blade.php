@@ -1,7 +1,9 @@
 <div class="nav-menu">
 	<div class="panel panel-success">
 		<div class="panel-heading">
-			<h4 class="panel-title"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Kasus</h4>
+			<h4 class="panel-title">
+					<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Kasus
+			</h4>
 		</div>
 
 		<ul class="list-group">
@@ -19,7 +21,24 @@
 		<ul class="list-group">
 			<li class="list-group-item"><a href="#bentuk-kekerasan">Bentuk Kekerasan</a></li>
 			<li class="list-group-item"><a href="#faktor-pemicu">Faktor Pemicu</a></li>
+			<li class="list-group-item"><a href="#upaya-dilakukan">Upaya Dilakukan</a></li>
 			<li class="list-group-item"><a href="#layanan-dibutuhkan">Layanan Dibutuhkan</a></li>
+			<li class="list-group-item"><a href="#dampak">Dampak</a></li>
+		</ul>
+
+		<div class="panel-heading">
+			<h4 class="panel-title">Litigasi</h4>
+		</div>
+		<ul class="list-group">
+			<li class="list-group-item"><a href="#litigasi">Litigasi</a></li>
+			<li class="list-group-item"><a href="#kegiatan-litigasi">Kegiatan Litigasi</a></li>
+		</ul>
+
+		<div class="panel-heading">
+			<h4 class="panel-title">Layanan</h4>
+		</div>
+		<ul class="list-group">
+			<li class="list-group-item"><a href="#layanan-diberikan">Layanan Diberikan</a></li>
 		</ul>
 
 		<div class="panel-heading">

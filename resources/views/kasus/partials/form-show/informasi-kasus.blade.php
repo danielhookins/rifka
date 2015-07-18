@@ -4,7 +4,7 @@
   <h4 class="panel-title">
     <a class="in-link" name="informasi-kasus">
       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-      Kasus #{{$kasus->kasus_id}}
+      Informasi Kasus
     </a>
   </h4>
 </div>
@@ -127,8 +127,10 @@
 
 <div class="panel-body">
   <div class="form-inline">
-    <a class="btn btn-info" href="{{route('kasus.edit', array($kasus->kasus_id, 'informasi-kasus'))}}">Mengedit</a>
-    <a class="btn btn-default" href="#">Kembali ke atas</a>
+    <a class="btn btn-default" href="{{route('kasus.edit', array($kasus->kasus_id, 'informasi-kasus'))}}">
+      <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+      Edit
+    </a>
   </div>
 </div>
 

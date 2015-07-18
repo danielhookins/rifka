@@ -18,9 +18,10 @@ body {
   border-right: 1px dashed #333;
 }
 .main-search-title {
-  margin-top: -10px;
+  margin-top: 10px;
   padding: 20px;
   text-align: center;
+  font-weight: bold;
 }
 
 @media screen and (max-height: 600px) {
@@ -34,6 +35,17 @@ body {
 }
 .section-heading {
 	font-weight: bold;
+}
+
+/*
+ * BACK TO TOP BUTTON
+ */
+.back-to-top {
+  display:none;
+  text-align: center;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
 }
 
 

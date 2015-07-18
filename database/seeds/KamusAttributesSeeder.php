@@ -1366,6 +1366,46 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
+        //Rujukan Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Rujukan',
+            'name'          => 'rujukan_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'A unique identifier of the referal.',
+            'example'       => '6745'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Rujukan',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '4265'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Rujukan',
+            'name'          => 'tanggal',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'date',
+            'description'   => 'The date of the referal in DD-MM-YYYY format.',
+            'example'       => '12-04-2015'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Rujukan',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'Any additional information.',
+            'example'       => 'TODO'
+            ]);
+
+
+
         // Latar_Keluarga Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Latar_Keluarga',

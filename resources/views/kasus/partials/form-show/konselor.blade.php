@@ -15,24 +15,26 @@
   		<td>{{ $konselor2[0]->nama_konselor }}</td>
   	</tr>
   </table>
+
+  <div class="panel-body">
+    <div class="form-inline">
+      <a class="btn btn-default" href="{{route('kasus.edit', array($kasus->kasus_id, 'konselor'))}}">
+        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+        Edit
+      </a>
+    </div>
+  </div>
   
   @else
   <ul class="list-group">
     <li class="list-group-item">
       <a href="" class="tambah-link">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         Tambah Konselor
       </a>
     </li>
   </ul>
 
-	@endif
-  
-
-	<div class="panel-body">
-    <div class="form-inline">
-      <a class="btn btn-info" href="{{route('kasus.edit', array($kasus->kasus_id, 'konselor'))}}">Mengedit</a>
-      <a class="btn btn-default" href="#">Kembali ke atas</a>
-    </div>
-  </div>
+@endif
 
 </div> <!-- / Konselor Panel -->

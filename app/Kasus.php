@@ -66,6 +66,16 @@ class Kasus extends Model {
     {
         return $this->hasMany('rifka\LayananDibutuhkan', 'kasus_id', 'kasus_id');
     }
+    
+    public function upayaDilakukan()
+    {
+        return $this->hasMany('rifka\UpayaDilakukan', 'kasus_id', 'kasus_id');
+    }
+
+    public function dampak()
+    {
+        return $this->hasMany('rifka\Dampak', 'kasus_id', 'kasus_id');
+    }
 
     public function kasusPentutup()
     {

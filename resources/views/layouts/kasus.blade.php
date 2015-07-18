@@ -10,6 +10,10 @@
 		@yield('content')
 	</div>
 
+	<a href="#" class="btn btn-info back-to-top" aria-label="Left Align">
+	  <span class="glyphicon glyphicon-circle-arrow-up" aria-hidden="true"></span><br />
+	  Kembali ke atas
+	</a>
 </div>
 
 @include('layouts.partials.footer')

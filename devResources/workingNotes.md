@@ -1,3 +1,14 @@
+## KASUS
+Display Intelligence
+* On Display: if no clients ask user 'do you want to add a client?'
+* On Display: if clients, but no extra case info, as user 'do you want to add more case information?'
+* On Disaply: if clients and extra case info, but no perkembangan ask user 'do you want to add a case 	development?'
+(Checkbox 'Remember My Answer'.)
+
+Entry Intelligence
+** Go through data-entry process -- see what works and what needs changing **
+* Work out approximate birthdate from age entry
+
 ## KLIEN
 * Multiple addresses - mark as KTP or Domisili.
 

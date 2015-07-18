@@ -8,6 +8,35 @@ $('[data-toggle="tooltip"]').tooltip({'placement': 'right'});
  */
 $('.dropdown-toggle').dropdown();
 
+/*
+ *  BACK TO TOP BUTTON
+ */
+$(document).ready(function() {
+    var btt = $('.back-to-top');
+
+    btt.on('click', function(e) {
+        $('html,body').animate({
+            scrollTop:0
+        }, 500);
+
+        e.preventDefault();
+    });
+
+    $(window).on('scroll', function() {
+
+        var self = $(this),
+            top = self.scrollTop();
+
+        if(top > 50) {
+          if(!btt.is(':visible')) {
+            btt.fadeIn("slow");
+          }
+        } else {
+          btt.fadeOut("slow");
+        }
+
+    });
+});
 
 /*
  *	LOADING

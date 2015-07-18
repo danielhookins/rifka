@@ -12,7 +12,7 @@
 	@endif
 
 	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-sm-offset-3 well">
+		<div class="col-xs-12 col-sm-6 col-sm-offset-3">
 			@include('partials.search')
 		</div>
 	</div>

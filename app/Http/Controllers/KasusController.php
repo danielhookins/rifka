@@ -120,15 +120,20 @@ class KasusController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show(Request $request, $id)
 	{
 		
 		//Ensure case exists
 		if($kasus = \rifka\Kasus::find($id))
 		{	
 			
+			if(empty($kasus->klienKasus->toArray())) 
+			{
+				$request->session()->flash("suggestion", "Kasus ini belum ada klien.  Anda mau <a href='#'>tambah klien</a> sekarang?");
+			}
+
 			return view('kasus.show', array(
-				'kasus' => $kasus,
+				'kasus' => $kasus
 				));
 		}
 

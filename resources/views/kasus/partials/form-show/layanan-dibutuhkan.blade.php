@@ -24,20 +24,25 @@
     
     </table>
 
+    <div class="panel-body">
+      <div class="form-inline">
+        <a class="btn btn-default" href="{{route('kasus.edit', array($kasus->kasus_id, 'layanan-dibutuhkan'))}}">
+          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+          Edit
+        </a>
+      </div>
+    </div>
+
   @else
     <ul class="list-group">
       <li class="list-group-item">
-        <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'layanan-dibutuhkan'))}}">Tambah Layanan Dibutuhkan</a>
+        <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'layanan-dibutuhkan'))}}">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Tambah Layanan Dibutuhkan
+        </a>
       </li>
     </ul>
 
   @endif
-
-	<div class="panel-body">
-    <div class="form-inline">
-      <a class="btn btn-info" href="{{route('kasus.edit', array($kasus->kasus_id, 'layanan-dibutuhkan'))}}">Mengedit</a>
-      <a class="btn btn-default" href="#">Kembali ke atas</a>
-    </div>
-  </div>
 
 </div> <!-- / Layanan Dibutuhkan Panel -->
