@@ -14,8 +14,9 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	
-		<!-- Bootstrap -->
-		{!! HTML::style( asset('css/app.css') ) !!}
+		<!-- CSS -->
+		<!-- {!! HTML::style( asset('css/app.css') ) !!} -->
+		{!! HTML::style( asset('css/bootstrap.min.css') ) !!}
 		{!! HTML::style( asset('css/custom.css') ) !!}
 
 	</head>

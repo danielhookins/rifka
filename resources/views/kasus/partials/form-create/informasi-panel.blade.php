@@ -48,7 +48,7 @@
 
 				<div class="form-group">
 					{!! Form::label('sejak_kapan', 'Sejak Kapan', array('class' => 'strongLabel')) !!}
-					{!! Form::date('sejak_kapan', \Carbon\Carbon::now(), array('class' => 'form-control')) !!}
+					{!! Form::date('sejak_kapan', null, array('class' => 'form-control')) !!}
 				</div>
 
 				<div class="form-group">

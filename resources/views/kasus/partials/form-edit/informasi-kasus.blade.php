@@ -50,10 +50,10 @@
   	<li class="list-group-item">
   		<h4 class="list-group-item-heading">Kekerasan</h4>
 				{!! Form::label('sejak_kapan', 'Sejak Kapan', array('class' => 'strongLabel')) !!}
-				{!! Form::date('sejak_kapan', \Carbon\Carbon::now(), array('class' => 'form-control')) !!}
+				{!! Form::date('sejak_kapan', $kasus->sejak_kapan, array('class' => 'form-control')) !!}
 
 				{!! Form::label('seberapa_sering', 'Seberapa Sering', array('class' => 'strongLabel')) !!}
-				{!! Form::number('seberapa_sering', null, array('class' => 'form-control')) !!}
+				{!! Form::number('seberapa_sering', $kasus->seberapa_sering, array('class' => 'form-control')) !!}
 		</li>
 
 		<li class="list-group-item">
