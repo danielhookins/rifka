@@ -11,7 +11,7 @@ class AttributeChange extends Model
 	 *
 	 * @var string
 	 */
-	protected $table = 'Attribute_Change';
+	protected $table = 'attribute_change';
 
 	protected $primaryKey = 'attribute_change_id';
 

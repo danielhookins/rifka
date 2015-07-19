@@ -11,7 +11,7 @@ class Activity extends Model
 	 *
 	 * @var string
 	 */
-	protected $table = 'Activity';
+	protected $table = 'activity';
 
 	protected $primaryKey = 'activity_id';
 
