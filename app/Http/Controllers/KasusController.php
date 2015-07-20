@@ -168,7 +168,6 @@ class KasusController extends Controller {
 
 		$user = Auth::user();
 		
-		
 		// UPDATE KASUS
 		$kasus = Kasus::findOrFail($id);
 		$attributes = array_keys($kasus->getAttributes());
@@ -312,13 +311,12 @@ class KasusController extends Controller {
 	// if case doesnt exist, create it.
 	// check client exists and not already added to case
 	// add client to case
+	// TODO: show error messages nicely
 	public function tambahKasusKlien($kasus_id, $klien_id)
 	{
-		
 		// Ensure Case exists
 		if($kasus = \rifka\Kasus::find($kasus_id))
 		{
-			$kasusTest = "kasus found: ".$kasus_id;
 			$klien2 = $kasus->klienKasus()->get();
 			
 			// Check client not already added
@@ -327,18 +325,26 @@ class KasusController extends Controller {
 				return 'Client already exists in case';
 			}
 		}
+		
+		/* OPTIONAL FUNCTIONALITY TO CREATE NEW CASE
 		else
 		{
 			// Case doesn't exist - create new
 			$kasusTest = 'new case: '.$kasus_id;
 		}
+		*/
 
 		// Ensure Client Exists
 		if($klien = \rifka\Klien::find($klien_id))
 		{
 			// Add client to case.
-			$kasusTest = $kasusTest."<br />Client: ".$klien_id;
-			return $kasusTest;
+			$klienKasus = \rifka\KlienKasus::create([
+					'klien_id' 		=> $klien_id,
+					'kasus_id' 		=> $kasus_id,
+					'jenis_klien' 	=> null]);
+
+			return redirect()->route('kasus.show', $kasus_id)
+			->with('success', 'Client added to case.');
 		} 
 		else
 		{
@@ -362,6 +368,11 @@ class KasusController extends Controller {
 	  else if($type == "pelaku")
 	  {
 	  	$request->session()->flash('tambahPelaku', True);
+	  }
+	  else if($type == "klien")
+	  {
+	  	$request->session()->flash('tambahKlien', True);
+	  	return redirect()->back();
 	  }
 		
 		return redirect()->route('kasus.create');
@@ -431,4 +442,46 @@ class KasusController extends Controller {
 		return redirect()->route('kasus.create');
 	}
 
+	public function autoUpdate(Request $request)
+	{
+		if($request->ajax()){
+			$data = \Input::all();
+
+			if(isset($data["table"]))
+			{
+				
+				// Store new entry in Klien Kasus Table
+				if($data["table"] == "klien_kasus")
+				{
+
+					$klienKasus = KlienKasus::where('klien_id', (int) $data["klien_id"])
+						->where('kasus_id', (int) $data["kasus_id"])
+          	->update(['jenis_klien' => $data["jenis_klien"]]);
+
+					return var_dump($klienKasus);
+				}
+			}
+			
+
+			return 'no table to update';
+		}
+		else
+		{
+			return 'no ajax';
+		}
+	}
+
+	public function deleteKlien2Kasus($kasus_id) 
+	{
+		
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $klien_id)
+			{
+				$deleted = KlienKasus::where('klien_id', $klien_id)
+						->where('kasus_id', $kasus_id)->delete();
+			}
+		}
+		return redirect()->back();
+	}
 }

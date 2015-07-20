@@ -35,7 +35,9 @@
 		<h3 class="section-heading" style="margin-top:-3px;">
 				Kasus #{{$kasus->kasus_id}}
 		</h3>
-		@include('kasus.partials.form-show.klien-kasus')
+		
+		@include('kasus.partials.form-edit.klien-kasus', array('type' => 'Klien'))
+		
 		@include('kasus.partials.form-show.informasi-kasus')
 		
 		@include('kasus.partials.form-show.konselor')

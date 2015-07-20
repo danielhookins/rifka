@@ -34,7 +34,7 @@ class Kasus extends Model {
 
 	public function klienKasus()
     {
-        return $this->belongsToMany('rifka\Klien', 'klien_kasus', 'kasus_id', 'klien_id')->withPivot('jenis_klien');
+        return $this->belongsToMany('rifka\Klien', 'klien_kasus', 'kasus_id', 'klien_id')->withPivot('jenis_klien', 'deleted_at');
     }
 	
 	public function konselorKasus()

@@ -45,7 +45,16 @@ class SearchController extends KlienController {
 			return redirect()->route('kasus.create');
 		}
 
-		// Search Request came from Other Page
+		// Search for Adding Client to an existing case
+		if(isset($request["type"]) && $request["type"] == "Klien") 
+		{
+			$request->session()->flash('query', $query);
+			$request->session()->flash('results', $results);
+			$request->session()->flash('klienSearch', True);
+			return redirect()->back();
+		}
+
+		// Regualar Seach of Database
     	return view('klien.searchResults', array(
 			'query'		=> $query,
 			'results'	=> $results));

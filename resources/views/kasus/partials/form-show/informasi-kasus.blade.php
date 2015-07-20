@@ -167,8 +167,14 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
-        <button type="submit" class="btn btn-primary">Simpan</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+          Batal
+        </button>
+        <button type="submit" class="btn btn-primary">
+          <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+          Simpan
+        </button>
       </div>
     
       {!! Form::close() !!}

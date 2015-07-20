@@ -1,103 +1,99 @@
 /*
- *	TOOLTIPS
+ *	PREPARE JS
  */
 $('[data-toggle="tooltip"]').tooltip({'placement': 'right'});
-
-/*
- *	DROPDOWN
- */
 $('.dropdown-toggle').dropdown();
+$.ajaxSetup({headers:{'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}});
+
+$(document).ready(function () {
 
 /*
  *  BACK TO TOP BUTTON
  */
-$(document).ready(function() {
-    var btt = $('.back-to-top');
+var btt = $('.back-to-top');
 
-    btt.on('click', function(e) {
-        $('html,body').animate({
-            scrollTop:0
-        }, 500);
+btt.on('click', function(e) {
+		$('html,body').animate({
+				scrollTop:0
+		}, 500);
 
-        e.preventDefault();
-    });
+		e.preventDefault();
+});
 
-    $(window).on('scroll', function() {
+$(window).on('scroll', function() {
 
-        var self = $(this),
-            top = self.scrollTop();
+		var self = $(this),
+				top = self.scrollTop();
 
-        if(top > 50) {
-          if(!btt.is(':visible')) {
-            btt.fadeIn("slow");
-          }
-        } else {
-          btt.fadeOut("slow");
-        }
+		if(top > 50) {
+			if(!btt.is(':visible')) {
+				btt.fadeIn("slow");
+			}
+		} else {
+			btt.fadeOut("slow");
+		}
 
-    });
 });
 
 /*
  *	LOADING
  */
-$(document).ready(function() { 
-    $('#search-button').click(function() { 
-        $.blockUI({ css: { 
-            border: 'none', 
-            padding: '15px', 
-            backgroundColor: '#000', 
-            '-webkit-border-radius': '10px', 
-            '-moz-border-radius': '10px', 
-            opacity: .5, 
-            color: '#fff' 
-        } }); 
-    }); 
+$('#search-button').click(function() { 
+		$.blockUI({ css: { 
+				border: 'none', 
+				padding: '15px', 
+				backgroundColor: '#000', 
+				'-webkit-border-radius': '10px', 
+				'-moz-border-radius': '10px', 
+				opacity: .5, 
+				color: '#fff' 
+		} }); 
 }); 
+
 
 /*
  * STEPWIZARD
  */
-$(document).ready(function () {
 
-    var navListItems = $('div.setup-panel div a'),
-            allWells = $('.setup-content'),
-            allNextBtn = $('.nextBtn');
+var navListItems = $('div.setup-panel div a'),
+				allWells = $('.setup-content'),
+				allNextBtn = $('.nextBtn');
 
-    allWells.hide();
+allWells.hide();
 
-    navListItems.click(function (e) {
-        e.preventDefault();
-        var $target = $($(this).attr('href')),
-                $item = $(this);
+navListItems.click(function (e) {
+		e.preventDefault();
+		var $target = $($(this).attr('href')),
+						$item = $(this);
 
-        if (!$item.hasClass('disabled')) {
-            navListItems.removeClass('btn-primary').addClass('btn-default');
-            $item.addClass('btn-primary');
-            allWells.hide();
-            $target.show();
-            $target.find('input:eq(0)').focus();
-        }
-    });
+		if (!$item.hasClass('disabled')) {
+				navListItems.removeClass('btn-primary').addClass('btn-default');
+				$item.addClass('btn-primary');
+				allWells.hide();
+				$target.show();
+				$target.find('input:eq(0)').focus();
+		}
+});
 
-    allNextBtn.click(function(){
-        var curStep = $(this).closest(".setup-content"),
-            curStepBtn = curStep.attr("id"),
-            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-            curInputs = curStep.find("input[type='text'],input[type='url']"),
-            isValid = true;
+allNextBtn.click(function(){
+		var curStep = $(this).closest(".setup-content"),
+				curStepBtn = curStep.attr("id"),
+				nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+				curInputs = curStep.find("input[type='text'],input[type='url']"),
+				isValid = true;
 
-        $(".form-group").removeClass("has-error");
-        for(var i=0; i<curInputs.length; i++){
-            if (!curInputs[i].validity.valid){
-                isValid = false;
-                $(curInputs[i]).closest(".form-group").addClass("has-error");
-            }
-        }
+		$(".form-group").removeClass("has-error");
+		for(var i=0; i<curInputs.length; i++){
+				if (!curInputs[i].validity.valid){
+						isValid = false;
+						$(curInputs[i]).closest(".form-group").addClass("has-error");
+				}
+		}
 
-        if (isValid)
-            nextStepWizard.removeAttr('disabled').trigger('click');
-    });
+		if (isValid)
+				nextStepWizard.removeAttr('disabled').trigger('click');
+});
 
-    $('div.setup-panel div a.btn-primary').trigger('click');
+$('div.setup-panel div a.btn-primary').trigger('click');
+
 });

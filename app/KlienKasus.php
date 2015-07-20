@@ -1,11 +1,11 @@
 <?php namespace rifka;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+//use Illuminate\Database\Eloquent\SoftDeletes;
 
 class KlienKasus extends Model {
 
-	use SoftDeletes;
+	//use SoftDeletes;
 
 	protected $table = 'klien_kasus';
 	protected $primaryKey = 'klien_kasus_id';
@@ -13,5 +13,5 @@ class KlienKasus extends Model {
 		'kasus_id',
 		'klien_id',
 		'jenis_klien'];
-	protected $dates = ['deleted_at'];
+	//protected $dates = ['deleted_at'];
 }

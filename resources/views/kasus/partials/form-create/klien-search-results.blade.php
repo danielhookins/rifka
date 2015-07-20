@@ -11,8 +11,32 @@
 	</tr>
 @forelse (Session::get('results') as $result)
 	<tr>
-		<td><a href="{{ route('seshPushKlien', $result->klien_id) }}/{{ $type }}">{!! $result->klien_id !!}</a></td>
-		<td><a href="{{ route('seshPushKlien', $result->klien_id) }}/{{ $type }}">{!! $result->nama_klien !!}</a></td>
+		<td>
+			<a href="
+				@if(Session::get('klienSearch'))
+					{{ route('tambah.kasus.klien', array(
+						'kasus_id' => $kasus->kasus_id, 
+						'klien_id' => $result->klien_id
+					)) }}
+				@else
+				{{ route('seshPushKlien', $result->klien_id) }}/{{ $type }}
+				@endif
+				">
+				{!! $result->klien_id !!}
+			</a></td>
+		<td>
+			<a href="
+				@if(Session::get('klienSearch'))
+					{{ route('tambah.kasus.klien', array(
+						'kasus_id' => $kasus->kasus_id, 
+						'klien_id' => $result->klien_id
+					)) }}
+				@else
+				{{ route('seshPushKlien', $result->klien_id) }}/{{ $type }}
+				@endif
+				">
+				{!! $result->nama_klien !!}</a>
+		</td>
 		<td>{!! $result->no_telp !!}</td>
 		<td>
 			<ul>

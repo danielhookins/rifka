@@ -63,6 +63,16 @@
 	Route::get('kasus/{kasus_id}/delete', [
 		'as' => 'kasus.delete',
 		'uses' => "KasusController@confirmDestroy"]);
+	
+	// Use Ajax to automatically update case information
+	Route::post('kasus/{kasus_id}/autoUpdate', [
+		'as' => 'kasus.autoupdate',
+		'uses' => "KasusController@autoUpdate"]);
+
+	// Remove client from case
+	Route::post('kasus/{kasus_id}/removeklien2', [
+		'as' => 'klien2kasus.delete',
+		'uses' => 'KasusController@deleteKlien2Kasus']);
 
 // *** KLIEN ***
 	
@@ -117,3 +127,8 @@
 		'middleware' => 'auth', 
 		'as' => 'developer',
 		'uses' => 'DeveloperController@index']);
+
+		Route::get('/developer/test', [
+		'middleware' => 'auth', 
+		'as' => 'developer.test',
+		'uses' => 'DeveloperController@test']);
