@@ -36,7 +36,7 @@
 				Kasus #{{$kasus->kasus_id}}
 		</h3>
 		
-		@include('kasus.partials.form-edit.klien-kasus', array('type' => 'Klien'))
+		@include('kasus.partials.form-show.klien-kasus', array('type' => 'Klien'))
 		
 		@include('kasus.partials.form-show.informasi-kasus')
 		

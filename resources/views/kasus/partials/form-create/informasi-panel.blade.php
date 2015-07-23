@@ -38,7 +38,7 @@
 						'placeholder' 	=> 'Lama Hubungan'
 					))
 					!!}
-					{!! Form::select('lama_hub_jenis', array(
+					{!! Form::select('jenis_lama_hub', array(
 						'Hari' 		=>	'Hari',
 						'Bulan'				=>  'Bulan',
 						'Tahun'				=>	'Tahun'
@@ -47,7 +47,7 @@
 				</div>
 
 				<div class="form-group">
-					{!! Form::label('sejak_kapan', 'Sejak Kapan', array('class' => 'strongLabel')) !!}
+					{!! Form::label('sejak_kapan', 'Sejak Kapan', array('class' => 'strongLabel')) !!} (kekerasan mulai)
 					{!! Form::date('sejak_kapan', null, array('class' => 'form-control')) !!}
 				</div>
 

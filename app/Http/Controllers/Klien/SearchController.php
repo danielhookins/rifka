@@ -18,7 +18,7 @@ class SearchController extends KlienController {
 				->get();
 		}
 		else {
-			$results = Klien::search($query)->get();
+			$results = Klien::search($query)->orderBy('relevance', 'DESC')->get();
 		}
 
 		// Check if Search Request came from New Case Page

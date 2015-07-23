@@ -32,7 +32,7 @@
   @if($kasus->sejak_kapan)
     <li class="list-group-item">
         <p class="list-group-item-text">
-          <strong>Sejak Kapan</strong>
+          <strong>Sejak Kapan</strong> (kekerasan mulai)
           {{$kasus->sejak_kapan}}
         </p>
     </li>
@@ -140,12 +140,12 @@
           ), null, array('class' => 'form-control'))!!}
         </div>
         <div class="form-group">
-          {!! Form::label('sejak_kapan', 'Sejak Kapan', array('class' => 'strongLabel')) !!}
-          {!! Form::date('sejak_kapan', $kasus->sejak_kapan, array('class' => 'form-control')) !!}
+          {!! Form::label('sejak_kapan', 'Sejak Kapan', array('class' => 'strongLabel')) !!} (kekerasan mulai)
+          {!! Form::date('sejak_kapan', null, array('class' => 'form-control')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('seberapa_sering', 'Seberapa Sering', array('class' => 'strongLabel')) !!}
-          {!! Form::number('seberapa_sering', $kasus->seberapa_sering, array('class' => 'form-control',
+          {!! Form::number('seberapa_sering', null, array('class' => 'form-control',
           'placeholder'   => 'Seberapa Sering')) !!}
         </div>
         <div class="form-group">

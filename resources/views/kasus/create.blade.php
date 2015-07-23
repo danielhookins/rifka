@@ -25,7 +25,7 @@
 	<div class="row">
 		<div class="col-sm-12">	
 		<button type="submit" class="btn btn-success pull-right" aria-label="OK">
-		  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Simpan Kasus
+		  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan Kasus
 		</button>
 		</div>
 	</div>

@@ -73,6 +73,7 @@ class KasusController extends Controller {
 			'jenis_kasus' 		=> \Input::get('jenis_kasus'),
 			'hubungan' 				=> \Input::get('hubungan'),
 			'lama_hubungan' 	=> \Input::get('lama_hubungan'),
+			'jenis_lama_hub'  => \Input::get('jenis_lama_hub'),
 			'sejak_kapan' 		=> \Input::get('sejak_kapan'),
 			'seberapa_sering' => \Input::get('seberapa_sering'),
 			'harapan_korban' 	=> \Input::get('harapan_korban'),
@@ -126,10 +127,14 @@ class KasusController extends Controller {
 		//Ensure case exists
 		if($kasus = \rifka\Kasus::find($id))
 		{	
-			
+
+			// If no clients are attached to the case
+			// suggest that the user adds a client.
 			if(empty($kasus->klienKasus->toArray())) 
 			{
-				$request->session()->flash("suggestion", "Kasus ini belum ada klien.  Anda mau <a href='#'>tambah klien</a> sekarang?");
+				$suggestion = "Kasus ini belum ada klien.  Anda mau <a href='" . route('tambah.klien', 'klien') . "#klien-kasus'>tambah klien</a> sekarang?";
+
+				$request->session()->flash("suggestion", $suggestion);
 			}
 
 			return view('kasus.show', array(

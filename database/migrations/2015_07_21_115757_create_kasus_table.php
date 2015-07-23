@@ -18,6 +18,7 @@ class CreateKasusTable extends Migration {
 			$table->string('jenis_kasus')->nullable();
 			$table->string('hubungan')->nullable();
 			$table->integer('lama_hubungan')->nullable();
+			$table->string('jenis_lama_hub')->nullable();
 			$table->date('sejak_kapan')->nullable();
 			$table->integer('seberapa_sering')->nullable();
 			$table->string('harapan_korban')->nullable();

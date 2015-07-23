@@ -461,8 +461,17 @@ class KamusAttributesSeeder extends Seeder {
             'primary_key'   => False,
             'foreign_key'   => '',
             'type'          => 'integer',
-            'description'   => 'The length of time that the victim has been married to, in a relationship with, or has known the perpetrator.  This is measured in months.',
+            'description'   => 'The length of time (number) that the victim has been married to, in a relationship with, or has known the perpetrator.',
             'example'       => '48'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
+            'name'          => 'jenis_lama_hub',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'Whether the length of time is in days, months or years.',
+            'example'       => 'Bulan'
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Kasus',
