@@ -37,12 +37,12 @@
 		</h3>
 		
 		@include('kasus.partials.form-show.klien-kasus', array('type' => 'Klien'))
-		
 		@include('kasus.partials.form-show.informasi-kasus')
-		
-		@include('kasus.partials.form-show.konselor')
 		@include('kasus.partials.form-show.narasi')
+		
 		@include('kasus.partials.form-show.perkembangan')
+
+		@include('kasus.partials.form-show.konselor')
 		@include('kasus.partials.form-show.kasus-pentutup')
 
 		<h3 class="section-heading">

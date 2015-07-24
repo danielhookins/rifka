@@ -13,6 +13,7 @@
 	Route::resource('klien', 'KlienController');
 	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
+	Route::resource('kasus.perkembangan', 'PerkembanganController');
 	Route::resource('kasus.bentuk', 'BentukKekerasanController');
 
 // *** SEARCH ***
@@ -73,6 +74,11 @@
 	Route::post('kasus/{kasus_id}/removeklien2', [
 		'as' => 'klien2kasus.delete',
 		'uses' => 'KasusController@deleteKlien2Kasus']);
+
+	// Delete case developments
+	Route::post('kasus/{kasus_id}/removeperkembangan2', [
+		'as' => 'perkembangan2.delete',
+		'uses' => 'perkembanganController@deletePerkembangan2']);
 
 // *** KLIEN ***
 	

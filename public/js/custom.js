@@ -7,6 +7,15 @@ $.ajaxSetup({headers:{'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content
 
 $(document).ready(function () {
 
+
+/*
+ *	SHOW EDIT PERKEMBANGAN MODAL
+ */
+if(typeof edit_perkembangan !== 'undefined' && edit_perkembangan) {
+	$("#perkembangan-edit").modal({show:true});
+}
+
+
 /*
  *  BACK TO TOP BUTTON
  */
@@ -17,7 +26,7 @@ btt.on('click', function(e) {
 				scrollTop:0
 		}, 500);
 
-		e.preventDefault();
+		//e.preventDefault();
 });
 
 $(window).on('scroll', function() {
@@ -54,7 +63,6 @@ $('#search-button').click(function() {
 /*
  * STEPWIZARD
  */
-
 var navListItems = $('div.setup-panel div a'),
 				allWells = $('.setup-content'),
 				allNextBtn = $('.nextBtn');
