@@ -17,9 +17,9 @@ class CreatePerkembanganTable extends Migration {
 			$table->increments('perkembangan_id');
 			$table->integer('kasus_id')->nullable()->unsigned();
 			$table->date('tanggal')->nullable();
-			$table->string('intervensi')->nullable();
-			$table->string('kesimpulan')->nullable();
-			$table->string('kesepakatan')->nullable();
+			$table->text('intervensi')->nullable();
+			$table->text('kesimpulan')->nullable();
+			$table->text('kesepakatan')->nullable();
 		});
 	}
 

@@ -16,28 +16,19 @@
         </div>
         <div class="form-group">
           {!! Form::label('intervensi', 'Intervensi', array('class' => 'strongLabel')) !!}
-          {!! Form::text('intervensi', null, array(
-            'class' => 'form-control',
-            'placeholder' => 'Intervensi')) 
-          !!}
+          <textarea name="intervensi" class="form-control" placeholder="Intervensi" rows="3"></textarea>
         </div>
         <div class="form-group">
           {!! Form::label('kesimpulan', 'Kesimpulan', array(
             'class' => 'strongLabel')) 
           !!}
-          {!! Form::text('kesimpulan', null, array(
-            'class' => 'form-control',
-            'placeholder' => 'Kesimpulan')) 
-          !!}
+          <textarea name="kesimpulan" class="form-control" placeholder="Kesimpulan" rows="3"></textarea>
         </div>
         <div class="form-group">
           {!! Form::label('kesepakatan', 'Kesepakatan', array(
             'class' => 'strongLabel')) 
           !!}
-          {!! Form::text('kesepakatan', null, array(
-            'class' => 'form-control',
-            'placeholder' => 'Kesepakatan')) 
-          !!}
+          <textarea name="kesepakatan" class="form-control" placeholder="Kesepakatan" rows="3"></textarea>
         </div>
       </div>
 

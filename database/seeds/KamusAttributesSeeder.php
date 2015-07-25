@@ -871,7 +871,7 @@ class KamusAttributesSeeder extends Seeder {
             'name'          => 'intervensi',
             'primary_key'   => False,
             'foreign_key'   => '',
-            'type'          => 'string',
+            'type'          => 'text',
             'description'   => 'The intervention or activity carried out.',
             'example'       => 'TODO'
             ]);
@@ -880,7 +880,7 @@ class KamusAttributesSeeder extends Seeder {
             'name'          => 'kesimpulan',
             'primary_key'   => False,
             'foreign_key'   => '',
-            'type'          => 'string',
+            'type'          => 'text',
             'description'   => 'The result of the case development.',
             'example'       => 'TODO'
             ]);
@@ -889,7 +889,7 @@ class KamusAttributesSeeder extends Seeder {
             'name'          => 'kesepakatan',
             'primary_key'   => False,
             'foreign_key'   => '',
-            'type'          => 'string',
+            'type'          => 'text',
             'description'   => 'The deal reached with the client.',
             'example'       => 'TODO'
             ]);

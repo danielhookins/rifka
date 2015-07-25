@@ -28,10 +28,26 @@
           {!! Form::checkbox('toDelete['.$i.']', $perkembangan->perkembangan_id, False) !!}
           <?php $i++ ?>
         </td>
-        <td><a href="{{ route('kasus.perkembangan.edit', array($perkembangan->kasus_id, $perkembangan->perkembangan_id)) }}">{{ $perkembangan->tanggal }}</td>
-        <td>{{ $perkembangan->intervensi }}</td>
-        <td>{{ $perkembangan->kesimpulan }}</td>
-        <td>{{ $perkembangan->kesepakatan }}</td>
+        <td>
+          <a href="{{ route('kasus.perkembangan.edit', array($perkembangan->kasus_id, $perkembangan->perkembangan_id)) }}">
+            {{ $perkembangan->tanggal }}
+          </a>
+        </td>
+        <td>
+          <a href="{{ route('kasus.perkembangan.edit', array($perkembangan->kasus_id, $perkembangan->perkembangan_id)) }}">
+            {{ $perkembangan->intervensi }}
+          </a>
+        </td>
+        <td>
+          <a href="{{ route('kasus.perkembangan.edit', array($perkembangan->kasus_id, $perkembangan->perkembangan_id)) }}">
+            {{ $perkembangan->kesimpulan }}
+          </a>
+        </td>
+        <td>
+          <a href="{{ route('kasus.perkembangan.edit', array($perkembangan->kasus_id, $perkembangan->perkembangan_id)) }}">
+            {{ $perkembangan->kesepakatan }}
+          </a>
+        </td>
       </tr>   
       @endforeach
 
