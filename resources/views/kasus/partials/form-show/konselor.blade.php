@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
   
   <div class="panel-heading">
     <h4 class="panel-title">
@@ -6,25 +6,55 @@
     </h4>
   </div>
 
-	@if (isset($konselor2) && $konselor2[0]->nama_konselor)
-  <table class="table table-responsive table-hover">
-  	<tr>
-      <th>Nama Konselor</th>
-    </tr>
-    <tr>
-  		<td>{{ $konselor2[0]->nama_konselor }}</td>
-  	</tr>
-  </table>
+  @if($kasus->legacy_konselor || True)
+    <table class="table table-responsive table-hover">
+      
+      @if(True)
+        <tr>
+          <th style="width:1%"></th>
+          <th>Nama Konselor</th>
+        </tr>
 
-  <div class="panel-body">
-    <div class="form-inline">
-      <a class="btn btn-default" href="{{route('kasus.edit', array($kasus->kasus_id, 'konselor'))}}">
-        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-        Edit
-      </a>
-    </div>
-  </div>
-  
+        <?php $i = 0; ?>
+
+        <tr>
+          <td style="text-align:center">
+            {!! Form::checkbox('toDelete['.$i.']', null, False) !!}
+            <?php $i++ ?>
+          </td>
+          <td>
+            Bob Jones
+          </td>
+        </tr>
+
+      @endif
+
+      <tr>
+        <td colspan="4">
+          <a class="btn btn-sm btn-default" href="#">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          </a>
+          @if(True)
+          <button class="btn btn-sm btn-default" type="submit">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </button>
+          @endif
+        </td>
+      </tr>
+
+      @if($kasus->legacy_konselor)
+        <tr>
+          <th style="width:1%"></th>
+          <th>Konselor Asli</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td>{{$kasus->legacy_konselor}}</td>
+        </tr>
+      @endif
+
+    </table>
+
   @else
   <ul class="list-group">
     <li class="list-group-item">

@@ -43,7 +43,7 @@ class Klien extends Model {
         ]
     ];
 
-	public function klienKasus()
+		public function klienKasus()
     {
         return $this->belongsToMany('rifka\Kasus', 'klien_kasus', 'klien_id', 'kasus_id')->withPivot('jenis_klien');
     }

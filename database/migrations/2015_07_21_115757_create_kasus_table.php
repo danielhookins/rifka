@@ -27,6 +27,7 @@ class CreateKasusTable extends Migration {
 			$table->timestamp('created_at')->nullable();
 			$table->timestamp('updated_at')->nullable();
 			$table->timestamp('deleted_at')->nullable();
+			$table->string('legacy_konselor')->nullable();
 		});
 	}
 

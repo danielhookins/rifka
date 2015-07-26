@@ -37,7 +37,14 @@
           <ul class="dropdown-menu" role="menu">
             <li><a href="{{ route('kamus') }}">Kamus Data</a></li>
           </ul>
-        </li>    
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manager <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ route('konselor.index') }}">Konselor</a></li>
+          </ul>
+        </li>   
       
       </ul>
 

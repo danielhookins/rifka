@@ -10,23 +10,37 @@
 // *** RESOURCES ***
 	
 	Route::resource('kasus', 'KasusController');
+	Route::resource('kasus.perkembangan', 'PerkembanganController');
+	Route::resource('kasus.bentuk', 'BentukKekerasanController');
 	Route::resource('klien', 'KlienController');
 	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
-	Route::resource('kasus.perkembangan', 'PerkembanganController');
-	Route::resource('kasus.bentuk', 'BentukKekerasanController');
+	Route::resource('konselor', 'KonselorController');
+	
 
 // *** SEARCH ***
 	
+	// Display the main serach page
 	Route::get('search', [
-		'as'	=> 'search',
+		'as'		=> 'search',
 		'uses'	=> 'SearchController@index']);
+
+	// Post search queries to:
 	Route::post('search', [
-		'as' 	=> 'search', 
+		'as' 		=> 'search', 
 		'uses'  => 'SearchController@search']);
-	Route::post('klien/search', 'Klien\SearchController@searchKlien');
-	Route::post('kasus/search', 'KasusController@search');
-	Route::post('alamat/search', 'AlamatController@search');
+	Route::post('kasus/search', [
+		'as'		=> 'kasus.search',
+		'uses'	=> 'KasusController@search']);
+	Route::post('klien/search', [
+		'as'		=> 'klien.search',
+		'uses'	=> 'Klien\SearchController@searchKlien']);
+	Route::post('alamat/search', [
+		'as'		=> 'alamat.search',
+		'uses'	=> 'AlamatController@search']);
+	Route::post('konselor/search', [
+		'as' 		=> 'konselor.search',
+		'uses' 	=> 'KonselorController@search']);
 
 // *** KASUS ***
 	
@@ -35,7 +49,7 @@
 		'as' => 'tambah.kasus.klien', 
 		'uses' => 'KasusController@tambahKasusKlien']);
 	
-	// Show Add Victim or Add Perp Sections to New Case form.
+	// Show Add Victim or Add Perp Sections to New/Edit Case forms.
 	Route::get('tambahKlien/{type}', [
 		'as' => 'tambah.klien',
 		'uses' => 'KasusController@tambahKlien']);
@@ -96,6 +110,12 @@
 	Route::get('klien/{klien_id}/delete', [
 		'as' => 'klien.delete',
 		'uses' => "KlienController@confirmDestroy"]);
+
+// *** KONSELOR ***
+	// Delete counselors
+	Route::post('deleteKonselor2', [
+		'as' => 'konselor2.delete',
+		'uses' => 'KonselorController@deleteKonselor2']);
 
 // *** USER ***
 	

@@ -546,6 +546,15 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'Date the case record was deleted.',
             'example'       => 'TODO'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
+            'name'          => 'legacy_konselor',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => '[DEPRECIATED] The name of the counsellor (from the legacy database).',
+            'example'       => 'John and Paul'
+            ]);
 
         // Klien_Kasus Attributes
         rifka\Kamus_attribute::create([
