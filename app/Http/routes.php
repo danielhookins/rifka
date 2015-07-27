@@ -34,25 +34,33 @@
 		'uses'	=> 'KasusController@search']);
 	Route::post('klien/search', [
 		'as'		=> 'klien.search',
-		'uses'	=> 'Klien\SearchController@searchKlien']);
+		'uses'	=> 'Search\SearchController@searchKlien']);
 	Route::post('alamat/search', [
 		'as'		=> 'alamat.search',
 		'uses'	=> 'AlamatController@search']);
 	Route::post('konselor/search', [
 		'as' 		=> 'konselor.search',
-		'uses' 	=> 'KonselorController@search']);
+		'uses' 	=> 'Search\SearchController@searchKonselor']);
 
 // *** KASUS ***
 	
 	// Add a client to a case
-	Route::get('kasus/{kasus_id}/tambah/{klien_id}', [
+	// TODO: Do this in a more secure way
+	Route::get('kasus/{kasus_id}/tambahKlien/{klien_id}', [
 		'as' => 'tambah.kasus.klien', 
 		'uses' => 'KasusController@tambahKasusKlien']);
+	Route::get('kasus/{kasus_id}/tambahKonselor/{konselor_id}', [
+		'as' => 'tambah.kasus.konselor', 
+		'uses' => 'KasusController@tambahKasusKonselor']);
 	
 	// Show Add Victim or Add Perp Sections to New/Edit Case forms.
 	Route::get('tambahKlien/{type}', [
 		'as' => 'tambah.klien',
 		'uses' => 'KasusController@tambahKlien']);
+	// Show Add Konselor Sections to Edit Case forms.
+	Route::get('tambahKonselor', [
+		'as' => 'tambah.konselor',
+		'uses' => 'KasusController@tambahKonselor']);
 	
 	// SeshPushKlien
 	Route::get('seshPushKlien/{klien_id}/{jenis}', [
@@ -88,6 +96,10 @@
 	Route::post('kasus/{kasus_id}/removeklien2', [
 		'as' => 'klien2kasus.delete',
 		'uses' => 'KasusController@deleteKlien2Kasus']);
+	// Remove counsellor from case
+	Route::post('kasus/{kasus_id}/removekonselor2', [
+		'as' => 'konselor2kasus.delete',
+		'uses' => 'KasusController@deleteKonselor2Kasus']);
 
 	// Delete case developments
 	Route::post('kasus/{kasus_id}/removeperkembangan2', [

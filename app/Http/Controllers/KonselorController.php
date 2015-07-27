@@ -164,33 +164,6 @@ class KonselorController extends Controller {
 
 	}
 
-	public function search(Request $request)
-	{
-		$this->validate($request, [
-			'search_query' => 'required|max:255'
-		]);
-
-		if($query = \Input::get('search_query'))
-		{
-			if($results = \rifka\Konselor::search($query)->get())
-			{
-				return view('konselor.search')
-					->with('results', $results);
-			}
-			else
-			{
-				return redirect()->back()
-					->with('errors', ['Could not retrieve search results.']);
-			}
-
-		}
-		else
-		{
-			return redirect()->back()
-				->with('errors', ['Missing search query.']);
-		}
-	}
-
 	public function deleteKonselor2()
 	{
 		if($toDelete = \Input::get('toDelete'))

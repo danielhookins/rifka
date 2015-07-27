@@ -12,10 +12,4 @@ class KonselorKasus extends Model {
 		'legacy'];
 	public $timestamps = false;
 
-
-	public function legacyKonselor()
-    {
-        return $this->hasMany('rifka\Kasus', 'kasus_id', 'kasus_id');
-    }
-
 }

@@ -6,65 +6,88 @@
     </h4>
   </div>
 
-  @if($kasus->legacy_konselor || True)
-    <table class="table table-responsive table-hover">
-      
-      @if(True)
-        <tr>
-          <th style="width:1%"></th>
-          <th>Nama Konselor</th>
-        </tr>
+  @if(Session::has('tambahKonselor'))
+    <div class="panel-body">
+      @include('konselor.partials.konselor-search')
+      <a class="btn btn-default" href="javascript:window.location.reload();">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true" href=""></span>
+        Batal
+      </a>
+    </div>
+  @endif
 
-        <?php $i = 0; ?>
+  @if(Session::has('searchKonselor'))
+    <div class="panel-body">
+      @include('konselor.partials.konselor-search-results')
+      <a class="btn btn-default" href="javascript:window.location.reload();">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true" href=""></span>
+        Batal
+      </a>
+    </div>
+  @endif
 
-        <tr>
-          <td style="text-align:center">
-            {!! Form::checkbox('toDelete['.$i.']', null, False) !!}
-            <?php $i++ ?>
-          </td>
-          <td>
-            Bob Jones
-          </td>
-        </tr>
+<table class="table table-responsive table-hover">
+    
+  @if(!empty($kasus->konselorKasus->toArray()))
+  
+    {!! Form::model($kasus, array('route' => array('konselor2kasus.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
 
-      @endif
-
+    <tr>
+      <th style="width:1%"></th>
+      <th>Nama Konselor</th>
+    </tr>
+  
+    <?php $i = 0; ?>
+    @foreach ($kasus->konselorKasus as $konselor)
       <tr>
-        <td colspan="4">
-          <a class="btn btn-sm btn-default" href="#">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          </a>
-          @if(True)
-          <button class="btn btn-sm btn-default" type="submit">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-          </button>
-          @endif
+        <td style="text-align:center">
+          {!! Form::checkbox('toDelete['.$i.']', $konselor->konselor_id, False) !!}
+          <?php $i++ ?>
+        </td>
+        <td>
+          {{$konselor->nama_konselor}}
         </td>
       </tr>
-
-      @if($kasus->legacy_konselor)
-        <tr>
-          <th style="width:1%"></th>
-          <th>Konselor Asli</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td>{{$kasus->legacy_konselor}}</td>
-        </tr>
-      @endif
-
-    </table>
-
+    @endforeach
+      
   @else
-  <ul class="list-group">
-    <li class="list-group-item">
-      <a href="" class="tambah-link">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a class="tambah-link" href="{{ route('tambah.konselor') }}">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         Tambah Konselor
-      </a>
-    </li>
-  </ul>
+        </a>
+      </li>
+    </ul>
 
-@endif
+  @endif
+
+  <tr>
+    <td colspan="5">
+      <a class="btn btn-sm btn-default" href="{{ route('tambah.konselor') }}">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      </a>
+      @if(!empty($kasus->konselorKasus->toArray()))
+      <button class="btn btn-sm btn-default" type="submit">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      </button>
+      @endif
+    </td>
+  </tr>
+
+  {!! Form::close() !!}
+
+  @if($kasus->legacy_konselor)
+    <tr style="background-color:#f5f5f5; border-color:#ddd;">
+      <th style="width:1%"></th>
+      <th>Konselor Asli</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>{{$kasus->legacy_konselor}}</td>
+    </tr>
+  @endif
+
+</table>
 
 </div> <!-- / Konselor Panel -->

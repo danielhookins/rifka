@@ -5,10 +5,13 @@ use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use rifka\Kasus;
 use rifka\KlienKasus;
+use rifka\KonselorKasus;
 use rifka\BentukKekerasan;
 use rifka\LayananDibutuhkan;
 use Auth;
 use DB;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class KasusController extends Controller {
 
@@ -357,6 +360,40 @@ class KasusController extends Controller {
 		}
 		return 'An error occurred.<br /> Could not add client to case.';
 	}
+
+	// add counsellor to case
+	// TODO: show error messages nicely
+	public function tambahKasusKonselor($kasus_id, $konselor_id)
+	{
+		// Ensure Case exists
+		if($kasus = \rifka\Kasus::find($kasus_id))
+		{
+			$konselor2 = $kasus->konselorKasus()->get();
+			
+			// Check client not already added
+			foreach($konselor2 as $konselor) {
+				if($konselor->konselor_id == $konselor_id)
+				return 'Counsellor already exists in case';
+			}
+		}
+
+		// Ensure Counsellor Exists
+		if($konselor = \rifka\Konselor::find($konselor_id))
+		{
+			// Add counselor to case.
+			$konselorKasus = \rifka\KonselorKasus::create([
+					'konselor_id' => $konselor_id,
+					'kasus_id' 		=> $kasus_id]);
+
+			return redirect()->route('kasus.show', [$kasus_id, '#konselor']);
+			
+		} 
+		else
+		{
+			return 'Error: Counsellor doesnt exist';
+		}
+		return 'An error occurred.<br /> Could not add counsellor to case.';
+	}
 	
   /**
 	 * Show the section to add a new Victim or Perp
@@ -377,10 +414,16 @@ class KasusController extends Controller {
 	  else if($type == "klien")
 	  {
 	  	$request->session()->flash('tambahKlien', True);
-	  	return redirect()->back();
+	  	return Redirect::to(URL::previous() . "#klien-kasus");
 	  }
 		
 		return redirect()->route('kasus.create');
+	}
+
+	public function tambahKonselor(Request $request)
+	{
+		$request->session()->flash('tambahKonselor', True);
+		return Redirect::to(URL::previous() . "#konselor");
 	}
 
 	public function seshPushKlien(Request $request, $klien_id, $jenis)
@@ -489,4 +532,19 @@ class KasusController extends Controller {
 		}
 		return redirect()->back();
 	}
+
+	public function deleteKonselor2Kasus($kasus_id) 
+	{
+		
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $konselor_id)
+			{
+				$deleted = KonselorKasus::where('konselor_id', $konselor_id)
+						->where('kasus_id', $kasus_id)->delete();
+			}
+		}
+		return Redirect::to(URL::previous() . "#konselor");
+	}
+
 }

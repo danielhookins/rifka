@@ -40,7 +40,7 @@ class Kasus extends Model {
 	
     public function konselorKasus()
     {
-        return $this->hasMany('rifka\Konselor', 'konselor_kasus', 'kasus_id', 'konselor_id');
+        return $this->belongsToMany('rifka\Konselor', 'konselor_kasus', 'kasus_id', 'konselor_id');
     }
     
 	public function perkembangan()
