@@ -3,7 +3,9 @@
 {!! Form::open(array('url' => 'kasus/search')) !!}
     <div class="form-group">
     	{!! Form::text('searchQuery', null, array('class' => 'form-control',
-                                                'placeholder' => 'Search for case', 'autofocus')) !!}
+                                                'placeholder' => 'Search for case',
+                                                'autocomplete' => 'off', 
+                                                'autofocus')) !!}
     </div>
     <div class="form-group hidden-xs" style="padding-top:1px;">
     </div>

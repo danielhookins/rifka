@@ -67,6 +67,7 @@ class KasusController extends Controller {
 	 */
 	public function store(Request $request)
 	{
+		$dd(\Input::get());
 		//TODO: Ensure validation
 
 		$user = Auth::user();
