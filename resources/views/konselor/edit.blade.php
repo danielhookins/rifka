@@ -13,6 +13,7 @@
 		{!! Form::label('nama_konselor', 'Nama Konselor', array('class' => 'strongLabel')) !!}
 		{!! Form::text('nama_konselor', null, array(
 		  'class'     => 'form-control',
+		  'autocomplete' => 'off',
 		  'placeholder'   => 'Nama konselor'))
 		!!}
 	</div>
@@ -21,6 +22,7 @@
 		{!! Form::label('user_id', 'User ID', array('class' => 'strongLabel')) !!}
 		{!! Form::text('user_id', null, array(
 		  'class'     => 'form-control',
+		  'autocomplete' => 'off',
 		  'placeholder'   => 'User ID'))
 		!!}
 	</div>

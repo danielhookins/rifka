@@ -4,7 +4,9 @@
 <input name="type" value="{{$type}}" type="hidden">
     <div class="form-group">
     	{!! Form::text('searchQuery', null, array('class' => 'form-control',
-                                                'placeholder' => 'Search for client', 'autofocus')) !!}
+                                                'placeholder' => 'Search for client',
+                                                'autocomplete' => 'off', 
+                                                'autofocus')) !!}
     </div>
     <div class="form-group form-inline">
       {!! Form::radio('kelamin', 'Perempuan') !!} Perempuan 

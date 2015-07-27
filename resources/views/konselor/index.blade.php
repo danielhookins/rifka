@@ -13,6 +13,7 @@
 	<div class="form-group">
 		{!! Form::text('search_query', null, array(
 		  'class'     => 'form-control',
+		  'autocomplete' => 'off',
 		  'placeholder'   => 'Search for Counsellor'))
 		!!}
 	</div>

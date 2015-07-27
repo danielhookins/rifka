@@ -6,6 +6,7 @@
 			{!! Form::text('searchQuery', null, array(
 				'class' => 'form-control',
 				'placeholder' => 'Search for client',
+				'autocomplete' => 'off',
 				'autofocus')) !!}
 		</div>
 
