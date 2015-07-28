@@ -35,9 +35,24 @@ class BentukKekerasanController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($kasus_id)
 	{
 		//
+		if($bentuk = \rifka\BentukKekerasan::create([
+			'kasus_id' => $kasus_id,
+			'emosional' => \Input::get('emosional'),
+			'fisik' => \Input::get('fisik'),
+			'ekonomi' => \Input::get('ekonomi'),
+			'seksual' => \Input::get('seksual'),
+			'sosial' => \Input::get('sosial'),
+			'keterangan' => \Input::get('keterangan'),
+		]))
+		{
+			return redirect()->route('kasus.show', [$kasus_id, '#bentuk-kekerasan']);
+		}
+
+		return 'Error, could not create new bentuk kekerasan';
+
 	}
 
 	/**
@@ -47,10 +62,10 @@ class BentukKekerasanController extends Controller {
 	 * @param  int  $bentukID
 	 * @return Response
 	 */
-	public function show($kasusID, $bentukID)
+	public function show($kasus_id, $bentuk_id)
 	{
 		//
-		$bentuk = \rifka\Bentuk::findOrFail($id);
+		$bentuk = \rifka\BentukKekerasan::find($bentuk_id);
 
 		return $bentuk; 
 	}
@@ -72,9 +87,30 @@ class BentukKekerasanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($kasus_id, $bentuk_id)
 	{
-		//
+		// UPDATE BENTUK KEKERASAN
+		if ($bentuk = \rifka\BentukKekerasan::find($bentuk_id))
+		{
+			$bentuk->emosional 
+				= (\Input::get('emosional')) ? \Input::get('emosional') : null;
+			$bentuk->fisik
+				= (\Input::get('fisik')) ? \Input::get('fisik') : null;
+			$bentuk->ekonomi
+				= (\Input::get('ekonomi')) ? \Input::get('ekonomi') : null;
+			$bentuk->seksual
+				= (\Input::get('seksual')) ? \Input::get('seksual') : null;
+			$bentuk->sosial
+				= (\Input::get('sosial')) ? \Input::get('sosial') : null;
+			$bentuk->keterangan
+				= (\Input::get('keterangan')) ? \Input::get('keterangan') : null;
+			$bentuk->save();
+
+			return redirect()->route('kasus.show', [$kasus_id, "#bentuk-kekerasan"]);
+		}
+
+		return 'Error, could not update bentuk kekerasan.';
+
 	}
 
 	/**

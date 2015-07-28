@@ -125,12 +125,14 @@ class KasusController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show(Request $request, $id)
+	public function show(Request $request, $kasus_id)
 	{
 		
 		//Ensure case exists
-		if($kasus = \rifka\Kasus::find($id))
+		if($kasus = \rifka\Kasus::find($kasus_id))
 		{	
+			// only allow for one set of bentuk kekerasan
+			$bentukKekerasan = \rifka\BentukKekerasan::where('kasus_id', $kasus_id)->first();
 
 			// If no clients are attached to the case
 			// suggest that the user adds a client.
@@ -141,9 +143,8 @@ class KasusController extends Controller {
 				$request->session()->flash("suggestion", $suggestion);
 			}
 
-			return view('kasus.show', array(
-				'kasus' => $kasus
-				));
+			return view('kasus.show', array('kasus' => $kasus))
+				->with('bentukKekerasan', $bentukKekerasan);
 		}
 
 		return redirect('404');
@@ -199,34 +200,8 @@ class KasusController extends Controller {
 			}
 		}
 
-		// TODO: [Refactor] Use service for this?
-		// UPDATE BENTUK KEKERASAN
-		if ($bentuk_id = \Input::get('bentuk_id'))
-		{
-			$bentuk = BentukKekerasan::findOrFail($bentuk_id);
-			$attributes = array_keys($bentuk->getAttributes());
-
-			foreach($attributes as $attribute)
-			{
-				
-				if($bentuk->$attribute != \Input::get($attribute))
-				{
-
-					$attributeChange = \rifka\AttributeChange::create([
-						'user_id' => $user->id,
-						'kasus_id' => $kasus->kasus_id,
-						'attribute_name' => $attribute,
-						'old_attribute_value' => $bentuk->$attribute,
-						'new_attribute_value' => \Input::get($attribute)]);
-					
-					$bentuk->$attribute = \Input::get($attribute);
-					$bentuk->save();
-				}
-			}
-		}
-
 		// UPDATE LAYANAN DIBUTUHKAN
-		// TODO: again [refactor] duplicate code
+		// TODO: [refactor] duplicate code
 		if ($layanan_dbth_id = \Input::get('layanan_dbth_id')) 
 		{
 			$layanan = LayananDibutuhkan::findOrFail($layanan_dbth_id);
