@@ -9,10 +9,13 @@ $(document).ready(function () {
 
 
 /*
- *	SHOW EDIT PERKEMBANGAN MODAL
+ *	SHOW EDIT MODAL
  */
 if(typeof edit_perkembangan !== 'undefined' && edit_perkembangan) {
 	$("#perkembangan-edit").modal({show:true});
+}
+if(typeof edit_pemicu !== 'undefined' && edit_pemicu) {
+	$("#pemicu-edit").modal({show:true});
 }
 
 

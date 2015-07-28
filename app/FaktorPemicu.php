@@ -9,6 +9,7 @@ class FaktorPemicu extends Model {
 	protected $fillable = ['kasus_id',
 							'jenis_pemicu',
 							'keterangan'];
+	public $timestamps = false;
 
   public function kasus()
   {

@@ -63,18 +63,19 @@
 
     @endif
 
+    @if(!empty($kasus->perkembangan->toArray()))
     <tr>
       <td colspan="5">
         <a class="btn btn-sm btn-default" data-toggle="modal" href="#perkembangan-baru">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </a>
-        @if(!empty($kasus->perkembangan->toArray()))
         <button class="btn btn-sm btn-default" type="submit">
           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
         </button>
-        @endif
       </td>
     </tr>
+    @endif
+  
   
   {!! Form::close() !!}
 

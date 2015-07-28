@@ -12,6 +12,7 @@
 	Route::resource('kasus', 'KasusController');
 	Route::resource('kasus.perkembangan', 'PerkembanganController');
 	Route::resource('kasus.bentuk', 'BentukKekerasanController');
+	Route::resource('kasus.faktorPemicu', 'FaktorPemicuController');
 	Route::resource('klien', 'KlienController');
 	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
@@ -105,6 +106,10 @@
 	Route::post('kasus/{kasus_id}/removeperkembangan2', [
 		'as' => 'perkembangan2.delete',
 		'uses' => 'perkembanganController@deletePerkembangan2']);
+	// Delete trigger factors
+	Route::post('kasus/{kasus_id}/removepemicu2', [
+		'as' => 'pemicu2.delete',
+		'uses' => 'FaktorPemicuController@deletePemicu2']);
 
 // *** KLIEN ***
 	

@@ -53,7 +53,7 @@
           <strong>Keterangan</strong>
         </div>
         <div class="form-group">
-          <textarea name="keterangan" class="form-control" placeholder="keterangan" rows="3">{{ $bentukKekerasan->keterangan}}</textarea>
+          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3">{{ $bentukKekerasan->keterangan}}</textarea>
         </div>
 
       </div>
