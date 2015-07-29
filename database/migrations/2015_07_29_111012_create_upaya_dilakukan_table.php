@@ -18,6 +18,8 @@ class CreateUpayaDilakukanTable extends Migration {
 			$table->integer('kasus_id')->nullable()->unsigned();
 			$table->string('jenis_upaya')->nullable();
 			$table->string('hasil')->nullable();
+			$table->timestamp('created_at')->nullable();
+			$table->timestamp('updated_at')->nullable();
 		});
 	}
 

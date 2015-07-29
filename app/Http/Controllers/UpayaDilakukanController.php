@@ -2,6 +2,7 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
+use rifka\UpayaDilakukan;
 
 use Illuminate\Http\Request;
 
@@ -32,9 +33,18 @@ class UpayaDilakukanController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request, $kasus_id)
 	{
-		//
+		
+		// Store a new development for the case
+		$upaya = \rifka\UpayaDilakukan::create([
+			'kasus_id' 		=> $kasus_id,
+			'jenis_upaya' 		=> \Input::get('jenis_upaya'),
+			'hasil' 	=> \Input::get('hasil')
+		]);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#upaya-dilakukan']);
+
 	}
 
 	/**
@@ -54,9 +64,14 @@ class UpayaDilakukanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $kasus_id, $upaya_id)
 	{
-		//
+		$upaya = UpayaDilakukan::findOrFail($upaya_id);
+
+		$request->session()->flash('edit-upaya', True);
+		$request->session()->flash('upaya-active', $upaya);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#upaya-dilakukan']);
 	}
 
 	/**
@@ -65,9 +80,16 @@ class UpayaDilakukanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($kasus_id, $upaya_id)
 	{
-		//
+		$upaya = UpayaDilakukan::findOrFail($upaya_id);
+
+		$upaya->jenis_upaya = \Input::get('jenis_upaya');
+		$upaya->hasil = \Input::get('hasil');
+
+		$upaya->save();
+
+		return redirect()->route('kasus.show', [$kasus_id, '#upaya-dilakukan']);
 	}
 
 	/**
@@ -79,6 +101,20 @@ class UpayaDilakukanController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function deleteUpaya2($kasus_id)
+	{
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $upaya_id)
+			{
+				$deleted = UpayaDilakukan::where('upaya_id', $upaya_id)
+						->where('kasus_id', $kasus_id)->delete();
+			}
+		}
+
+		return redirect()->route('kasus.show', [$kasus_id, '#upaya-dilakukan']);
 	}
 
 }

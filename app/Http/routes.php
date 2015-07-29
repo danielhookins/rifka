@@ -13,6 +13,7 @@
 	Route::resource('kasus.perkembangan', 'PerkembanganController');
 	Route::resource('kasus.bentuk', 'BentukKekerasanController');
 	Route::resource('kasus.faktorPemicu', 'FaktorPemicuController');
+	Route::resource('kasus.upayaDilakukan', 'UpayaDilakukanController');
 	Route::resource('klien', 'KlienController');
 	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
@@ -93,6 +94,9 @@
 		'as' => 'kasus.autoupdate',
 		'uses' => "KasusController@autoUpdate"]);
 
+
+// * DELETE RESOURCES *
+
 	// Remove client from case
 	Route::post('kasus/{kasus_id}/removeklien2', [
 		'as' => 'klien2kasus.delete',
@@ -101,7 +105,6 @@
 	Route::post('kasus/{kasus_id}/removekonselor2', [
 		'as' => 'konselor2kasus.delete',
 		'uses' => 'KasusController@deleteKonselor2Kasus']);
-
 	// Delete case developments
 	Route::post('kasus/{kasus_id}/removeperkembangan2', [
 		'as' => 'perkembangan2.delete',
@@ -110,6 +113,11 @@
 	Route::post('kasus/{kasus_id}/removepemicu2', [
 		'as' => 'pemicu2.delete',
 		'uses' => 'FaktorPemicuController@deletePemicu2']);
+	// Delete efforts tried (upaya dilakukan)
+	Route::post('kasus/{kasus_id}/removeupaya2', [
+		'as' => 'upaya2.delete',
+		'uses' => 'UpayaDilakukanController@deleteUpaya2']);
+
 
 // *** KLIEN ***
 	

@@ -770,6 +770,24 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'The result of the effort tried.',
             'example'       => 'TODO'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Upaya_Dilakukan',
+            'name'          => 'created_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time record was created.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Upaya_Dilakukan',
+            'name'          => 'updated_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time record was updated.',
+            'example'       => 'TODO'
+            ]);
 
         // Layanan_Dibutuhkan Attributes
         rifka\Kamus_attribute::create([

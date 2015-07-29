@@ -17,6 +17,9 @@ if(typeof edit_perkembangan !== 'undefined' && edit_perkembangan) {
 if(typeof edit_pemicu !== 'undefined' && edit_pemicu) {
 	$("#pemicu-edit").modal({show:true});
 }
+if(typeof edit_upaya !== 'undefined' && edit_upaya) {
+	$("#upaya-edit").modal({show:true});
+}
 
 
 /*
