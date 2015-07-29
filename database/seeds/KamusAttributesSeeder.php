@@ -871,7 +871,7 @@ class KamusAttributesSeeder extends Seeder {
             'foreign_key'   => '',
             'type'          => 'string',
             'description'   => 'The type of impact experienced:<ul><li>Kekerasan Fisik</li><li>Kesehatan Jiwa</li><li>Perilaku tidak sehat</li><li>Kesehatan reproduksi</li><li>Kondisi klinis</li><li>Ekonomi</li><li>Anak/Keluarga</li><li>Lain-Lain</li></ul>',
-            'example'       => 'Masalah ekonomi'
+            'example'       => 'Kekerasan Fisik'
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Dampak',

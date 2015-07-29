@@ -11,6 +11,8 @@ class SearchController extends Controller {
 
 	public function searchKlien(Request $request)
 	{
+		$this->validate($request, ['searchQuery' => 'required|max:255']);
+
 		$query = \Input::get('searchQuery');
 
 		// Gender Search Constraint
@@ -57,7 +59,7 @@ class SearchController extends Controller {
 			return redirect()->back();
 		}
 
-		// Regualar Seach of Database
+		// Regular Search of Database
     	return view('klien.searchResults', array(
 			'query'		=> $query,
 			'results'	=> $results));

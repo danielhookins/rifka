@@ -283,10 +283,12 @@ class KasusController extends Controller {
 		return view('kasus.destroy', array('kasus_id' => $kasus_id));
 	}
 
-	public function search()
+	public function search(Request $request)
 	{
+		$this->validate($request, ['searchQuery' => 'required|max:255']);
+
 		$query = \Input::get('searchQuery');		
-		$results = \rifka\Kasus::search($query)->get();
+		$results = \rifka\Kasus::search($query)->orderBy('relevance', 'DESC')->get();
 
     	return view('kasus.searchResults', array(
 				'query'		=> $query,

@@ -29,23 +29,25 @@ class SearchController extends Controller {
 		return view('home');
 	}
 
-	public function search()
+	public function search(Request $request)
 	{
+		$this->validate($request, ['searchQuery' => 'required|max:255']);
+
 		$query = \Input::get('searchQuery');		
 
 		if($searchType = \Input::get('searchType')) {
 			
 			if($searchType == 'klien'){
-				$results = \rifka\Klien::search($query)->get();
+				$results = \rifka\Klien::search($query)->orderBy('relevance', 'DESC')->get();
 			}
 			elseif($searchType == 'kasus'){
-				$results = \rifka\Kasus::search($query)->get();
+				$results = \rifka\Kasus::search($query)->orderBy('relevance', 'DESC')->get();
 			}
 			elseif($searchType == 'alamat'){
-				$results = \rifka\Alamat::search($query)->get();
+				$results = \rifka\Alamat::search($query)->orderBy('relevance', 'DESC')->get();
 			}
 			elseif($searchType == 'arsip'){
-				$results = \rifka\Arsip::search($query)->get();
+				$results = \rifka\Arsip::search($query)->orderBy('relevance', 'DESC')->get();
 			}
 
 			return view($searchType.'.searchResults', array(
