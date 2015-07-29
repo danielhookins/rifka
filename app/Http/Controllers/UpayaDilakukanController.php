@@ -36,7 +36,6 @@ class UpayaDilakukanController extends Controller {
 	public function store(Request $request, $kasus_id)
 	{
 		
-		// Store a new development for the case
 		$upaya = \rifka\UpayaDilakukan::create([
 			'kasus_id' 		=> $kasus_id,
 			'jenis_upaya' 		=> \Input::get('jenis_upaya'),

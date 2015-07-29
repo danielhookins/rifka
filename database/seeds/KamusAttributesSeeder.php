@@ -826,6 +826,24 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'The status of the required service.<br />Given; Not Given; or Cancelled',
             'example'       => '"Given"'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Layanan_Dibutuhkan',
+            'name'          => 'created_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the record was created.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Layanan_Dibutuhkan',
+            'name'          => 'updated_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the record was last updated.',
+            'example'       => 'TODO'
+            ]);
 
         // Dampak Attributes
         rifka\Kamus_attribute::create([

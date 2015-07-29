@@ -50,7 +50,7 @@
         <li class="list-group-item">
           <a class="tambah-link" data-toggle="modal" href="#upaya-baru">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-          Tambah Perkembangan
+          Tambah Upaya Dilakukan
           </a>
         </li>
       </ul>

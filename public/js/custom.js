@@ -20,6 +20,9 @@ if(typeof edit_pemicu !== 'undefined' && edit_pemicu) {
 if(typeof edit_upaya !== 'undefined' && edit_upaya) {
 	$("#upaya-edit").modal({show:true});
 }
+if(typeof edit_layanan_dibutuhkan !== 'undefined' && edit_layanan_dibutuhkan) {
+	$("#layanan-dbth-edit").modal({show:true});
+}
 
 
 /*

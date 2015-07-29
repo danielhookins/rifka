@@ -14,11 +14,12 @@
 	Route::resource('kasus.bentuk', 'BentukKekerasanController');
 	Route::resource('kasus.faktorPemicu', 'FaktorPemicuController');
 	Route::resource('kasus.upayaDilakukan', 'UpayaDilakukanController');
+	Route::resource('kasus.layananDibutuhkan', 'LayananDibutuhkanController');
 	Route::resource('klien', 'KlienController');
 	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
 	Route::resource('konselor', 'KonselorController');
-	
+
 
 // *** SEARCH ***
 	
@@ -117,6 +118,10 @@
 	Route::post('kasus/{kasus_id}/removeupaya2', [
 		'as' => 'upaya2.delete',
 		'uses' => 'UpayaDilakukanController@deleteUpaya2']);
+	// Delete required service (layanan dibutuhkan)
+	Route::post('kasus/{kasus_id}/removelayanandbth2', [
+		'as' => 'layanandbth2.delete',
+		'uses' => 'LayananDibutuhkanController@deleteLayananDbth2']);
 
 
 // *** KLIEN ***

@@ -2,7 +2,7 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
+use rifka\LayananDibutuhkan;
 use Illuminate\Http\Request;
 
 class LayananDibutuhkanController extends Controller {
@@ -32,9 +32,15 @@ class LayananDibutuhkanController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request, $kasus_id)
 	{
-		//
+		$layanan = \rifka\LayananDibutuhkan::create([
+			'kasus_id' 			=> $kasus_id,
+			'jenis_layanan' => \Input::get('jenis_layanan'),
+			'status' 				=> \Input::get('status')
+		]);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#layanan-dibutuhkan']);
 	}
 
 	/**
@@ -54,9 +60,14 @@ class LayananDibutuhkanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $kasus_id, $layanan_dbth_id)
 	{
-		//
+		$layanan = LayananDibutuhkan::findOrFail($layanan_dbth_id);
+
+		$request->session()->flash('edit-layanan-dibutuhkan', True);
+		$request->session()->flash('layanan-dbth-active', $layanan);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#layananan-dibutuhkan']);
 	}
 
 	/**
@@ -65,9 +76,16 @@ class LayananDibutuhkanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($kasus_id, $layanan_dbth_id)
 	{
-		//
+		$layanan = LayananDibutuhkan::findOrFail($layanan_dbth_id);
+
+		$layanan->jenis_layanan = \Input::get('jenis_layanan');
+		$layanan->status = \Input::get('status');
+
+		$layanan->save();
+
+		return redirect()->route('kasus.show', [$kasus_id, '#layanan-dibutuhkan']);
 	}
 
 	/**
@@ -81,4 +99,17 @@ class LayananDibutuhkanController extends Controller {
 		//
 	}
 
+	public function deleteLayananDbth2($kasus_id)
+	{
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $layanan_id)
+			{
+				$deleted = LayananDibutuhkan::where('layanan_dbth_id', $layanan_id)
+						->where('kasus_id', $kasus_id)->delete();
+			}
+		}
+
+		return redirect()->route('kasus.show', [$kasus_id, '#layanan-dibutuhkan']);
+	}
 }
