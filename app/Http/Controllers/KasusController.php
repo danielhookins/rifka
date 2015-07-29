@@ -67,18 +67,19 @@ class KasusController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$dd(\Input::get());
 		//TODO: Ensure validation
 
 		$user = Auth::user();
 
 		//KASUS BARU
 		$kasus = \rifka\Kasus::create([
-			'jenis_kasus' 		=> \Input::get('jenis_kasus'),
+			'jenis_kasus' 		=> 
+				(\Input::get('jenis_kasus') == "Jenis") ? null : \Input::get('jenis_kasus'),
 			'hubungan' 				=> \Input::get('hubungan'),
 			'lama_hubungan' 	=> \Input::get('lama_hubungan'),
 			'jenis_lama_hub'  => \Input::get('jenis_lama_hub'),
-			'sejak_kapan' 		=> \Input::get('sejak_kapan'),
+			'sejak_kapan' 		=> 
+				(\Input::get('sejak_kapan') == "") ? null : \Input::get('sejak_kapan'),
 			'seberapa_sering' => \Input::get('seberapa_sering'),
 			'harapan_korban' 	=> \Input::get('harapan_korban'),
 			'rencana_korban' 	=> \Input::get('rencana_korban'),
