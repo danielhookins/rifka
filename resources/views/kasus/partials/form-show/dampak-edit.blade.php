@@ -34,11 +34,11 @@
         </div>
         <div class="form-group">
           {!! Form::label('keterangan', 'Keterangan', array('class' => 'strongLabel')) !!}
-          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3" autocomplete="off">{{ $dampak->keterangan }}</textarea>
+          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3" autocomplete="off">{{ $dampakActive->keterangan }}</textarea>
         </div>
         <div class="form-group">
           {!! Form::label('diupdate', 'Diupdate', array('class' => 'strongLabel')) !!}
-          {{ $dampak->updated_at }}
+          {{ $dampakActive->updated_at }}
         </div>
       </div>
 

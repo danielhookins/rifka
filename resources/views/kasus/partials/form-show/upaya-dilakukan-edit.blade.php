@@ -37,11 +37,11 @@
         </div>
         <div class="form-group">
           {!! Form::label('hasil', 'Hasil', array('class' => 'strongLabel')) !!}
-          <textarea name="hasil" class="form-control" placeholder="Hasil" rows="3" autocomplete="off">{{ $upaya->hasil }}</textarea>
+          <textarea name="hasil" class="form-control" placeholder="Hasil" rows="3" autocomplete="off">{{ $upayaActive->hasil }}</textarea>
         </div>
         <div class="form-group">
           {!! Form::label('diupdate', 'Diupdate', array('class' => 'strongLabel')) !!}
-          {{ $upaya->updated_at }}
+          {{ $upayaActive->updated_at }}
         </div>
       </div>
 

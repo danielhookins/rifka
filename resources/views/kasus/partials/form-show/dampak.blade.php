@@ -33,7 +33,7 @@
           </a>
         </td>
         <td>
-          <a "{{ route('kasus.dampak.edit', array($dampak->kasus_id, $dampak->dampak_id)) }}">
+          <a href="{{ route('kasus.dampak.edit', array($dampak->kasus_id, $dampak->dampak_id)) }}">
             {{ $dampak->keterangan }}
           </a>
         </td>

@@ -60,7 +60,7 @@
         </div>
         <div class="form-group">
           {!! Form::label('diupdate', 'Diupdate', array('class' => 'strongLabel')) !!}
-          {{ $layanan->updated_at }}
+          {{ $layananActive->updated_at }}
         </div>
       </div>
 

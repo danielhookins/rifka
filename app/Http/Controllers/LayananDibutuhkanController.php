@@ -67,7 +67,7 @@ class LayananDibutuhkanController extends Controller {
 		$request->session()->flash('edit-layanan-dibutuhkan', True);
 		$request->session()->flash('layanan-dbth-active', $layanan);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layananan-dibutuhkan']);
+		return redirect()->route('kasus.show', [$kasus_id, '#layanan-dibutuhkan']);
 	}
 
 	/**
