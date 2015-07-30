@@ -70,7 +70,6 @@
     </tr>
     @endif
   
-  
   {!! Form::close() !!}
 
   </table>

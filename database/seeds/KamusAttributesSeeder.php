@@ -882,6 +882,24 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'A description or further explanation of the impact experienced.',
             'example'       => 'TODO'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Dampak',
+            'name'          => 'created_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the record was created.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Dampak',
+            'name'          => 'updated_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'Date the record was last updated.',
+            'example'       => 'TODO'
+            ]);
 
         // Perkembangan Attributes
         rifka\Kamus_attribute::create([

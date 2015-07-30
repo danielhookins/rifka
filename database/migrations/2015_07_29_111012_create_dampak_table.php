@@ -18,6 +18,7 @@ class CreateDampakTable extends Migration {
 			$table->integer('kasus_id')->nullable()->unsigned();
 			$table->string('jenis_dampak')->nullable();
 			$table->string('keterangan')->nullable();
+			$table->timestamps();
 		});
 	}
 

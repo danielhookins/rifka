@@ -15,6 +15,7 @@
 	Route::resource('kasus.faktorPemicu', 'FaktorPemicuController');
 	Route::resource('kasus.upayaDilakukan', 'UpayaDilakukanController');
 	Route::resource('kasus.layananDibutuhkan', 'LayananDibutuhkanController');
+	Route::resource('kasus.dampak', 'DampakController');
 	Route::resource('klien', 'KlienController');
 	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
@@ -122,6 +123,10 @@
 	Route::post('kasus/{kasus_id}/removelayanandbth2', [
 		'as' => 'layanandbth2.delete',
 		'uses' => 'LayananDibutuhkanController@deleteLayananDbth2']);
+	// Delete impact experienced (dampak)
+	Route::post('kasus/{kasus_id}/removedampak2', [
+		'as' => 'dampak2.delete',
+		'uses' => 'DampakController@deleteDampak2']);
 
 
 // *** KLIEN ***

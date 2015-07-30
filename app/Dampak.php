@@ -6,7 +6,6 @@ class Dampak extends Model {
 
 	protected $table = 'dampak';
 	protected $primaryKey = 'dampak_id';
-  public $timestamps = false;
 	protected $fillable = ['kasus_id',
 							'jenis_dampak',
 							'keterangan'];

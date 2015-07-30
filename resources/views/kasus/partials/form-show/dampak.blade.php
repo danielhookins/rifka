@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
   
   <div class="panel-heading">
     <h4 class="panel-title">
@@ -6,43 +6,87 @@
     </h4>
   </div>
 
-  @if(isset($kasus->dampak))
-    <table class="table table-responsive table-hover">
-      <tr>
-        <th>Jenis Dampak</th>
-        <th>Keterangan</th>  
-      </tr>
+  <table class="table table-responsive table-hover">
+    @if(!empty($kasus->dampak->toArray()))
+      
+      {!! Form::model($kasus, array('route' => array('dampak2.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
 
+      <tr>
+        <th></th>
+        <th>Jenis</th>
+        <th>Keterangan</th>
+        <th>Diupdate</th>
+      </tr>
+    
+      <?php $i = 0; ?>
       @foreach ($kasus->dampak as $dampak)
       <input type="hidden" name="dampak_id" value="{{$dampak->dampak_id}}">
       <input type="hidden" name="kasus_id" value="{{$dampak->kasus_id}}">
       <tr>
-        <td>{{ $dampak->jenis_dampak }}</td>
-        <td>{{ $dampak->keterangan}}</td>
-      </tr>
+        <td style="text-align:center">
+          {!! Form::checkbox('toDelete['.$i.']', $dampak->dampak_id, False) !!}
+          <?php $i++ ?>
+        </td>
+        <td>
+          <a href="{{ route('kasus.dampak.edit', array($dampak->kasus_id, $dampak->dampak_id)) }}">
+            {{ $dampak->jenis_dampak }}
+          </a>
+        </td>
+        <td>
+          <a "{{ route('kasus.dampak.edit', array($dampak->kasus_id, $dampak->dampak_id)) }}">
+            {{ $dampak->keterangan }}
+          </a>
+        </td>
+        <td>
+          <a href="{{ route('kasus.dampak.edit', array($dampak->kasus_id, $dampak->dampak_id)) }}">
+            {{ $dampak->updated_at }}
+          </a>
+        </td>
+      </tr>   
       @endforeach
-    
-    </table>
 
-    <div class="panel-body">
-      <div class="form-inline">
-        <a class="btn btn-default" href="{{route('kasus.edit', array($kasus->kasus_id, 'dampak'))}}">
-          <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-          Edit
-        </a>
-      </div>
-    </div>
-
-  @else
-    <ul class="list-group">
-      <li class="list-group-item">
-        <a class="tambah-link" href="{{route('kasus.edit', array($kasus->kasus_id, 'dampak'))}}">
+    @else
+      <ul class="list-group">
+        <li class="list-group-item">
+          <a class="tambah-link" data-toggle="modal" href="#dampak-baru">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
           Tambah Dampak
-        </a>
-      </li>
-    </ul>
+          </a>
+        </li>
+      </ul>
 
-  @endif
+    @endif
+
+    @if(!empty($kasus->dampak->toArray()))
+    <tr>
+      <td colspan="5">
+        <a class="btn btn-sm btn-default" data-toggle="modal" href="#dampak-baru">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        </a>
+        <button class="btn btn-sm btn-default" type="submit">
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </button>
+      </td>
+    </tr>
+    @endif
+  
+  {!! Form::close() !!}
+
+  </table>
 
 </div> <!-- / Dampak Panel -->
+
+@if(Session::has('edit-dampak'))
+  @include('kasus.partials.form-show.dampak-edit')
+
+@endif
+
+@include('kasus.partials.form-show.dampak-baru')
+
+<script type="text/javascript">
+  @if(Session::has('edit-dampak'))
+     var edit_dampak = true;
+  @else
+     var edit_dampak = false;
+  @endif
+</script>

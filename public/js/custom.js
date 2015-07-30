@@ -23,6 +23,9 @@ if(typeof edit_upaya !== 'undefined' && edit_upaya) {
 if(typeof edit_layanan_dibutuhkan !== 'undefined' && edit_layanan_dibutuhkan) {
 	$("#layanan-dbth-edit").modal({show:true});
 }
+if(typeof edit_dampak !== 'undefined' && edit_dampak) {
+	$("#dampak-edit").modal({show:true});
+}
 
 
 /*

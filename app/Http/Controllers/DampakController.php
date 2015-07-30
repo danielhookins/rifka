@@ -2,7 +2,7 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
+use rifka\Dampak;
 use Illuminate\Http\Request;
 
 class DampakController extends Controller {
@@ -32,9 +32,16 @@ class DampakController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request, $kasus_id)
 	{
-		//
+		
+		$dampak = \rifka\Dampak::create([
+			'kasus_id' 		=> $kasus_id,
+			'jenis_dampak' 		=> \Input::get('jenis_dampak'),
+			'keterangan' 	=> \Input::get('keterangan')
+		]);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#dampak']);
 	}
 
 	/**
@@ -54,9 +61,14 @@ class DampakController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $kasus_id, $dampak_id)
 	{
-		//
+		$dampak = Dampak::findOrFail($dampak_id);
+
+		$request->session()->flash('edit-dampak', True);
+		$request->session()->flash('dampak-active', $dampak);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#dampak']);
 	}
 
 	/**
@@ -65,9 +77,16 @@ class DampakController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($kasus_id, $dampak_id)
 	{
-		//
+		$dampak = Dampak::findOrFail($dampak_id);
+
+		$dampak->jenis_dampak = \Input::get('jenis_dampak');
+		$dampak->keterangan = \Input::get('keterangan');
+
+		$dampak->save();
+
+		return redirect()->route('kasus.show', [$kasus_id, '#dampak']);
 	}
 
 	/**
@@ -79,6 +98,20 @@ class DampakController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function deleteDampak2($kasus_id)
+	{
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $dampak_id)
+			{
+				$deleted = Dampak::where('dampak_id', $dampak_id)
+						->where('kasus_id', $kasus_id)->delete();
+			}
+		}
+
+		return redirect()->route('kasus.show', [$kasus_id, '#dampak']);
 	}
 
 }
