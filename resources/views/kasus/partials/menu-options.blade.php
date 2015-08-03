@@ -9,6 +9,7 @@
     </h4>
   </div>
 	
+	<!-- 
 	<ul class="list-group">
 		<li class="list-group-item">
 			<a style="color:green" href="{{route('kasus.edit', $kasus->kasus_id)}}">
@@ -16,18 +17,26 @@
 				Mengedit
 			</a>
 		</li>
+	-->
+		
+	<!--
 		<li class="list-group-item">
 			<a href="#">
 				<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
 				Print
 			</a>
 		</li>
+	-->
+
+	<!--
 		<li class="list-group-item">
 			<a href="{{route('kasus.changes', $kasus->kasus_id)}}">
 				<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
 				Perubuhan
 			</a>
 		</li>
+	-->
+
 		<li class="list-group-item">
 			<a style="color:red;" href="{{route('kasus.delete', $kasus->kasus_id)}}">
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

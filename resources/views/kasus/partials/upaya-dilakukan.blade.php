@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-default">
   
   <div class="panel-heading">
     <h4 class="panel-title">
@@ -77,11 +77,11 @@
 </div> <!-- / Upaya Dilakukan Panel -->
 
 @if(Session::has('edit-upaya'))
-  @include('kasus.partials.form-show.upaya-dilakukan-edit')
+  @include('kasus.partials..upaya-dilakukan-edit')
 
 @endif
 
-@include('kasus.partials.form-show.upaya-dilakukan-baru')
+@include('kasus.partials..upaya-dilakukan-baru')
 
 <script type="text/javascript">
   @if(Session::has('edit-upaya'))

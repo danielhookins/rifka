@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-default">
   
   <div class="panel-heading">
     <h4 class="panel-title">
@@ -69,11 +69,11 @@
 </div> <!-- / Faktor Pemicu Panel -->
 
 @if(Session::has('edit-pemicu'))
-  @include('kasus.partials.form-show.pemicu-edit')
+  @include('kasus.partials..pemicu-edit')
 
 @endif
 
-@include('kasus.partials.form-show.pemicu-baru')
+@include('kasus.partials..pemicu-baru')
 
 <script type="text/javascript">
   @if(Session::has('edit-pemicu'))

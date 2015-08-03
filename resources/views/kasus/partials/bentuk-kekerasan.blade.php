@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-default">
   
   <div class="panel-heading">
     <h4 class="panel-title">
@@ -70,7 +70,7 @@
 
 </div> <!-- / Bentuk Kekerasan Panel -->
 
-@include('kasus.partials.form-show.bentuk-kekerasan-baru')
+@include('kasus.partials..bentuk-kekerasan-baru')
 @if(!empty($bentukKekerasan))
-  @include('kasus.partials.form-show.bentuk-kekerasan-edit')
+  @include('kasus.partials..bentuk-kekerasan-edit')
 @endif

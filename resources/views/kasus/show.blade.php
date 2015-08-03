@@ -2,13 +2,16 @@
 
 @section('menu')
 
-		<div class="visible-xs">
-			@include('kasus.partials.menu.mobile-box')
-		</div>
-		@include('kasus.partials.menu.menu-options')
-		@include('kasus.partials.menu.menu-list')
-		<div class="visible-xs panel-body">
-		</div>
+	<div class="visible-xs">
+		@include('kasus.partials.mobile-box')
+	</div>
+	
+	@include('kasus.partials.menu-options')
+	
+	@include('kasus.partials.menu-list')
+	
+	<div class="visible-xs panel-body">
+	</div>
 
 @endsection
 
@@ -36,34 +39,40 @@
 				Kasus #{{$kasus->kasus_id}}
 		</h3>
 		
-		@include('kasus.partials.form-show.klien-kasus', array('type' => 'Klien'))
-		@include('kasus.partials.form-show.informasi-kasus')
-		@include('kasus.partials.form-show.narasi')
-		@include('kasus.partials.form-show.konselor')
-		@include('kasus.partials.form-show.perkembangan')
+		@include('kasus.partials.klien-kasus', array('type' => 'Klien'))
+		@include('kasus.partials.informasi-kasus')
+		@include('kasus.partials.narasi')
+		@include('kasus.partials.konselor')
+		@include('kasus.partials.perkembangan')
 
 		<h3 class="section-heading">
 				Keterangan
 		</h3>
-		@include('kasus.partials.form-show.bentuk-kekerasan')
-		@include('kasus.partials.form-show.faktor-pemicu')
-		@include('kasus.partials.form-show.upaya-dilakukan')
-		@include('kasus.partials.form-show.layanan-dibutuhkan')
-		@include('kasus.partials.form-show.dampak')
+		@include('kasus.partials.bentuk-kekerasan')
+		@include('kasus.partials.faktor-pemicu')
+		@include('kasus.partials.upaya-dilakukan')
+		@include('kasus.partials.layanan-dibutuhkan')
+		@include('kasus.partials.dampak')
 
+<!--
 		<h3 class="section-heading">
 				Litigasi
 		</h3>
-		@include('kasus.partials.form-show.litigasi')
+		@include('kasus.partials.litigasi')
+-->
 
+<!--
 		<h3 class="section-heading">
 				Layanan
 		</h3>
-		@include('kasus.partials.form-show.layanan-diberikan')
+		@include('kasus.partials.layanan-diberikan')
+-->
 
+<!--
 		<h3 class="section-heading">
 				Arsip
 		</h3>
-		@include('kasus.partials.form-show.arsip')
+		@include('kasus.partials.arsip')
+-->
 
 @endsection

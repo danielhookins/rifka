@@ -1,0 +1,21 @@
+/*
+ * SHOW RECORD
+ */
+ 
+body {
+  min-height: 200px;
+  padding-top: 70px;
+  background: #9297a7;
+}
+.tambah-link {
+  color: #c3e2ec;
+}
+.section-heading {
+	font-weight: bold;
+  color:white;
+   -webkit-text-stroke: 0.33px black;
+}
+.panel-title
+{
+  font-weight: bold;
+}

@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-default">
   
   <div class="panel-heading">
     <h4 class="panel-title">
@@ -77,11 +77,11 @@
 </div> <!-- / Dampak Panel -->
 
 @if(Session::has('edit-dampak'))
-  @include('kasus.partials.form-show.dampak-edit')
+  @include('kasus.partials..dampak-edit')
 
 @endif
 
-@include('kasus.partials.form-show.dampak-baru')
+@include('kasus.partials..dampak-baru')
 
 <script type="text/javascript">
   @if(Session::has('edit-dampak'))
