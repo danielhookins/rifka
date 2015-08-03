@@ -70,7 +70,7 @@
 
 </div> <!-- / Bentuk Kekerasan Panel -->
 
-@include('kasus.partials..bentuk-kekerasan-baru')
+@include('kasus.partials.bentuk-kekerasan-baru')
 @if(!empty($bentukKekerasan))
-  @include('kasus.partials..bentuk-kekerasan-edit')
+  @include('kasus.partials.bentuk-kekerasan-edit')
 @endif

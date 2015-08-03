@@ -17,6 +17,7 @@
 	Route::resource('kasus.layananDibutuhkan', 'LayananDibutuhkanController');
 	Route::resource('kasus.dampak', 'DampakController');
 	Route::resource('kasus.arsip', 'ArsipController');
+	Route::resource('kasus.litigasi', 'LitigasiController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');

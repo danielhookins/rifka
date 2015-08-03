@@ -6,19 +6,7 @@ class BentukKekerasan extends Model {
 
 	protected $table = 'bentuk_kekerasan';
 	protected $primaryKey = 'bentuk_id';
-
-	/**
-   * Indicates if the model should be timestamped.
-   *
-   * @var bool
-   */
   public $timestamps = false;
-
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
 	protected $fillable = ['kasus_id',
 							'emosional',
 							'fisik',

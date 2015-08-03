@@ -27,28 +27,31 @@
 			<li class="list-group-item"><a href="#layanan-dibutuhkan">Layanan Dibutuhkan</a></li>
 			<li class="list-group-item"><a href="#dampak">Dampak</a></li>
 		</ul>
-	<!--
+	
 		<div class="panel-heading">
 			<h4 class="panel-title">Litigasi</h4>
 		</div>
 		<ul class="list-group">
 			<li class="list-group-item"><a href="#litigasi">Litigasi</a></li>
-			<li class="list-group-item"><a href="#kegiatan-litigasi">Kegiatan Litigasi</a></li>
+			<!--
+				<li class="list-group-item"><a href="#kegiatan-litigasi">Kegiatan Litigasi</a></li>
+			-->
 		</ul>
 
+<!--
 		<div class="panel-heading">
 			<h4 class="panel-title">Layanan</h4>
 		</div>
 		<ul class="list-group">
 			<li class="list-group-item"><a href="#layanan-diberikan">Layanan Diberikan</a></li>
 		</ul>
-
+-->
 		<div class="panel-heading">
 			<h4 class="panel-title">Arsip</h4>
 		</div>
 		<ul class="list-group">
 			<li class="list-group-item"><a href="#arsip">Arsip</a></li>
 		</ul>
-	-->
+
 	</div>
 </div>

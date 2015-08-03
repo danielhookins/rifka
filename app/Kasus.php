@@ -83,4 +83,9 @@ class Kasus extends Model {
         return $this->hasOne('rifka\KasusPentutup', 'kasus_id', 'kasus_id');
     }
 
+    public function litigasi()
+    {
+        return $this->hasMany('rifka\Litigasi', 'kasus_id', 'kasus_id');
+    }
+
 }

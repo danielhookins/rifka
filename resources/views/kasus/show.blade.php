@@ -54,12 +54,10 @@
 		@include('kasus.partials.layanan-dibutuhkan')
 		@include('kasus.partials.dampak')
 
-<!--
 		<h3 class="section-heading">
 				Litigasi
 		</h3>
 		@include('kasus.partials.litigasi')
--->
 
 <!--
 		<h3 class="section-heading">

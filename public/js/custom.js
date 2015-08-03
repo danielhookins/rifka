@@ -29,6 +29,9 @@ if(typeof edit_dampak !== 'undefined' && edit_dampak) {
 if(typeof edit_arsip !== 'undefined' && edit_arsip) {
 	$("#arsip-edit").modal({show:true});
 }
+if(typeof edit_litigasi !== 'undefined' && edit_litigasi) {
+	$("#litigasi-edit").modal({show:true});
+}
 
 /*
  *  BACK TO TOP BUTTON
