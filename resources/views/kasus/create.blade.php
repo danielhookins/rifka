@@ -6,11 +6,11 @@
 
 	<div class="row">
 		{!! (Session::has('korbanSearch')) ? '<div class="col-sm-12">' : '<div class="col-sm-6">' !!}
-		@include('kasus.partials.form-create.klien-panel',['type' => 'Korban'])
+		@include('kasus.partials.klien-create',['type' => 'Korban'])
 		</div>
 
 		{!! (Session::has('pelakuSearch')) ? '<div class="col-sm-12">' : '<div class="col-sm-6">' !!}
-		@include('kasus.partials.form-create.klien-panel',['type' => 'Pelaku'])
+		@include('kasus.partials.klien-create',['type' => 'Pelaku'])
 		</div>
 	</div>
 
@@ -18,13 +18,13 @@
 	
 	<div class="row">
 		<div class="col-sm-12">
-			@include('kasus.partials.form-create.informasi-panel')
+			@include('kasus.partials.informasi-create')
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col-sm-12">	
-		<button type="submit" class="btn btn-success pull-right" aria-label="OK">
+		<button type="submit" class="btn btn-primary pull-right" aria-label="OK">
 		  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan Kasus
 		</button>
 		</div>

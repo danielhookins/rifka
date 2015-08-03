@@ -1,4 +1,4 @@
-<div class="panel panel-info">
+<div class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="panel-title">Informasi Kasus</h3>
 	</div>
@@ -28,7 +28,6 @@
 					))
 					!!}
 				</div>
-
 
 				<div class="form-group">
 					{!! Form::label('lama_hubungan', 'Lama Hubungan', array('class' => 'strongLabel')) !!}
