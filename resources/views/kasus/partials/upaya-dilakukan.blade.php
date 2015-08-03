@@ -77,11 +77,11 @@
 </div> <!-- / Upaya Dilakukan Panel -->
 
 @if(Session::has('edit-upaya'))
-  @include('kasus.partials..upaya-dilakukan-edit')
+  @include('kasus.partials.upaya-dilakukan-edit')
 
 @endif
 
-@include('kasus.partials..upaya-dilakukan-baru')
+@include('kasus.partials.upaya-dilakukan-baru')
 
 <script type="text/javascript">
   @if(Session::has('edit-upaya'))

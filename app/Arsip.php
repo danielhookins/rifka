@@ -11,8 +11,10 @@ class Arsip extends Model {
 	protected $primaryKey = 'arsip_id';
 	protected $fillable = ['kasus_id',
 							'kasus_id',
+                            'no_reg',
 							'lokasi'];
-	protected $searchable = [
+	public $timestamps = false;
+    protected $searchable = [
         'columns' => [
             'arsip.no_reg' => 10,
             'kasus.kasus_id' => 6,

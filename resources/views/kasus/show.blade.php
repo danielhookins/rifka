@@ -68,11 +68,9 @@
 		@include('kasus.partials.layanan-diberikan')
 -->
 
-<!--
 		<h3 class="section-heading">
 				Arsip
 		</h3>
 		@include('kasus.partials.arsip')
--->
 
 @endsection

@@ -84,11 +84,11 @@
 </div> <!-- / Perkembangan Panel -->
 
 @if(Session::has('edit-perkembangan'))
-  @include('kasus.partials..perkembangan-edit')
+  @include('kasus.partials.perkembangan-edit')
 
 @endif
 
-@include('kasus.partials..perkembangan-baru')
+@include('kasus.partials.perkembangan-baru')
 
 <script type="text/javascript">
   @if(Session::has('edit-perkembangan'))

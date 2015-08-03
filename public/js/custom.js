@@ -26,7 +26,9 @@ if(typeof edit_layanan_dibutuhkan !== 'undefined' && edit_layanan_dibutuhkan) {
 if(typeof edit_dampak !== 'undefined' && edit_dampak) {
 	$("#dampak-edit").modal({show:true});
 }
-
+if(typeof edit_arsip !== 'undefined' && edit_arsip) {
+	$("#arsip-edit").modal({show:true});
+}
 
 /*
  *  BACK TO TOP BUTTON

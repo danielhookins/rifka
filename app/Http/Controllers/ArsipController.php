@@ -2,7 +2,7 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
+use rifka\Arsip;
 use Illuminate\Http\Request;
 
 class ArsipController extends Controller {
@@ -32,9 +32,15 @@ class ArsipController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request, $kasus_id)
 	{
-		//
+		$arsip = \rifka\Arsip::create([
+			'kasus_id' 		=> $kasus_id,
+			'no_reg' 		=> \Input::get('no_reg'),
+			'lokasi' 	=> \Input::get('lokasi')
+		]);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#arsip']);
 	}
 
 	/**
@@ -54,9 +60,14 @@ class ArsipController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $kasus_id, $arsip_id)
 	{
-		//
+		$arsip = Arsip::findOrFail($arsip_id);
+
+		$request->session()->flash('edit-arsip', True);
+		$request->session()->flash('arsip-active', $arsip);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#arsip']);
 	}
 
 	/**
@@ -65,9 +76,15 @@ class ArsipController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($kasus_id, $arsip_id)
 	{
-		//
+		$arsip = Arsip::findOrFail($arsip_id);
+		$arsip->no_reg = \Input::get('no_reg');
+		$arsip->lokasi = \Input::get('lokasi');
+
+		$arsip->save();
+
+		return redirect()->route('kasus.show', [$kasus_id, '#arsip']);
 	}
 
 	/**
@@ -90,6 +107,20 @@ class ArsipController extends Controller {
     								'query'		=> $query,
 									'results'	=> $results
 									));
+	}
+
+	public function deleteArsip2($kasus_id)
+	{
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $arsip_id)
+			{
+				$deleted = Arsip::where('arsip_id', $arsip_id)
+						->where('kasus_id', $kasus_id)->delete();
+			}
+		}
+
+		return redirect()->route('kasus.show', [$kasus_id, '#arsip']);
 	}
 
 }

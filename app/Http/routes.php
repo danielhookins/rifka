@@ -16,8 +16,9 @@
 	Route::resource('kasus.upayaDilakukan', 'UpayaDilakukanController');
 	Route::resource('kasus.layananDibutuhkan', 'LayananDibutuhkanController');
 	Route::resource('kasus.dampak', 'DampakController');
+	Route::resource('kasus.arsip', 'ArsipController');
+	
 	Route::resource('klien', 'KlienController');
-	Route::resource('arsip', 'ArsipController');
 	Route::resource('alamat', 'AlamatController');
 	Route::resource('konselor', 'KonselorController');
 
@@ -127,6 +128,10 @@
 	Route::post('kasus/{kasus_id}/removedampak2', [
 		'as' => 'dampak2.delete',
 		'uses' => 'DampakController@deleteDampak2']);
+	// Delete physical record (arsip)
+	Route::post('kasus/{kasus_id}/removearsip2', [
+		'as' => 'arsip2.delete',
+		'uses' => 'ArsipController@deleteArsip2']);
 
 
 // *** KLIEN ***
