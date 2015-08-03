@@ -9,20 +9,15 @@
 				@if(Session::has('tambah'.$type))
 					<div class="row">
 						<div class="col-sm-12 opt-leftx">
-							@include('kasus.partials.form-create.klien-search')
+							@include('kasus.partials.klien-search')
 						</div>
-						<!-- TODO: Add New-Client functionality
-						<div class="col-sm-6">
-							@include('klien.partials.new')
-						</div>
-						-->
 					</div>
 					<a href="" class="btn btn-danger">Cancel</a>
 
 				@elseif(Session::has(lcfirst($type).'Search'))
 					<div class="row">
 						<div class="col-sm-12">
-							@include('kasus.partials.form-create.klien-search-results')
+							@include('kasus.partials.klien-search-results')
 						</div>
 					</div>
 					<a href="" class="btn btn-danger">Cancel</a>

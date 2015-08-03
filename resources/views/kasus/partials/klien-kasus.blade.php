@@ -10,7 +10,7 @@
 
 	@if(Session::has('tambah'.$type))
 		<div class="panel-body">
-			@include('kasus.partials.form-create.klien-search')<br />
+			@include('kasus.partials.klien-search')<br />
 			<a class="btn btn-default" href="">
 		    <span class="glyphicon glyphicon-remove" aria-hidden="true" href=""></span>
 		    Batal
@@ -19,7 +19,7 @@
 
 	@elseif(Session::has(lcfirst($type).'Search'))
 		<div class="panel-body">
-			@include('kasus.partials.form-create.klien-search-results')
+			@include('kasus.partials.klien-search-results')
 			<a class="btn btn-danger" href="">
 		    <span class="glyphicon glyphicon-remove" aria-hidden="true" href=""></span>
 		    Batal
