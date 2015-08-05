@@ -6,7 +6,7 @@ class Litigasi extends Model {
 
 	protected $table = 'litigasi';
 	protected $primaryKey = 'litigasi_id';
-  public $timestamps = false;
+  	public $timestamps = false;
 	protected $fillable = ['kasus_id',
 							'jenis_litigasi',
 							'udang_digunakan',
@@ -19,8 +19,13 @@ class Litigasi extends Model {
 							'putusan'];
 
 	public function kasus()
-  {
-      return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
-  }
+	{
+		return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
+	}
+
+	public function kegiatan()
+  	{
+      return $this->hasMany('rifka\KegiatanLitigasi', 'litigasi_id', 'litigasi_id');
+  	}
 
 }

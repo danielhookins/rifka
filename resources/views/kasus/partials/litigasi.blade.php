@@ -182,15 +182,8 @@
     </div>
   </div>
 
-<!--
-  <div class="panel-heading" style="background-color:#f5f5f5; border-color:#ddd;">
-    <h4 class="panel-title" style="color:black;">
-      Kegiatan Litigasi
-    </h4>
-  </div>
--->
+  @include('kasus.partials.kegiatan-litigasi')
 
-    
   @empty
   <ul class="list-group">
     <li class="list-group-item">

@@ -32,6 +32,9 @@ if(typeof edit_arsip !== 'undefined' && edit_arsip) {
 if(typeof edit_litigasi !== 'undefined' && edit_litigasi) {
 	$("#litigasi-edit").modal({show:true});
 }
+if(typeof edit_kegiatan !== 'undefined' && edit_kegiatan) {
+	$("#kegiatan-litigasi-edit").modal({show:true});
+}
 
 /*
  *  BACK TO TOP BUTTON

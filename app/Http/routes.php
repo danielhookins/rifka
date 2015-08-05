@@ -18,7 +18,8 @@
 	Route::resource('kasus.dampak', 'DampakController');
 	Route::resource('kasus.arsip', 'ArsipController');
 	Route::resource('kasus.litigasi', 'LitigasiController');
-	
+	Route::resource('kasus.litigasi.kegiatan', 'KegiatanLitigasiController');
+
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
 	Route::resource('konselor', 'KonselorController');
@@ -133,6 +134,10 @@
 	Route::post('kasus/{kasus_id}/removearsip2', [
 		'as' => 'arsip2.delete',
 		'uses' => 'ArsipController@deleteArsip2']);
+	// Delete legal activity (kegiatan litigasi)
+	Route::post('kasus/{kasus_id}/litigasi/{litigasi_id}/removekegiatan2', [
+		'as' => 'kegiatan2.delete',
+		'uses' => 'KegiatanLitigasiController@deleteKegiatan2']);
 
 
 // *** KLIEN ***
