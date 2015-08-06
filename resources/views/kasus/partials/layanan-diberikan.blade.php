@@ -35,7 +35,7 @@
 
 
 	@if(Session::has('kons_psikologi-baru'))
-  	@include('kasus.partials.kons_psikologi-baru');
+  	@include('kasus.partials.kons_psikologi-baru')
 
   @elseif(Session::has('kons_hukum-baru'))
 

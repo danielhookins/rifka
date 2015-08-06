@@ -21,7 +21,7 @@
 	Route::resource('kasus.litigasi.kegiatan', 'KegiatanLitigasiController');
 
 	Route::resource('kasus.layananDiberikan', 'LayananDiberikanController');
-	Route::resource('kasus.konsPsikologi', 'konsPsikologiController');
+	Route::resource('kasus.konsPsikologi', 'KonsPsikologiController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
