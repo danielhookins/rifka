@@ -35,14 +35,17 @@
 	@if(!empty($kasus->konsHukum->toArray()))
 		@include('kasus.partials.kons_hukum')
 	@endif
+	@if(!empty($kasus->homevisit->toArray()))
+		@include('kasus.partials.homevisit')
+	@endif
 
 
 	@if(Session::has('kons_psikologi-baru'))
   	@include('kasus.partials.kons_psikologi-baru')
   @elseif(Session::has('kons_hukum-baru'))
   	@include('kasus.partials.kons_hukum-baru')
-
   @elseif(Session::has('homevisit-baru'))
+  	@include('kasus.partials.homevisit-baru')
 
   @elseif(Session::has('medis-baru'))
 
@@ -72,4 +75,11 @@
   @else
     var kons_hukum_baru = false;
   @endif
+
+  @if(Session::has('homevisit-baru'))
+    var homevisit_baru = true;
+  @else
+    var homevisit_baru = false;
+  @endif
+
 </script>

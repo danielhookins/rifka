@@ -23,6 +23,7 @@
 	Route::resource('kasus.layananDiberikan', 'LayananDiberikanController');
 	Route::resource('kasus.konsPsikologi', 'KonsPsikologiController');
 	Route::resource('kasus.konsHukum', 'KonsHukumController');
+	Route::resource('kasus.homevisit', 'HomevisitController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
@@ -150,6 +151,10 @@
 	Route::post('kasus/{kasus_id}/removekons_hukum2', [
 		'as' => 'konsHukum2.delete',
 		'uses' => 'KonsHukumController@deleteKonsHukum2']);
+	// Delete Homevisit
+	Route::post('kasus/{kasus_id}/removehomevisit2', [
+		'as' => 'homevisit2.delete',
+		'uses' => 'HomevisitController@deleteHomevisit2']);
 
 
 // *** KLIEN ***

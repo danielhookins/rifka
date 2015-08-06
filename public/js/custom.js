@@ -41,6 +41,9 @@ if(typeof edit_kons_psikologi !== 'undefined' && edit_kons_psikologi) {
 if(typeof edit_kons_hukum !== 'undefined' && edit_kons_hukum) {
 	$("#kons_hukum-edit").modal({show:true});
 }
+if(typeof edit_homevisit !== 'undefined' && edit_homevisit) {
+	$("#kons_homevisit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL
@@ -50,6 +53,9 @@ if(typeof kons_psikologi_baru !== 'undefined' && kons_psikologi_baru) {
 }
 if(typeof kons_hukum_baru !== 'undefined' && kons_hukum_baru) {
 	$("#kons_hukum-baru").modal({show:true});
+}
+if(typeof homevisit_baru !== 'undefined' && homevisit_baru) {
+	$("#homevisit-baru").modal({show:true});
 }
 
 

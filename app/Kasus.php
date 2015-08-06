@@ -98,4 +98,9 @@ class Kasus extends Model {
         return $this->hasMany('rifka\KonsHukum', 'kasus_id', 'kasus_id');
     }
 
+    public function homevisit()
+    {
+        return $this->hasMany('rifka\Homevisit', 'kasus_id', 'kasus_id');
+    }
+
 }
