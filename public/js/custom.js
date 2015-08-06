@@ -38,6 +38,9 @@ if(typeof edit_kegiatan !== 'undefined' && edit_kegiatan) {
 if(typeof edit_kons_psikologi !== 'undefined' && edit_kons_psikologi) {
 	$("#kons_psikologi-edit").modal({show:true});
 }
+if(typeof edit_kons_hukum !== 'undefined' && edit_kons_hukum) {
+	$("#kons_hukum-edit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL

@@ -93,4 +93,9 @@ class Kasus extends Model {
         return $this->hasMany('rifka\KonsPsikologi', 'kasus_id', 'kasus_id');
     }
 
+    public function konsHukum()
+    {
+        return $this->hasMany('rifka\KonsHukum', 'kasus_id', 'kasus_id');
+    }
+
 }

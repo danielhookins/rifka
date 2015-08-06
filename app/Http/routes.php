@@ -22,6 +22,7 @@
 
 	Route::resource('kasus.layananDiberikan', 'LayananDiberikanController');
 	Route::resource('kasus.konsPsikologi', 'KonsPsikologiController');
+	Route::resource('kasus.konsHukum', 'KonsHukumController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
@@ -145,6 +146,10 @@
 	Route::post('kasus/{kasus_id}/removekons_psikologi2', [
 		'as' => 'konsPsikologi2.delete',
 		'uses' => 'KonsPsikologiController@deleteKonsPsikologi2']);
+	// Delete Legal counselling (konseling hukum)
+	Route::post('kasus/{kasus_id}/removekons_hukum2', [
+		'as' => 'konsHukum2.delete',
+		'uses' => 'KonsHukumController@deleteKonsHukum2']);
 
 
 // *** KLIEN ***

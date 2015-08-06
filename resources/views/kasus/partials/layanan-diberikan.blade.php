@@ -28,16 +28,19 @@
 		{!! Form::close() !!}
 	</div>
 
+
 	@if(!empty($kasus->konsPsikologi->toArray()))
 		@include('kasus.partials.kons_psikologi')
 	@endif
-
+	@if(!empty($kasus->konsHukum->toArray()))
+		@include('kasus.partials.kons_hukum')
+	@endif
 
 
 	@if(Session::has('kons_psikologi-baru'))
   	@include('kasus.partials.kons_psikologi-baru')
-
   @elseif(Session::has('kons_hukum-baru'))
+  	@include('kasus.partials.kons_hukum-baru')
 
   @elseif(Session::has('homevisit-baru'))
 
@@ -59,15 +62,14 @@
 
 <script type="text/javascript">
   @if(Session::has('kons_psikologi-baru'))
-     var kons_psikologi_baru = true;
+    var kons_psikologi_baru = true;
   @else
-     var kons_psikologi_baru = false;
+    var kons_psikologi_baru = false;
   @endif
 
   @if(Session::has('kons_hukum-baru'))
-     var kons_hukum_baru = true;
+    var kons_hukum_baru = true;
   @else
-     var kons_hukum_baru = false;
+    var kons_hukum_baru = false;
   @endif
-
 </script>
