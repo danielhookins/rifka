@@ -42,7 +42,7 @@ if(typeof edit_kons_hukum !== 'undefined' && edit_kons_hukum) {
 	$("#kons_hukum-edit").modal({show:true});
 }
 if(typeof edit_homevisit !== 'undefined' && edit_homevisit) {
-	$("#kons_homevisit").modal({show:true});
+	$("#homevisit-edit").modal({show:true});
 }
 
 /*
