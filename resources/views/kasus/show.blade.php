@@ -59,12 +59,10 @@
 		</h3>
 		@include('kasus.partials.litigasi')
 
-<!--
 		<h3 class="section-heading">
 				Layanan
 		</h3>
 		@include('kasus.partials.layanan-diberikan')
--->
 
 		<h3 class="section-heading">
 				Arsip

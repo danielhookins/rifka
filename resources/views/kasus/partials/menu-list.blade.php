@@ -38,14 +38,13 @@
 			-->
 		</ul>
 
-<!--
 		<div class="panel-heading">
 			<h4 class="panel-title">Layanan</h4>
 		</div>
 		<ul class="list-group">
 			<li class="list-group-item"><a href="#layanan-diberikan">Layanan Diberikan</a></li>
 		</ul>
--->
+
 		<div class="panel-heading">
 			<h4 class="panel-title">Arsip</h4>
 		</div>

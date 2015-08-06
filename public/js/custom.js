@@ -35,6 +35,21 @@ if(typeof edit_litigasi !== 'undefined' && edit_litigasi) {
 if(typeof edit_kegiatan !== 'undefined' && edit_kegiatan) {
 	$("#kegiatan-litigasi-edit").modal({show:true});
 }
+if(typeof edit_kons_psikologi !== 'undefined' && edit_kons_psikologi) {
+	$("#kons_psikologi-edit").modal({show:true});
+}
+
+/*
+ *	SHOW NEW MODAL
+ */
+if(typeof kons_psikologi_baru !== 'undefined' && kons_psikologi_baru) {
+	$("#kons_psikologi-baru").modal({show:true});
+}
+if(typeof kons_hukum_baru !== 'undefined' && kons_hukum_baru) {
+	$("#kons_hukum-baru").modal({show:true});
+}
+
+
 
 /*
  *  BACK TO TOP BUTTON
