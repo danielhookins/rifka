@@ -47,6 +47,9 @@ if(typeof edit_homevisit !== 'undefined' && edit_homevisit) {
 if(typeof edit_supportGroup !== 'undefined' && edit_supportGroup) {
 	$("#supportGroup-edit").modal({show:true});
 }
+if(typeof edit_mens_program !== 'undefined' && edit_mens_program) {
+	$("#mens_program-edit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL
@@ -62,6 +65,9 @@ if(typeof homevisit_baru !== 'undefined' && homevisit_baru) {
 }
 if(typeof supportGroup_baru !== 'undefined' && supportGroup_baru) {
 	$("#supportGroup-baru").modal({show:true});
+}
+if(typeof mens_program_baru !== 'undefined' && mens_program_baru) {
+	$("#mens_program-baru").modal({show:true});
 }
 
 

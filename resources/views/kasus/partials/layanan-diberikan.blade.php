@@ -42,7 +42,9 @@
 	@if(!empty($kasus->supportGroup->toArray()))
 		@include('kasus.partials.supportGroup')
 	@endif
-
+	@if(!empty($kasus->mensProgram->toArray()))
+		@include('kasus.partials.mens_program')
+	@endif
 
 	@if(Session::has('kons_psikologi-baru'))
   	@include('kasus.partials.kons_psikologi-baru')
@@ -60,7 +62,7 @@
   @elseif(Session::has('mediasi-baru'))
 
   @elseif(Session::has('mens_program-baru'))
-
+  	@include('kasus.partials.mens_program-baru')
   @elseif(Session::has('rujukan-baru'))
 
 	@endif
@@ -90,6 +92,12 @@
     var supportGroup_baru = true;
   @else
     var supportGroup_baru = false;
+  @endif
+
+  @if(Session::has('mens_program-baru'))
+    var mens_program_baru = true;
+  @else
+    var mens_program_baru = false;
   @endif
 
 </script>

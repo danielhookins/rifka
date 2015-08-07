@@ -25,6 +25,7 @@
 	Route::resource('kasus.konsHukum', 'KonsHukumController');
 	Route::resource('kasus.homevisit', 'HomevisitController');
 	Route::resource('kasus.supportGroup', 'SupportGroupController');
+	Route::resource('kasus.mensProgram', 'MensProgramController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
@@ -144,22 +145,26 @@
 	Route::post('kasus/{kasus_id}/litigasi/{litigasi_id}/removekegiatan2', [
 		'as' => 'kegiatan2.delete',
 		'uses' => 'KegiatanLitigasiController@deleteKegiatan2']);
-	// Delete Psycological counselling (konseling psikologi)
+	// Delete Psycological counselling (konseling psikologi) Service given Record
 	Route::post('kasus/{kasus_id}/removekons_psikologi2', [
 		'as' => 'konsPsikologi2.delete',
 		'uses' => 'KonsPsikologiController@deleteKonsPsikologi2']);
-	// Delete Legal counselling (konseling hukum)
+	// Delete Legal counselling (konseling hukum) Service given Record
 	Route::post('kasus/{kasus_id}/removekons_hukum2', [
 		'as' => 'konsHukum2.delete',
 		'uses' => 'KonsHukumController@deleteKonsHukum2']);
-	// Delete Homevisit
+	// Delete Homevisit Service given Record
 	Route::post('kasus/{kasus_id}/removehomevisit2', [
 		'as' => 'homevisit2.delete',
 		'uses' => 'HomevisitController@deleteHomevisit2']);
-	// Delete SupportGroup
+	// Delete SupportGroup Service given Record
 	Route::post('kasus/{kasus_id}/removesupportGroup2', [
 		'as' => 'supportGroup2.delete',
 		'uses' => 'SupportGroupController@deleteSupportGroup2']);
+	// Delete MensProgram Service given Record
+	Route::post('kasus/{kasus_id}/removemens_program2', [
+		'as' => 'mensProgram2.delete',
+		'uses' => 'MensProgramController@deleteMensProgram2']);
 
 
 // *** KLIEN ***
