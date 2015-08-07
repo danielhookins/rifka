@@ -24,6 +24,7 @@
 	Route::resource('kasus.konsPsikologi', 'KonsPsikologiController');
 	Route::resource('kasus.konsHukum', 'KonsHukumController');
 	Route::resource('kasus.homevisit', 'HomevisitController');
+	Route::resource('kasus.supportGroup', 'SupportGroupController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
@@ -155,6 +156,10 @@
 	Route::post('kasus/{kasus_id}/removehomevisit2', [
 		'as' => 'homevisit2.delete',
 		'uses' => 'HomevisitController@deleteHomevisit2']);
+	// Delete SupportGroup
+	Route::post('kasus/{kasus_id}/removesupportGroup2', [
+		'as' => 'supportGroup2.delete',
+		'uses' => 'SupportGroupController@deleteSupportGroup2']);
 
 
 // *** KLIEN ***

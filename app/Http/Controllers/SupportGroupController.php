@@ -2,7 +2,7 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
+use rifka\SupportGroup;
 use Illuminate\Http\Request;
 
 class SupportGroupController extends Controller {
@@ -22,9 +22,11 @@ class SupportGroupController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request, $kasus_id)
 	{
-		//
+        $request->session()->flash("supportGroup-baru", True);
+
+        return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 	/**
@@ -32,9 +34,15 @@ class SupportGroupController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request, $kasus_id)
 	{
-		//
+		$konsHukum = \rifka\SupportGroup::create([
+			'kasus_id' 		=> $kasus_id,
+			'tanggal' 		=> \Input::get('tanggal'),
+			'keterangan' 	=> \Input::get('keterangan')
+		]);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 	/**
@@ -54,9 +62,14 @@ class SupportGroupController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $kasus_id, $supportGroup_id)
 	{
-		//
+		$konsHukum = SupportGroup::findOrFail($supportGroup_id);
+
+		$request->session()->flash('edit-supportGroup', True);
+		$request->session()->flash('supportGroup-active', $konsHukum);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#supportGroup']);
 	}
 
 	/**
@@ -65,9 +78,15 @@ class SupportGroupController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($kasus_id, $supportGroup_id)
 	{
-		//
+		$konsHukum = SupportGroup::findOrFail($supportGroup_id);
+		$konsHukum->tanggal = \Input::get('tanggal');
+		$konsHukum->keterangan = \Input::get('keterangan');
+
+		$konsHukum->save();
+
+		return redirect()->route('kasus.show', [$kasus_id, '#supportGroup']);
 	}
 
 	/**
@@ -79,6 +98,20 @@ class SupportGroupController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function deleteSupportGroup2($kasus_id)
+	{
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $support_group_id)
+			{
+				$deleted = SupportGroup::where('support_group_id', $support_group_id)
+						->where('kasus_id', $kasus_id)->delete();
+			}
+		}
+
+		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 }

@@ -18,7 +18,7 @@
 				<option value="homevisit">Homevisit</option>
 				<option value="medis">Medis</option>
 				<option value="shelter">Shelter</option>
-				<option value="support_group">Support Group</option>
+				<option value="supportGroup">Support Group</option>
 				<option value="mediasi">Mediasi</option>
 				<option value="mens_program">Men's Program</option>
 				<option value="rujukan">Rujukan</option>
@@ -39,6 +39,10 @@
 		@include('kasus.partials.homevisit')
 	@endif
 
+	@if(!empty($kasus->supportGroup->toArray()))
+		@include('kasus.partials.supportGroup')
+	@endif
+
 
 	@if(Session::has('kons_psikologi-baru'))
   	@include('kasus.partials.kons_psikologi-baru')
@@ -51,8 +55,8 @@
 
   @elseif(Session::has('shelter-baru'))
 
-  @elseif(Session::has('support_group-baru'))
-
+  @elseif(Session::has('supportGroup-baru'))
+  	@include('kasus.partials.supportGroup-baru')
   @elseif(Session::has('mediasi-baru'))
 
   @elseif(Session::has('mens_program-baru'))
@@ -80,6 +84,12 @@
     var homevisit_baru = true;
   @else
     var homevisit_baru = false;
+  @endif
+
+  @if(Session::has('supportGroup-baru'))
+    var supportGroup_baru = true;
+  @else
+    var supportGroup_baru = false;
   @endif
 
 </script>

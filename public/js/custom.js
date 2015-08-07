@@ -44,6 +44,9 @@ if(typeof edit_kons_hukum !== 'undefined' && edit_kons_hukum) {
 if(typeof edit_homevisit !== 'undefined' && edit_homevisit) {
 	$("#homevisit-edit").modal({show:true});
 }
+if(typeof edit_supportGroup !== 'undefined' && edit_supportGroup) {
+	$("#supportGroup-edit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL
@@ -56,6 +59,9 @@ if(typeof kons_hukum_baru !== 'undefined' && kons_hukum_baru) {
 }
 if(typeof homevisit_baru !== 'undefined' && homevisit_baru) {
 	$("#homevisit-baru").modal({show:true});
+}
+if(typeof supportGroup_baru !== 'undefined' && supportGroup_baru) {
+	$("#supportGroup-baru").modal({show:true});
 }
 
 

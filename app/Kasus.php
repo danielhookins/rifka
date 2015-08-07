@@ -103,4 +103,9 @@ class Kasus extends Model {
         return $this->hasMany('rifka\Homevisit', 'kasus_id', 'kasus_id');
     }
 
+    public function supportGroup()
+    {
+        return $this->hasMany('rifka\SupportGroup', 'kasus_id', 'kasus_id');
+    }
+
 }
