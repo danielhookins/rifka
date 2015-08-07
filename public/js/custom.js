@@ -53,6 +53,9 @@ if(typeof edit_mens_program !== 'undefined' && edit_mens_program) {
 if(typeof edit_rujukan !== 'undefined' && edit_rujukan) {
 	$("#rujukan-edit").modal({show:true});
 }
+if(typeof edit_medis !== 'undefined' && edit_medis) {
+	$("#medis-edit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL
@@ -74,6 +77,9 @@ if(typeof mens_program_baru !== 'undefined' && mens_program_baru) {
 }
 if(typeof rujukan_baru !== 'undefined' && rujukan_baru) {
 	$("#rujukan-baru").modal({show:true});
+}
+if(typeof medis_baru !== 'undefined' && medis_baru) {
+	$("#medis-baru").modal({show:true});
 }
 
 

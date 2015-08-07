@@ -2,7 +2,7 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
+use rifka\Medis;
 use Illuminate\Http\Request;
 
 class MedisController extends Controller {
@@ -22,9 +22,11 @@ class MedisController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create(Request $request, $kasus_id)
 	{
-		//
+        $request->session()->flash("medis-baru", True);
+
+        return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 	/**
@@ -32,9 +34,16 @@ class MedisController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request, $kasus_id)
 	{
-		//
+		$medis = \rifka\Medis::create([
+			'kasus_id' 		=> $kasus_id,
+			'tanggal' 		=> \Input::get('tanggal'),
+			'jenis_medis'	=> \Input::get('jenis_medis'),
+			'keterangan' 	=> \Input::get('keterangan')
+		]);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 	/**
@@ -54,9 +63,14 @@ class MedisController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $kasus_id, $medis_id)
 	{
-		//
+		$medis = Medis::findOrFail($medis_id);
+
+		$request->session()->flash('edit-medis', True);
+		$request->session()->flash('medis-active', $medis);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#medis']);
 	}
 
 	/**
@@ -65,9 +79,16 @@ class MedisController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($kasus_id, $medis_id)
 	{
-		//
+		$medis = Medis::findOrFail($medis_id);
+		$medis->tanggal = \Input::get('tanggal');
+		$medis->jenis_medis = \Input::get('jenis_medis');
+		$medis->keterangan = \Input::get('keterangan');
+
+		$medis->save();
+
+		return redirect()->route('kasus.show', [$kasus_id, '#medis']);
 	}
 
 	/**
@@ -79,6 +100,20 @@ class MedisController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function deleteMedis2($kasus_id)
+	{
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $medis_id)
+			{
+				$deleted = Medis::where('medis_id', $medis_id)
+						->where('kasus_id', $kasus_id)->delete();
+			}
+		}
+
+		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 }

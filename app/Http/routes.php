@@ -27,6 +27,7 @@
 	Route::resource('kasus.supportGroup', 'SupportGroupController');
 	Route::resource('kasus.mensProgram', 'MensProgramController');
 	Route::resource('kasus.rujukan', 'RujukanController');
+	Route::resource('kasus.medis', 'MedisController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
@@ -170,6 +171,10 @@
 	Route::post('kasus/{kasus_id}/removerujukan2', [
 		'as' => 'rujukan2.delete',
 		'uses' => 'RujukanController@deleteRujukan2']);
+	// Delete Medical Service Record
+	Route::post('kasus/{kasus_id}/removemedis2', [
+		'as' => 'medis2.delete',
+		'uses' => 'MedisController@deleteMedis2']);
 
 
 // *** KLIEN ***

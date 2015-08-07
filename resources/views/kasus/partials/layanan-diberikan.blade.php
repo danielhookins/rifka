@@ -38,7 +38,6 @@
 	@if(!empty($kasus->homevisit->toArray()))
 		@include('kasus.partials.homevisit')
 	@endif
-
 	@if(!empty($kasus->supportGroup->toArray()))
 		@include('kasus.partials.supportGroup')
 	@endif
@@ -48,6 +47,9 @@
 	@if(!empty($kasus->rujukan->toArray()))
 		@include('kasus.partials.rujukan')
 	@endif
+	@if(!empty($kasus->medis->toArray()))
+		@include('kasus.partials.medis')
+	@endif
 
 	@if(Session::has('kons_psikologi-baru'))
   	@include('kasus.partials.kons_psikologi-baru')
@@ -55,15 +57,12 @@
   	@include('kasus.partials.kons_hukum-baru')
   @elseif(Session::has('homevisit-baru'))
   	@include('kasus.partials.homevisit-baru')
-
   @elseif(Session::has('medis-baru'))
-
+  	@include('kasus.partials.medis-baru')
   @elseif(Session::has('shelter-baru'))
-
   @elseif(Session::has('supportGroup-baru'))
   	@include('kasus.partials.supportGroup-baru')
   @elseif(Session::has('mediasi-baru'))
-
   @elseif(Session::has('mens_program-baru'))
   	@include('kasus.partials.mens_program-baru')
   @elseif(Session::has('rujukan-baru'))
@@ -107,6 +106,12 @@
     var rujukan_baru = true;
   @else
     var rujukan_baru = false;
+  @endif
+
+  @if(Session::has('medis-baru'))
+    var medis_baru = true;
+  @else
+    var medis_baru = false;
   @endif
 
 </script>
