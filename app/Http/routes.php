@@ -26,6 +26,7 @@
 	Route::resource('kasus.homevisit', 'HomevisitController');
 	Route::resource('kasus.supportGroup', 'SupportGroupController');
 	Route::resource('kasus.mensProgram', 'MensProgramController');
+	Route::resource('kasus.rujukan', 'RujukanController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
@@ -165,6 +166,10 @@
 	Route::post('kasus/{kasus_id}/removemens_program2', [
 		'as' => 'mensProgram2.delete',
 		'uses' => 'MensProgramController@deleteMensProgram2']);
+	// Delete Referral Record
+	Route::post('kasus/{kasus_id}/removerujukan2', [
+		'as' => 'rujukan2.delete',
+		'uses' => 'RujukanController@deleteRujukan2']);
 
 
 // *** KLIEN ***

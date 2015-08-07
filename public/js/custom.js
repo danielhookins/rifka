@@ -50,6 +50,9 @@ if(typeof edit_supportGroup !== 'undefined' && edit_supportGroup) {
 if(typeof edit_mens_program !== 'undefined' && edit_mens_program) {
 	$("#mens_program-edit").modal({show:true});
 }
+if(typeof edit_rujukan !== 'undefined' && edit_rujukan) {
+	$("#rujukan-edit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL
@@ -68,6 +71,9 @@ if(typeof supportGroup_baru !== 'undefined' && supportGroup_baru) {
 }
 if(typeof mens_program_baru !== 'undefined' && mens_program_baru) {
 	$("#mens_program-baru").modal({show:true});
+}
+if(typeof rujukan_baru !== 'undefined' && rujukan_baru) {
+	$("#rujukan-baru").modal({show:true});
 }
 
 

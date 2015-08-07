@@ -45,6 +45,9 @@
 	@if(!empty($kasus->mensProgram->toArray()))
 		@include('kasus.partials.mens_program')
 	@endif
+	@if(!empty($kasus->rujukan->toArray()))
+		@include('kasus.partials.rujukan')
+	@endif
 
 	@if(Session::has('kons_psikologi-baru'))
   	@include('kasus.partials.kons_psikologi-baru')
@@ -64,7 +67,7 @@
   @elseif(Session::has('mens_program-baru'))
   	@include('kasus.partials.mens_program-baru')
   @elseif(Session::has('rujukan-baru'))
-
+  	@include('kasus.partials.rujukan-baru')
 	@endif
 
 </div> <!-- / Layanan Diberikan Panel -->
@@ -98,6 +101,12 @@
     var mens_program_baru = true;
   @else
     var mens_program_baru = false;
+  @endif
+
+	@if(Session::has('rujukan-baru'))
+    var rujukan_baru = true;
+  @else
+    var rujukan_baru = false;
   @endif
 
 </script>
