@@ -123,4 +123,14 @@ class Kasus extends Model {
         return $this->hasMany('rifka\Medis', 'kasus_id', 'kasus_id');
     }
 
+    public function mediasi()
+    {
+        return $this->hasMany('rifka\Mediasi', 'kasus_id', 'kasus_id');
+    }
+
+    public function shelter()
+    {
+        return $this->hasMany('rifka\Shelter', 'kasus_id', 'kasus_id');
+    }
+
 }

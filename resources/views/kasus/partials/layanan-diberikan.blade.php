@@ -7,11 +7,13 @@
 	</div>
 
 	<div class="panel-body">
-		{!! Form::open(array('route' => array('kasus.layananDiberikan.create', $kasus->kasus_id), 'class'=>'form', 'method' => 'GET')) !!}
+		
+    {!! Form::open(array('route' => array('kasus.layananDiberikan.create', $kasus->kasus_id), 'class'=>'form', 'method' => 'GET')) !!}
 
 		<div class="form-inline">
 		Tambah Layanan Debierikan 
-			<select class="form-control" name="jenis">
+	
+  		<select class="form-control" name="jenis">
 				<option value="jenis">Jenis</option>
 				<option value="kons_psikologi">Konseling Psikologi</option>
 				<option value="kons_hukum">Konseling Hukum</option>
@@ -25,10 +27,13 @@
 			</select> 
 			<button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
 		</div>
-		{!! Form::close() !!}
-	</div>
+	
+  	{!! Form::close() !!}
+	
+  </div>
 
 
+  <? // If Service information exists display the relevant partial ?>
 	@if(!empty($kasus->konsPsikologi->toArray()))
 		@include('kasus.partials.kons_psikologi')
 	@endif
@@ -38,19 +43,27 @@
 	@if(!empty($kasus->homevisit->toArray()))
 		@include('kasus.partials.homevisit')
 	@endif
+  @if(!empty($kasus->medis->toArray()))
+    @include('kasus.partials.medis')
+  @endif
+  @if(!empty($kasus->shelter->toArray()))
+    @include('kasus.partials.shelter')
+  @endif
 	@if(!empty($kasus->supportGroup->toArray()))
 		@include('kasus.partials.supportGroup')
 	@endif
+  @if(!empty($kasus->mediasi->toArray()))
+    @include('kasus.partials.mediasi')
+  @endif
 	@if(!empty($kasus->mensProgram->toArray()))
 		@include('kasus.partials.mens_program')
 	@endif
 	@if(!empty($kasus->rujukan->toArray()))
 		@include('kasus.partials.rujukan')
 	@endif
-	@if(!empty($kasus->medis->toArray()))
-		@include('kasus.partials.medis')
-	@endif
+  
 
+  <? // Show the relevant 'new x' modal based on the user input ?>
 	@if(Session::has('kons_psikologi-baru'))
   	@include('kasus.partials.kons_psikologi-baru')
   @elseif(Session::has('kons_hukum-baru'))
@@ -60,9 +73,11 @@
   @elseif(Session::has('medis-baru'))
   	@include('kasus.partials.medis-baru')
   @elseif(Session::has('shelter-baru'))
+    @include('kasus.partials.shelter-baru')
   @elseif(Session::has('supportGroup-baru'))
   	@include('kasus.partials.supportGroup-baru')
   @elseif(Session::has('mediasi-baru'))
+  	@include('kasus.partials.mediasi-baru')
   @elseif(Session::has('mens_program-baru'))
   	@include('kasus.partials.mens_program-baru')
   @elseif(Session::has('rujukan-baru'))
@@ -72,6 +87,9 @@
 </div> <!-- / Layanan Diberikan Panel -->
 
 <script type="text/javascript">
+  
+  // Set variables so JS knows to display the 'new x' modal
+
   @if(Session::has('kons_psikologi-baru'))
     var kons_psikologi_baru = true;
   @else
@@ -112,6 +130,18 @@
     var medis_baru = true;
   @else
     var medis_baru = false;
+  @endif
+
+  @if(Session::has('mediasi-baru'))
+    var mediasi_baru = true;
+  @else
+    var mediasi_baru = false;
+  @endif
+
+  @if(Session::has('shelter-baru'))
+    var shelter_baru = true;
+  @else
+    var shelter_baru = false;
   @endif
 
 </script>

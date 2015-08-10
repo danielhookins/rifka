@@ -10,6 +10,7 @@ $(document).ready(function () {
 
 /*
  *	SHOW EDIT MODAL
+ * 	If JS var set: Show the relevant "edit x" modal
  */
 if(typeof edit_perkembangan !== 'undefined' && edit_perkembangan) {
 	$("#perkembangan-edit").modal({show:true});
@@ -56,9 +57,16 @@ if(typeof edit_rujukan !== 'undefined' && edit_rujukan) {
 if(typeof edit_medis !== 'undefined' && edit_medis) {
 	$("#medis-edit").modal({show:true});
 }
+if(typeof edit_mediasi !== 'undefined' && edit_mediasi) {
+	$("#mediasi-edit").modal({show:true});
+}
+if(typeof edit_shelter !== 'undefined' && edit_shelter) {
+	$("#shelter-edit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL
+ *  If JS var set: Show the relevant "new x" modal
  */
 if(typeof kons_psikologi_baru !== 'undefined' && kons_psikologi_baru) {
 	$("#kons_psikologi-baru").modal({show:true});
@@ -80,6 +88,12 @@ if(typeof rujukan_baru !== 'undefined' && rujukan_baru) {
 }
 if(typeof medis_baru !== 'undefined' && medis_baru) {
 	$("#medis-baru").modal({show:true});
+}
+if(typeof mediasi_baru !== 'undefined' && mediasi_baru) {
+	$("#mediasi-baru").modal({show:true});
+}
+if(typeof shelter_baru !== 'undefined' && shelter_baru) {
+	$("#shelter-baru").modal({show:true});
 }
 
 

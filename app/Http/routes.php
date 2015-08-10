@@ -28,6 +28,8 @@
 	Route::resource('kasus.mensProgram', 'MensProgramController');
 	Route::resource('kasus.rujukan', 'RujukanController');
 	Route::resource('kasus.medis', 'MedisController');
+	Route::resource('kasus.mediasi', 'MediasiController');
+	Route::resource('kasus.shelter', 'ShelterController');
 	
 	Route::resource('klien', 'KlienController');
 	Route::resource('alamat', 'AlamatController');
@@ -175,7 +177,14 @@
 	Route::post('kasus/{kasus_id}/removemedis2', [
 		'as' => 'medis2.delete',
 		'uses' => 'MedisController@deleteMedis2']);
-
+	// Delete Mediation Service Record
+	Route::post('kasus/{kasus_id}/removemediasi2', [
+		'as' => 'mediasi2.delete',
+		'uses' => 'MediasiController@deleteMediasi2']);
+	// Delete Shelter Service Record
+	Route::post('kasus/{kasus_id}/removeshelter2', [
+		'as' => 'shelter2.delete',
+		'uses' => 'ShelterController@deleteShelter2']);
 
 // *** KLIEN ***
 	
