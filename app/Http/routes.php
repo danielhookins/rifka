@@ -124,7 +124,7 @@
 	// Delete case developments
 	Route::post('kasus/{kasus_id}/removeperkembangan2', [
 		'as' => 'perkembangan2.delete',
-		'uses' => 'perkembanganController@deletePerkembangan2']);
+		'uses' => 'PerkembanganController@deletePerkembangan2']);
 	// Delete trigger factors
 	Route::post('kasus/{kasus_id}/removepemicu2', [
 		'as' => 'pemicu2.delete',
@@ -250,3 +250,8 @@
 		'middleware' => 'auth', 
 		'as' => 'developer.test',
 		'uses' => 'DeveloperController@test']);
+
+		Route::post('/developer/test', [
+			'middleware' => 'auth',
+			'as' => 'test.post',
+			'uses' => 'DeveloperController@postTest']);

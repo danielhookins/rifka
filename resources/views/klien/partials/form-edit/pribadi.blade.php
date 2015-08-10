@@ -24,7 +24,7 @@
   	</li>
   	<li class="list-group-item">
 	    	<h4 class="list-group-item-heading">Tanggal Lahir</h4>
-	    	<div class="list-group-item-text">{!! Form::date('tanggal_lahir', null, array('class' => 'form-control')) !!}</div>
+	    	<div class="list-group-item-text">{!! Form::date('tanggal_lahir', null, array('class' => 'form-control date-picker')) !!}</div>
   	</li>
   	<li class="list-group-item">
 	    	<h4 class="list-group-item-heading">Agama</h4>

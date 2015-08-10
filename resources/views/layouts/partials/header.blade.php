@@ -19,6 +19,7 @@
 		<!-- {!! HTML::style( asset('css/app.css') ) !!} -->
 		{!! HTML::style( asset('css/bootstrap.min.css') ) !!}
 		{!! HTML::style( asset('css/custom.css') ) !!}
+		{!! HTML::style( asset('css/jquery-ui.css') ) !!}
 
 	</head>
 	<body>

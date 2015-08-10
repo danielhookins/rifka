@@ -16,8 +16,7 @@ class Perkembangan extends Model {
 
 	public function kasus()
     {
-        /*
-        return $this->belongsToMany('rifka\Klien', 'alamat_klien', 'alamat_id', 'klien_id')->withPivot('created_at', 'updated_at'); */
+      return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
     }
 
 }

@@ -141,7 +141,7 @@
         </div>
         <div class="form-group">
           {!! Form::label('sejak_kapan', 'Sejak Kapan', array('class' => 'strongLabel')) !!} (kekerasan mulai)
-          {!! Form::date('sejak_kapan', null, array('class' => 'form-control')) !!}
+          {!! Form::date('sejak_kapan', null, array('class' => 'form-control date-picker')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('seberapa_sering', 'Seberapa Sering', array('class' => 'strongLabel')) !!}

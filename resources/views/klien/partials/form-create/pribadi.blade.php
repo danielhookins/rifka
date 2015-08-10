@@ -15,7 +15,7 @@
 
 <div class="form-group">
 	{!! Form::label('tanggal_lahir', 'Tanggal Lahir', array('class' => 'strongLabel')) !!}
-	{!! Form::date('tanggal_lahir', null, array('class' => 'form-control')) !!}
+	{!! Form::date('tanggal_lahir', null, array('class' => 'form-control date-picker')) !!}
 </div>
 
 <div class="form-group">

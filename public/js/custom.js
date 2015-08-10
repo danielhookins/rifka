@@ -5,6 +5,37 @@ $('[data-toggle="tooltip"]').tooltip({'placement': 'right'});
 $('.dropdown-toggle').dropdown();
 $.ajaxSetup({headers:{'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}});
 
+/*
+ * DATE PICKER
+ * Custom date picker using Indonesian names and format
+ */
+$(function() {
+  $( ".date-picker" ).datepicker({
+    changeMonth: true,
+    changeYear: true,
+    yearRange: "-90:+0",
+    closeText: 'Tutup',
+		prevText: '&#x3c;mundur',
+		nextText: 'maju&#x3e;',
+		currentText: 'hari ini',
+		monthNames: ['Januari','Februari','Maret','April','Mei','Juni',
+		'Juli','Agustus','September','Oktober','Nopember','Desember'],
+		monthNamesShort: ['Jan','Feb','Mar','Apr','Mei','Jun',
+		'Jul','Agus','Sep','Okt','Nop','Des'],
+		dayNames: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
+		dayNamesShort: ['Min','Sen','Sel','Rab','kam','Jum','Sab'],
+		dayNamesMin: ['Mg','Sn','Sl','Rb','Km','jm','Sb'],
+		weekHeader: 'Mg',
+		dateFormat: 'yy-mm-dd',
+		firstDay: 0,
+		isRTL: false,
+		showMonthAfterYear: false,
+		yearSuffix: ''
+  });
+});
+
+$.fn.modal.Constructor.prototype.enforceFocus = function() {};
+
 $(document).ready(function () {
 
 

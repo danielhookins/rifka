@@ -20,7 +20,7 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('tanggal', 'Tanggal', array('class' => 'strongLabel')) !!}
-          {!! Form::date('tanggal', null, array('class' => 'form-control')) !!}
+          {!! Form::date('tanggal', null, array('class' => 'form-control date-picker')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('intervensi', 'Intervensi', array('class' => 'strongLabel')) !!}

@@ -20,12 +20,12 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('mulai_tanggal', 'Mulai Tanggal', array('class' => 'strongLabel')) !!}
-          {!! Form::date('mulai_tanggal', null, array('class' => 'form-control')) !!}
+          {!! Form::date('mulai_tanggal', null, array('class' => 'form-control date-picker')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('sampai_tanggal', 'Sampai Tanggal', array('class' => 'strongLabel')) !!}
           {!! Form::date('sampai_tanggal', null, array(
-            'class' => 'form-control', 
+            'class' => 'form-control date-picker', 
             'autocomplete' => 'off' )) !!}
         </div>
         <div class="form-group">

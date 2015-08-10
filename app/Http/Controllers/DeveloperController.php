@@ -18,11 +18,12 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 
-		$klienKasus = KlienKasus::where('klien_id', (int) "264")
-						->where('kasus_id', (int) "4939")
-          	->update(['jenis_klien' => 'Korban']);
+		return view('developer.testing-page');
+	}
 
-		dd($klienKasus);
+	function postTest(Request $request)
+	{
+		return $request;
 	}
 
 }
