@@ -98,14 +98,9 @@ class KlienController extends Controller {
 
 		$alamatBaru = \rifka\Alamat::create([
 				'alamat' 	=> \Input::get('alamat'),
+				'klien_id' => $klienBaru->klien_id,
 				'kecamatan' => $kecamatan,
 				'kabupaten' => $kabupaten
-			]);
-
-		// Create new Client-Address
-		$alamatKlienBaru = \rifka\AlamatKlien::create([
-				'alamat_id' => $alamatBaru->alamat_id,
-				'klien_id'	=> $klienBaru->klien_id
 			]);
         
 		if($returnPage == "klien") {
@@ -142,13 +137,21 @@ class KlienController extends Controller {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  int  $klien_id
 	 * @return Response
 	 */
-	public function edit($id, $section = 'all')
+	public function edit(Request $request, $klien_id, $section = 'all')
 	{
-		$klien = Klien::findOrFail($id);
-		$kasus2 = Klien::find($id)->korbanKasus;
+		if($section == 'kontak')
+		{
+			$request->session()->flash('edit-kontak', True);
+
+			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+		}
+
+
+		$klien = Klien::findOrFail($klien_id);
+		$kasus2 = Klien::find($klien_id)->korbanKasus;
 
 		return view('klien.edit', array(
 			'klien' 	=> $klien,
@@ -159,18 +162,34 @@ class KlienController extends Controller {
 	/**
 	 * Update the Klien resource in the database.
 	 *
-	 * @param  int  $id
+	 * @param  int  $klien_id
+	 * @param  string $section The section of client data to update
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($klien_id, $section = 'all')
 	{
-		//TODO: Ensure validation
+
+		/* 
+		 * If the section is the Contact section 
+		 * Update the telephone number and email address of the client
+		 */
+		if($section == "kontak")
+		{
+			$klien = Klien::findOrFail($klien_id);
+			$klien->no_telp = \Input::get('no_telp');
+			$klien->email = \Input::get('email');
+
+			$klien->save();
+
+			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+		}
 
 		$user = Auth::user();
-		$klien = Klien::findOrFail($id);
+		$klien = Klien::findOrFail($klien_id);
 		$attributes = array_keys($klien->getAttributes());
 
 		// Update Klien and Log Attribute Changes
+		// TODO: Fix Bug: If user clears an input it will not be updated.
 		// TODO: look at using 'Events' for logging instead
 		foreach($attributes as $attribute)
 		{
@@ -187,7 +206,7 @@ class KlienController extends Controller {
 			}
 		}
         
-		return redirect()->route('klien.show', $id)
+		return redirect()->route('klien.show', $klien_id)
 			->with('success', 'Klien file updated.');
 	}
 
@@ -221,6 +240,8 @@ class KlienController extends Controller {
 		}
 		
 		$klien->delete();
+		// TODO: Make sure all the associated things are deleted too
+		// (eg. the clients address)
 
 		// Log Activity
 		// TODO: look at using 'Events' for logging instead

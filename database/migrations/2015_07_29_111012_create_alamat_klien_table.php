@@ -12,14 +12,7 @@ class CreateAlamatKlienTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('alamat_klien', function(Blueprint $table)
-		{
-			$table->increments('alamat_klien_id');
-			$table->integer('klien_id')->nullable()->unsigned();
-			$table->integer('alamat_id')->nullable()->unsigned();
-			$table->timestamp('created_at')->nullable();
-			$table->timestamp('updated_at')->nullable();
-		});
+		// No longer used
 	}
 
 	/**

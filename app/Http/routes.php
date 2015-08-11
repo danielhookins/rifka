@@ -32,7 +32,7 @@
 	Route::resource('kasus.shelter', 'ShelterController');
 	
 	Route::resource('klien', 'KlienController');
-	Route::resource('alamat', 'AlamatController');
+	Route::resource('klien.alamat', 'AlamatController');
 	Route::resource('konselor', 'KonselorController');
 
 
@@ -185,13 +185,35 @@
 	Route::post('kasus/{kasus_id}/removeshelter2', [
 		'as' => 'shelter2.delete',
 		'uses' => 'ShelterController@deleteShelter2']);
+	// Delete Alamat
+	Route::post('klien/{klien_id}/removealamat2', [
+		'as' => 'alamat2.delete',
+		'uses' => 'AlamatController@deleteAlamat2']);
 
-// *** KLIEN ***
+	/*** KLIEN *****************************************************************/
 	
-	// Edit a certain section
+	/**
+	 *  Edit a specific section of client information.
+	 *
+	 *  @param int klien_id
+	 *  @param string section The section of client data to edit (eg. 'kontak')
+	 *  @return Redirects to appropriate page with page-display information stored in session 
+	 */ 
 	Route::get('klien/{klien_id}/edit/{section}', [
 		'as' => 'klien.edit',
 		'uses' => 'KlienController@edit']);
+
+	/**
+	 *  Update a specific section of client information.
+	 *
+	 *  @param int klien_id
+	 *  @param string section The section of client data to update (eg. 'kontak')
+	 *  @return Redirects to appropriate page with page-display information stored in session 
+	 */ 
+	Route::put('klien/{klien_id}/update/{section}', [
+		'as' => 'klien.updateSection',
+		'uses' => 'KlienController@update']);
+
 	
 	// Display changes to a client profile
 	Route::get('klien/{klien_id}/changes', [

@@ -15,7 +15,7 @@
       <td class="hidden-xs">{!! $klien->no_telp !!}</td>
       <td>
         <ul>
-          @forelse ($klien->alamatKlien()->get() as $klienAlamat)
+          @forelse ($klien->alamat as $klienAlamat)
             <li>
               {{ $klienAlamat->alamat }}
               @if ($klienAlamat->kecamatan)
@@ -26,7 +26,6 @@
               @endif
             </li>
           @empty
-            <li></li>
           @endforelse
         </ul>
       </td>

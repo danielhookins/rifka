@@ -2,8 +2,8 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use rifka\Alamat;
 
 class AlamatController extends Controller {
 
@@ -12,13 +12,9 @@ class AlamatController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($kasus_id)
 	{
-		//
-		$semuaAlamat = \rifka\Alamat::paginate(15);
-
-
-		return $semuaAlamat;
+		return redirect('404');
 	}
 
 	/**
@@ -26,9 +22,9 @@ class AlamatController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($kasus_id)
 	{
-		//
+		return redirect('404');
 	}
 
 	/**
@@ -36,9 +32,17 @@ class AlamatController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store($klien_id)
 	{
-		//
+		$alamat = \rifka\Alamat::create([
+			'klien_id' 		=> $klien_id,
+			'alamat' 		=> \Input::get('alamat'),
+			'kecamatan' 	=> \Input::get('kecamatan'),
+			'kabupaten'  => \Input::get('kabupaten')
+		]);
+
+		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+
 	}
 
 	/**
@@ -47,13 +51,10 @@ class AlamatController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($kasus_id, $perkembangan_id)
 	{
-		//
-		$alamat = \rifka\Alamat::findOrFail($id);
-		$klien2 = \rifka\Alamat::find($id)->alamatKlien;
 
-		return $alamat;
+		return redirect('404');
 	}
 
 	/**
@@ -62,9 +63,14 @@ class AlamatController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $klien_id, $alamat_id)
 	{
-		//
+		$alamat = Alamat::findOrFail($alamat_id);
+
+		$request->session()->flash('edit-alamat', True);
+		$request->session()->flash('alamat-active', $alamat);
+
+		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 	}
 
 	/**
@@ -73,9 +79,18 @@ class AlamatController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($klien_id, $alamat_id)
 	{
-		//
+
+		$alamat = Alamat::findOrFail($alamat_id);
+		$alamat->alamat = \Input::get('alamat');
+		$alamat->kecamatan = \Input::get('kecamatan');
+		$alamat->kabupaten = \Input::get('kabupaten');
+
+		$alamat->save();
+
+		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+
 	}
 
 	/**
@@ -84,20 +99,23 @@ class AlamatController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($perkembangan_id)
 	{
 		//
 	}
 
-	public function search()
+	public function deleteAlamat2($klien_id)
 	{
-		$query = \Input::get('searchQuery');
-		$results = \rifka\Alamat::search($query)->get();
-        
-    	return view('alamat.searchResults', array(
-    								'query'		=> $query,
-									'results'	=> $results
-									));
+		if($toDelete = \Input::get('toDelete'))
+		{
+			foreach($toDelete as $alamat_id)
+			{
+				$deleted = Alamat::where('alamat_id', $alamat_id)
+						->where('klien_id', $klien_id)->delete();
+			}
+		}
+
+		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 	}
 
 }

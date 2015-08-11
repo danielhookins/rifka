@@ -9,26 +9,24 @@ class Alamat extends Model {
 	
     protected $table = 'alamat';
 	protected $primaryKey = 'alamat_id';
-	protected $fillable = ['alamat',
-							'kecamatan',
-							'kabupaten'];
+	protected $fillable = [
+        'klien_id',
+        'alamat',
+		'kecamatan',
+		'kabupaten'];
 	public $timestamps = false;
 	
 	protected $searchable = [
         'columns' => [
-            'alamat.alamat' => 10,
-            'alamat.kecamatan' => 7,
-            'alamat.kabupaten' => 5,
-        ],
-        'joins' => [
-            'alamat_klien' => ['alamat_klien.alamat_id', 'alamat.alamat_id'],
-            'klien' => ['klien.klien_id', 'alamat_klien.klien_id']
+            'alamat' => 10,
+            'kecamatan' => 7,
+            'kabupaten' => 5,
         ],
     ];  
 
-	public function alamatKlien()
+    public function klien()
     {
-        return $this->belongsToMany('rifka\Klien', 'alamat_klien', 'alamat_id', 'klien_id')->withPivot('created_at', 'updated_at');
+    return $this->belongsTo('rifka\Klien', 'klien_id', 'klien_id');
     }
 
 }

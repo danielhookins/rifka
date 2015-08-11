@@ -94,6 +94,12 @@ if(typeof edit_mediasi !== 'undefined' && edit_mediasi) {
 if(typeof edit_shelter !== 'undefined' && edit_shelter) {
 	$("#shelter-edit").modal({show:true});
 }
+if(typeof edit_kontak !== 'undefined' && edit_kontak) {
+	$("#kontak-edit").modal({show:true});
+}
+if(typeof edit_alamat !== 'undefined' && edit_alamat) {
+	$("#alamat-edit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL
