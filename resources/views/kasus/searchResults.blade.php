@@ -19,7 +19,7 @@
 			<td>
 				<ul>
 					@forelse ($result->klienKasus()->get() as $klienKasus)
-						<li><a href="{!! route('klien.index') !!}/{{ $klienKasus->klien_id }}">{{ $klienKasus->nama_klien }}</li>
+						<li>{{ $klienKasus->nama_klien }}</li>
 					@empty
 						<li>Tidak ada klien.</li>
 					@endforelse
