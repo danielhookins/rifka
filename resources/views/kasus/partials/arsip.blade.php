@@ -14,6 +14,7 @@
       <tr>
         <th></th>
         <th>No Reg</th>
+        <th>Media</th>
         <th>Lokasi</th>
       </tr>
     
@@ -29,6 +30,11 @@
         <td>
           <a href="{{ route('kasus.arsip.edit', array($arsip->kasus_id, $arsip->arsip_id)) }}">
             {{ $arsip->no_reg }}
+          </a>
+        </td>
+        <td>
+          <a href="{{ route('kasus.arsip.edit', array($arsip->kasus_id, $arsip->arsip_id)) }}">
+            {{ $arsip->media }}
           </a>
         </td>
         <td>

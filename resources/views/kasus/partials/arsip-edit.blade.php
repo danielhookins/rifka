@@ -23,6 +23,19 @@
           {!! Form::Number('no_reg', null, array('class' => 'form-control')) !!}
         </div>
         <div class="form-group">
+          {!! Form::label('media', 'Media', array('class' => 'strongLabel')) !!}
+          {!! Form::select('media', array(
+            'Media'       =>  'Media',
+            'Tatap Muka'  =>  'Tatap Muka',
+            'Telepon'     =>  'Telepon',
+            'Outreach'    =>  'Outreach',
+            'Email'       =>  'Email',
+            'Internet'    =>  'Internet',
+            'Surat'       =>  'Surat',
+            'Lain'        =>  'Lain'
+          ), null, array('class' => 'form-control'))!!}
+        </div>
+        <div class="form-group">
           {!! Form::label('lokasi', 'Lokasi', array('class' => 'strongLabel')) !!}
           {!! Form::Text('lokasi', null, array('class' => 'form-control')) !!}
         </div>

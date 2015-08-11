@@ -9,10 +9,12 @@ class Arsip extends Model {
 
 	protected $table = 'arsip';
 	protected $primaryKey = 'arsip_id';
-	protected $fillable = ['kasus_id',
-							'kasus_id',
-                            'no_reg',
-							'lokasi'];
+	protected $fillable = [
+        'kasus_id',
+		'kasus_id',
+        'no_reg',
+        'media',
+		'lokasi'];
 	public $timestamps = false;
     protected $searchable = [
         'columns' => [

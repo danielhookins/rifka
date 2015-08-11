@@ -37,6 +37,7 @@ class ArsipController extends Controller {
 		$arsip = \rifka\Arsip::create([
 			'kasus_id' 		=> $kasus_id,
 			'no_reg' 		=> \Input::get('no_reg'),
+			'media' 		=> \Input::get('media'),
 			'lokasi' 	=> \Input::get('lokasi')
 		]);
 
@@ -80,6 +81,7 @@ class ArsipController extends Controller {
 	{
 		$arsip = Arsip::findOrFail($arsip_id);
 		$arsip->no_reg = \Input::get('no_reg');
+		$arsip->media = \Input::get('media');
 		$arsip->lokasi = \Input::get('lokasi');
 
 		$arsip->save();
@@ -104,9 +106,8 @@ class ArsipController extends Controller {
 		$results = \rifka\Arsip::search($query)->get();
         
     	return view('arsip.searchResults', array(
-    								'query'		=> $query,
-									'results'	=> $results
-									));
+				'query'		=> $query,
+				'results'	=> $results));
 	}
 
 	public function deleteArsip2($kasus_id)

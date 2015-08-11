@@ -1678,6 +1678,15 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Arsip',
+            'name'          => 'media',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The medium by which contact was made.',
+            'example'       => '"Tetap Muka"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Arsip',
             'name'          => 'lokasi',
             'primary_key'   => False,
             'foreign_key'   => '',

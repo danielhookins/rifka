@@ -17,6 +17,7 @@ class CreateArsipTable extends Migration {
 			$table->increments('arsip_id');
 			$table->integer('kasus_id')->nullable()->unsigned();
 			$table->integer('no_reg')->nullable();
+			$table->string('media')->nullable();
 			$table->string('lokasi')->nullable();
 		});
 	}
