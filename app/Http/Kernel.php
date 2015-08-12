@@ -24,9 +24,10 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'auth' => 'rifka\Http\Middleware\Authenticate',
-		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'rifka\Http\Middleware\RedirectIfAuthenticated',
+		'auth' 				=> 'rifka\Http\Middleware\Authenticate',
+		'auth.basic' 	=> 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+		'guest' 			=> 'rifka\Http\Middleware\RedirectIfAuthenticated',
+		'active' 			=> 'rifka\Http\Middleware\CheckActive'
 	];
 
 }

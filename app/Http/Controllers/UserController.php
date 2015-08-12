@@ -9,6 +9,21 @@ use DB;
 use rifka\KlienKasus;
 
 class UserController extends Controller {
+	
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// Only allow authenticated users
+		$this->middleware('auth');
+		
+		// Only allow active users
+		$this->middleware('active');
+		
+	}
 
 	public function index()
 	{

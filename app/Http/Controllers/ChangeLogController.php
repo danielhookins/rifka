@@ -11,6 +11,20 @@ class ChangeLogController extends Controller {
 
 	// TODO: Refactor - repeated code.
 
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
+	public function __construct()
+	{
+		// Only allow authenticated users
+		$this->middleware('auth');
+		
+		// Only allow active users
+		$this->middleware('active');
+	}
+
 	public function showClientChanges($id)
 	{
 

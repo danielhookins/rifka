@@ -15,7 +15,7 @@
       </ul>
 			<ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="#">Minta Login</a>
+          <a href="{{ url('/auth/register') }}">Minta Login</a>
         </li>
       </ul>
     </div><!--/.nav-collapse -->

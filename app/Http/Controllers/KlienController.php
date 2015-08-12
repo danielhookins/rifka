@@ -20,6 +20,9 @@ class KlienController extends Controller {
 	{
 		// Only allow authenticated users
 		$this->middleware('auth');
+		
+		// Only allow active users
+		$this->middleware('active');
 	}
 
 	/**

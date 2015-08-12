@@ -22,7 +22,11 @@ class KasusController extends Controller {
 	 */
 	public function __construct()
 	{
+		// Only allow authenticated users
 		$this->middleware('auth');
+		
+		// Only allow active users
+		$this->middleware('active');
 	}
 	
 	/**

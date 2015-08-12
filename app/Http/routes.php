@@ -237,7 +237,7 @@
 	Route::controllers([
 		'auth' => 'Auth\AuthController',
 		'password' => 'Auth\PasswordController']);
-	
+
 	// Log a user out
 	Route::get('logout', [
 		'as' => 'logout', 
@@ -264,16 +264,13 @@
 		'uses' => 'KamusController@index']);
 
 	Route::get('/developer', [
-		'middleware' => 'auth', 
 		'as' => 'developer',
 		'uses' => 'DeveloperController@index']);
 
 		Route::get('/developer/test', [
-		'middleware' => 'auth', 
 		'as' => 'developer.test',
 		'uses' => 'DeveloperController@test']);
 
 		Route::post('/developer/test', [
-			'middleware' => 'auth',
 			'as' => 'test.post',
 			'uses' => 'DeveloperController@postTest']);

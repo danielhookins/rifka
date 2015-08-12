@@ -2,7 +2,11 @@
 
 use rifka\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Validator;
+use rifka\User;
+use Session;
 
 class AuthController extends Controller {
 
@@ -51,10 +55,15 @@ class AuthController extends Controller {
 	 */
 	public function create(array $data)
 	{
+
+		// Add new-registration data to session flash.
+		Session::flash('new-registration', true);
+
 		return User::create([
 			'name' => $data['name'],
 			'email' => $data['email'],
 			'password' => bcrypt($data['password']),
+			'active' => false
 		]);
 	}
 

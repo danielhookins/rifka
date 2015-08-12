@@ -14,8 +14,11 @@ class SearchController extends Controller {
 	 */
 	public function __construct()
 	{
-		// Ensure only authorised users can search.
+		// Only allow authenticated users
 		$this->middleware('auth');
+		
+		// Only allow active users
+		$this->middleware('active');
 	}
 
 	/**
