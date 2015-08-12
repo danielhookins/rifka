@@ -27,11 +27,11 @@
         </li>
       @endif
 
-      @if($litigasi->udang_digunakan)
+      @if($litigasi->undang_digunakan)
         <li class="list-group-item">
             <p class="list-group-item-text">
-              <strong>Udang Digunakan</strong>
-              {{$litigasi->udang_digunakan}}
+              <strong>Undang Digunakan</strong>
+              {{$litigasi->undang_digunakan}}
             </p>
         </li>
       @else
@@ -39,7 +39,7 @@
           <p class="list-group-item-text">
             <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
               <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Udang Digunakan
+              Tambah Undang Digunakan
             </a>
           </p>
         </li>

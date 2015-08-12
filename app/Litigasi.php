@@ -9,7 +9,7 @@ class Litigasi extends Model {
   	public $timestamps = false;
 	protected $fillable = ['kasus_id',
 							'jenis_litigasi',
-							'udang_digunakan',
+							'undang_digunakan',
 							'kepolisian_wilayah',
 							'nama_penyidik',
 							'pengadilan_wilayah',

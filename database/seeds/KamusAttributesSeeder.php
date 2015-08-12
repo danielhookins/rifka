@@ -932,7 +932,7 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Litigasi',
-            'name'          => 'udang_digunakan',
+            'name'          => 'undang_digunakan',
             'primary_key'   => False,
             'foreign_key'   => '',
             'type'          => 'string',

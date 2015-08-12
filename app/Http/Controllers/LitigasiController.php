@@ -37,7 +37,7 @@ class LitigasiController extends Controller {
 		$litigasi = \rifka\Litigasi::create([
 			'kasus_id' 		=> $kasus_id,
 			'jenis_litigasi' 		=> \Input::get('jenis_litigasi'),
-			'udang_digunakan' 	=> \Input::get('udang_digunakan'),
+			'undang_digunakan' 	=> \Input::get('undang_digunakan'),
 			'kepolisian_wilayah'  => \Input::get('kepolisian_wilayah'),
 			'nama_penyidik' => \Input::get('nama_penyidik'),
 			'pengadilan_wilayah' => \Input::get('pengadilan_wilayah'),
@@ -87,7 +87,7 @@ class LitigasiController extends Controller {
 	{
 		$litigasi = Litigasi::findOrFail($litigasi_id);
 		$litigasi->jenis_litigasi = \Input::get('jenis_litigasi');
-		$litigasi->udang_digunakan = \Input::get('udang_digunakan');
+		$litigasi->undang_digunakan = \Input::get('undang_digunakan');
 		$litigasi->kepolisian_wilayah = \Input::get('kepolisian_wilayah');
 		$litigasi->nama_penyidik = \Input::get('nama_penyidik');
 		$litigasi->pengadilan_wilayah = \Input::get('pengadilan_wilayah');

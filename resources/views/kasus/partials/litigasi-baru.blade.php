@@ -21,8 +21,8 @@
           ), null, array('class' => 'form-control'))!!}
         </div>
         <div class="form-group">
-          {!! Form::label('udang_digunakan', 'Udang Digunakan', array('class' => 'strongLabel')) !!}
-          {!! Form::text('udang_digunakan', null, array('class' => 'form-control')) !!}
+          {!! Form::label('undang_digunakan', 'Undang Digunakan', array('class' => 'strongLabel')) !!}
+          {!! Form::text('undang_digunakan', null, array('class' => 'form-control')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('kepolisian_wilayah', 'Kepolisian Wilayah', array('class' => 'strongLabel')) !!}
