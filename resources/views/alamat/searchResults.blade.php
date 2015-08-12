@@ -16,9 +16,15 @@
 			<td>{{ $result->kecamatan }}</td>
 			<td>{{ $result->kabupaten }}</td>
 			<td>
-				<ul>
-					@forelse ($result->alamatKlien()->get() as $resultKlien)
-						<li><a href="{{ route('klien.index') }}/{{ $resultKlien->klien_id }}">{{ $resultKlien->nama_klien }}</a></li>
+				<ul class="no-bullets">
+					@forelse ($result->klien()->get() as $resultKlien)
+						<li>
+							<a href="{{ route('klien.index') }}/{{ $resultKlien->klien_id }}">
+								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+								&nbsp;
+								{{ $resultKlien->nama_klien }}
+							</a>
+						</li>
 					@empty
 						<li>Tidak ada klien.</li>
 					@endforelse

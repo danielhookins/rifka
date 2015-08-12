@@ -35,12 +35,15 @@
 				{{ route('seshPushKlien', $result->klien_id) }}/{{ $type }}
 				@endif
 				">
-				{!! $result->nama_klien !!}</a>
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					&nbsp;
+					{!! $result->nama_klien !!}
+				</a>
 		</td>
 		<td>{!! $result->no_telp !!}</td>
 		<td>
 			<ul>
-				@forelse ($result->alamatKlien()->get() as $resultAlamat)
+				@forelse ($result->alamat()->get() as $resultAlamat)
 					{{ $resultAlamat->alamat }}
 					@if ($resultAlamat->kecamatan)
 						<br />{{ $resultAlamat->kecamatan }}

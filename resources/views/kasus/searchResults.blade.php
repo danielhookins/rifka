@@ -14,12 +14,24 @@
  	</tr>
 	@forelse ($results as $result)
 		<tr>
-			<td><a href="{!! route('kasus.index') !!}/{{ $result->kasus_id }}">{!! $result->kasus_id !!}</a></td>
-			<td class="hidden-xs">{!! $result->jenis_kasus !!}</td>
 			<td>
-				<ul>
-					@forelse ($result->klienKasus()->get() as $klienKasus)
-						<li>{{ $klienKasus->nama_klien }}</li>
+				<a href="{!! route('kasus.index') !!}/{{ $result->kasus_id }}">
+				<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+					&nbsp;
+					{!! $result->kasus_id !!}
+				</a>
+			</td>
+			<td class="hidden-xs">
+				{!! $result->jenis_kasus !!}
+			</td>
+			<td>
+				<ul class="no-bullets">
+					@forelse ($result->klienKasus as $klienKasus)
+						<li>
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							&nbsp;
+							{{ $klienKasus->nama_klien }}
+						</li>
 					@empty
 						<li>Tidak ada klien.</li>
 					@endforelse
@@ -27,7 +39,7 @@
 			</td>
 			<td>
 				<ul>
-					@foreach ($result->arsip()->get() as $arsip)
+					@foreach ($result->arsip as $arsip)
 						<li>{{ $arsip->no_reg }}</li>
 					@endforeach
 				</ul>

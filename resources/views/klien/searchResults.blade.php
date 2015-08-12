@@ -17,11 +17,17 @@
 	@forelse ($results as $result)
 		<tr>
 			<td class="hidden-xs"><a href="{{ route('klien.index') }}/{{ $result->klien_id }}">{!! $result->klien_id !!}</a></td>
-			<td><a href="{{ route('klien.index') }}/{{ $result->klien_id }}">{!! $result->nama_klien !!}</a></td>
+			<td>
+				<a href="{{ route('klien.index') }}/{{ $result->klien_id }}">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					&nbsp;
+					{!! $result->nama_klien !!}
+				</a>
+			</td>
 			<td class="hidden-xs">{!! $result->no_telp !!}</td>
 			<td>
 				<ul>
-					@forelse ($result->alamatKlien()->get() as $resultAlamat)
+					@forelse ($result->alamat as $resultAlamat)
 						{{ $resultAlamat->alamat }}
 						@if ($resultAlamat->kecamatan)
 							<br />{{ $resultAlamat->kecamatan }}
