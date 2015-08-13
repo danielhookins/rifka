@@ -4,7 +4,6 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use rifka\User;
-//use Auth;
 use DB;
 use rifka\KlienKasus;
 
@@ -80,12 +79,52 @@ class UserController extends Controller {
 
 	}
 
-	private function management() 
+	/**
+	 *  Show the user management page.
+	 */
+	public function management() 
 	{
 
-		return 'TODO: build management page'
+		$users = User::all();
+		$inactive = User::where('active', 0)->get();
 
+		return view('user.manage')
+			->with('users', $users)
+			->with('inactive', $inactive);
 	}
 
+	/**
+	 *  Activate an inactive user.
+	 *
+	 *  @param int user_id The ID of the user to activate.
+	 */
+	public function activate($user_id)
+	{
+		$user =  User::findOrFail($user_id);
+		$user->active = true;
+		$user->save();
 
+		return redirect()->back();
+	}
+
+	/**
+	 *  Delete an inactive user
+	 *
+	 *  @param int user_id The ID fo the inactive user to delete
+	 */
+	public function deleteInactive($user_id)
+	{
+		$user = User::findOrFail($user_id);
+		
+		if($user->active == 0)
+		{
+			$user->delete();
+		}
+		
+		return redirect()->route('user.management');
+
+		// TODO: Add user feedback - eg. User deleted or
+		// user does not exist, or user is active. cannot delete.
+
+	}
 }

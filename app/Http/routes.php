@@ -5,6 +5,7 @@
  *
  */
 
+
   /**
    *  Show the site root.
    *   - Unauthenticated users will be directed using the Welcome Controller.
@@ -13,6 +14,7 @@
 	Route::get('/', [
 		'as' => 'root', 
 		'uses' => 'WelcomeController@index']);
+
 
 /*** RESOURCES ***************************************************************/
 	
@@ -44,7 +46,7 @@
 
 
 
-	/*** DELETE RESOURCES ***********************************************************/
+	/*** DELETES  *****************************************************************/
 
 	// Remove client from case
 	Route::post('kasus/{kasus_id}/removeklien2', [
@@ -122,10 +124,17 @@
 	Route::post('klien/{klien_id}/removealamat2', [
 		'as' => 'alamat2.delete',
 		'uses' => 'AlamatController@deleteAlamat2']);
-		// Delete counselors
+	// Delete counselors
 	Route::post('deleteKonselor2', [
 		'as' => 'konselor2.delete',
 		'uses' => 'KonselorController@deleteKonselor2']);
+	
+	// Delete inactive user
+	// TODO: Make this more secure
+	// so users cannot accidentally delete
+	Route::get('user/{user_id}/removeInactive', [
+		'as' => 'inactiveUser.delete',
+		'uses' => 'UserController@deleteInactive']);
 
 
 
@@ -289,9 +298,18 @@
 	 *  Show the user management page
 	 *  where authorised users can manage user accounts
 	 */
-	Route::get('user/management', [
+	Route::get('manage/users', [
 		'as' => 'user.management',
 		'uses' => 'UserController@management']);
+
+	/**
+	 *  Activate an inactive user.
+	 *
+	 *  @param int user_id The ID of the user to activate
+	 */
+	Route::get('user/{user_id}/activate', [
+		'as' => 'user.activate',
+		'uses' => 'UserController@activate']);
 
 	/*** DEVELOPER *************************************************************/
 	
