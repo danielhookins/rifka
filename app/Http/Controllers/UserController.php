@@ -80,4 +80,12 @@ class UserController extends Controller {
 
 	}
 
+	private function management() 
+	{
+
+		return 'TODO: build management page'
+
+	}
+
+
 }
