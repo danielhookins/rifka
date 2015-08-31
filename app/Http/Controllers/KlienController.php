@@ -56,10 +56,15 @@ class KlienController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//TODO: Ensure validation
-
+		$this->validate($request, [
+			'nama_klien' => 'required',
+			'kelamin' => 'required',
+			'tanggal_lahir' => 'date',
+			'no_telp' => 'numeric',
+			'email' => 'email'
+			]);
 		$user = Auth::user();
 		$returnPage = \Input::get('returnPage');
 

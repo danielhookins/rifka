@@ -1,21 +1,39 @@
 <h3>Informasi Pribadi</h3>
 
-<div class="form-group">
+<div class="form-group 
+	@if($errors->has('nama_klien')) has-error @endif">
 	{!! Form::label('nama_klien', 'Nama Klien', array('class' => 'strongLabel')) !!}
 	{!! Form::text('nama_klien', null, array(
 		'class' 		=> 'form-control',
 		'placeholder' 	=> 'Nama Klien',
-		'autofocus')) !!}
+		'autofocus', 'required')) !!}
+	@if($errors->has('nama_klien'))
+		<p class="help-block">
+			{{ $errors->first('nama_klien') }}
+		</p>
+	@endif
 </div>
 
-<div class="form-group form-inline">
+<div class="form-group form-inline 
+	@if($errors->has('kelamin')) has-error @endif">
 	{!! Form::radio('kelamin', 'Perempuan') !!} Perempuan 
 	{!! Form::radio('kelamin', 'Laki-laki') !!} Laki-laki
+	@if($errors->has('kelamin'))
+		<p class="help-block">
+			{{ $errors->first('kelamin') }}
+		</p>
+	@endif
 </div>
 
-<div class="form-group">
+<div class="form-group
+	@if($errors->has('tanggal_lahir')) has-error @endif">
 	{!! Form::label('tanggal_lahir', 'Tanggal Lahir', array('class' => 'strongLabel')) !!}
 	{!! Form::date('tanggal_lahir', null, array('class' => 'form-control date-picker')) !!}
+	@if($errors->has('tanggal_lahir'))
+		<p class="help-block">
+		{{ $errors->first('kelamin') }}
+		</p>
+	@endif
 </div>
 
 <div class="form-group">

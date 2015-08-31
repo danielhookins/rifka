@@ -1,8 +1,14 @@
 <h3>Informasi Kontak</h3>
 
-<div class="form-group">
+<div class="form-group
+	@if($errors->has('no_telp')) has-error @endif">
 	{!! Form::label('no_telp', 'Nomor Telpon', array('class' => 'strongLabel')) !!}
 	{!! Form::text('no_telp', null, array('class' => 'form-control','placeholder' => 'Nomor Telpon')) !!}
+	@if($errors->has('no_telp'))
+		<p class="help-block">
+			{{ $errors->first('no_telp') }}
+		</p>
+	@endif
 </div>
 
 <div class="form-group">	
@@ -143,7 +149,13 @@
 	), null, array('class' => 'form-control')) !!}
 </div>
 
-<div class="form-group">
+<div class="form-group
+	@if($errors->has('email')) has-error @endif">
 	{!! Form::label('email', 'Email', array('class' => 'strongLabel')) !!}
 	{!! Form::text('email', null, array('class' => 'form-control','placeholder' => 'Email')) !!}
+	@if($errors->has('email'))
+		<p class="help-block">
+			{{ $errors->first('email') }}
+		</p>
+	@endif
 </div>

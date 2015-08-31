@@ -5,6 +5,19 @@
   <h2>Klien Baru</h2>
 
   <div class="row">
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+  </div>
+
+
+  <div class="row">
   	<div class="hidden-xs col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
   	@include('klien.partials.form-create.step-wizard')
   	</div>
