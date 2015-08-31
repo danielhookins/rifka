@@ -12,7 +12,7 @@ use rifka\KlienKasus;
 class KlienController extends Controller {
 
 	/**
-	 * Create a new controller instance.
+	 * Create a new client controller instance.
 	 *
 	 * @return void
 	 */
@@ -26,23 +26,26 @@ class KlienController extends Controller {
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a list of all clients.
 	 *
 	 * @return Response
 	 */
 	public function index()
 	{
-		//
-		$semuaKlien = Klien::orderBy('klien_id', 'DESC')->paginate(15);
+		// Retrieve clients from database
+		$semuaKlien = Klien::
+			orderBy('klien_id', 'DESC')	// Order by most recent
+			->paginate(15);							// Display 15 per page
 
 		return view('klien.index', array(
-			'search'	 => True,
-			'list'		 => True,
-			'semuaKlien' => $semuaKlien));
+			'search'	 	 => True, 			// Show the search widget
+			'list'			 => True, 			// Show the list of clients
+			'semuaKlien' => $semuaKlien // The complete list of clients available
+			));
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new client.
 	 *
 	 * @return Response
 	 */
@@ -52,20 +55,21 @@ class KlienController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created client in the database.
 	 *
 	 * @return Response
 	 */
 	public function store(Request $request)
 	{
+		// Validate input
 		$this->validate($request, [
-			'nama_klien' => 'required',
-			'kelamin' => 'required',
+			'nama_klien' 		=> 'required',
+			'kelamin' 			=> 'required',
 			'tanggal_lahir' => 'date',
-			'no_telp' => 'numeric',
-			'email' => 'email'
+			'no_telp' 			=> 'numeric',
+			'email' 				=> 'email'
 			]);
-		$user = Auth::user();
+
 		$returnPage = \Input::get('returnPage');
 
 		// Create new Client
@@ -86,20 +90,18 @@ class KlienController extends Controller {
 				'dirujuk_oleh' 			=> \Input::get('dirujuk_oleh')
 			]);
 
-		// Log Activity
-		// TODO: look at using 'Events' for logging instead
-        $activity = \rifka\Activity::create([
-				'user_id' => $user->id,
-				'klien_id' => $klienBaru->klien_id,
-				'action' => "Created Client"
-				]);
-
 		// Create new Address
 		$provinsi = \Input::get('provinsi');
-		if ($provinsi == 'Yogyakarta') {
+
+		// Address is Yogyakarta
+		if ($provinsi == 'Yogyakarta') 
+		{
 			$kecamatan = \Input::get('kecamatan');
 			$kabupaten = \Input::get('kabupaten');
-		} else {
+		} 
+		// Address is not Yogyakarta
+		else 
+		{
 			$kecamatan = '';
 			$kabupaten = \Input::get('provinsi');
 		}
@@ -130,8 +132,8 @@ class KlienController extends Controller {
 	{
 		if($klien = Klien::find($id))
 		{
-			$kasus2 = Klien::find($id)->klienKasus;
-			$alamat2 = Klien::find($id)->alamatKlien;
+			$kasus2 = Klien::find($id)->klienKasus;		// Get the client's cases
+			$alamat2 = Klien::find($id)->alamatKlien;	// Get the client's addresses
 
 			return view('klien.show', array(
 				'klien' 	=> $klien,
@@ -143,7 +145,7 @@ class KlienController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified client.
 	 *
 	 * @param  int  $klien_id
 	 * @return Response
@@ -153,10 +155,8 @@ class KlienController extends Controller {
 		if($section == 'kontak')
 		{
 			$request->session()->flash('edit-kontak', True);
-
 			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 		}
-
 
 		$klien = Klien::findOrFail($klien_id);
 		$kasus2 = Klien::find($klien_id)->korbanKasus;
@@ -168,7 +168,7 @@ class KlienController extends Controller {
 	}
 
 	/**
-	 * Update the Klien resource in the database.
+	 * Update the client in the database.
 	 *
 	 * @param  int  $klien_id
 	 * @param  string $section The section of client data to update
@@ -196,19 +196,11 @@ class KlienController extends Controller {
 		$klien = Klien::findOrFail($klien_id);
 		$attributes = array_keys($klien->getAttributes());
 
-		// Update Klien and Log Attribute Changes
 		// TODO: Fix Bug: If user clears an input it will not be updated.
-		// TODO: look at using 'Events' for logging instead
 		foreach($attributes as $attribute)
 		{
 			if(\Input::get($attribute) && $klien->$attribute != \Input::get($attribute))
 			{
-				$attributeChange = \rifka\AttributeChange::create([
-					'user_id' => $user->id,
-					'klien_id' => $klien->klien_id,
-					'attribute_name' => $attribute,
-					'old_attribute_value' => $klien->$attribute,
-      		'new_attribute_value' => \Input::get($attribute)]);
 				$klien->$attribute = \Input::get($attribute);
 				$klien->save();
 			}
@@ -219,7 +211,7 @@ class KlienController extends Controller {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified client from the database.
 	 *
 	 * @param  int  $id
 	 * @return Response
@@ -232,32 +224,12 @@ class KlienController extends Controller {
 
 		foreach ($klienKasus2->select('kasus_id')->get() as $klienKasus)
 		{
-			$kasus_id = $klienKasus->kasus_id; // Save id for logging
-			
 				$klienKasus->delete();
-				
-				// Log Activity
-				// TODO: look at using 'Events' for logging instead
-
-	      $logRemoveClient = \rifka\Activity::create([
-					'user_id' => $user->id,
-					'klien_id' => $klien_id,
-					'kasus_id' => $kasus_id,
-					'action' => "Removed Client"
-					]);
 		}
 		
 		$klien->delete();
 		// TODO: Make sure all the associated things are deleted too
 		// (eg. the clients address)
-
-		// Log Activity
-		// TODO: look at using 'Events' for logging instead
-        $logDeleteClient = \rifka\Activity::create([
-				'user_id' => $user->id,
-				'klien_id' => $klien_id,
-				'action' => "Deleted Client"
-				]);
 
 		return redirect()->route('home')
 			->with('success', 'Klien #'.$klien_id.' has been deleted.');

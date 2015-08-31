@@ -6,6 +6,7 @@ use DB;
 use rifka\KlienKasus;
 use Illuminate\Http\Request;
 use Session;
+use rifka\Library\Common;
 
 class DeveloperController extends Controller {
 
@@ -34,6 +35,7 @@ class DeveloperController extends Controller {
 	{
 
 		Session::flash('test', true);
+		return Common::getTest();
 
 		dd(Session::all());
 
