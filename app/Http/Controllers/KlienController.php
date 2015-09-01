@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use rifka\KlienKasus;
-use rifka\Library\Common;
+use rifka\Library\ExcelUtils;
 
 class KlienController extends Controller {
 
@@ -251,7 +251,7 @@ class KlienController extends Controller {
 	 */
 	public function exportXLS($klien_id)
 	{
-		return Common::exportClientInfoXLS($klien_id);
+		return ExcelUtils::exportClientInfoXLS($klien_id);
 	}
 
 }

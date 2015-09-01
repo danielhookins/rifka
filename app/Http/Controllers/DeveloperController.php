@@ -6,7 +6,7 @@ use DB;
 use rifka\KlienKasus;
 use Illuminate\Http\Request;
 use Session;
-use rifka\Library\Common;
+use rifka\Library\ExcelUtils;
 use Excel;
 use rifka\Klien;
 

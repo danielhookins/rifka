@@ -6,12 +6,7 @@ use rifka\Alamat;
 use rifka\Kasus;
 use Excel;
  
-class Common{
- 
-   public static function passTest() 
-   {
-   		return 'test passed!';
-   }
+class ExcelUtils{
 
    /**
     *	Export a client's information to an Excel file.

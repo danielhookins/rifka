@@ -10,7 +10,7 @@
   </div>
 
 		<li class="list-group-item">
-			<a style="color:blue;" href="{{route('klien.xls', $klien->klien_id)}}">
+			<a href="{{route('klien.xls', $klien->klien_id)}}">
 				<span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
 				Ke Excel
 			</a>
