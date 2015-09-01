@@ -255,6 +255,14 @@
 		'as' => 'klien.delete',
 		'uses' => "KlienController@confirmDestroy"]);
 
+	/**
+	 *	Export a client's personal information to an Excel file.
+	 *
+	 *	@param int klien_id - The ID of the client 
+	 */
+	Route::get('klien/{klien_id}/exportXLS', [
+		'as' => 'klien.xls',
+		'uses' => 'KlienController@exportXLS']);
 
 	/*** USER ******************************************************************/
 	

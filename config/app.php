@@ -139,6 +139,8 @@ return [
 		'Collective\Html\HtmlServiceProvider',
 		// For 5.1 Upgrade
 		'Illuminate\Broadcasting\BroadcastServiceProvider',
+		// LaravelExcel
+		'Maatwebsite\Excel\ExcelServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -199,6 +201,8 @@ return [
 		// Laravel Collective:
 		'Form' 		=> 'Collective\Html\FormFacade',
 		'HTML'		=> 'Collective\Html\HtmlFacade',
+		// Laravel Excel
+		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 
 	],
 

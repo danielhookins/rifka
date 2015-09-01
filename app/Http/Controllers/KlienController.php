@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use rifka\KlienKasus;
+use rifka\Library\Common;
 
 class KlienController extends Controller {
 
@@ -242,6 +243,15 @@ class KlienController extends Controller {
 	public function confirmDestroy($klien_id)
 	{
 		return view('klien.destroy', array('klien_id' => $klien_id));
+	}
+
+	/**
+	 *  Export a client's information to an Excel file
+	 *
+	 */
+	public function exportXLS($klien_id)
+	{
+		return Common::exportClientInfoXLS($klien_id);
 	}
 
 }

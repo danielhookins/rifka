@@ -10,11 +10,19 @@
   </div>
 
 		<li class="list-group-item">
+			<a style="color:blue;" href="{{route('klien.xls', $klien->klien_id)}}">
+				<span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
+				Ke Excel
+			</a>
+		</li>
+
+		<li class="list-group-item">
 			<a style="color:red;" href="{{route('klien.delete', $klien->klien_id)}}">
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 				Menghapus
 			</a>
 		</li>
+
 	</ul>
 
 </div> <!-- / Options Panel -->	
