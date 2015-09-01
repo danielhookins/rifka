@@ -12,6 +12,7 @@ use Auth;
 use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
+use rifka\Library\ExcelUtils;
 
 class KasusController extends Controller {
 
@@ -528,6 +529,15 @@ class KasusController extends Controller {
 			}
 		}
 		return Redirect::to(URL::previous() . "#konselor");
+	}
+
+	/**
+	 *  Export case information to an Excel file
+	 *
+	 */
+	public function exportXLS($kasus_id)
+	{
+		return ExcelUtils::exportCaseInfoXLS($kasus_id);
 	}
 
 }

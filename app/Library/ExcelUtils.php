@@ -5,6 +5,7 @@ use rifka\Klien;
 use rifka\Alamat;
 use rifka\Kasus;
 use Excel;
+use rifka\Library\Rifka;
  
 /**
  *	A Library of Utilities for working with Excel files.
@@ -106,6 +107,101 @@ class ExcelUtils{
 
  		})->export('xls'); // Export the created Excel file
  	
+ 	}
+
+ 	/**
+ 	 *	Export case information to an Excel file.
+ 	 * 
+ 	 * @param int $kasus_id - The ID number of the case.
+ 	 * @return An Excel document containing case information.
+ 	 */
+ 	public static function exportCaseInfoXLS($kasus_id)
+ 	{
+
+ 		$caseInfo = Rifka::getCaseArrays($kasus_id);
+
+ 		// Check if an is multi-dimensional
+ 		function isMulti($array){
+ 			if(is_array($array)){
+ 				foreach($array as $item) {
+ 					if(is_array($item)){
+ 						return true;
+ 					} else {
+ 						return false;
+ 					}
+ 				}
+ 			} else {
+ 				return false;
+ 			}
+ 		}
+
+ 		// Create an Excel file
+ 		$file = Excel::create('Kasus_'.$caseInfo["kasus"]["kasus_id"], 
+ 			function($excel) use($caseInfo) 
+	 		{
+
+		 		foreach ($caseInfo as $key => $value)
+		 		{
+		 			
+		 			if($value) // Only use non null values
+		 			{
+	 				
+		 				// Create an Excel Sheet
+		 				$excel->sheet($key, function($sheet) use($value) 
+			  		{
+						  
+			  			// TODO: Rename variables for clarity
+			  			// Clean up value array
+			  			$value = array_filter($value);
+
+						  // Append value details to next row
+						  if(isMulti($value))
+						  {
+						  	
+						  	// Set keys as column titles
+						  	$sheet->appendRow(array_keys($value[0])); // column names
+
+						  	// Make titles bold
+						  	$sheet->row($sheet->getHighestRow(), function ($row) 
+						  	{
+						  	    $row->setFontWeight('bold');
+						  	});
+
+						  	foreach($value as $data){
+
+						  		// TODO: Append Pivot data (jenis klien) to array
+						  		if(array_key_exists("pivot", $data)){
+						  			unset($data['pivot']);
+						  		}
+
+						  		$sheet->appendRow($data);
+						  	}
+
+						  } else {
+						  	
+						  	// Set keys as column titles
+						  	$sheet->appendRow(array_keys($value)); // column names
+
+						  	// Make titles bold
+						  	$sheet->row($sheet->getHighestRow(), function ($row) 
+						  	{
+						  	    $row->setFontWeight('bold');
+						  	});
+
+						  	// Append Value to row
+						  	$sheet->appendRow($value);
+						  }
+
+			  		}); // End of Create Excel Sheet
+
+		 			} // End of using non-null values 
+		 			
+		 		} // End of CaseInfo
+
+		 	}); // End of Create Excel File
+
+ 		return $file->export('xls');;
+
  	}
 
 }

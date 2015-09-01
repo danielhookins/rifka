@@ -212,6 +212,15 @@
 		'as' => 'kasus.autoupdate',
 		'uses' => "KasusController@autoUpdate"]);
 
+	/**
+	 *	Export case information to an Excel file.
+	 *
+	 *	@param int kasus_id - The ID of the case 
+	 */
+	Route::get('kasus/{kasus_id}/exportXLS', [
+		'as' => 'kasus.xls',
+		'uses' => 'KasusController@exportXLS']);
+
 
 
 	/*** KLIEN *****************************************************************/
