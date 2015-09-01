@@ -6,6 +6,9 @@ use rifka\Alamat;
 use rifka\Kasus;
 use Excel;
  
+/**
+ *	A Library of Utilities for working with Excel files.
+ */
 class ExcelUtils{
 
    /**
