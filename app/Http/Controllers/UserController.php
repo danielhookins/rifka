@@ -24,60 +24,18 @@ class UserController extends Controller {
 		
 	}
 
-	public function index()
-	{
-		//
-	}
-
 	public function show($user_id)
 	{
 		if ($user = User::find($user_id))
 		{
 			return view('user.show', [
-				'user' => $user,
-				'log' => $this->getLog($user_id)]);
+				'user' => $user]);	
 		}
 		
 		return redirect('404');
 
 	}
 
-	private function getLog($user_id)
-	{
-		// Get a union of Activity and Attribute_Change tables
-		$activity = DB::table('activity')
-			->join('users', 'user_id', '=', 'id')
-			->select(DB::raw('
-				user_id,
-				users.name as username,
-				klien_id,
-				kasus_id,
-				action,
-				null as attribute_name,
-				null as old_attribute_value,
-				null as new_attribute_value,
-				activity.created_at as created_at'))
-				->where('user_id', $user_id);
-		$log = DB::table('attribute_change')
-			->join('users', 'user_id', '=', 'id')
-			->select(DB::raw('
-				user_id,
-				users.name as username,
-				klien_id,
-				kasus_id,
-				null as action,
-				attribute_name,
-				old_attribute_value,
-				new_attribute_value,
-				attribute_change.created_at as created_at'))
-			->where('user_id', $user_id)
-			->union($activity)
-			->orderBy('created_at', 'desc')
-			->get();
-
-		return $log;
-
-	}
 
 	/**
 	 *  Show the user management page.
@@ -108,6 +66,7 @@ class UserController extends Controller {
 
 	/**
 	 *  Delete an inactive user
+	 *	- ensures user is not active before deleteing.
 	 *
 	 *  @param int user_id The ID fo the inactive user to delete
 	 */
@@ -151,6 +110,8 @@ class UserController extends Controller {
 	public function update($user_id)
 	{
 
+		$user = User::findOrFail($user_id);
+
 		// Delete button clicked
 		if(\Input::get('deleteBtn'))
 		{
@@ -170,6 +131,16 @@ class UserController extends Controller {
 			{
 				// Set the type of user
 				$this->setJenis($user_id, \Input::get('jenis'));
+
+				// Add new counsellors to the counsellor table
+				if(\Input::get('jenis') == "Konselor")
+				{
+					$konselor = \rifka\Konselor::create([
+						'nama_konselor' => $user->name,
+						'user_id' 			=> $user_id
+						]);
+				}
+
 			}
 		}
 

@@ -58,7 +58,6 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> {!! Auth::user()->name !!} <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="{!! route('user.show', Auth::user()->id) !!}">Profile</a></li>
-            <li><a href="#">Preferences</a></li>
             <li><a href="{{ route('logout') }}">Log Out</a></li>
           </ul>
         </li>
