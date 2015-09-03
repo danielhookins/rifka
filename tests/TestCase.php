@@ -2,6 +2,8 @@
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase {
 
+	protected $baseUrl = ''; // Required for Laravel 5.1
+
 	/**
 	 * Creates the application.
 	 *
