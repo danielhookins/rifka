@@ -82,7 +82,7 @@ class UserController extends Controller {
 	/**
 	 *  Show the user management page.
 	 */
-	public function management() 
+	public function showUserManagement() 
 	{
 
 		$users = User::all();
@@ -98,13 +98,12 @@ class UserController extends Controller {
 	 *
 	 *  @param int user_id The ID of the user to activate.
 	 */
-	public function activate($user_id)
+	private function setActiveStatus($user_id, $status)
 	{
 		$user =  User::findOrFail($user_id);
-		$user->active = true;
-		$user->save();
+		$user->active = $status;
 
-		return redirect()->back();
+		return $user->save();
 	}
 
 	/**
@@ -112,7 +111,7 @@ class UserController extends Controller {
 	 *
 	 *  @param int user_id The ID fo the inactive user to delete
 	 */
-	public function deleteInactive($user_id)
+	private function deleteInactive($user_id)
 	{
 		$user = User::findOrFail($user_id);
 		
@@ -121,10 +120,61 @@ class UserController extends Controller {
 			$user->delete();
 		}
 		
-		return redirect()->route('user.management');
+		return;
 
 		// TODO: Add user feedback - eg. User deleted or
 		// user does not exist, or user is active. cannot delete.
 
 	}
+
+	/**
+	 *	Set the type of user.
+	 *	@param int $user_id - The ID of the user
+	 *	@param string $jenis - The new user type
+	 *	@return boolean - Saved changes to record?
+	 */
+	private function setJenis($user_id, $jenis)
+	{
+		$user = User::findOrFail($user_id);
+		
+		$user->jenis = $jenis;
+
+		return $user->save();
+	}
+
+	/**
+	 *	Update user details.
+	 *
+	 *	@param int $user_id - The ID of the user.
+	 *	@return redirect back
+	 */
+	public function update($user_id)
+	{
+
+		// Delete button clicked
+		if(\Input::get('deleteBtn'))
+		{
+			$this->deleteInactive($user_id);
+		} 
+		
+		// Activate button clicked
+		else if(\Input::get('activateBtn'))
+		{
+			if(\Input::get('activate') == '1')
+			{
+				// Activate the user
+				$this->setActiveStatus($user_id, true);
+			}
+
+			if(\Input::get('jenis') != null)
+			{
+				// Set the type of user
+				$this->setJenis($user_id, \Input::get('jenis'));
+			}
+		}
+
+		return redirect()->route('user.management');
+
+	}
+
 }

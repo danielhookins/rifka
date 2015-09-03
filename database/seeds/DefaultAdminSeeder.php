@@ -17,8 +17,9 @@ class DefaultAdminSeeder extends Seeder {
         rifka\User::create([
         	'name' 			=> env('DEFAULT_USER_NAME'),
         	'email'			=> env('DEFAULT_USER_EMAIL'),
-        	'password'	=> Hash::make(env('DEFAULT_USER_PASSWORD')),
-        	'active'		=> true
+        	'password'	    => Hash::make(env('DEFAULT_USER_PASSWORD')),
+        	'active'		=> true,
+            'jenis'         => "Manager"
         	]);
     }
 

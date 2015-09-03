@@ -128,13 +128,6 @@
 	Route::post('deleteKonselor2', [
 		'as' => 'konselor2.delete',
 		'uses' => 'KonselorController@deleteKonselor2']);
-	
-	// Delete inactive user
-	// TODO: Make this more secure
-	// so users cannot accidentally delete
-	Route::get('user/{user_id}/removeInactive', [
-		'as' => 'inactiveUser.delete',
-		'uses' => 'UserController@deleteInactive']);
 
 
 
@@ -317,16 +310,17 @@
 	 */
 	Route::get('manage/users', [
 		'as' => 'user.management',
-		'uses' => 'UserController@management']);
+		'uses' => 'UserController@showUserManagement']);
 
 	/**
-	 *  Activate an inactive user.
+	 *  Update a user.
 	 *
-	 *  @param int user_id The ID of the user to activate
+	 *  @param int user_id The ID of the user to update
 	 */
-	Route::get('user/{user_id}/activate', [
-		'as' => 'user.activate',
-		'uses' => 'UserController@activate']);
+	Route::post('user/{user_id}/update', [
+		'as' => 'user.update',
+		'uses' => 'UserController@update']);
+
 
 	/*** DEVELOPER *************************************************************/
 	

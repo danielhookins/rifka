@@ -25,7 +25,7 @@
 						@if($errors->has('name')) has-error @endif">
 							<label class="col-md-4 control-label">Nama</label>
 							<div class="col-md-6">
-								<input type="text" class="form-control" name="name" value="{{ old('name') }}">
+								<input type="text" class="form-control" name="name" value="{{ old('name') }}" autocomplete="off">
 								@if($errors->has('name'))
 									<p class="help-block">
 										{{ $errors->first('name') }}
@@ -38,7 +38,7 @@
 						@if($errors->has('email')) has-error @endif">
 							<label class="col-md-4 control-label">Alamat E-Mail</label>
 							<div class="col-md-6">
-								<input type="email" class="form-control" name="email" value="{{ old('email') }}">
+								<input type="email" class="form-control" name="email" value="{{ old('email') }}" autocomplete="off">
 								@if($errors->has('email'))
 									<p class="help-block">
 										{{ $errors->first('email') }}
@@ -51,7 +51,7 @@
 						@if($errors->has('password')) has-error @endif">
 							<label class="col-md-4 control-label">Password</label>
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
+								<input type="password" class="form-control" name="password" autocomplete="off">
 								@if($errors->has('password'))
 									<p class="help-block">
 										{{ $errors->first('password') }}
@@ -64,7 +64,7 @@
 						@if($errors->has('password_confirmation')) has-error @endif">
 							<label class="col-md-4 control-label">Confirmasi Password</label>
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password_confirmation">
+								<input type="password" class="form-control" name="password_confirmation" autocomplete="off">
 								@if($errors->has('password_confirmation'))
 									<p class="help-block">
 										{{ $errors->first('password_confirmation') }}

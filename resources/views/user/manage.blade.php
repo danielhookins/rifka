@@ -6,4 +6,6 @@
 		@include('user.partials.inactive')
 	@endif
 
+	@include('user.partials.list')
+
 @endsection
