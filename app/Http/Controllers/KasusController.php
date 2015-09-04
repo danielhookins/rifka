@@ -146,48 +146,52 @@ class KasusController extends Controller {
 
 
 	/**
-	 * Remove the specified resource from storage.
+	 *	Remove the specified case from the database.
+	 *	This also removes the related entries in the klien_kasus (client_case) table.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param  int  $kasus_id
+	 * @return redirect home with success or return Exception $e
 	 */
 	public function destroy($kasus_id)
 	{
 		$kasus = Kasus::findOrFail($kasus_id);
 		$klienKasus2 = KlienKasus::where('kasus_id', $kasus_id);
-		$user = Auth::user();
+		
+		try {
 
-		foreach ($klienKasus2->select('kasus_id')->get() as $klienKasus)
-		{
-			$klien_id = $klienKasus->klien_id; // Save id for logging
-			
-			$klienKasus->delete();
-			
-			// Log Activity
-			// TODO: look at using 'Events' for logging instead
-      $logRemoveClient = \rifka\Activity::create([
-				'user_id' => $user->id,
-				'klien_id' => $klien_id,
-				'kasus_id' => $kasus_id,
-				'action' => "Removed Client"
-				]);
+			foreach ($klienKasus2->select('kasus_id')->get() as $klienKasus)
+			{
+				$klien_id = $klienKasus->klien_id; // Save id for logging
+				$klienKasus->delete();
+			}
+
+			$kasus->delete();
+
+			return redirect()->route('home')
+				->with('success', 'Kasus #'.$kasus_id.' has been deleted.');
+
+		} catch (Exception $e) {
+
+			return $e;
+
 		}
-
-		$kasus->delete();
-
-		return redirect()->route('home')
-			->with('success', 'Kasus #'.$kasus_id.' has been deleted.');
 
 	}
 
+
 	/**
-	 * Show the confirm delete dialog
-	 * asking the user if they really want to delete?
+	 *	Show the confirm delete dialog
+	 *	asking the user if they really want to delete?
+	 *
+	 *	@param int $kasus_id
 	 */
 	public function confirmDestroy($kasus_id)
 	{
+	
 		return view('kasus.destroy', array('kasus_id' => $kasus_id));
+	
 	}
+
 
 	public function search(Request $request)
 	{
