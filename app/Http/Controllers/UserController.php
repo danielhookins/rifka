@@ -129,11 +129,14 @@ class UserController extends Controller {
 
 			if(\Input::get('jenis') != null)
 			{
-				// Set the type of user
-				$this->setJenis($user_id, \Input::get('jenis'));
+				$jenis = \Input::get('jenis');
 
-				// Add new counsellors to the counsellor table
-				if(\Input::get('jenis') == "Konselor")
+				// Set the type of user
+				$this->setJenis($user_id, $jenis);
+
+				// Add new counsellors and managers to the counsellor table
+				// Business logic: this assumes that all managers are also counselors
+				if($jenis == "Konselor" || $jenis == "Manager")
 				{
 					$konselor = \rifka\Konselor::create([
 						'nama_konselor' => $user->name,
