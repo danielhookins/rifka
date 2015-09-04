@@ -1,19 +1,20 @@
 <?php namespace rifka\Http\Controllers;
 
+use Auth;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use rifka\Kasus;
 use rifka\KlienKasus;
 use rifka\KonselorKasus;
 use rifka\BentukKekerasan;
 use rifka\LayananDibutuhkan;
-use Auth;
-use DB;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\URL;
 use rifka\Library\ExcelUtils;
 use rifka\Library\KasusUtils;
+
 
 class KasusController extends Controller {
 
@@ -30,6 +31,7 @@ class KasusController extends Controller {
 		// Only allow active users
 		$this->middleware('active');
 	}
+
 	
 	/**
 	 * Display a listing of all cases 
@@ -48,6 +50,7 @@ class KasusController extends Controller {
 			));
 	}
 
+
 	/**
 	 * Show the form for creating a new case.
 	 *
@@ -57,6 +60,7 @@ class KasusController extends Controller {
 	{
 		return view('kasus.create');
 	}
+
 
 	/**
 	 * Store a newly created case in the database.
@@ -85,116 +89,61 @@ class KasusController extends Controller {
 
 	}
 
+
 	/**
-	 * Display the specified resource.
+	 * Display the specified case.
 	 *
-	 * @param  int  $id
+	 * @param  int  $kasus_id
 	 * @return Response
 	 */
 	public function show(Request $request, $kasus_id)
 	{
+		$kasus = \rifka\Kasus::findOrFail($kasus_id);
+	
+		// Flash suggestions to aid user-experience
+		$request->session()->flash("suggestions", KasusUtils::getSuggestions($kasus));
 		
-		//Ensure case exists
-		if($kasus = \rifka\Kasus::find($kasus_id))
-		{	
-			// only allow for one set of bentuk kekerasan
-			$bentukKekerasan = \rifka\BentukKekerasan::where('kasus_id', $kasus_id)->first();
-
-			// If no clients are attached to the case
-			// suggest that the user adds a client.
-			if(empty($kasus->klienKasus->toArray())) 
-			{
-				$suggestion = "Kasus ini belum ada klien.  Anda mau <a href='" . route('tambah.klien', 'klien') . "#klien-kasus'>tambah klien</a> sekarang?";
-
-				$request->session()->flash("suggestion", $suggestion);
-			}
-
-			return view('kasus.show', array('kasus' => $kasus))
-				->with('bentukKekerasan', $bentukKekerasan);
-		}
-
-		return redirect('404');
-
+		return view('kasus.show', array('kasus' => $kasus));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id, $section = 'all')
-	{
-		$kasus = Kasus::findOrFail($id);
 
-		return view('kasus.edit', array(
-			'kasus' => $kasus,
-			'section' => $section));
+	/**
+	 *	Show the form for editing the specified case.
+	 *	** This is not currently in use **
+	 *
+	 *	@param int $kasus_id
+	 *	@return redirect - To Case Page.
+	 */
+	public function edit($kasus_id)
+	{
+		return redirect()->route('kasus.show', $kasus_id);
 	}
 
+
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified case in the database.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param  int  $kasus_id
+	 * @return redirect to the specified case page.
 	 */
-	public function update($id)
+	public function update($kasus_id)
 	{
-		//TODO: Ensure validation
 
-		$user = Auth::user();
+		try {
+	
+			KasusUtils::updateCase($kasus_id, \Input::get());
+			
+			return redirect()->route('kasus.show', $kasus_id)
+				->with('success', 'Kasus updated.');
+	
+		} Catch (Exception $e) {
+			
+			return $e
+	
+		}
 		
-		// UPDATE KASUS
-		$kasus = Kasus::findOrFail($id);
-		$attributes = array_keys($kasus->getAttributes());
+	}
 
-		// Update Kasus and Log Attribute Changes
-		// TODO: look at using 'Events' for logging instead
-		foreach($attributes as $attribute)
-		{
-			if(\Input::get($attribute) && $kasus->$attribute != \Input::get($attribute))
-			{
-				$attributeChange = \rifka\AttributeChange::create([
-					'user_id' => $user->id,
-					'kasus_id' => $kasus->kasus_id,
-					'attribute_name' => $attribute,
-					'old_attribute_value' => $kasus->$attribute,
-					'new_attribute_value' => \Input::get($attribute)]);
-				
-				$kasus->$attribute = \Input::get($attribute);
-				$kasus->save();
-			}
-		}
-
-		// UPDATE LAYANAN DIBUTUHKAN
-		// TODO: [refactor] duplicate code
-		if ($layanan_dbth_id = \Input::get('layanan_dbth_id')) 
-		{
-			$layanan = LayananDibutuhkan::findOrFail($layanan_dbth_id);
-			$attributes = array_keys($layanan->getAttributes());
-
-			foreach($attributes as $attribute)
-			{
-				
-				if($layanan->$attribute != \Input::get($attribute))
-				{
-
-					$attributeChange = \rifka\AttributeChange::create([
-						'user_id' => $user->id,
-						'kasus_id' => $kasus->kasus_id,
-						'attribute_name' => $attribute,
-						'old_attribute_value' => $layanan->$attribute,
-						'new_attribute_value' => \Input::get($attribute)]);
-					
-					$layanan->$attribute = \Input::get($attribute);
-					$layanan->save();
-				}
-			}
-		}
-
-		return redirect()->route('kasus.show', $id)
-			->with('success', 'Kasus updated.');
-		}
 
 	/**
 	 * Remove the specified resource from storage.

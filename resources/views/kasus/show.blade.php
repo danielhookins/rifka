@@ -26,12 +26,16 @@
 	</div>
 	@endif
 
-	@if(Session::has('suggestion'))
+	@if(Session::has('suggestions') && !empty(Session::get('suggestions')))
 	<div class="alert alert-warning alert-dismissible" role="alert">
 	  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
-	  {!! Session::get('suggestion') !!}
+		<ul>
+		@foreach (Session::get('suggestions') as $suggestion)
+			<li>{!! $suggestion !!}</li>
+		@endforeach
+		</ul>
 	</div>
 	@endif
 
