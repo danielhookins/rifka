@@ -31,34 +31,26 @@ class KasusController extends Controller {
 	}
 	
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of all cases 
+	 * and the ability to search for a specific case.
 	 *
-	 * @return Response
+	 * @return view - The case index page
 	 */
 	public function index()
 	{
 		$semuaKasus = \rifka\Kasus::orderBy('kasus_id', 'DESC')->paginate(15);
 
-		if ($semuaKasus->count()) {
-			$attributes = $semuaKasus->first()->toArray();
-		} 
-		else 
-		{
-			$attributes = array();
-		}
-		
-
 		return view('kasus.index', array(
-			'search'	 => True,
-			'list'		 => True,
+			'search'	 => true, // show the search widget 
+			'list'		 => true, // show a list of all cases
 			'semuaKasus' => $semuaKasus,
-			'attributes' => $attributes));
+			));
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new case.
 	 *
-	 * @return Response
+	 * @return view - The create new case form
 	 */
 	public function create()
 	{
@@ -66,17 +58,15 @@ class KasusController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created case in the database.
 	 *
-	 * @return Response
+	 * @return redirect - To the newly created case page
 	 */
 	public function store(Request $request)
 	{
-		//TODO: Ensure validation
-
 		$user = Auth::user();
 
-		//KASUS BARU
+		// Create the new case
 		$kasus = \rifka\Kasus::create([
 			'jenis_kasus' 		=> 
 				(\Input::get('jenis_kasus') == "Jenis") ? null : \Input::get('jenis_kasus'),
