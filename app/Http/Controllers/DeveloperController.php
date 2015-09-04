@@ -37,11 +37,9 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 		
-		$data = Rifka::getCaseArrays(123);
-		dd($data);
+		
 
 		return;
-
 	}
 
 	function postTest(Request $request)

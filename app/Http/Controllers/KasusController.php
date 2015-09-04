@@ -13,6 +13,7 @@ use DB;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 use rifka\Library\ExcelUtils;
+use rifka\Library\KasusUtils;
 
 class KasusController extends Controller {
 
@@ -64,48 +65,24 @@ class KasusController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		$user = Auth::user();
 
-		// Create the new case
-		$kasus = \rifka\Kasus::create([
-			'jenis_kasus' 		=> 
-				(\Input::get('jenis_kasus') == "Jenis") ? null : \Input::get('jenis_kasus'),
-			'hubungan' 				=> \Input::get('hubungan'),
-			'lama_hubungan' 	=> \Input::get('lama_hubungan'),
-			'jenis_lama_hub'  => \Input::get('jenis_lama_hub'),
-			'sejak_kapan' 		=> 
-				(\Input::get('sejak_kapan') == "") ? null : \Input::get('sejak_kapan'),
-			'seberapa_sering' => \Input::get('seberapa_sering'),
-			'harapan_korban' 	=> \Input::get('harapan_korban'),
-			'rencana_korban' 	=> \Input::get('rencana_korban'),
-			'narasi' 					=> \Input::get('narasi'),]);
+		try {
+			// Create the new case with user input
+			$kasus = KasusUtils::createNewCase(\Input::get());
 
-		//KLIEN-KASUS BARU
-		if($korban2 = $request->session()->pull('korban2'))
-		{
-			foreach($korban2 as $korban)
-			{
-				$klienKasus = \rifka\KlienKasus::create([
-					'klien_id' 		=> $korban->klien_id,
-					'kasus_id' 		=> $kasus->kasus_id,
-					'jenis_klien' 	=> 'Korban']);
-			}
+			// Create the new client-case(s) 
+			// for clients stored in session data.
+			KasusUtils::createClientCaseFromSession($request, $kasus->kasus_id);
+
+			return redirect('kasus/'.$kasus->kasus_id)
+			->with('success', 'New case created.');
+
+		} catch (Exception $e) {
+
+			return redirect()->back();
+
 		}
 
-		// Create a record of related perps if they exist
-		if($pelaku2 = $request->session()->pull('pelaku2'))
-		{
-			foreach($pelaku2 as $pelaku)
-			{
-				$klienKasus = \rifka\KlienKasus::create([
-					'klien_id' 		=> $pelaku->klien_id,
-					'kasus_id' 		=> $kasus->kasus_id,
-					'jenis_klien' => 'Pelaku']);
-			}
-		}
-
-		return redirect('kasus/'.$kasus->kasus_id)
-			->with('success', 'New case created.');;
 	}
 
 	/**
