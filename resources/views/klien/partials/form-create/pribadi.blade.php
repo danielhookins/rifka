@@ -6,7 +6,7 @@
 	{!! Form::text('nama_klien', null, array(
 		'class' 		=> 'form-control',
 		'placeholder' 	=> 'Nama Klien',
-		'autofocus', 'required')) !!}
+		'autofocus')) !!}
 	@if($errors->has('nama_klien'))
 		<p class="help-block">
 			{{ $errors->first('nama_klien') }}
