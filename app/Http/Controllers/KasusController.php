@@ -90,13 +90,6 @@ class KasusController extends Controller {
 			'rencana_korban' 	=> \Input::get('rencana_korban'),
 			'narasi' 					=> \Input::get('narasi'),]);
 
-		// Log Activity
-		// TODO: look at using 'Events' for logging instead
-    $activity = \rifka\Activity::create([
-			'user_id' => $user->id,
-			'kasus_id' => $kasus->kasus_id,
-			'action' => "Created Case"]);
-
 		//KLIEN-KASUS BARU
 		if($korban2 = $request->session()->pull('korban2'))
 		{
@@ -265,14 +258,6 @@ class KasusController extends Controller {
 		}
 
 		$kasus->delete();
-
-		// Log Activity
-		// TODO: look at using 'Events' for logging instead
-        $logDeleteClient = \rifka\Activity::create([
-				'user_id' => $user->id,
-				'kasus_id' => $kasus_id,
-				'action' => "Deleted Case"
-				]);
 
 		return redirect()->route('home')
 			->with('success', 'Kasus #'.$kasus_id.' has been deleted.');
