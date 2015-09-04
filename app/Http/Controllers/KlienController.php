@@ -73,20 +73,30 @@ class KlienController extends Controller {
 
 		$returnPage = \Input::get('returnPage');
 
+		// Ensure defaults are not stored in DB
+		$tanggal_lahir = (\Input::get('tanggal_lahir') == null) 
+			? null : \Input::get('tanggal_lahir');
+		$agama = (\Input::get('agama') == "Agama")
+			? null : \Input::get('agama');
+		$status_perkawinan = (\Input::get('status_perkawinan') == "Status Perkawinan")
+			? null : \Input::get('status_perkawinan');
+		$penghasilan = (\Input::get('penghasilan') == "Penghasilan")
+			? null : \Input::get('penghasilan');
+
 		// Create new Client
 		$klienBaru = Klien::create([
 				'nama_klien' 				=> \Input::get('nama_klien'),
 				'kelamin'						=> \Input::get('kelamin'),
-				'tanggal_lahir' 		=> \Input::get('tanggal_lahir'),
-				'agama' 						=> \Input::get('agama'),
-				'status_perkawinan' => \Input::get('status_perkawinan'),
+				'tanggal_lahir' 		=> $tanggal_lahir,
+				'agama' 						=> $agama,
+				'status_perkawinan' => $status_perkawinan,
 				'no_telp' 					=> \Input::get('no_telp'),
 				'email' 						=> \Input::get('email'),
 				'jumlah_anak'				=> \Input::get('jumlah_anak'),
 				'jumlah_tanggungan' => \Input::get('tanggungan'),
 				'pekerjaan' 				=> \Input::get('pekerjaan'),
 				'jabatan' 					=> \Input::get('jabatan'),
-				'penghasilan' 			=> \Input::get('penghasilan'),
+				'penghasilan' 			=> $penghasilan,
 				'kondisi_klien' 		=> \Input::get('kondisi_klien'),
 				'dirujuk_oleh' 			=> \Input::get('dirujuk_oleh')
 			]);
@@ -107,12 +117,23 @@ class KlienController extends Controller {
 			$kabupaten = \Input::get('provinsi');
 		}
 
-		$alamatBaru = \rifka\Alamat::create([
-				'alamat' 	=> \Input::get('alamat'),
-				'klien_id' => $klienBaru->klien_id,
-				'kecamatan' => $kecamatan,
-				'kabupaten' => $kabupaten
-			]);
+		// Ensure defaults not stored in DB
+		$kecamatan = ($kecamatan == "Kecamatan") ?
+			null : $kecamatan;
+		$kabupaten = ($kabupaten == "Kabupaten") ?
+			null : $kabupaten;
+
+		// If not all null - create address.		
+		$alamat = \Input::get('alamat');
+		if($alamat != null && $kecamatan != null && $kabupaten != null)
+		{
+			$alamatBaru = \rifka\Alamat::create([
+					'alamat' 	=> $alamat,
+					'klien_id' => $klienBaru->klien_id,
+					'kecamatan' => $kecamatan,
+					'kabupaten' => $kabupaten
+				]);
+		}
         
 		if($returnPage == "klien") {
 			return redirect('klien/'.$klienBaru->klien_id)
