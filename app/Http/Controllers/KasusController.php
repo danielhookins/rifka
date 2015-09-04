@@ -138,7 +138,7 @@ class KasusController extends Controller {
 	
 		} Catch (Exception $e) {
 			
-			return $e
+			return $e;
 	
 		}
 		
