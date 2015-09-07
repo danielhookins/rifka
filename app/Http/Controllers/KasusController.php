@@ -212,7 +212,7 @@ class KasusController extends Controller {
 		$klien = \rifka\Klien::findOrFail($klien_id);
 
 		// Check client not already added
-		foreach($kasus->klienKasus()->get(); as $klienKasus) 
+		foreach($kasus->klienKasus()->get() as $klienKasus) 
 		{
 			if($klienKasus->klien_id == $klien_id)
 			{
