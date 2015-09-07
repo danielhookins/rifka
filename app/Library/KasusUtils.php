@@ -3,6 +3,7 @@ namespace rifka\Library;
 
 use rifka\Kasus;
 use rifka\KlienKasus;
+
  
 /**
  *	A Library of Utilities for Case-Specific Tasks.
@@ -10,6 +11,14 @@ use rifka\KlienKasus;
 class KasusUtils
 {
 	
+	/**
+	 *	Make default inputs null:
+	 *	Turn fields used as examples into null
+	 *  instead of entering the examples into the DB.
+	 *
+	 *	@param array $input
+	 *	@return array $input
+	 */
 	public static function nullifyDefaults($input)
 	{
 		if(isset($input["jenis_kasus"]))
@@ -20,12 +29,13 @@ class KasusUtils
 		if(isset($input["sejak_kapan"]))
 		{
 			$input["sejak_kapan"] = ($input["sejak_kapan"] == "")
-			? null : $input["sejak_kapan"];
+				? null : $input["sejak_kapan"];
 		}
 
 		return $input;
 
 	}
+
 
 	/**
 	 *	Create a new case with user input data.
@@ -61,6 +71,7 @@ class KasusUtils
 		}
 
 	} // </createNewCase>
+
 
 	/**
 	 *	Create new client-case(s)
@@ -109,6 +120,7 @@ class KasusUtils
 		}
 
 	} // </createClientCaseFromSession>
+
 
 	/**
 	 *	Update the specified case from user input.

@@ -200,58 +200,39 @@ class KasusController extends Controller {
 		$query = \Input::get('searchQuery');		
 		$results = \rifka\Kasus::search($query)->orderBy('relevance', 'DESC')->get();
 
-    	return view('kasus.searchResults', array(
-				'query'		=> $query,
-				'results'	=> $results));
+  	return view('kasus.searchResults', array(
+			'query'		=> $query,
+			'results'	=> $results));
 	}
 
-	// if case doesnt exist, create it.
-	// check client exists and not already added to case
-	// add client to case
-	// TODO: show error messages nicely
+
 	public function tambahKasusKlien($kasus_id, $klien_id)
 	{
-		// Ensure Case exists
-		if($kasus = \rifka\Kasus::find($kasus_id))
+		$kasus = \rifka\Kasus::findOrFail($kasus_id);
+		$klien = \rifka\Klien::findOrFail($klien_id);
+
+		// Check client not already added
+		foreach($kasus->klienKasus()->get(); as $klienKasus) 
 		{
-			$klien2 = $kasus->klienKasus()->get();
-			
-			// Check client not already added
-			foreach($klien2 as $klien) {
-				if($klien->klien_id == $klien_id)
+			if($klienKasus->klien_id == $klien_id)
+			{
 				return 'Client already exists in case';
 			}
 		}
-		
-		/* OPTIONAL FUNCTIONALITY TO CREATE NEW CASE
-		else
-		{
-			// Case doesn't exist - create new
-			$kasusTest = 'new case: '.$kasus_id;
-		}
-		*/
 
-		// Ensure Client Exists
-		if($klien = \rifka\Klien::find($klien_id))
-		{
-			// Add client to case.
-			$klienKasus = \rifka\KlienKasus::create([
-					'klien_id' 		=> $klien_id,
-					'kasus_id' 		=> $kasus_id,
-					'jenis_klien' 	=> null]);
+		// Add client to case.
+		$klienKasus = \rifka\KlienKasus::create([
+				'klien_id' 		=> $klien_id,
+				'kasus_id' 		=> $kasus_id,
+				'jenis_klien' 	=> null]);
 
-			return redirect()->route('kasus.show', $kasus_id)
+		return redirect()->route('kasus.show', $kasus_id)
 			->with('success', 'Client added to case.');
-		} 
-		else
-		{
-			return 'Error: Client doesnt exist';
-		}
-		return 'An error occurred.<br /> Could not add client to case.';
+
 	}
 
+
 	// add counsellor to case
-	// TODO: show error messages nicely
 	public function tambahKasusKonselor($kasus_id, $konselor_id)
 	{
 		// Ensure Case exists
@@ -284,6 +265,7 @@ class KasusController extends Controller {
 		return 'An error occurred.<br /> Could not add counsellor to case.';
 	}
 	
+
   /**
 	 * Show the section to add a new Victim or Perp
 	 * to the New Case form.
@@ -309,11 +291,13 @@ class KasusController extends Controller {
 		return redirect()->route('kasus.create');
 	}
 
+
 	public function tambahKonselor(Request $request)
 	{
 		$request->session()->flash('tambahKonselor', True);
 		return Redirect::to(URL::previous() . "#konselor");
 	}
+
 
 	public function seshPushKlien(Request $request, $klien_id, $jenis)
 	{
@@ -330,6 +314,7 @@ class KasusController extends Controller {
 
 		return redirect()->route('kasus.create');
 	}
+
 
 	public function seshRemoveKlien(Request $request)
 	{
@@ -379,6 +364,7 @@ class KasusController extends Controller {
 		return redirect()->route('kasus.create');
 	}
 
+
 	public function autoUpdate(Request $request)
 	{
 		if($request->ajax()){
@@ -408,6 +394,7 @@ class KasusController extends Controller {
 		}
 	}
 
+
 	public function deleteKlien2Kasus($kasus_id) 
 	{
 		
@@ -422,6 +409,7 @@ class KasusController extends Controller {
 		return redirect()->back();
 	}
 
+
 	public function deleteKonselor2Kasus($kasus_id) 
 	{
 		
@@ -435,6 +423,7 @@ class KasusController extends Controller {
 		}
 		return Redirect::to(URL::previous() . "#konselor");
 	}
+
 
 	/**
 	 *  Export case information to an Excel file
