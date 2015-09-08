@@ -27,7 +27,8 @@ class Kernel extends HttpKernel {
 		'auth' 				=> 'rifka\Http\Middleware\Authenticate',
 		'auth.basic' 	=> 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' 			=> 'rifka\Http\Middleware\RedirectIfAuthenticated',
-		'active' 			=> 'rifka\Http\Middleware\CheckActive'
+		'active' 			=> 'rifka\Http\Middleware\CheckActive',
+		'userType'		=> 'rifka\Http\Middleware\CheckUserType'
 	];
 
 }
