@@ -1,6 +1,7 @@
 <?php 
 namespace rifka\Library;
 
+use Auth;
 use rifka\Klien;
 use rifka\Alamat;
 use rifka\Kasus;
@@ -38,55 +39,70 @@ class ExcelUtils{
  		return Excel::create('Klien_'.$client["klien_id"], function($excel) use($client, $cases, $addresses) 
  		{
 
-		  $excel->sheet('Alamat Klien', function($sheet) use($addresses) 
+		  if(!empty($addresses)) // If client has at least one address
 		  {
-		  	  // Set keys as column titles
-		  	  $sheet->appendRow(array_keys($addresses[0])); // column names
+		  	// create the client address sheet
+		  	$excel->sheet('Alamat Klien', function($sheet) use($addresses) 
+			  {
+			  	  // Set keys as column titles
+			  	  $sheet->appendRow(array_keys($addresses[0])); // column names
 
-		  	  // Make titles bold
-		  	  $sheet->row($sheet->getHighestRow(), function ($row) 
-		  	  {
-		  	      $row->setFontWeight('bold');
-		  	  });
+			  	  // Make titles bold
+			  	  $sheet->row($sheet->getHighestRow(), function ($row) 
+			  	  {
+			  	      $row->setFontWeight('bold');
+			  	  });
 
-		  	  // Append address details to next row
-		  	  foreach ($addresses as $address) 
-		  	  {
-		  	    $sheet->appendRow($address);
-		  		}
+			  	  // Append address details to next row
+			  	  foreach ($addresses as $address) 
+			  	  {
+			  	    $sheet->appendRow($address);
+			  		}
 
-		  });
-
-  	  $excel->sheet('Klien Kasus', function($sheet) use($cases) 
-  	  {
-  	    
-  	    // Iterate through each case
-  	    foreach($cases as $case)
-  	    {
+			  });
+		  }
+		  
+		  // Client Case information is restricted to the following:
+		  $allowedAccess = array("Manager", "Konselor", "Developer");
+		  
+		  if(!empty($cases) 				// ensure at least one case exists
+		  	&& (in_array(
+		  		Auth::user()->jenis, 
+		  		$allowedAccess))) 		// ensure user has permission to access case data. 
+		  {
+	  	  // Create the client case sheet
+	  	  $excel->sheet('Klien Kasus', function($sheet) use($cases) 
+	  	  {
 	  	    
-	  	    // Clean up array and remove pivot dimension
-	  	    $case = array_filter($case);
-	  	    unset($case['pivot']);
-
-	  	    // Iterate through the keys and attributes of the case
-	  	    // appending attributes vertically
-	  	    foreach($case as $key => $value)
+	  	    // Iterate through each case
+	  	    foreach($cases as $case)
 	  	    {
-	  	    	$sheet->appendRow([$key, $value]);
+		  	    
+		  	    // Clean up array and remove pivot dimension
+		  	    $case = array_filter($case);
+		  	    unset($case['pivot']);
+
+		  	    // Iterate through the keys and attributes of the case
+		  	    // appending attributes vertically
+		  	    foreach($case as $key => $value)
+		  	    {
+		  	    	$sheet->appendRow([$key, $value]);
+		  	    }
+
+		  	    // Append blank row for clearer presentation of multiple cases
+			  		$sheet->appendRow([""]);
 	  	    }
 
-	  	    // Append blank row for clearer presentation of multiple cases
-		  		$sheet->appendRow([""]);
-  	    }
+	  	    // Set font to bold in title column
+	  	    $sheet->cells('A1:A999', function($cells) 
+	  	    {
+	          $cells->setFont(array('bold' => true));
+	  	    });
 
-  	    // Set font to bold in title column
-  	    $sheet->cells('A1:A999', function($cells) 
-  	    {
-          $cells->setFont(array('bold' => true));
-  	    });
-
-  		});
-
+	  		});	
+		  }
+  	  
+		  // Create the client information sheet
 		  $excel->sheet('Informasi Klien', function($sheet) use($client) 
 		  {
 		    
