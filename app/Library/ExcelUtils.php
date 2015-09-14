@@ -79,8 +79,18 @@ class ExcelUtils{
 	  	    {
 		  	    
 		  	    // Clean up array and remove pivot dimension
-		  	    $case = array_filter($case);
-		  	    unset($case['pivot']);
+		  	    $case = array_filter($case);		  	    
+		  	    if(isset($case['pivot']))
+		  	    {
+		  	    	
+		  	    	if(isset($case['pivot']['jenis_klien']))
+		  	    	{
+		  	    		$case['jenis_klien'] = $case['pivot']['jenis_klien'];
+		  	    	}
+		  	    	
+		  	    	unset($case['pivot']);
+		  	    }
+		  	    
 
 		  	    // Iterate through the keys and attributes of the case
 		  	    // appending attributes vertically
@@ -174,8 +184,14 @@ class ExcelUtils{
 						  if(isMulti($value))
 						  {
 						  	
-						  	// Set keys as column titles
-						  	$sheet->appendRow(array_keys($value[0])); // column names
+						  	// Append array keys as column names
+						  	$titles = array_keys($value[0]);
+						  		// extract jenis_klien from pivot table.
+						  	if(($key = array_search("pivot", $titles)) !== false)
+								{
+									$titles[$key] = "jenis_klien";
+								}
+						  	$sheet->appendRow($titles); // column names
 
 						  	// Make titles bold
 						  	$sheet->row($sheet->getHighestRow(), function ($row) 
@@ -184,9 +200,16 @@ class ExcelUtils{
 						  	});
 
 						  	foreach($value as $data){
-
-						  		// TODO: Append Pivot data (jenis klien) to array
-						  		if(array_key_exists("pivot", $data)){
+						  		
+						  		// Move pivot dimension	to main array.    
+						  		if(isset($data['pivot']))
+						  		{
+						  			
+						  			if(isset($data['pivot']['jenis_klien']))
+						  			{
+						  				$data['jenis_klien'] = $data['pivot']['jenis_klien'];
+						  			}
+						  			
 						  			unset($data['pivot']);
 						  		}
 
