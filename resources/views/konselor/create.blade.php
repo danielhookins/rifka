@@ -23,22 +23,22 @@
 		{!! Form::label('nama_konselor', 'Nama Konselor', array('class' => 'strongLabel')) !!}
 		{!! Form::text('nama_konselor', null, array(
 		  'class'     => 'form-control',
-		  'placeholder'   => 'Nama konselor'))
+		  'placeholder'   => 'Nama Konselor'))
 		!!}
 	</div>
 
 	<div class="form-group">
-		{!! Form::label('user_id', 'User ID', array('class' => 'strongLabel')) !!}
-		{!! Form::text('user_id', null, array(
+		{!! Form::label('email', 'E-mail', array('class' => 'strongLabel')) !!}
+		{!! Form::text('email', null, array(
 		  'class'     => 'form-control',
-		  'placeholder'   => 'User ID'))
+		  'placeholder'   => 'E-mail Konselor'))
 		!!}
 	</div>
 
 	<div class="form-group">
-		{!! Form::submit('Submit', array('class' => 'btn btn-default')) !!}
+		{!! Form::submit('Simpan', array('class' => 'btn btn-default')) !!}
 		<a class="btn btn-default" href="{{ route('konselor.index') }}">
-			Back
+			Batal
 		</a>
 	</div>
 

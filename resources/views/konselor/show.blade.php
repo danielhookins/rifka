@@ -11,7 +11,7 @@
 	</ul>
 
 	<a class="btn btn-default" href="{{ route('konselor.index') }}">
-		Index
+		Daftar
 	</a>
 
 	<a class="btn btn-default" href="{{ route('konselor.edit', $konselor->konselor_id) }}">

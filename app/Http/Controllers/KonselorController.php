@@ -1,8 +1,8 @@
 <?php namespace rifka\Http\Controllers;
 
+use rifka\User;
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
 class KonselorController extends Controller {
@@ -41,7 +41,7 @@ class KonselorController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
+	 * Show the form for creating a new counselor.
 	 *
 	 * @return Response
 	 */
@@ -52,25 +52,43 @@ class KonselorController extends Controller {
 	}
 
 	/**
-	 * Store a newly created resource in storage.
+	 * Store a newly created counselor in the database.
 	 *
-	 * @return Response
+	 * @return redirect to the index with success message
 	 */
 	public function store(Request $request)
 	{
-		//
+		$user_id = null;
+
+		// validate input
 		$this->validate($request, [
 			'nama_konselor' => 'required|string|alpha|min:3|max:255',
-			'user_id' => 'unique:users|max:128',
+			'email' => 'email|max:128',
 		]);
 
+		// check if email corresponds with user
+		if (\Input::get('email') != null)
+		{
+			
+			$email = \Input::get('email');
+			
+			// if the email corresponds to user,
+			// the user's id will be attached to the counselor record.
+			if (User::where('email', $email)->first()) 
+			{
+				$user = User::where('email', $email)->first();
+				$user_id = $user->id;
+			}
+
+		}
+
+		// create the new counselor
 		if($konselor = \rifka\Konselor::create([
 			'nama_konselor' => \Input::get('nama_konselor'),
-			'user_id' 			=> (\Input::get('user_id') == null) ? 
-				null : \Input::get('user_id')
+			'user_id' 			=> ($user_id == null) ? null : $user_id
 			]))
 		{
-			return redirect()->route('konselor.show', $konselor->konselor_id)->with('success', 'Created new counsellor.');
+			return redirect()->route('konselor.index')->with('success', 'Created new counsellor.');
 		}
 		
 		return redirect()->back()->with('errors', ['Could not create counsellor.']);
