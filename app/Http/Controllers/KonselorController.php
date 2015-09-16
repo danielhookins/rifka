@@ -22,13 +22,14 @@ class KonselorController extends Controller {
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Display a listing of all counselors.
 	 *
-	 * @return Response
+	 * @return counselors index view with counselors or null
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-		//
+		
+		// check if counselors exist
 		if($konselor2 = \rifka\Konselor::get())
 		{
 			return view('konselor.index')
@@ -88,15 +89,15 @@ class KonselorController extends Controller {
 			'user_id' 			=> ($user_id == null) ? null : $user_id
 			]))
 		{
-			return redirect()->route('konselor.index')->with('success', 'Created new counsellor.');
+			return redirect()->route('konselor.index')->with('konselorMsgs',['Ditambahkan konselor ' . \Input::get('nama_konselor')]);
 		}
 		
-		return redirect()->back()->with('errors', ['Could not create counsellor.']);
+		return redirect()->back()->with('konselorMsgs', ['Error: tidak bisa tambahkan konselor']);
 
 	}
 
 	/**
-	 * Display the specified resource.
+	 * Display the counselor.
 	 *
 	 * @param  int  $konselor_id
 	 * @return Response
@@ -115,7 +116,7 @@ class KonselorController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the counselor.
 	 *
 	 * @param  int  $konselor_id
 	 * @return Response
@@ -133,7 +134,7 @@ class KonselorController extends Controller {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified counselor in the database.
 	 *
 	 * @param  int  $konselor_id
 	 * @return Response
@@ -148,16 +149,16 @@ class KonselorController extends Controller {
 			$konselor->save();
 
 			return redirect()->route('konselor.show', $konselor_id)
-				->with('success', 'Counsellor updated.');
+				->with('konselorMsgs', ['Counselor updated.']);
 		}
 
 		return redirect()->route('konselor.edit', $konselor_id)
-			->with('errors', ['Could not update. No konselor found']);
+			->with('konselorMsgs', ['Could not update. No konselor found']);
 
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Remove the specified counselor from the database.
 	 *
 	 * @param  int  $konselor_id
 	 * @return Response
@@ -169,34 +170,49 @@ class KonselorController extends Controller {
 		{
 			if($konselor->delete())
 			{
-				$message = array('success', 'Deleted Konselor.');
+				$message = array('konselorMsgs', ['Deleted Konselor.']);
 			}
 			else
 			{
-				$message = array('errors', ['Could not delete counsellor.']);
+				$message = array('konselorMsgs', ['Could not delete counsellor.']);
 			}
 		}
 		else
 		{
-			$message = array('errors', ['Could not find counsellor.']);
+			$message = array('konselorMsgs', ['Could not find counsellor.']);
 		}
 
-		return redirect()->route('konselor.index')
-			->with($message);
+		return redirect()->route('konselor.index');
 
 	}
 
+	/**
+	 *	Remove multiple selected counselors from the database.
+	 *	
+	 */
 	public function deleteKonselor2()
 	{
+		
+		// declare variable for storing messages
+		$messages = array();
+
 		if($toDelete = \Input::get('toDelete'))
 		{
 			foreach($toDelete as $konselor_id)
 			{
-				$deleted[$konselor_id] = \rifka\Konselor::where('konselor_id', $konselor_id)
-						->delete();
+				$konselor = \rifka\Konselor::where('konselor_id', $konselor_id)->first();
+				$nama_konselor = $konselor->nama_konselor;
+				
+				$deleted = $konselor->delete();
+				($deleted) ? 
+					array_push($messages, "Dihapuskan konselor " . $nama_konselor) : 
+					array_push($messages, "Tidak bisa hapuskan " . $nama_konselor);
+
 			}
+		} else {
+			array_push($messages, "Harus pilih konselor yang Anda mau menghapuskan");
 		} 
-		return redirect()->route('konselor.index');
+		return redirect()->route('konselor.index')->with('konselorMsgs', $messages);
 	}
 
 }
