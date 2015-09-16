@@ -7,6 +7,7 @@ use rifka\KlienKasus;
 use Illuminate\Http\Request;
 use Session;
 use rifka\Library\ExcelUtils;
+use rifka\Library\UserUtils;
 use rifka\Library\Rifka;
 use Excel;
 use rifka\Klien;
@@ -37,7 +38,7 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 		
-		
+		dd(UserUtils::isRealUser(99999));
 
 		return;
 	}

@@ -4,6 +4,7 @@ use rifka\User;
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use rifka\Library\UserUtils;
 
 class KonselorController extends Controller {
 
@@ -63,7 +64,7 @@ class KonselorController extends Controller {
 
 		// validate input
 		$this->validate($request, [
-			'nama_konselor' => 'required|string|alpha|min:3|max:255',
+			'nama_konselor' => 'required|string|min:3|max:255',
 			'email' => 'email|max:128',
 		]);
 
@@ -196,23 +197,42 @@ class KonselorController extends Controller {
 		// declare variable for storing messages
 		$messages = array();
 
+		
 		if($toDelete = \Input::get('toDelete'))
 		{
+			
 			foreach($toDelete as $konselor_id)
 			{
 				$konselor = \rifka\Konselor::where('konselor_id', $konselor_id)->first();
 				$nama_konselor = $konselor->nama_konselor;
 				
-				$deleted = $konselor->delete();
-				($deleted) ? 
-					array_push($messages, "Dihapuskan konselor " . $nama_konselor) : 
-					array_push($messages, "Tidak bisa hapuskan " . $nama_konselor);
+				// do not delete counselors attached to a user account.
+				if(isset($konselor->user_id) && UserUtils::isRealUser($konselor->user_id))
+				{
+					array_push($messages, "Tidak bisa hapuskan " . $nama_konselor . 
+						" disini. Hapuskan konselor ini di tempat User Management.");
+				} 
+				
+				// counselor not attached to user account - okay to delete.
+				else 
+				{
+					$deleted = $konselor->delete();
+					($deleted) ? 
+						array_push($messages, "Dihapuskan konselor " . $nama_konselor) : 
+						array_push($messages, "Tidak bisa hapuskan " . $nama_konselor);
+				}
 
 			}
-		} else {
+		} 
+		
+		// no counselor selected 
+		else 
+		{
 			array_push($messages, "Harus pilih konselor yang Anda mau menghapuskan");
 		} 
+		
 		return redirect()->route('konselor.index')->with('konselorMsgs', $messages);
+	
 	}
 
 }
