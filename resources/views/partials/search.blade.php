@@ -10,15 +10,28 @@
   
   <div class="form-group">
     <label for="searchType">Untuk</label>
-    {!! Form::select('searchType', array(
-      'klien' =>  'Klien', 
-      'kasus' =>  'Kasus',
-      'alamat' => 'Alamat',
-      'arsip' =>  'Arsip'
-    ), null, array(
-      'class' => 'form-control',
-      'id' => 'searchType'
-    ))!!}
+    
+    @if(isset($user) && $user->jenis != "Front Office")
+      {!! Form::select('searchType', array(
+        'klien' =>  'Klien', 
+        'kasus' =>  'Kasus',
+        'alamat' => 'Alamat',
+        'arsip' =>  'Arsip'
+      ), null, array(
+        'class' => 'form-control',
+        'id' => 'searchType'
+      ))!!}
+    @else
+      {!! Form::select('searchType', array(
+        'klien' =>  'Klien', 
+        'alamat' => 'Alamat'
+      ), null, array(
+        'class' => 'form-control',
+        'id' => 'searchType'
+      ))!!}
+    @endif
+
+
   </div>
 
   <div class="form-group">

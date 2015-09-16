@@ -14,4 +14,8 @@
     <li><a href="{{ route('kasus.index') }}">Cari Kasus</a></li>
     <li><a href="{{ route('kasus.create') }}">Kasus Baru</a></li>
   </ul>
-</li> 
+</li>
+
+<li>
+  <a href="{{ route('konselor.index') }}">Konselor</a>
+</li>

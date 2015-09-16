@@ -15,12 +15,12 @@
 		</ul>
 
 
+		@if(isset($user) && $user->jenis != "Front Office")
 		<div class="panel-heading">
 			<h4 class="panel-title">
 					<span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Kasus
 			</h4>
 		</div>
-		
 		<ul class="list-group">
 			@forelse ($kasus2 as $kasus)
 				<li class="list-group-item"><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}"><strong> Kasus #{{ $kasus->kasus_id }}</strong></a>
@@ -30,6 +30,7 @@
 				<li class="list-group-item">Belum ada kasus</li>
 			@endforelse
 		</ul>
+		@endif
 
 
 	</div>

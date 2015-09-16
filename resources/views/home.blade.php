@@ -11,18 +11,27 @@
 		</div>
 	@endif
 
-	<div class="row">
-		<div class="col-xs-12 col-sm-6 col-sm-offset-3">
-			@include('partials.search')
+	@if($user->jenis != "Front Office")
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+				@include('partials.search')
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-xs-12 col-sm-3 col-sm-offset-3">
-			@include('klien.partials.new')
+		<div class="row">
+			<div class="col-xs-12 col-sm-3 col-sm-offset-3">
+				@include('klien.partials.new')
+			</div>
+			<div class="col-xs-12 col-sm-3">
+				@include('kasus.partials.new')
+			</div>
 		</div>
-		<div class="col-xs-12 col-sm-3">
-			@include('kasus.partials.new')
+	@else
+		<div class="row">
+			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+				@include('partials.search')
+				@include('klien.partials.new')
+			</div>
 		</div>
-	</div>
+	@endif
 
 @endsection

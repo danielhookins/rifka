@@ -1,5 +1,7 @@
 <?php namespace rifka\Http\Controllers;
 
+use Auth;
+
 class HomeController extends Controller {
 
 	/**
@@ -23,7 +25,7 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		return view('home')->with('user', Auth::User());
 	}
 
 }

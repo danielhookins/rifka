@@ -158,6 +158,7 @@ class KlienController extends Controller {
 			$alamat2 = Klien::find($id)->alamatKlien;	// Get the client's addresses
 
 			return view('klien.show', array(
+				'user'		=> Auth::User(),
 				'klien' 	=> $klien,
 				'kasus2'	=> $kasus2,
 				'alamat2'	=> $alamat2));
