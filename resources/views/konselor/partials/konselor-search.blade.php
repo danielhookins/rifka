@@ -4,7 +4,7 @@
     <div class="form-group">
     	{!! Form::text('search_query', null, array(
             'class' => 'form-control',
-            'placeholder' => 'Search for counsellor',
+            'placeholder' => 'Search for counselor',
             'autocomplete' => 'off',
             'autofocus')) 
         !!}
