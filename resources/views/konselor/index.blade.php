@@ -28,7 +28,7 @@
 		{!! Form::text('search_query', null, array(
 		  'class'     => 'form-control',
 		  'autocomplete' => 'off',
-		  'placeholder'   => 'Search for Counsellor'))
+		  'placeholder'   => 'Search for Counselor'))
 		!!}
 	</div>
 
