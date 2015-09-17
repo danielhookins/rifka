@@ -1,7 +1,7 @@
 @if(isset($user) && $user->jenis != "Front Office")
 <div class="form-group hidden-sm hide-short">
 	<h3>Klien Baru</h3>
-	<p>Add a new client to the database.</p>
+	<p>Menambahkan klien ke database.</p>
 </div>
 @endif
 
@@ -10,6 +10,6 @@
 
 <div class="form-group">
 	<a href="klien/create" role="button" class="btn btn-default form-control">
-	  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new client
+	  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Menambahkan Klien Baru
 	</a>	
 </div>

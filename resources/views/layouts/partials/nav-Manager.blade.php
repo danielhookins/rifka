@@ -1,4 +1,4 @@
-<li><a href="{{ route('home') }}">Home</a></li>
+<li><a href="{{ route('home') }}">Beranda</a></li>
 
 <li class="dropdown">
   <a href="{{ route('klien.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Klien <span class="caret"></span></a>
@@ -17,13 +17,13 @@
 </li>
 
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Manager <?php 
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Pengelolaan <?php 
     // TODO: Move functionality to library
     $inactive = count(rifka\User::where('active','0')->get()->toArray());
     echo ($inactive > 0) ? '<span class="badge">'.$inactive.'</span>' : '';?>
   <span class="caret"></span></a>
   <ul class="dropdown-menu" role="menu">
-    <li><a href="{{ route('user.management') }}">Users <?php echo ($inactive > 0) ? '<span class="label label-warning">Baru</span>' : '' ; ?></a></li>
-    <li><a href="{{ route('konselor.index') }}">Konselor</a></li>
+    <li><a href="{{ route('user.management') }}">Manajemen User <?php echo ($inactive > 0) ? '<span class="label label-warning">Baru</span>' : '' ; ?></a></li>
+    <li><a href="{{ route('konselor.index') }}">Manajemen Konselor</a></li>
   </ul>
 </li>

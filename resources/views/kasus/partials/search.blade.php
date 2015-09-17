@@ -5,7 +5,7 @@
     <div class="form-group">
     	{!! Form::text('searchQuery', null, array(
             'class' => 'form-control',
-            'placeholder' => 'Search for case',
+            'placeholder' => 'Cari nomor kasus',
             'autocomplete' => 'off', 
             'autofocus')) 
         !!}
@@ -16,7 +16,7 @@
     
     <div class="form-group">
     	<button type="submit" class="btn btn-default form-control" id="search-button">
-		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Penelusuran
 		</button>
     </div>
 

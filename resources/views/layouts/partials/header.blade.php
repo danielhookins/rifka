@@ -50,14 +50,14 @@
         	<li class="dropdown">
 					  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> {!! Auth::user()->name !!} <span class="caret"></span></a>
 					  <ul class="dropdown-menu" role="menu">
-					    <li><a href="{!! route('user.show', Auth::user()->id) !!}">Profile</a></li>
-					    <li><a href="{{ route('logout') }}">Log Out</a></li>
+					    <li><a href="{!! route('user.show', Auth::user()->id) !!}">Profil</a></li>
+					    <li><a href="{{ route('logout') }}">Keluar</a></li>
 					  </ul>
 					</li>
 
         @else
         	<li>
-          	<a href="{{ url('/auth/register') }}">Minta Login</a>
+          	<a href="{{ url('/auth/register') }}">Mendaftar</a>
         	</li>
 
         @endif
@@ -67,4 +67,4 @@
   </div>
 </nav>
 
-	<div class="container">
+<div class="container">

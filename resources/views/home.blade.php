@@ -1,3 +1,5 @@
+<?php if(!isset($user)){$user=Auth::User();} ?>
+	
 @extends('layouts.records')
 
 @section('content')

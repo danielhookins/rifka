@@ -1,13 +1,17 @@
-<h3>Search Results</h3>
-<p>Search for "{{ Session::get('query') }}" found {{ Session::get('results')->count() }} results</p>
-<p><strong>Please select client to add to case:</strong></p>
+<h3>Hasil Pencarian</h3>
+<p>Menampilkan {{ Session::get('results')->count() }} hasil</p>
+
+@if(Session::get('results')->count() > 0)
+	<p><strong>Silahkan pilih klien:</strong></p>
+@endif
+
 <table class="table table-hover">
 	<tr>
 		<th># ID</th>
 		<th>Nama</th>
 		<th>Telp</th>
 		<th>Alamat</th>
-		<th>Email</th>
+		<th>E-mail</th>
 	</tr>
 @forelse (Session::get('results') as $result)
 	<tr>

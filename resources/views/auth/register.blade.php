@@ -5,11 +5,11 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-				<div class="panel-heading">Minta Login</div>
+				<div class="panel-heading">Mendaftar</div>
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Perhatian.</strong> Ada masalah dengan input.<br><br>
+							<strong>Perhatian!</strong> Ada masalah dengan memasukkan Anda.<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -49,7 +49,7 @@
 
 						<div class="form-group 
 						@if($errors->has('password')) has-error @endif">
-							<label class="col-md-4 control-label">Password</label>
+							<label class="col-md-4 control-label">Kata Sandi</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password" autocomplete="off">
 								@if($errors->has('password'))
@@ -62,7 +62,7 @@
 
 						<div class="form-group 
 						@if($errors->has('password_confirmation')) has-error @endif">
-							<label class="col-md-4 control-label">Confirmasi Password</label>
+							<label class="col-md-4 control-label">Kata Sandi Lagi</label>
 							<div class="col-md-6">
 								<input type="password" class="form-control" name="password_confirmation" autocomplete="off">
 								@if($errors->has('password_confirmation'))
@@ -76,7 +76,7 @@
 						<div class="form-group">
 							<div class="col-md-6 col-md-offset-4">
 								<button type="submit" class="btn btn-primary">
-									Minta Log-in
+									Mendaftar
 								</button>
 							</div>
 						</div>

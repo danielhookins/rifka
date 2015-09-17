@@ -4,7 +4,7 @@
 <input name="type" value="{{$type}}" type="hidden">
     <div class="form-group">
     	{!! Form::text('searchQuery', null, array('class' => 'form-control',
-                                                'placeholder' => 'Search for client',
+                                                'placeholder' => 'Cari nama '.$type,
                                                 'autocomplete' => 'off', 
                                                 'autofocus')) !!}
     </div>
@@ -14,7 +14,7 @@
     </div>
     <div class="form-group">
     	<button type="submit" class="btn btn-default form-control" id="search-button">
-		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search
+		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Penelusuran
 		</button>
     </div>
 {!! Form::close() !!}

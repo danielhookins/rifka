@@ -1,4 +1,4 @@
-<li><a href="{{ route('home') }}">Home</a></li>
+<li><a href="{{ route('home') }}">Beranda</a></li>
 
 <li class="dropdown">
   <a href="{{ route('klien.index') }}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Klien <span class="caret"></span></a>

@@ -4,7 +4,7 @@
     <h4 class="panel-title">
       <a class="in-link" name="options">
       	<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-      	Options
+      	Pilihan
      	</a>
     </h4>
   </div>

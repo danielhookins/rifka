@@ -1,8 +1,10 @@
 @extends('layouts.records')
 
 @section('content')
-	<h2>Search Results</h2>
-	<p>Search for "{{ $query }}" found {{ $results->count() }} results</p>
+	
+	<h2>Hasil Pencarian</h2>
+	<p>Menampilkan {{ $results->count() }} hasil untuk "{{ $query }}"</p>
+
 	<table class="table table-hover">
  	<tr>
  		<th>Alamat</th>

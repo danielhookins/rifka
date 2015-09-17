@@ -1,5 +1,5 @@
 <div class="col-sm-12">
-<h2>Daftar Kasus</h2>
+<h3>Daftar Kasus</h3>
 
 <table class="table table-condensed">
   <tr>
@@ -7,11 +7,17 @@
     <th class="hidden-xs">Jenis Kasus</th>
     <th>Klien</th>
     <th>Arsip</th>
-    <th class="hidden-xs">Tgl. Created</th>
+    <th class="hidden-xs">Tgl. Dibuat</th>
   </tr>
   @forelse ($semuaKasus as $kasus)
     <tr>
-      <td><a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}">{!! $kasus->kasus_id !!}</a></td>
+      <td>
+        <a href="{!! route('kasus.index') !!}/{{ $kasus->kasus_id }}">
+          <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
+          &nbsp;
+          {!! $kasus->kasus_id !!}
+        </a>
+      </td>
       <td class="hidden-xs">{!! $kasus->jenis_kasus !!}</a></td>
       <td>
         <ul>

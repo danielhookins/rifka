@@ -12,7 +12,7 @@
 							@include('kasus.partials.klien-search')
 						</div>
 					</div>
-					<a href="" class="btn btn-danger">Cancel</a>
+					<a href="" class="btn btn-danger">Batal</a>
 
 				@elseif(Session::has(lcfirst($type).'Search'))
 					<div class="row">
@@ -20,7 +20,7 @@
 							@include('kasus.partials.klien-search-results')
 						</div>
 					</div>
-					<a href="" class="btn btn-danger">Cancel</a>
+					<a href="" class="btn btn-danger">Batal</a>
 				
 				@else
 					
@@ -36,16 +36,23 @@
 					  	</tr>
 					  	@endforeach
 					  	<tr>
-					  		<td colspan=2><button type="submit" name="delete{{$type}}" value="True">Delete</button></td>
+					  		<td colspan="2">
+					  		  <a class="btn btn-sm btn-default" data-toggle="modal" href="{{ route('tambah.klien', lcfirst($type))}}">
+					  		    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					  		  </a>
+					  		  <button class="btn btn-sm btn-default" name="delete{{$type}}" type="submit" value="True">
+					  		    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					  		  </button>
+					  		</td>
 					  	</tr>
 						</table>
 						@else
 							<p>Belum ada {{$type}}.</p>
+
+							<a href="{{ route('tambah.klien', lcfirst($type))}}" class="btn btn-{!!(($type == "Korban" && !Session::has('korban2')) ? 'primary' : 'default')!!} pull-right">Tambah {{$type}}</a>
 						@endif
 						{!! Form::close() !!}
 				  
-					<a href="{{ route('tambah.klien', lcfirst($type))}}" class="btn btn-{!!(($type == "Korban" && !Session::has('korban2')) ? 'primary' : 'default')!!} pull-right">Tambah {{$type}}</a>
-				
 				@endif
 				
 			</div>

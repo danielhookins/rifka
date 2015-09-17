@@ -151,8 +151,8 @@
 
 <div class="form-group
 	@if($errors->has('email')) has-error @endif">
-	{!! Form::label('email', 'Email', array('class' => 'strongLabel')) !!}
-	{!! Form::text('email', null, array('class' => 'form-control','placeholder' => 'Email')) !!}
+	{!! Form::label('email', 'Alamat E-mail', array('class' => 'strongLabel')) !!}
+	{!! Form::text('email', null, array('class' => 'form-control','placeholder' => 'Alamat E-mail')) !!}
 	@if($errors->has('email'))
 		<p class="help-block">
 			{{ $errors->first('email') }}
