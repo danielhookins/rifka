@@ -63,8 +63,7 @@
 		<td>{!! $result->email !!}</td>
 	</tr>
 	@empty
-	<td></td>
-	<th scope="row"><em>Tidak ada hasil.</em></th>
-	<td colspan=3></td>
+	<td scope="row">Tidak ada hasil. Mau <a href="{{ route('klien.create') }}" target="_blank">tambah klien baru</a>? (Buka jendela baru)</td>
+	<td colspan=4></td>
 @endforelse
 </table>

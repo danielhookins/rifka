@@ -23,7 +23,7 @@
 	@empty
 	<tr>
 		<td>
-			Tidak ada hasil. Mau tambah di tempat <a href="{{ route('konselor.index') }}" target="_blank">Manajemen Konselor</a>?
+			Tidak ada hasil. Mau tambah di tempat <a href="{{ route('konselor.index') }}" target="_blank">Manajemen Konselor</a>? (Buka jendela baru)
 		</td>
 	</tr>
 
