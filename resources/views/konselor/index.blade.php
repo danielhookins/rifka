@@ -28,12 +28,14 @@
 		{!! Form::text('search_query', null, array(
 		  'class'     => 'form-control',
 		  'autocomplete' => 'off',
-		  'placeholder'   => 'Search for Counselor'))
+		  'placeholder'   => 'Cari konselor'))
 		!!}
 	</div>
 
 	<div class="form-group">
-		{!! Form::submit('Search', array('class' => 'btn btn-default')) !!}
+  	<button type="submit" class="btn btn-default form-control" id="search-button">
+		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Penelusuran
+		</button>
 	</div>
 
 	{!! Form::close() !!}
@@ -49,7 +51,6 @@
 		<table class="table table-hover">
 			<tr>
 				<th></th>
-				<th>#</th>
 				<th>Nama Konselor</th>
 				<th>User ID</th>
 			</tr>
@@ -63,11 +64,6 @@
           </td>
 					<td>
 						<a href="{{ route('konselor.show', $konselor->konselor_id) }}">
-							{{$konselor->konselor_id}}
-						</a>
-					</td>
-					<td>
-						<a href="{{ route('konselor.show', $konselor->konselor_id) }}">
 							{{$konselor->nama_konselor}}
 						</a>
 					</td>
@@ -75,7 +71,7 @@
 				</tr>
 			@empty
 				<tr>
-					<td colspan=4>No counsellors exist.</td>
+					<td colspan=4>Belum ada konselor.</td>
 				</tr>
 			@endforelse
 		</table>

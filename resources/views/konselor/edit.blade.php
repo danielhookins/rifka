@@ -27,9 +27,9 @@
 		!!}
 	</div>
 	<div class="form-group">
-		{!! Form::submit('Submit', array('class' => 'btn btn-default')) !!}
+		{!! Form::submit('Simpan', array('class' => 'btn btn-default')) !!}
 		<a class="btn btn-default" href="{{route('konselor.show', $konselor->konselor_id)}}">
-			Back
+			Batal
 		</a>
 	</div>
 

@@ -2,20 +2,34 @@
 
 @section('content')
 
-<h2>Search Results</h2>
+<h3>Hasil Pencarian</h3>
+<p>Menampilkan {{ $results->count() }} hasil.</p>
 
-<ul>
-	@forelse ($results as $result)
-	<li>
-		<a href="{{route('konselor.show', $result->konselor_id)}}">
-			{{$result->nama_konselor}}
-		</a>
-	</li>
-	
+<table class="table table-hover">
+	<tr>
+		<th>Nama Konselor</th>
+	</tr>
+
+	@forelse($results as $result)
+	<tr>
+		<td>
+			<a href="{{ route('konselor.show', $result->konselor_id) }}">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					&nbsp;
+					{{$result->nama_konselor}}
+				</a>
+			</td>
+	</tr>
+
 	@empty
-	<li>None found.</li>
+	<tr>
+		<td>
+			Tidak ada hasil. <a href="{{ route('konselor.index') }}">Coba lagi</a>?
+		</td>
+	</tr>
 
 	@endforelse
-</ul>
+
+</table>
 
 @endsection

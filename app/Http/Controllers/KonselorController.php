@@ -150,11 +150,11 @@ class KonselorController extends Controller {
 			$konselor->save();
 
 			return redirect()->route('konselor.show', $konselor_id)
-				->with('konselorMsgs', ['Counselor updated.']);
+				->with('konselorMsgs', ['Konselor diupdate.']);
 		}
 
 		return redirect()->route('konselor.edit', $konselor_id)
-			->with('konselorMsgs', ['Could not update. No konselor found']);
+			->with('konselorMsgs', ['Tidak bisa update. Tidak bisa cari konselor.']);
 
 	}
 
@@ -171,16 +171,16 @@ class KonselorController extends Controller {
 		{
 			if($konselor->delete())
 			{
-				$message = array('konselorMsgs', ['Deleted Konselor.']);
+				$message = array('konselorMsgs', ['Konselor dihapus.']);
 			}
 			else
 			{
-				$message = array('konselorMsgs', ['Could not delete counsellor.']);
+				$message = array('konselorMsgs', ['Konselor tidak bisa dihapus.']);
 			}
 		}
 		else
 		{
-			$message = array('konselorMsgs', ['Could not find counsellor.']);
+			$message = array('konselorMsgs', ['Konselor tidak bisa dicari']);
 		}
 
 		return redirect()->route('konselor.index');
@@ -210,7 +210,7 @@ class KonselorController extends Controller {
 				if(isset($konselor->user_id) && UserUtils::isRealUser($konselor->user_id))
 				{
 					array_push($messages, "Tidak bisa hapuskan " . $nama_konselor . 
-						" disini. Hapuskan konselor ini di tempat User Management.");
+						" disini. Hapuskan konselor ini di tempat Manajemen User.");
 				} 
 				
 				// counselor not attached to user account - okay to delete.
@@ -218,8 +218,8 @@ class KonselorController extends Controller {
 				{
 					$deleted = $konselor->delete();
 					($deleted) ? 
-						array_push($messages, "Dihapuskan konselor " . $nama_konselor) : 
-						array_push($messages, "Tidak bisa hapuskan " . $nama_konselor);
+						array_push($messages, "Konselor " . $nama_konselor . " dihapus.") : 
+						array_push($messages, "Konselor " . $nama_konselor . " tidak bisa dihapus.");
 				}
 
 			}
