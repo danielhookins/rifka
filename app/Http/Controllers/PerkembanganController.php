@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use rifka\Perkembangan;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class PerkembanganController extends Controller {
 
@@ -44,28 +46,22 @@ class PerkembanganController extends Controller {
 		return redirect('404');
 	}
 
+
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		//TODO: Ensure validation
-		//TODO: Log activity as done by: $user = Auth::user();
+		// Set variables
+		$resourceType = "Perkembangan";
+		$input = \Input::get();
+		$fields = ["tanggal", "intervensi", "kesimpulan", "kesepakatan"];
 
-		// Store a new development for the case
-		$perkembangan = \rifka\Perkembangan::create([
-			'kasus_id' 		=> $kasus_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'intervensi' 	=> \Input::get('intervensi'),
-			'kesimpulan'  => \Input::get('kesimpulan'),
-			'kesepakatan' => \Input::get('kesepakatan')
-		]);
-
-		return redirect()->route('kasus.show', [$kasus_id, '#perkembangan']);
-
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
+
 
 	/**
 	 * Display the specified resource.
@@ -103,16 +99,21 @@ class PerkembanganController extends Controller {
 	 */
 	public function update($kasus_id, $perkembangan_id)
 	{
+		// Set variables
+		$resource = Perkembangan::findOrFail($perkembangan_id);
+		$fields = ["tanggal", "intervensi", "kesimpulan", "kesepakatan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$perkembangan = Perkembangan::findOrFail($perkembangan_id);
-		$perkembangan->tanggal = \Input::get('tanggal');
-		$perkembangan->intervensi = \Input::get('intervensi');
-		$perkembangan->kesimpulan = \Input::get('kesimpulan');
-		$perkembangan->kesepakatan = \Input::get('kesepakatan');
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#perkembangan']);
 
-		$perkembangan->save();
-
-		return redirect()->route('kasus.show', [$kasus_id, '#perkembangan']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
 
 	}
 

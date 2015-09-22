@@ -22,9 +22,9 @@
 		</div>
 		<ul class="list-group">
 			<li class="list-group-item"><a href="#bentuk-kekerasan">Bentuk Kekerasan</a></li>
-			<li class="list-group-item"><a href="#faktor-pemicu">Faktor Pemicu</a></li>
-			<li class="list-group-item"><a href="#upaya-dilakukan">Upaya Dilakukan</a></li>
-			<li class="list-group-item"><a href="#layanan-dibutuhkan">Layanan Dibutuhkan</a></li>
+			<li class="list-group-item"><a href="#faktorpemicu">Faktor Pemicu</a></li>
+			<li class="list-group-item"><a href="#upayadilakukan">Upaya Dilakukan</a></li>
+			<li class="list-group-item"><a href="#layanandibutuhkan">Layanan Dibutuhkan</a></li>
 			<li class="list-group-item"><a href="#dampak">Dampak</a></li>
 		</ul>
 	

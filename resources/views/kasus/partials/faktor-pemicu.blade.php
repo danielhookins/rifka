@@ -2,7 +2,7 @@
   
   <div class="panel-heading">
     <h4 class="panel-title">
-      <a class="in-link" name="faktor-pemicu">Faktor Pemicu</a>
+      <a class="in-link" name="faktorpemicu">Faktor Pemicu</a>
     </h4>
   </div>
 

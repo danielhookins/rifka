@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Dampak;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class DampakController extends Controller {
 
@@ -49,16 +51,14 @@ class DampakController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		
-		$dampak = \rifka\Dampak::create([
-			'kasus_id' 		=> $kasus_id,
-			'jenis_dampak' 		=> \Input::get('jenis_dampak'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+		// Set variables
+		$resourceType = "Dampak";
+		$input = \Input::get();
+		$fields = ["jenis_dampak", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#dampak']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -96,14 +96,22 @@ class DampakController extends Controller {
 	 */
 	public function update($kasus_id, $dampak_id)
 	{
-		$dampak = Dampak::findOrFail($dampak_id);
+		// Set variables
+		$resource = Dampak::findOrFail($dampak_id);
+		$fields = ["jenis_dampak", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$dampak->jenis_dampak = \Input::get('jenis_dampak');
-		$dampak->keterangan = \Input::get('keterangan');
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#dampak']);
 
-		$dampak->save();
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
 
-		return redirect()->route('kasus.show', [$kasus_id, '#dampak']);
 	}
 
 	/**

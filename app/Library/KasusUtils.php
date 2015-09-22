@@ -3,6 +3,7 @@ namespace rifka\Library;
 
 use rifka\Kasus;
 use rifka\KlienKasus;
+use rifka\Library\InputUtils;
 
  
 /**
@@ -12,32 +13,6 @@ class KasusUtils
 {
 	
 	/**
-	 *	Make default inputs null:
-	 *	Turn fields used as examples into null
-	 *  instead of entering the examples into the DB.
-	 *
-	 *	@param array $input
-	 *	@return array $input
-	 */
-	public static function nullifyDefaults($input)
-	{
-		if(isset($input["jenis_kasus"]))
-		{
-			$input["jenis_kasus"] = ($input["jenis_kasus"] == "Jenis")
-				? null : $input["jenis_kasus"];
-		}
-		if(isset($input["sejak_kapan"]))
-		{
-			$input["sejak_kapan"] = ($input["sejak_kapan"] == "")
-				? null : $input["sejak_kapan"];
-		}
-
-		return $input;
-
-	}
-
-
-	/**
 	 *	Create a new case with user input data.
 	 *
 	 *	@param array $input - The user input date
@@ -46,7 +21,7 @@ class KasusUtils
 	public static function createNewCase($input)
 	{
 		// Ensure defaults not saved
-		$input = KasusUtils::nullifyDefaults($input);
+		$input = InputUtils::nullifyDefaults($input);
 
 		// Create the new case record in the database
 		try {
@@ -131,7 +106,7 @@ class KasusUtils
 		$kasus = Kasus::findOrFail($kasus_id);
 
 		// Ensure defaults are not saved.
-		$input = KasusUtils::nullifyDefaults($input);
+		$input = InputUtils::nullifyDefaults($input);
 
 		// Get list of case attributes
 		$kasusAttributes = array_keys($kasus->getAttributes());
@@ -168,6 +143,7 @@ class KasusUtils
 	/**
 	 *	Get case suggestions
 	 *	to assist in better user-experience.
+	 *	TODO: Move to "AI" Library
 	 *
 	 *	@param Kasus $kasus
 	 *	@return array $suggestions;

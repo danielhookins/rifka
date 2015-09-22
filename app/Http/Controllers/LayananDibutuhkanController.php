@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\LayananDibutuhkan;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class LayananDibutuhkanController extends Controller {
 
@@ -49,15 +51,14 @@ class LayananDibutuhkanController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		$layanan = \rifka\LayananDibutuhkan::create([
-			'kasus_id' 			=> $kasus_id,
-			'jenis_layanan' => \Input::get('jenis_layanan'),
-			'status' 				=> \Input::get('status')
-		]);
+		// Set variables
+		$resourceType = "LayananDibutuhkan";
+		$input = \Input::get();
+		$fields = ["jenis_layanan", "status"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-dibutuhkan']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -84,7 +85,7 @@ class LayananDibutuhkanController extends Controller {
 		$request->session()->flash('edit-layanan-dibutuhkan', True);
 		$request->session()->flash('layanan-dbth-active', $layanan);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-dibutuhkan']);
+		return redirect()->route('kasus.show', [$kasus_id, '#layanandibutuhkan']);
 	}
 
 	/**
@@ -93,16 +94,24 @@ class LayananDibutuhkanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($kasus_id, $layanan_dbth_id)
+	public function update($kasus_id, $layanandibutuhkan_id)
 	{
-		$layanan = LayananDibutuhkan::findOrFail($layanan_dbth_id);
+		// Set variables
+		$resource = LayananDibutuhkan::findOrFail($layanandibutuhkan_id);
+		$fields = ["jenis_layanan", "status"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$layanan->jenis_layanan = \Input::get('jenis_layanan');
-		$layanan->status = \Input::get('status');
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanandibutuhkan']);
 
-		$layanan->save();
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-dibutuhkan']);
 	}
 
 	/**
@@ -127,6 +136,6 @@ class LayananDibutuhkanController extends Controller {
 			}
 		}
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-dibutuhkan']);
+		return redirect()->route('kasus.show', [$kasus_id, '#layanandibutuhkan']);
 	}
 }

@@ -2,7 +2,7 @@
   
   <div class="panel-heading">
     <h4 class="panel-title">
-      <a class="in-link" name="upaya-dilakukan">Upaya Dilakukan</a>
+      <a class="in-link" name="upayadilakukan">Upaya Dilakukan</a>
     </h4>
   </div>
 

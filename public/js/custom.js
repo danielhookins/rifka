@@ -36,6 +36,7 @@ $(function() {
 
 $.fn.modal.Constructor.prototype.enforceFocus = function() {};
 
+
 $(document).ready(function () {
 
 
@@ -99,6 +100,9 @@ if(typeof edit_kontak !== 'undefined' && edit_kontak) {
 }
 if(typeof edit_alamat !== 'undefined' && edit_alamat) {
 	$("#alamat-edit").modal({show:true});
+}
+if(typeof edit_bentuk !== 'undefined' && edit_bentuk) {
+	$("#bentuk-edit").modal({show:true});
 }
 
 /*

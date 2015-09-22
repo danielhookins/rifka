@@ -2,7 +2,7 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
+use rifka\BentukKekerasan;
 use Illuminate\Http\Request;
 
 class BentukKekerasanController extends Controller {
@@ -19,6 +19,9 @@ class BentukKekerasanController extends Controller {
 		
 		// Only allow active users
 		$this->middleware('active');
+
+		// Grant access to counsellors, managers and developers
+		$this->middleware('userType:Konselor');
 	}
 
 	/**
@@ -90,9 +93,14 @@ class BentukKekerasanController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Request $request, $kasus_id, $bentuk_id)
 	{
-		//
+		$bentuk = BentukKekerasan::findOrFail($bentuk_id);
+
+		$request->session()->flash('edit-bentuk', True);
+		$request->session()->flash('bentuk-active', $bentuk);
+
+		return redirect()->route('kasus.show', [$kasus_id, '#bentuk']);
 	}
 
 	/**

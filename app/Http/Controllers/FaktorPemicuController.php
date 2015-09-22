@@ -3,7 +3,8 @@
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\FaktorPemicu;
-
+use rifka\Library\ResourceUtils;
+use rifka\Library\InputUtils;
 use Illuminate\Http\Request;
 
 class FaktorPemicuController extends Controller {
@@ -45,7 +46,7 @@ class FaktorPemicuController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		// Not used
 	}
 
 	/**
@@ -55,20 +56,12 @@ class FaktorPemicuController extends Controller {
 	 */
 	public function store($kasus_id)
 	{
-		//
-		if($input = \Input::get())
-		{
-			
-			$faktorPemicu = \rifka\FaktorPemicu::create([
-				'kasus_id' 			=> $kasus_id,
-				'jenis_pemicu' 	=> \Input::get('jenis_pemicu'),
-				'keterangan'		=> \Input::get('keterangan')
-				]);
+		// Set variables
+		$resourceType = "FaktorPemicu";
+		$input = \Input::get();
+		$fields = ["jenis_pemicu", "keterangan"];
 
-			return redirect()->route('kasus.show', [$kasus_id, '#faktor-pemicu']);
-		}
-
-		return 'Error, could not get user input.';
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -96,7 +89,7 @@ class FaktorPemicuController extends Controller {
 		$request->session()->flash('edit-pemicu', True);
 		$request->session()->flash('pemicu-active', $pemicu);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#faktor-pemicu']);
+		return redirect()->route('kasus.show', [$kasus_id, '#faktorpemicu']);
 	}
 
 	/**
@@ -107,17 +100,23 @@ class FaktorPemicuController extends Controller {
 	 */
 	public function update($kasus_id, $pemicu_id)
 	{
-		//
-		if($pemicu = FaktorPemicu::findOrFail($pemicu_id))
-		{
-			$pemicu->jenis_pemicu = \Input::get('jenis_pemicu');
-			$pemicu->keterangan = \Input::get('keterangan');
-			$pemicu->save();
 
-			return redirect()->route('kasus.show', [$kasus_id, '#faktor-pemicu']);
-		}
+		// Set variables
+		$resource = FaktorPemicu::findOrFail($pemicu_id);
+		$fields = ["jenis_pemicu", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
 		
-		return 'Error, could not update faktor pemicu.';
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
+
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#faktorpemicu']);
+
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**
@@ -128,7 +127,7 @@ class FaktorPemicuController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		// Not used
 	}
 
 	public function deletePemicu2($kasus_id)
@@ -143,7 +142,7 @@ class FaktorPemicuController extends Controller {
 			}
 		}
 
-		return redirect()->route('kasus.show', [$kasus_id, '#faktor-pemicu']);
+		return redirect()->route('kasus.show', [$kasus_id, '#faktorpemicu']);
 	}
 
 }

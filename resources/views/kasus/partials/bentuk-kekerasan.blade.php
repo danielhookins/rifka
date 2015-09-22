@@ -50,7 +50,7 @@
 
   <div class="panel-body">
     <div class="form-inline">
-      <a class="btn btn-default" data-toggle="modal" href="#edit-bentuk">
+      <a class="btn btn-default" data-toggle="modal" href="{{ route('kasus.bentuk.edit', array($bentuk->kasus_id, $bentuk->bentuk_id)) }}">
         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         Edit
       </a>
@@ -74,3 +74,11 @@
 @if(!empty($bentukKekerasan))
   @include('kasus.partials.bentuk-kekerasan-edit')
 @endif
+
+<script type="text/javascript">
+  @if(Session::has('edit-bentuk'))
+     var edit_bentuk = true;
+  @else
+     var edit_bentuk = false;
+  @endif
+</script>
