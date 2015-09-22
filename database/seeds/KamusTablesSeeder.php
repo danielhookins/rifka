@@ -23,8 +23,13 @@ class KamusTablesSeeder extends Seeder {
         rifka\Kamus_table::create([
         	'name' 			=> 'Alamat',
         	'type' 			=> 'Klien',
-        	'description' 	=> 'An address of a client.'
+        	'description' 	=> 'An address.'
         	]);
+        rifka\Kamus_table::create([
+            'name'          => 'Alamat_Klien',
+            'type'          => 'Klien',
+            'description'   => 'The address of a client'
+            ]);
         rifka\Kamus_table::create([
             'name'          => 'Latar_Keluarga',
             'type'          => 'Klien',

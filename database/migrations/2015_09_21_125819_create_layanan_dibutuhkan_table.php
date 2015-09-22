@@ -18,7 +18,8 @@ class CreateLayananDibutuhkanTable extends Migration {
 			$table->integer('kasus_id')->nullable()->unsigned();
 			$table->string('jenis_layanan')->nullable();
 			$table->string('status')->nullable();
-			$table->timestamps();
+			$table->timestamp('created_at')->nullable();
+			$table->timestamp('updated_at')->nullable();
 		});
 	}
 

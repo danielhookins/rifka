@@ -47,7 +47,7 @@
 		<td>{!! $result->no_telp !!}</td>
 		<td>
 			<ul>
-				@forelse ($result->alamat()->get() as $resultAlamat)
+				@forelse ($result->alamatKlien()->get() as $resultAlamat)
 					{{ $resultAlamat->alamat }}
 					@if ($resultAlamat->kecamatan)
 						<br />{{ $resultAlamat->kecamatan }}

@@ -10,7 +10,6 @@ class Alamat extends Model {
     protected $table = 'alamat';
 	protected $primaryKey = 'alamat_id';
 	protected $fillable = [
-        'klien_id',
         'alamat',
 		'kecamatan',
 		'kabupaten'];
@@ -24,9 +23,9 @@ class Alamat extends Model {
         ],
     ];  
 
-    public function klien()
+    public function alamatKlien()
     {
-    return $this->belongsTo('rifka\Klien', 'klien_id', 'klien_id');
+      return $this->belongsToMany('rifka\Klien', 'alamat_klien', 'klien_id', 'alamat_id')->withPivot('jenis');
     }
 
 }

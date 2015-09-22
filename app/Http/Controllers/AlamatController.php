@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use rifka\Alamat;
+use rifka\AlamatKlien;
+use rifka\Library\AlamatUtils;
 
 class AlamatController extends Controller {
 
@@ -48,14 +50,48 @@ class AlamatController extends Controller {
 	 */
 	public function store($klien_id)
 	{
-		$alamat = \rifka\Alamat::create([
-			'klien_id' 		=> $klien_id,
-			'alamat' 		=> \Input::get('alamat'),
-			'kecamatan' 	=> \Input::get('kecamatan'),
-			'kabupaten'  => \Input::get('kabupaten')
-		]);
+		
+		try {
 
-		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+			// set variables from user input
+			$alamat = \Input::get('alamat');
+			$kecamatan = \Input::get('kecamatan');
+			$kabupaten = \Input::get('kabupaten');
+			$jenis = (\Input::get('jenis') == "Jenis") ? null : \Input::get('jenis');
+			$existing = AlamatUtils::getExisting($alamat, $kecamatan, $kabupaten);
+
+			if($existing != null)
+			{
+				
+				// Address already exists in database
+				$alamat = $existing;
+			}
+			else 
+			{
+				
+				// Create new address in database
+				$alamat = \rifka\Alamat::create([
+						'klien_id' 		=> $klien_id,
+						'alamat' 		=> $alamat,
+						'kecamatan' 	=> $kecamatan,
+						'kabupaten'  => $kabupaten
+					]);
+			}
+			
+			// Create new klien-address association
+			$alamatKlien = \rifka\AlamatKlien::create([
+					'klien_id' => $klien_id,
+					'alamat_id' => $alamat->alamat_id,
+					'jenis' => $jenis
+				]);
+
+			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+
+		} catch (Exception $e) {
+
+			// Could not save new address in DB
+			return $e;
+		}
 
 	}
 
@@ -96,14 +132,29 @@ class AlamatController extends Controller {
 	public function update($klien_id, $alamat_id)
 	{
 
-		$alamat = Alamat::findOrFail($alamat_id);
-		$alamat->alamat = \Input::get('alamat');
-		$alamat->kecamatan = \Input::get('kecamatan');
-		$alamat->kabupaten = \Input::get('kabupaten');
+		try {
+			
+			// Update the address
+			$alamat = Alamat::find($alamat_id);
+			$alamat->alamat = \Input::get('alamat');
+			$alamat->kecamatan = \Input::get('kecamatan');
+			$alamat->kabupaten = \Input::get('kabupaten');
+			$alamat->save();
 
-		$alamat->save();
+			// Update the 'type' on the pivot table
+			$alamatKlien = AlamatKlien::Where('klien_id', $klien_id)
+				->Where('alamat_id', $alamat_id)->first();
+			$alamatKlien->jenis = \Input::get('jenis');
+			$alamatKlien->save();
+			
+			// redirect back to client page
+			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 
-		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+		} catch (Exception $e) {
+
+			// Could not update address
+			return $e;
+		}
 
 	}
 
@@ -115,21 +166,52 @@ class AlamatController extends Controller {
 	 */
 	public function destroy($perkembangan_id)
 	{
-		//
+		// Not Used
 	}
 
+	/**
+	 *	Delete Selected Addresses
+	 */
 	public function deleteAlamat2($klien_id)
 	{
+			
+		// Items are selected for deletion
 		if($toDelete = \Input::get('toDelete'))
 		{
-			foreach($toDelete as $alamat_id)
-			{
-				$deleted = Alamat::where('alamat_id', $alamat_id)
-						->where('klien_id', $klien_id)->delete();
+			try {
+
+				foreach($toDelete as $alamat_id)
+				{
+					
+					// Delete Client-Address record
+					$deletedAlamatKlien = 
+						AlamatKlien::where('alamat_id', $alamat_id)
+							->where('klien_id', $klien_id)->delete();
+
+					// Delete address if no-clients are associated with it
+					// (Garbage Collection)
+					if(!AlamatUtils::hasClients($alamat_id))
+					{
+						$deletedAlamat = Alamat::where('alamat_id', $alamat_id)
+							->delete();
+					}
+					
+				}
+				
+				return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+
+			} catch (Exception $e) {
+
+			// Could not delete address
+			return $e;
 			}
+
+		} else {
+
+			// No items were selected for deletion
+			return redirect()->back();
 		}
 
-		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 	}
 
 }

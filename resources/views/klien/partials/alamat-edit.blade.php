@@ -6,7 +6,7 @@
 
       {!! Form::model($alamatActive, array(
         'route' => array('klien.alamat.update', 
-          $alamatActive->klien_id, 
+          $klien->klien_id, 
           $alamatActive->alamat_id), 
         'class'=>'form', 
         'method' => 'PUT')) 
@@ -120,6 +120,18 @@
           	'Sleman'		=>	'Sleman',
           	'Yogyakarta'	=>	'Yogyakarta',
           ), null, array('class' => 'form-control'))!!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('jenis', 'Jenis', array('class' => 'strongLabel')) !!}
+          <select id="jenisSelect" name="jenis">
+            <option value="Jenis">Jenis</option>
+            <option value="KTP">KTP</option>
+            <option value="Domisili">Domisili</option>
+            <option value="KTPDomisili">KTP & Domisili</option>
+          </select>
+          <script>
+            document.getElementById('jenisSelect').value = '{{ $alamat->pivot->jenis }}';
+          </script>
         </div>
       </div>
 

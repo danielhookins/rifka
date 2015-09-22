@@ -9,6 +9,7 @@ use Auth;
 use DB;
 use rifka\KlienKasus;
 use rifka\Library\ExcelUtils;
+use rifka\Library\AlamatUtils;
 
 class KlienController extends Controller {
 
@@ -67,7 +68,6 @@ class KlienController extends Controller {
 			'nama_klien' 		=> 'required',
 			'kelamin' 			=> 'required',
 			'tanggal_lahir' => 'date',
-			'no_telp' 			=> 'numeric',
 			'email' 				=> 'email'
 			]);
 
@@ -123,16 +123,45 @@ class KlienController extends Controller {
 		$kabupaten = ($kabupaten == "Kabupaten") ?
 			null : $kabupaten;
 
-		// If not all null - create address.		
+		// If not all null - create address - and alamat_klien association.		
 		$alamat = \Input::get('alamat');
 		if($alamat != null && $kecamatan != null && $kabupaten != null)
 		{
-			$alamatBaru = \rifka\Alamat::create([
-					'alamat' 	=> $alamat,
-					'klien_id' => $klienBaru->klien_id,
-					'kecamatan' => $kecamatan,
-					'kabupaten' => $kabupaten
-				]);
+			
+			try {
+				
+				//TODO: Move this duplicate code to library
+				// Duplicate with AlamatController 
+
+				// Check if address already exists
+				if(($existing = AlamatUtils::
+						getExisting($alamat, $kecamatan, $kabupaten)) != null)
+				{
+					// Define as existing address
+					$alamatBaru = $existing;
+				} 
+				else 
+				{
+					// Create new address
+					$alamatBaru = \rifka\Alamat::create([
+						'alamat' 	=> $alamat,
+						'kecamatan' => $kecamatan,
+						'kabupaten' => $kabupaten
+					]);
+				}
+				
+				// Create new Client-Address association
+				$alamatKlienBaru = \rifka\AlamatKlien::create([
+						'alamat_id' => $alamatBaru->alamat_id,
+						'klien_id' => $klienBaru->klien_id
+					]);
+
+			} catch (Exception $e) {
+				
+				// Could not create new address and/or associations.
+				return $e;
+			}
+			
 		}
         
 		if($returnPage == "klien") {

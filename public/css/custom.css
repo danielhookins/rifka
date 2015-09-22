@@ -79,8 +79,15 @@ body {
 
 
 /*
- * TOOL TIPS
+ * HELPERS AND TOOL TIPS
  */
+
+.helper-label {
+  font-weight:normal;
+  font-size:smaller;
+  color: grey;
+ }
+
 .tooltip-inner {
 	max-width: 200px;
 	width: 200px; 

@@ -13,6 +13,7 @@
 
 <div class="form-group">	
 	{!! Form::label('alamat', 'Alamat', array('class' => 'strongLabel')) !!}
+	<p class="helper-label">Contoh: Jl. Jambu no. 123</p>
 	{!! Form::text('alamat', null, array('class' => 'form-control','placeholder' => 'Nama jalan dan nomor rumah')) !!}
 </div>
 

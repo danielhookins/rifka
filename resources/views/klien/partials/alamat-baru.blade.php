@@ -12,6 +12,7 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('alamat', 'Alamat', array('class' => 'strongLabel')) !!}
+          <p class="helper-label">Contoh: Jl. Jambu no. 123</p>
           {!! Form::text('alamat', null, array(
           	'class' => 'form-control',
           	'placeholder' => 'Alamat',
@@ -112,6 +113,15 @@
           	'Sleman'		=>	'Sleman',
           	'Yogyakarta'	=>	'Yogyakarta',
           ), null, array('class' => 'form-control'))!!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('jenis', 'Jenis', array('class' => 'strongLabel')) !!}
+          <select id="jenisSelect" name="jenis">
+            <option value="Jenis">Jenis</option>
+            <option value="KTP">KTP</option>
+            <option value="Domisili">Domisili</option>
+            <option value="KTPDomisili">KTP & Domisili</option>
+          </select>
         </div>
       </div>
 

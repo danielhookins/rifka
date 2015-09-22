@@ -5,7 +5,7 @@
 </div>
 
 <table class="table table-responsive table-hover">
-@if(!empty($klien->alamat->toArray()))
+@if(!empty($klien->alamatKlien->toArray()))
   
   {!! Form::model($klien, array('route' => array('alamat2.delete', $klien->klien_id), 'class'=>'form', 'method' => 'POST')) !!}
 
@@ -14,10 +14,11 @@
     <th>Alamat</th>
     <th>Kecamatan</th>
     <th>Kabupaten</th>
+    <th>Jenis</th>
   </tr>
 
   <?php $j = 0; ?>
-  @foreach ($klien->alamat as $alamat)
+  @foreach ($klien->alamatKlien as $alamat)
   <tr>
     <td style="text-align:center">
       {!! Form::checkbox('toDelete['.$j.']', $alamat->alamat_id, False) !!}
@@ -38,6 +39,15 @@
         {{ $alamat->kabupaten }}
       </a>
     </td>
+    <td>
+      <a href="{{ route('klien.alamat.edit', [$klien->klien_id, $alamat->alamat_id]) }}">
+        @if ($alamat->pivot->jenis == "KTPDomisili")
+          KTP dan Domisili
+        @else
+          {{ $alamat->pivot->jenis }}
+        @endif
+      </a>
+    </td>
   </tr>   
   @endforeach
 
@@ -53,7 +63,7 @@
 
 @endif
 
-@if(!empty($klien->alamat->toArray()))
+@if(!empty($klien->alamatKlien->toArray()))
 <tr>
   <td colspan="5">
     <a class="btn btn-sm btn-default" data-toggle="modal" href="#alamat-baru">

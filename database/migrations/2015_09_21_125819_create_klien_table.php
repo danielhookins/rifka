@@ -20,8 +20,6 @@ class CreateKlienTable extends Migration {
 			$table->string('tempat_lahir')->nullable();
 			$table->date('tanggal_lahir')->nullable();
 			$table->string('no_telp')->nullable();
-			$table->integer('alamat_ktp')->nullable()->unsigned();
-			$table->integer('alamat_domisili')->nullable()->unsigned();
 			$table->string('email')->nullable();
 			$table->string('pendidikan')->nullable();
 			$table->boolean('tamat')->nullable();

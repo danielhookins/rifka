@@ -336,21 +336,12 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Alamat',
-            'name'          => 'klien_id',
-            'primary_key'   => False,
-            'foreign_key'   => 'klien_id',
-            'type'          => 'integer',
-            'description'   => 'A reference to the client.',
-            'example'       => '3472'
-            ]);
-        rifka\Kamus_attribute::create([
-            'table'         => 'Alamat',
             'name'          => 'alamat',
             'primary_key'   => False,
             'foreign_key'   => '',
             'type'          => 'string',
-            'description'   => 'The street address.',
-            'example'       => 'Jl. Jambu no.123'
+            'description'   => 'The address.',
+            'example'       => 'Jl. Jambu no. 123'
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Alamat',
@@ -371,6 +362,43 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'Sleman'
             ]);
 
+        // Alamat_Klien Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Alamat_Klien',
+            'name'          => 'alamat_klien_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'The unique identifier of the client address.',
+            'example'       => '5234'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Alamat_Klien',
+            'name'          => 'alamat_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'alamat_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the address.',
+            'example'       => '5234'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Alamat_Klien',
+            'name'          => 'klien_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'klien_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the client.',
+            'example'       => '5234'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Alamat_Klien',
+            'name'          => 'jenis',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The type of address (KTP or Domisili).',
+            'example'       => 'KTP'
+            ]);
 
         // Kasus Attributes
         rifka\Kamus_attribute::create([

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlamatTable extends Migration {
+class CreateAlamatKlienTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,12 @@ class CreateAlamatTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('alamat', function(Blueprint $table)
+		Schema::create('alamat_klien', function(Blueprint $table)
 		{
-			$table->increments('alamat_id');
+			$table->increments('alamat_klien_id');
+			$table->integer('alamat_id')->nullable()->unsigned();
 			$table->integer('klien_id')->nullable()->unsigned();
-			$table->string('alamat')->nullable();
-			$table->string('kecamatan')->nullable();
-			$table->string('kabupaten')->nullable();
+			$table->string('jenis')->nullable();
 		});
 	}
 
@@ -29,7 +28,7 @@ class CreateAlamatTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('alamat');
+		Schema::drop('alamat_klien');
 	}
 
 }
