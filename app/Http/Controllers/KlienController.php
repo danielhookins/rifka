@@ -118,10 +118,9 @@ class KlienController extends Controller {
 		}
 
 		// Ensure defaults not stored in DB
-		$kecamatan = ($kecamatan == "Kecamatan") ?
-			null : $kecamatan;
-		$kabupaten = ($kabupaten == "Kabupaten") ?
-			null : $kabupaten;
+		$kecamatan = ($kecamatan == "Kecamatan") ? null : $kecamatan;
+		$kabupaten = ($kabupaten == "Kabupaten") ? null : $kabupaten;
+		$jenis = (\Input::get('jenis') == "Jenis") ? null : \Input::get('jenis');
 
 		// If not all null - create address - and alamat_klien association.		
 		$alamat = \Input::get('alamat');
@@ -153,7 +152,8 @@ class KlienController extends Controller {
 				// Create new Client-Address association
 				$alamatKlienBaru = \rifka\AlamatKlien::create([
 						'alamat_id' => $alamatBaru->alamat_id,
-						'klien_id' => $klienBaru->klien_id
+						'klien_id' => $klienBaru->klien_id,
+						'jenis' => $jenis
 					]);
 
 			} catch (Exception $e) {

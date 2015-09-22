@@ -150,6 +150,16 @@
 	), null, array('class' => 'form-control')) !!}
 </div>
 
+<div class="form-group">
+  {!! Form::label('jenis', 'Jenis Alamat', array('class' => 'strongLabel')) !!}
+  <select id="jenisSelect" name="jenis">
+    <option value="Jenis">Jenis</option>
+    <option value="KTP">KTP</option>
+    <option value="Domisili">Domisili</option>
+    <option value="KTPDomisili">KTP & Domisili</option>
+  </select>
+</div>
+
 <div class="form-group
 	@if($errors->has('email')) has-error @endif">
 	{!! Form::label('email', 'Alamat E-mail', array('class' => 'strongLabel')) !!}
