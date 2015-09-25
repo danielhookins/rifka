@@ -28,6 +28,24 @@
     </li>
   @endif
 
+  @if($klien->pendidikan && $klien->pendidikan != "Pendidikan")
+    <li class="list-group-item">
+        <p class="list-group-item-text">
+          <strong>Pendidikan</strong> (Klien telah lulus)
+          {{$klien->pendidikan}}
+        </p>
+    </li>
+  @else
+    <li class="list-group-item">
+      <p class="list-group-item-text">
+        <a class="tambah-link" data-toggle="modal" href="#edit-informasi-tambahan">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Tambah Pendidikan
+        </a>
+      </p>
+    </li>
+  @endif
+
   @if($klien->pekerjaan)
     <li class="list-group-item">
         <p class="list-group-item-text">
@@ -157,6 +175,20 @@
             'class' => 'form-control',
             'placeholder' => '', 
             'autocomplete' => 'off')) !!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('pendidikan', 'Pendidikan', array('class' => 'strongLabel')) !!}
+          (Klien telah lulus)
+          {!! Form::select('pendidikan', array(
+            'Pendidikan'  => 'Pendidikan',
+            'Tidak Sekolah' => 'Tidak Sekolah',
+            'TK' => 'TK',
+            'SD' => 'SD',
+            'SLTP' => 'SLTP',
+            'SLTA' => 'SLTA',
+            'S1/S2/S3' => 'S1/S2/S3',
+            'D1/D2/D3' => 'D1/D2/D3'), null, array(
+              'class' => 'form-control')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('pekerjaan', 'Pekerjaan', array('class' => 'strongLabel')) !!}

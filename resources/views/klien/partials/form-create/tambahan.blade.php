@@ -6,6 +6,21 @@
 </div>
 
 <div class="form-group">
+  {!! Form::label('pendidikan', 'Pendidikan', array('class' => 'strongLabel')) !!}
+  (Klien telah lulus)
+  {!! Form::select('pendidikan', array(
+    'Pendidikan'  => 'Pendidikan',
+    'Tidak Sekolah' => 'Tidak Sekolah',
+    'TK' => 'TK',
+    'SD' => 'SD',
+    'SLTP' => 'SLTP',
+    'SLTA' => 'SLTA',
+    'S1/S2/S3' => 'S1/S2/S3',
+    'D1/D2/D3' => 'D1/D2/D3'), null, array(
+      'class' => 'form-control')) !!}
+</div>
+
+<div class="form-group">
 	{!! Form::label('pekerjaan', 'Pekerjaan', array('class' => 'strongLabel')) !!}
 	{!! Form::text('pekerjaan', null, array('class' => 'form-control', 'placeholder' => 'Pekerjaan')) !!}
 </div>

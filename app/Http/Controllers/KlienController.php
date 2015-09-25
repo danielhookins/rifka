@@ -82,6 +82,8 @@ class KlienController extends Controller {
 			? null : \Input::get('status_perkawinan');
 		$penghasilan = (\Input::get('penghasilan') == "Penghasilan")
 			? null : \Input::get('penghasilan');
+		$pendidikan = (\Input::get('pendidikan') == "Pendidikan")
+			? null : \Input::get('pendidikan');
 
 		// Create new Client
 		$klienBaru = Klien::create([
@@ -92,6 +94,7 @@ class KlienController extends Controller {
 				'status_perkawinan' => $status_perkawinan,
 				'no_telp' 					=> \Input::get('no_telp'),
 				'email' 						=> \Input::get('email'),
+				'pendidikan'				=> $pendidikan,
 				'jumlah_anak'				=> \Input::get('jumlah_anak'),
 				'jumlah_tanggungan' => \Input::get('tanggungan'),
 				'pekerjaan' 				=> \Input::get('pekerjaan'),
@@ -248,12 +251,14 @@ class KlienController extends Controller {
 		$klien = Klien::findOrFail($klien_id);
 		$attributes = array_keys($klien->getAttributes());
 
+		$input = \Input::get();
+
 		// TODO: Fix Bug: If user clears an input it will not be updated.
 		foreach($attributes as $attribute)
 		{
-			if(\Input::get($attribute) && $klien->$attribute != \Input::get($attribute))
+			if(isset($input[$attribute]) && $klien->$attribute != $input[$attribute])
 			{
-				$klien->$attribute = \Input::get($attribute);
+				$klien->$attribute = $input[$attribute];
 				$klien->save();
 			}
 		}
