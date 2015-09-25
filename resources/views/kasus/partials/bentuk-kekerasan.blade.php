@@ -71,7 +71,7 @@
 </div> <!-- / Bentuk Kekerasan Panel -->
 
 @include('kasus.partials.bentuk-kekerasan-baru')
-@if(!empty($bentukKekerasan))
+@if(Session::has('edit-bentuk'))
   @include('kasus.partials.bentuk-kekerasan-edit')
 @endif
 

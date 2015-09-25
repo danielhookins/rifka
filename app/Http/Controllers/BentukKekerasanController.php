@@ -100,7 +100,7 @@ class BentukKekerasanController extends Controller {
 		$request->session()->flash('edit-bentuk', True);
 		$request->session()->flash('bentuk-active', $bentuk);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#bentuk']);
+		return redirect()->route('kasus.show', [$kasus_id, '#bentuk-kekerasan']);
 	}
 
 	/**

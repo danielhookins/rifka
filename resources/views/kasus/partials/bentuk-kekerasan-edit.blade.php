@@ -1,12 +1,14 @@
-<div class="modal fade" id="edit-bentuk">
+<?php $bentukKekerasanActive = Session::get('bentuk-active') ?>
+
+<div class="modal fade" id="bentuk-edit">
   <div class="modal-dialog">
     <div class="modal-content">
 
-      {!! Form::model($bentukKekerasan, array(
+      {!! Form::model($bentukKekerasanActive, array(
       'route' => array(
         'kasus.bentuk.update',
         $kasus->kasus_id,
-        $bentukKekerasan->bentuk_id), 
+        $bentukKekerasanActive->bentuk_id), 
       'class'=>'form', 
       'method' => 'PUT'))
       !!}
@@ -53,7 +55,7 @@
           <strong>Keterangan</strong>
         </div>
         <div class="form-group">
-          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3">{{ $bentukKekerasan->keterangan}}</textarea>
+          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3">{{ $bentukKekerasanActive->keterangan}}</textarea>
         </div>
 
       </div>
