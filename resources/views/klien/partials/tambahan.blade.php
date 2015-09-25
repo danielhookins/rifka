@@ -187,7 +187,7 @@
             'SLTP' => 'SLTP',
             'SLTA' => 'SLTA',
             'S1/S2/S3' => 'S1/S2/S3',
-            'D1/D2/D3' => 'D1/D2/D3'), null, array(
+            'D3' => 'D3'), null, array(
               'class' => 'form-control')) !!}
         </div>
         <div class="form-group">
