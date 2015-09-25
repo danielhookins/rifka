@@ -2,7 +2,7 @@
 
 <div class="panel-heading">
   <h4 class="panel-title">
-    <a class="in-link" name="informasi-kasus">
+    <a class="in-link" name="informasi-pribadi">
       <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
       Informasi Pribadi
     </a>
@@ -183,7 +183,7 @@
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           Batal
         </button>
-        <button type="submit" class="btn btn-primary" value="pribadi_btn">
+        <button type="submit" class="btn btn-primary" name="submitBtn" value="informasi-pribadi">
           <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
           Simpan
         </button>

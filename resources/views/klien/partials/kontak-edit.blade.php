@@ -38,7 +38,7 @@
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
           Batal
         </button>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" name="submitBtn" value="informasi-kontak">
           <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
           Simpan
         </button>

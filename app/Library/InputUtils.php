@@ -18,19 +18,24 @@ class InputUtils
 	{
 		// Define the default inputs that will NOT be saved
 		$defaults = array(
-			"jenis" 				=> "Jenis",
-			"jenis_kasus" 	=> "Jenis",
-			"jenis_pemicu" 	=> "Jenis",
-			"jenis_upaya" 	=> "Upaya Dilakukan",
-			"jenis_layanan" => "Layanan Dibutuhkan",
-			"jenis_dampak"	=> "Dampak",
-			"jenis_litigasi"=> "Jenis Litigasi",
-			"sejak_kapan" 	=> "",
-			"tanggal" 			=> "",
-			"mulai_tanggal" => "",
-			"sampai_tanggal"=> "",
-			"media"					=> "Media",
-			"no_reg"				=> ""
+			"jenis" 						=> "Jenis",
+			"jenis_kasus" 			=> "Jenis",
+			"jenis_pemicu" 			=> "Jenis",
+			"jenis_upaya" 			=> "Upaya Dilakukan",
+			"jenis_layanan" 		=> "Layanan Dibutuhkan",
+			"jenis_dampak"			=> "Dampak",
+			"jenis_litigasi"		=> "Jenis Litigasi",
+			"sejak_kapan" 			=> "",
+			"tanggal" 					=> "",
+			"mulai_tanggal" 		=> "",
+			"sampai_tanggal"		=> "",
+			"tanggal_lahir"			=> "",
+			"media"							=> "Media",
+			"no_reg"						=> "",
+			"agama"							=> "Agama",
+			"status_perkawinan" => "Status Perkawinan",
+			"pendidikan"				=> "Pendidikan",
+			"penghasilan"				=> "Penghasilan"
 			);
 
 		foreach ($defaults as $name => $defaultValue)

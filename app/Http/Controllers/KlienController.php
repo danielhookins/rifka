@@ -10,6 +10,7 @@ use DB;
 use rifka\KlienKasus;
 use rifka\Library\ExcelUtils;
 use rifka\Library\AlamatUtils;
+use rifka\Library\KlienUtils;
 
 class KlienController extends Controller {
 
@@ -229,42 +230,48 @@ class KlienController extends Controller {
 	 * @param  string $section The section of client data to update
 	 * @return Response
 	 */
-	public function update($klien_id, $section = 'all')
+	public function update($klien_id)
 	{
-
-		/* 
-		 * If the section is the Contact section 
-		 * Update the telephone number and email address of the client
-		 */
-		if($section == "kontak")
-		{
-			$klien = Klien::findOrFail($klien_id);
-			$klien->no_telp = \Input::get('no_telp');
-			$klien->email = \Input::get('email');
-
-			$klien->save();
-
-			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
-		}
-
-		$user = Auth::user();
-		$klien = Klien::findOrFail($klien_id);
-		$attributes = array_keys($klien->getAttributes());
-
 		$input = \Input::get();
+		$fields = null;
 
-		// TODO: Fix Bug: If user clears an input it will not be updated.
-		foreach($attributes as $attribute)
+		// Update based on specific section
+		if(isset($input["submitBtn"])) 
 		{
-			if(isset($input[$attribute]) && $klien->$attribute != $input[$attribute])
+			
+			// Pribadi (Personal) section
+			if($input["submitBtn"] == "informasi-pribadi")
 			{
-				$klien->$attribute = $input[$attribute];
-				$klien->save();
+				$fields = array('nama_klien', 'kelamin', 'tanggal_lahir', 'agama', 'status_perkawinan');
 			}
+			// Kontak (Contact) section
+			elseif($input["submitBtn"] == "informasi-kontak")
+			{
+				$fields = array('no_telp', 'email');
+			}
+			// Tambahan (Additional) section
+			elseif($input["submitBtn"] == "informasi-tambahan")
+			{
+				$fields = array('jumlah_anak', 'pendidikan', 'pekerjaan', 'jabatan', 'penghasilan', 'kondisi_klien', 'dirujuk_oleh');
+			}
+
+			try {
+				// Update client
+				return KlienUtils::updateKlien($klien_id, $fields, $input);
+			
+			} catch (Exception $e) {
+
+				// Error - could not update client
+				return $e;
+			}
+
+
+		} else {
+
+			// No section specified - cannot update
+			return redirect()->back();
 		}
-        
-		return redirect()->route('klien.show', $klien_id)
-			->with('success', 'Klien file updated.');
+
 	}
 
 	/**
