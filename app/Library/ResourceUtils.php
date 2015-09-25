@@ -55,13 +55,36 @@ class ResourceUtils
 	public static function storeResource($kasus_id, $resourceType, $input, $fields)
 	{
 
+		// Define array of services given (layanan-diberikan)
+		$layananDiberikan = array(
+			'KonsPsikologi',
+			'KonsHukum',
+			'Homevisit',
+			'Medis',
+			'Shelter',
+			'SupportGroup',
+			'Mediasi',
+			'MensProgram',
+			'Rujukan'
+			);
+
+		// set in-link name
+		if(in_array($resourceType, $layananDiberikan))
+		{
+			$inLink = "#layanan-diberikan";
+		} 
+		else
+		{
+			$inLink = "#".strtolower($resourceType);
+		}
+
 		// check fields contain input
 		$fieldsEntered =  InputUtils::fieldsEntered($fields, $input);
 		if(!$fieldsEntered)
 		{
 			// no input from user (fields empty)
 			return redirect()
-				->route('kasus.show', [$kasus_id, '#'.strtolower($resourceType)]);
+				->route('kasus.show', [$kasus_id, $inLink]);
 
 		}
 
@@ -79,7 +102,7 @@ class ResourceUtils
 
 		}
 		return redirect()
-			->route('kasus.show', [$kasus_id, '#'.strtolower($resourceType)]);
+			->route('kasus.show', [$kasus_id, $inLink]);
 
 	}
 

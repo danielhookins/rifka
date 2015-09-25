@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Arsip;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class ArsipController extends Controller {
 
@@ -49,16 +51,14 @@ class ArsipController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		$arsip = \rifka\Arsip::create([
-			'kasus_id' 		=> $kasus_id,
-			'no_reg' 		=> \Input::get('no_reg'),
-			'media' 		=> \Input::get('media'),
-			'lokasi' 	=> \Input::get('lokasi')
-		]);
+		// Set variables
+		$resourceType = "Arsip";
+		$input = \Input::get();
+		$fields = ["no_reg", "media", "lokasi"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#arsip']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -96,14 +96,22 @@ class ArsipController extends Controller {
 	 */
 	public function update($kasus_id, $arsip_id)
 	{
-		$arsip = Arsip::findOrFail($arsip_id);
-		$arsip->no_reg = \Input::get('no_reg');
-		$arsip->media = \Input::get('media');
-		$arsip->lokasi = \Input::get('lokasi');
+		// Set variables
+		$resource = Arsip::findOrFail($arsip_id);
+		$fields = ["no_reg", "media", "lokasi"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$arsip->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#arsip']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#arsip']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

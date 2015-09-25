@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Homevisit;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class HomevisitController extends Controller {
 
@@ -51,15 +53,14 @@ class HomevisitController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		$konsHukum = \rifka\Homevisit::create([
-			'kasus_id' 		=> $kasus_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+		// Set variables
+		$resourceType = "Homevisit";
+		$input = \Input::get();
+		$fields = ["tanggal", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -97,13 +98,22 @@ class HomevisitController extends Controller {
 	 */
 	public function update($kasus_id, $homevisit_id)
 	{
-		$konsHukum = Homevisit::findOrFail($homevisit_id);
-		$konsHukum->tanggal = \Input::get('tanggal');
-		$konsHukum->keterangan = \Input::get('keterangan');
+		// Set variables
+		$resource = Homevisit::findOrFail($homevisit_id);
+		$fields = ["tanggal", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$konsHukum->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#homevisit']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

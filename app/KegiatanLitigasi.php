@@ -6,7 +6,7 @@ class KegiatanLitigasi extends Model {
 
 	protected $table = 'kegiatan_litigasi';
 	protected $primaryKey = 'kegiatan_litigasi_id';
-  	public $timestamps = false;
+  public $timestamps = false;
 	protected $fillable = ['litigasi_id',
 							'tanggal',
 							'kegiatan',

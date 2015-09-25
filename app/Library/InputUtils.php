@@ -24,8 +24,13 @@ class InputUtils
 			"jenis_upaya" 	=> "Upaya Dilakukan",
 			"jenis_layanan" => "Layanan Dibutuhkan",
 			"jenis_dampak"	=> "Dampak",
+			"jenis_litigasi"=> "Jenis Litigasi",
 			"sejak_kapan" 	=> "",
-			"tanggal" 			=> ""
+			"tanggal" 			=> "",
+			"mulai_tanggal" => "",
+			"sampai_tanggal"=> "",
+			"media"					=> "Media",
+			"no_reg"				=> ""
 			);
 
 		foreach ($defaults as $name => $defaultValue)

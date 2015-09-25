@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\SupportGroup;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class SupportGroupController extends Controller {
 
@@ -51,15 +53,14 @@ class SupportGroupController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		$konsHukum = \rifka\SupportGroup::create([
-			'kasus_id' 		=> $kasus_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+		// Set variables
+		$resourceType = "SupportGroup";
+		$input = \Input::get();
+		$fields = ["tanggal", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -95,15 +96,24 @@ class SupportGroupController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($kasus_id, $supportGroup_id)
+	public function update($kasus_id, $supportgroup_id)
 	{
-		$konsHukum = SupportGroup::findOrFail($supportGroup_id);
-		$konsHukum->tanggal = \Input::get('tanggal');
-		$konsHukum->keterangan = \Input::get('keterangan');
+		// Set variables
+		$resource = SupportGroup::findOrFail($supportgroup_id);
+		$fields = ["tanggal", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$konsHukum->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#supportGroup']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

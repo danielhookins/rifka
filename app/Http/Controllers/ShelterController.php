@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Shelter;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class ShelterController extends Controller {
 
@@ -51,17 +53,15 @@ class ShelterController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
-	{
-		$shelter = \rifka\Shelter::create([
-			'kasus_id' 		=> $kasus_id,
-			'mulai_tanggal' 		=> \Input::get('mulai_tanggal'),
-			'sampai_tanggal'	=> \Input::get('sampai_tanggal'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+	public function store($kasus_id)
+{
+	// Set variables
+	$resourceType = "Shelter";
+	$input = \Input::get();
+	$fields = ["mulai_tanggal", "sampai_tanggal", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
-	}
+	return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
+}
 
 	/**
 	 * Display the specified resource.
@@ -98,14 +98,22 @@ class ShelterController extends Controller {
 	 */
 	public function update($kasus_id, $shelter_id)
 	{
-		$shelter = Shelter::findOrFail($shelter_id);
-		$shelter->mulai_tanggal = \Input::get('mulai_tanggal');
-		$shelter->sampai_tanggal = \Input::get('sampai_tanggal');
-		$shelter->keterangan = \Input::get('keterangan');
+		// Set variables
+		$resource = Shelter::findOrFail($shelter_id);
+		$fields = ["mulai_tanggal", "sampai_tanggal", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$shelter->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#shelter']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

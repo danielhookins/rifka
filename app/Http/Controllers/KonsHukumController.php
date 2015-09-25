@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\KonsHukum;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class KonsHukumController extends Controller {
 
@@ -51,15 +53,14 @@ class KonsHukumController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		$konsHukum = \rifka\KonsHukum::create([
-			'kasus_id' 		=> $kasus_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+		// Set variables
+		$resourceType = "KonsHukum";
+		$input = \Input::get();
+		$fields = ["tanggal", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -97,13 +98,22 @@ class KonsHukumController extends Controller {
 	 */
 	public function update($kasus_id, $kons_hukum_id)
 	{
-		$konsHukum = KonsHukum::findOrFail($kons_hukum_id);
-		$konsHukum->tanggal = \Input::get('tanggal');
-		$konsHukum->keterangan = \Input::get('keterangan');
+		// Set variables
+		$resource = KonsHukum::findOrFail($kons_hukum_id);
+		$fields = ["tanggal", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$konsHukum->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#kons-hukum']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

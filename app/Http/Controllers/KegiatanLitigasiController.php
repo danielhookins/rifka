@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\KegiatanLitigasi;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class KegiatanLitigasiController extends Controller {
 
@@ -31,7 +33,7 @@ class KegiatanLitigasiController extends Controller {
 	 */
 	public function index()
 	{
-		//
+		// not used
 	}
 
 	/**
@@ -41,7 +43,7 @@ class KegiatanLitigasiController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		// not used
 	}
 
 	/**
@@ -49,16 +51,15 @@ class KegiatanLitigasiController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id, $litigasi_id)
+	public function store($kasus_id, $litigasi_id)
 	{
-		$kegiatan = \rifka\KegiatanLitigasi::create([
-			'litigasi_id' 	=> $litigasi_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'kegiatan' 		=> \Input::get('kegiatan'),
-			'informasi'  	=> \Input::get('informasi')
-		]);
+		// Set variables
+		$resourceType = "KegiatanLitigasi";
+		$input = \Input::get();
+		$input["litigasi_id"] = $litigasi_id; // Ref. related litigation record
+		$fields = ["litigasi_id", "tanggal", "kegiatan", "informasi"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#kegiatan-litigasi']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -69,7 +70,7 @@ class KegiatanLitigasiController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		// not used
 	}
 
 	/**
@@ -85,7 +86,7 @@ class KegiatanLitigasiController extends Controller {
 		$request->session()->flash('edit-kegiatan', True);
 		$request->session()->flash('kegiatan-active', $kegiatan);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#kegiatan-litigasi']);
+		return redirect()->route('kasus.show', [$kasus_id, '#kegiatanlitigasi']);
 	}
 
 	/**
@@ -94,16 +95,25 @@ class KegiatanLitigasiController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($kasus_id, $litigasi_id, $kegiatan_litigasi_id)
+	public function update($kasus_id, $litigasi_id, $kegiatan_id)
 	{
-		$kegiatan = KegiatanLitigasi::findOrFail($kegiatan_litigasi_id);
-		$kegiatan->tanggal = \Input::get('tanggal');
-		$kegiatan->kegiatan = \Input::get('kegiatan');
-		$kegiatan->informasi = \Input::get('informasi');
+		// Set variables
+		$resource = KegiatanLitigasi::findOrFail($kegiatan_id);
+		$fields = ["litigasi_id", "tanggal", "kegiatan", "informasi"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		$input["litigasi_id"] = $litigasi_id; // Ref. related litigation record
 
-		$kegiatan->save();
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#kegiatan-litigasi']);
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#kegiatanlitigasi']);
+
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**
@@ -114,7 +124,7 @@ class KegiatanLitigasiController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		// not used
 	}
 
 	public function deleteKegiatan2($kasus_id, $litigasi_id)
@@ -128,7 +138,7 @@ class KegiatanLitigasiController extends Controller {
 			}
 		}
 
-		return redirect()->route('kasus.show', [$kasus_id, '#kegiatan-litigasi']);
+		return redirect()->route('kasus.show', [$kasus_id, '#kegiatanlitigasi']);
 	}
 
 }

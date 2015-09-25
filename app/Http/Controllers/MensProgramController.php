@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\MensProgram;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class MensProgramController extends Controller {
 
@@ -51,15 +53,14 @@ class MensProgramController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		$mensProgram = \rifka\MensProgram::create([
-			'kasus_id' 		=> $kasus_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+		// Set variables
+		$resourceType = "MensProgram";
+		$input = \Input::get();
+		$fields = ["tanggal", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -95,15 +96,24 @@ class MensProgramController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($kasus_id, $mens_program_id)
+	public function update($kasus_id, $mensprogram_id)
 	{
-		$mensProgram = MensProgram::findOrFail($mens_program_id);
-		$mensProgram->tanggal = \Input::get('tanggal');
-		$mensProgram->keterangan = \Input::get('keterangan');
+		// Set variables
+		$resource = MensProgram::findOrFail($mensprogram_id);
+		$fields = ["tanggal", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$mensProgram->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#mens_program']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

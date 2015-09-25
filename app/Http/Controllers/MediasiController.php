@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Mediasi;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class MediasiController extends Controller {
 
@@ -51,16 +53,14 @@ class MediasiController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		$mediasi = \rifka\Mediasi::create([
-			'kasus_id' 		=> $kasus_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'hasil'	=> \Input::get('hasil'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+		// Set variables
+		$resourceType = "Mediasi";
+		$input = \Input::get();
+		$fields = ["tanggal", "hasil", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -98,14 +98,22 @@ class MediasiController extends Controller {
 	 */
 	public function update($kasus_id, $mediasi_id)
 	{
-		$mediasi = Mediasi::findOrFail($mediasi_id);
-		$mediasi->tanggal = \Input::get('tanggal');
-		$mediasi->hasil = \Input::get('hasil');
-		$mediasi->keterangan = \Input::get('keterangan');
+		// Set variables
+		$resource = Mediasi::findOrFail($mediasi_id);
+		$fields = ["tanggal", "hasil", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$mediasi->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#mediasi']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

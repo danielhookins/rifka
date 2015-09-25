@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\KonsPsikologi;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class KonsPsikologiController extends Controller {
 
@@ -51,15 +53,14 @@ class KonsPsikologiController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
+	public function store($kasus_id)
 	{
-		$konsPsikologi = \rifka\KonsPsikologi::create([
-			'kasus_id' 		=> $kasus_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+		// Set variables
+		$resourceType = "KonsPsikologi";
+		$input = \Input::get();
+		$fields = ["tanggal", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 	}
 
 	/**
@@ -97,13 +98,22 @@ class KonsPsikologiController extends Controller {
 	 */
 	public function update($kasus_id, $kons_psikologi_id)
 	{
-		$konsPsikologi = KonsPsikologi::findOrFail($kons_psikologi_id);
-		$konsPsikologi->tanggal = \Input::get('tanggal');
-		$konsPsikologi->keterangan = \Input::get('keterangan');
+		// Set variables
+		$resource = KonsPsikologi::findOrFail($kons_psikologi_id);
+		$fields = ["tanggal", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$konsPsikologi->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#kons-psikologi']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

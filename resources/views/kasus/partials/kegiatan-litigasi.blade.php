@@ -1,6 +1,6 @@
 <div class="panel-heading">
 <h4 class="panel-title">
-  <a class="in-link" name="kegiatan-litigasi">Kegiatan Litigasi</a>
+  <a class="in-link" name="kegiatanlitigasi">Kegiatan Litigasi</a>
 </h4>
 </div>
 

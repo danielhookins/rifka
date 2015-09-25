@@ -4,6 +4,8 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Medis;
 use Illuminate\Http\Request;
+use rifka\Library\InputUtils;
+use rifka\Library\ResourceUtils;
 
 class MedisController extends Controller {
 
@@ -51,17 +53,15 @@ class MedisController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(Request $request, $kasus_id)
-	{
-		$medis = \rifka\Medis::create([
-			'kasus_id' 		=> $kasus_id,
-			'tanggal' 		=> \Input::get('tanggal'),
-			'jenis_medis'	=> \Input::get('jenis_medis'),
-			'keterangan' 	=> \Input::get('keterangan')
-		]);
+	public function store($kasus_id)
+		{
+			// Set variables
+			$resourceType = "Medis";
+			$input = \Input::get();
+			$fields = ["tanggal", "jenis_medis", "keterangan"];
 
-		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
-	}
+			return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
+		}
 
 	/**
 	 * Display the specified resource.
@@ -98,14 +98,22 @@ class MedisController extends Controller {
 	 */
 	public function update($kasus_id, $medis_id)
 	{
-		$medis = Medis::findOrFail($medis_id);
-		$medis->tanggal = \Input::get('tanggal');
-		$medis->jenis_medis = \Input::get('jenis_medis');
-		$medis->keterangan = \Input::get('keterangan');
+		// Set variables
+		$resource = Medis::findOrFail($medis_id);
+		$fields = ["tanggal", "jenis_medis", "keterangan"];
+		$input = InputUtils::nullifyDefaults(\Input::get());
+		
+		try {
+			ResourceUtils::updateResource($resource, $fields, $input);
 
-		$medis->save();
+			// resource updated
+			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#medis']);
+		} Catch (Exception $e) {
+			// Could not update resource
+			return $e;
+		}
+
 	}
 
 	/**

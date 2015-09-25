@@ -24,7 +24,7 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('tanggal', 'Tanggal', array('class' => 'strongLabel')) !!}
-          {!! Form::date('tanggal', null, array('class' => 'form-control date-picker')) !!}
+          {!! Form::date('tanggal', null, array('class' => 'form-control date-picker', 'id'=>'tanggal_kegiatan')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('kegiatan', 'Kegiatan', array('class' => 'strongLabel')) !!}
