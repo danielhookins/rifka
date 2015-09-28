@@ -2,37 +2,44 @@
 
 @section('content')
 
-	<h2>Kasus Baru</h2>
-
 	<div class="row">
-		{!! (Session::has('korbanSearch')) ? '<div class="col-sm-12">' : '<div class="col-sm-6">' !!}
-		@include('kasus.partials.klien-create',['type' => 'Korban'])
+		<h2 style="text-align:center">Kasus Baru</h2>
+		<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 well">
+
+		<div class="row">
+			<div class="col-sm-12">
+				@include('kasus.partials.klien-create',['type' => 'Korban'])
+			</div>
 		</div>
 
-		{!! (Session::has('pelakuSearch')) ? '<div class="col-sm-12">' : '<div class="col-sm-6">' !!}
-		@include('kasus.partials.klien-create',['type' => 'Pelaku'])
+		<div class="row">
+			<div class="col-sm-12">
+				@include('kasus.partials.klien-create',['type' => 'Pelaku'])
+			</div>
 		</div>
-	</div>
 
-	{!! Form::open(array('route' => 'kasus.store')) !!}
-	
-	<div class="row">
-		<div class="col-sm-12">
-			@include('kasus.partials.informasi-create')
+		{!! Form::open(array('route' => 'kasus.store')) !!}
+		
+		<div class="row">
+			<div class="col-sm-12">
+				@include('kasus.partials.informasi-create')
+			</div>
 		</div>
-	</div>
 
-	<div class="row">
-		<div class="col-sm-12">	
-		<button type="submit" class="btn btn-primary pull-right" aria-label="OK">
-		  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan Kasus
-		</button>
+		<div class="row">
+			<div class="col-sm-12">	
+			<button type="submit" class="btn btn-primary pull-right" aria-label="OK">
+			  <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Membuka Kasus
+			</button>
+			</div>
 		</div>
+		
+		<div class="row" style="padding-bottom:25px;">
+		</div>
+		
+		{!! Form::close() !!}
 	</div>
-	
-	<div class="row" style="padding-bottom:25px;">
-	</div>
-	
-	{!! Form::close() !!}
+</div>
+
 
 @endsection

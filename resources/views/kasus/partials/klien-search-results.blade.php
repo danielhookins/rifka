@@ -9,9 +9,7 @@
 	<tr>
 		<th># ID</th>
 		<th>Nama</th>
-		<th>Telp</th>
 		<th>Alamat</th>
-		<th>E-mail</th>
 	</tr>
 @forelse (Session::get('results') as $result)
 	<tr>
@@ -44,7 +42,6 @@
 					{!! $result->nama_klien !!}
 				</a>
 		</td>
-		<td>{!! $result->no_telp !!}</td>
 		<td>
 			<ul>
 				@forelse ($result->alamatKlien()->get() as $resultAlamat)
@@ -60,7 +57,6 @@
 				@endforelse
 			</ul>
 		</td>
-		<td>{!! $result->email !!}</td>
 	</tr>
 	@empty
 	<td scope="row">Tidak ada hasil. Mau <a href="{{ route('klien.create') }}" target="_blank">tambah klien baru</a>? (Buka jendela baru)</td>

@@ -1,4 +1,4 @@
-<div class="panel panel-{!!($type == "Korban" ? 'primary' : 'warning')!!}">
+<div class="panel panel-success">
 	<div class="panel-heading">
 		<h3 class="panel-title"><a name="{{ lcfirst($type) }}-panel">{{$type}}</a></h3>
 	</div>
@@ -49,7 +49,7 @@
 						@else
 							<p>Belum ada {{$type}}.</p>
 
-							<a href="{{ route('tambah.klien', lcfirst($type))}}" class="btn btn-{!!(($type == "Korban" && !Session::has('korban2')) ? 'primary' : 'default')!!} pull-right">Tambah {{$type}}</a>
+							<a href="{{ route('tambah.klien', lcfirst($type))}}" class="btn btn-default pull-right">Tambah {{$type}}</a>
 						@endif
 						{!! Form::close() !!}
 				  

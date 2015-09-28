@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <h2>Klien Baru</h2>
+  <h2 style="text-align:center">Klien Baru</h2>
 
   <div class="row">
     @if (count($errors) > 0)

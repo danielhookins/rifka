@@ -30,11 +30,6 @@ class KasusUtils
 				'hubungan' 				=> $input["hubungan"],
 				'lama_hubungan' 	=> $input['lama_hubungan'],
 				'jenis_lama_hub'  => $input['jenis_lama_hub'],
-				'sejak_kapan' 		=> $input["sejak_kapan"],
-				'seberapa_sering' => $input['seberapa_sering'],
-				'harapan_korban' 	=> $input['harapan_korban'],
-				'rencana_korban' 	=> $input['rencana_korban'],
-				'narasi' 					=> $input['narasi']
 				]);
 			
 			return $kasus;
