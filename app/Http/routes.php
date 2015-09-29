@@ -36,9 +36,10 @@
 	Route::resource('kasus.medis', 'MedisController');
 	Route::resource('kasus.mediasi', 'MediasiController');
 	Route::resource('kasus.shelter', 'ShelterController');
+	Route::resource('kasus.symptom', 'SymptomController');
 	Route::resource('kasus.litigasi', 'LitigasiController');
 	Route::resource('kasus.litigasi.kegiatan', 'KegiatanLitigasiController');
-	
+
 	Route::resource('klien', 'KlienController');
 	Route::resource('klien.alamat', 'AlamatController');
 	
@@ -128,6 +129,10 @@
 	Route::post('deleteKonselor2', [
 		'as' => 'konselor2.delete',
 		'uses' => 'KonselorController@deleteKonselor2']);
+	// Delete client symptoms
+	Route::post('kasus/{kasus_id}/removesymptom2', [
+		'as' => 'symptom2.delete',
+		'uses' => 'SymptomController@deleteSymptom2']);
 
 
 

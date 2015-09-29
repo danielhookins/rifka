@@ -26,6 +26,7 @@
 			<li class="list-group-item"><a href="#upayadilakukan">Upaya Dilakukan</a></li>
 			<li class="list-group-item"><a href="#layanandibutuhkan">Layanan Dibutuhkan</a></li>
 			<li class="list-group-item"><a href="#dampak">Dampak</a></li>
+			<li class="list-group-item"><a href="#symptom">Symptoms</a></li>
 		</ul>
 	
 		<div class="panel-heading">

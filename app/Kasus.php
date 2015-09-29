@@ -133,4 +133,9 @@ class Kasus extends Model {
         return $this->hasMany('rifka\Shelter', 'kasus_id', 'kasus_id');
     }
 
+    public function symptom()
+    {
+        return $this->hasMany('rifka\Symptom', 'kasus_id', 'kasus_id');
+    }
+
 }

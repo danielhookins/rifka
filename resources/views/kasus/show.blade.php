@@ -57,6 +57,7 @@
 		@include('kasus.partials.upaya-dilakukan')
 		@include('kasus.partials.layanan-dibutuhkan')
 		@include('kasus.partials.dampak')
+		@include('kasus.partials.symptom')
 
 		<h3 class="section-heading">
 				Litigasi

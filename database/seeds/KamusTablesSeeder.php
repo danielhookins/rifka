@@ -78,6 +78,11 @@ class KamusTablesSeeder extends Seeder {
             'type'          => 'Kasus',
             'description'   => 'A closed case.'
             ]);
+        rifka\Kamus_table::create([
+            'name'          => 'Symptoms',
+            'type'          => 'Kasus',
+            'description'   => 'A client\'s symptom.'
+            ]);
         
         // Untuk Keterangan Kasus
         rifka\Kamus_table::create([

@@ -1668,6 +1668,35 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '"Ruang PD"'
             ]);
 
+        // Symptom Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Symptoms',
+            'name'          => 'symptom_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'The unique identifier of the symptom.',
+            'example'       => '035'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Symptoms',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the case.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Symptoms',
+            'name'          => 'symptom_description',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'A description of the client\'s symptom.',
+            'example'       => '"Menangis"'
+            ]);
+
         // Activity Attributes
         rifka\Kamus_attribute::create([
             'table'         => 'Activity',

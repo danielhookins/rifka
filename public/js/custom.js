@@ -104,6 +104,9 @@ if(typeof edit_alamat !== 'undefined' && edit_alamat) {
 if(typeof edit_bentuk !== 'undefined' && edit_bentuk) {
 	$("#bentuk-edit").modal({show:true});
 }
+if(typeof edit_symptom !== 'undefined' && edit_symptom) {
+	$("#symptom-edit").modal({show:true});
+}
 
 /*
  *	SHOW NEW MODAL
@@ -135,6 +138,9 @@ if(typeof mediasi_baru !== 'undefined' && mediasi_baru) {
 }
 if(typeof shelter_baru !== 'undefined' && shelter_baru) {
 	$("#shelter-baru").modal({show:true});
+}
+if(typeof symptom_baru !== 'undefined' && symptom_baru) {
+	$("#symptom-baru").modal({show:true});
 }
 
 
