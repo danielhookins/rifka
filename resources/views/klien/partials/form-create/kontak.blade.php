@@ -3,7 +3,7 @@
 <div class="form-group
 	@if($errors->has('no_telp')) has-error @endif">
 	{!! Form::label('no_telp', 'Nomor Telpon', array('class' => 'strongLabel')) !!}
-	{!! Form::text('no_telp', null, array('class' => 'form-control','placeholder' => 'Nomor Telpon')) !!}
+	{!! Form::text('no_telp', null, array('class' => 'form-control','placeholder' => 'Nomor Telpon', 'autocomplete' => 'off')) !!}
 	@if($errors->has('no_telp'))
 		<p class="help-block">
 			{{ $errors->first('no_telp') }}
@@ -14,7 +14,7 @@
 <div class="form-group">	
 	{!! Form::label('alamat', 'Alamat', array('class' => 'strongLabel')) !!}
 	<p class="helper-label">Contoh: Jl. Jambu no. 123</p>
-	{!! Form::text('alamat', null, array('class' => 'form-control','placeholder' => 'Nama jalan dan nomor rumah')) !!}
+	{!! Form::text('alamat', null, array('class' => 'form-control','placeholder' => 'Nama jalan dan nomor rumah', 'autocomplete' => 'off')) !!}
 </div>
 
 <div class="form-group">
@@ -163,7 +163,7 @@
 <div class="form-group
 	@if($errors->has('email')) has-error @endif">
 	{!! Form::label('email', 'Alamat E-mail', array('class' => 'strongLabel')) !!}
-	{!! Form::text('email', null, array('class' => 'form-control','placeholder' => 'Alamat E-mail')) !!}
+	{!! Form::text('email', null, array('class' => 'form-control','placeholder' => 'Alamat E-mail', 'autocomplete' => 'off')) !!}
 	@if($errors->has('email'))
 		<p class="help-block">
 			{{ $errors->first('email') }}

@@ -24,17 +24,17 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('tanggal', 'Tanggal', array('class' => 'strongLabel')) !!}
-          {!! Form::date('tanggal', null, array('class' => 'form-control date-picker', 'id'=>'tanggal_kegiatan')) !!}
+          {!! Form::text('tanggal', null, array('class' => 'form-control date-picker', 'id'=>'tanggal_kegiatan', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('kegiatan', 'Kegiatan', array('class' => 'strongLabel')) !!}
-          <textarea name="kegiatan" class="form-control" placeholder="Kegiatan" rows="3">{{ $kegiatanActive->kegiatan }}</textarea>
+          <textarea name="kegiatan" class="form-control" placeholder="Kegiatan" rows="3" autocomplete="off">{{ $kegiatanActive->kegiatan }}</textarea>
         </div>
         <div class="form-group">
           {!! Form::label('informasi', 'Informasi', array(
             'class' => 'strongLabel')) 
           !!}
-          <textarea name="informasi" class="form-control" placeholder="Informasi" rows="3">{{ $kegiatanActive->informasi }}</textarea>
+          <textarea name="informasi" class="form-control" placeholder="Informasi" rows="3" autocomplete="off">{{ $kegiatanActive->informasi }}</textarea>
         </div>
       </div>
 

@@ -2,7 +2,7 @@
 
 <div class="form-group">
 	{!! Form::label('jumlah_anak', 'Jumlah Anak', array('class' => 'strongLabel')) !!}
-	{!! Form::number('jumlah_anak', 'null', array('class' => 'form-control','placeholder' => 'Anak')) !!}
+	{!! Form::number('jumlah_anak', 'null', array('class' => 'form-control', 'autocomplete' => 'off')) !!}
 </div>
 
 <div class="form-group">
@@ -22,11 +22,11 @@
 
 <div class="form-group">
 	{!! Form::label('pekerjaan', 'Pekerjaan', array('class' => 'strongLabel')) !!}
-	{!! Form::text('pekerjaan', null, array('class' => 'form-control', 'placeholder' => 'Pekerjaan')) !!}
+	{!! Form::text('pekerjaan', null, array('class' => 'form-control', 'placeholder' => 'Pekerjaan', 'autocomplete' => 'off')) !!}
 </div>
 
 <div class="form-group">
-	{!! Form::text('jabatan', null, array('class' => 'form-control','placeholder' => 'Jabatan')) !!}
+	{!! Form::text('jabatan', null, array('class' => 'form-control','placeholder' => 'Jabatan', 'autocomplete' => 'off')) !!}
 </div>
 
 <div class="form-group">
@@ -41,9 +41,9 @@
 
 <div class="form-group">
 	{!! Form::label('kondisi_klien', 'Lain', array('class' => 'strongLabel')) !!}
-	{!! Form::text('kondisi_klien', null, array('class' => 'form-control','placeholder' => 'Kondisi Klien')) !!}
+	{!! Form::text('kondisi_klien', null, array('class' => 'form-control','placeholder' => 'Kondisi Klien', 'autocomplete' => 'off')) !!}
 </div>
 
 <div class="form-group">
-	{!! Form::text('dirujuk_oleh', null, array('class' => 'form-control','placeholder' => 'Dirujuk Oleh')) !!}
+	{!! Form::text('dirujuk_oleh', null, array('class' => 'form-control','placeholder' => 'Dirujuk Oleh', 'autocomplete' => 'off')) !!}
 </div>

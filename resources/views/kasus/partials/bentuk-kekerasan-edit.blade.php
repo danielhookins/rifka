@@ -55,7 +55,7 @@
           <strong>Keterangan</strong>
         </div>
         <div class="form-group">
-          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3">{{ $bentukKekerasanActive->keterangan}}</textarea>
+          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3" autocomplete="off">{{ $bentukKekerasanActive->keterangan}}</textarea>
         </div>
 
       </div>

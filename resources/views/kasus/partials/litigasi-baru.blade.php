@@ -22,35 +22,35 @@
         </div>
         <div class="form-group">
           {!! Form::label('undang_digunakan', 'Undang Digunakan', array('class' => 'strongLabel')) !!}
-          {!! Form::text('undang_digunakan', null, array('class' => 'form-control')) !!}
+          {!! Form::text('undang_digunakan', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('kepolisian_wilayah', 'Kepolisian Wilayah', array('class' => 'strongLabel')) !!}
-          {!! Form::text('kepolisian_wilayah', null, array('class' => 'form-control')) !!}
+          {!! Form::text('kepolisian_wilayah', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('nama_penyidik', 'Nama Penyidik', array('class' => 'strongLabel')) !!}
-          {!! Form::text('nama_penyidik', null, array('class' => 'form-control')) !!}
+          {!! Form::text('nama_penyidik', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('pengadilan_wilayah', 'Pengadilan Wilayah', array('class' => 'strongLabel')) !!}
-          {!! Form::text('pengadilan_wilayah', null, array('class' => 'form-control')) !!}
+          {!! Form::text('pengadilan_wilayah', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('nama_hakim', 'Nama Hakim', array('class' => 'strongLabel')) !!}
-          {!! Form::text('nama_hakim', null, array('class' => 'form-control')) !!}
+          {!! Form::text('nama_hakim', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('nama_jaksa', 'Nama Jaksa', array('class' => 'strongLabel')) !!}
-          {!! Form::text('nama_jaksa', null, array('class' => 'form-control')) !!}
+          {!! Form::text('nama_jaksa', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('tuntutan', 'Tuntutan', array('class' => 'strongLabel')) !!}
-          {!! Form::text('tuntutan', null, array('class' => 'form-control')) !!}
+          {!! Form::text('tuntutan', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('putusan', 'Putusan', array('class' => 'strongLabel')) !!}
-          {!! Form::text('putusan', null, array('class' => 'form-control')) !!}
+          {!! Form::text('putusan', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
 
       </div>

@@ -57,7 +57,7 @@
         <div class="form-group">
           {!! Form::label('narasi', 'Narasi Kasus', array('class' => 'strongLabel')) !!}
 
-          <textarea name="narasi" class="form-control" placeholder="Menulis narasi kasus disini." rows="{!! ((strlen($kasus->narasi) / 72) < 5 ) ? '10' : '20'; !!}">{{ $kasus->narasi}}</textarea>
+          <textarea name="narasi" class="form-control" placeholder="Menulis narasi kasus disini." rows="{!! ((strlen($kasus->narasi) / 72) < 5 ) ? '10' : '20'; !!}" autocomplete="off">{{ $kasus->narasi}}</textarea>
         </div>
       </div>
 

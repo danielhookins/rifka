@@ -11,7 +11,8 @@
 					{!! Form::label('hubungan', 'Hubungan', array('class' => 'strongLabel')) !!}
 					{!! Form::text('hubungan', null, array(
 						'class' 		=> 'form-control',
-						'placeholder' 	=> 'Hubungan'
+						'placeholder' 	=> 'Hubungan', 
+						'autocomplete' => 'off'
 					))
 					!!}
 				</div>
@@ -21,7 +22,8 @@
 					<div class="form-inline">
 					{!! Form::number('lama_hubungan', null, array(
 						'class' 		=> 'form-control',
-						'placeholder' 	=> 'Lama Hubungan'
+						'placeholder' 	=> 'Lama Hubungan', 
+						'autocomplete' => 'off'
 					))
 					!!}
 					{!! Form::select('jenis_lama_hub', array(

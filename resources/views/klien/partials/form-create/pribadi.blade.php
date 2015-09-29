@@ -6,7 +6,7 @@
 	{!! Form::text('nama_klien', null, array(
 		'class' 		=> 'form-control',
 		'placeholder' 	=> 'Nama Klien',
-		'autofocus')) !!}
+		'autofocus', 'autocomplete' => 'off')) !!}
 	@if($errors->has('nama_klien'))
 		<p class="help-block">
 			{{ $errors->first('nama_klien') }}
@@ -28,7 +28,7 @@
 <div class="form-group
 	@if($errors->has('tanggal_lahir')) has-error @endif">
 	{!! Form::label('tanggal_lahir', 'Tanggal Lahir', array('class' => 'strongLabel')) !!}
-	{!! Form::date('tanggal_lahir', null, array('class' => 'form-control date-picker')) !!}
+	{!! Form::text('tanggal_lahir', null, array('class' => 'form-control date-picker', 'autocomplete' => 'off')) !!}
 	@if($errors->has('tanggal_lahir'))
 		<p class="help-block">
 		{{ $errors->first('kelamin') }}

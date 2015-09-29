@@ -12,7 +12,7 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('tanggal', 'Tanggal', array('class' => 'strongLabel')) !!}
-          {!! Form::date('tanggal', null, array('class' => 'form-control date-picker', 'id' => 'tanggal_mediasi')) !!}
+          {!! Form::text('tanggal', null, array('class' => 'form-control date-picker', 'id' => 'tanggal_mediasi', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('hasil', 'Hasil', array('class' => 'strongLabel')) !!}
@@ -23,7 +23,7 @@
         </div>
         <div class="form-group">
           {!! Form::label('keterangan', 'Keterangan', array('class' => 'strongLabel')) !!}
-          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3"></textarea>
+          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3" autocomplete="off"></textarea>
         </div>
       </div>
 

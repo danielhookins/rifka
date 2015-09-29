@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
           {!! Form::label('keterangan', 'Keterangan', array('class' => 'strongLabel')) !!}
-          {!! Form::text('keterangan', null, array('class' => 'form-control')) !!}
+          {!! Form::text('keterangan', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
       </div>
 

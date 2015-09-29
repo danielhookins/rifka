@@ -12,7 +12,7 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('no_reg', 'No Reg', array('class' => 'strongLabel')) !!}
-          {!! Form::Number('no_reg', null, array('class' => 'form-control')) !!}
+          {!! Form::Number('no_reg', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('media', 'Media', array('class' => 'strongLabel')) !!}
@@ -29,7 +29,7 @@
         </div>
         <div class="form-group">
           {!! Form::label('lokasi', 'Lokasi', array('class' => 'strongLabel')) !!}
-          {!! Form::Text('lokasi', null, array('class' => 'form-control')) !!}
+          {!! Form::Text('lokasi', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
       </div>
 

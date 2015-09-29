@@ -12,23 +12,23 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('tanggal', 'Tanggal', array('class' => 'strongLabel')) !!}
-          {!! Form::date('tanggal', null, array('class' => 'form-control date-picker')) !!}
+          {!! Form::text('tanggal', null, array('class' => 'form-control date-picker', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('intervensi', 'Intervensi', array('class' => 'strongLabel')) !!}
-          <textarea name="intervensi" class="form-control" placeholder="Intervensi" rows="3"></textarea>
+          <textarea name="intervensi" class="form-control" placeholder="Intervensi" rows="3" autocomplete="off"></textarea>
         </div>
         <div class="form-group">
           {!! Form::label('kesimpulan', 'Kesimpulan', array(
             'class' => 'strongLabel')) 
           !!}
-          <textarea name="kesimpulan" class="form-control" placeholder="Kesimpulan" rows="3"></textarea>
+          <textarea name="kesimpulan" class="form-control" placeholder="Kesimpulan" rows="3" autocomplete="off"></textarea>
         </div>
         <div class="form-group">
           {!! Form::label('kesepakatan', 'Kesepakatan', array(
             'class' => 'strongLabel')) 
           !!}
-          <textarea name="kesepakatan" class="form-control" placeholder="Kesepakatan" rows="3"></textarea>
+          <textarea name="kesepakatan" class="form-control" placeholder="Kesepakatan" rows="3" autocomplete="off"></textarea>
         </div>
       </div>
 

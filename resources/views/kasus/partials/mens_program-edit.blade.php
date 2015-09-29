@@ -20,11 +20,11 @@
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('tanggal', 'Tanggal', array('class' => 'strongLabel')) !!}
-          {!! Form::date('tanggal', null, array('class' => 'form-control date-picker', 'id' => 'tanggal_mp')) !!}
+          {!! Form::date('tanggal', null, array('class' => 'form-control date-picker', 'id' => 'tanggal_mp', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('keterangan', 'Keterangan', array('class' => 'strongLabel')) !!}
-          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3">{{$mensProgramActive->keterangan}}</textarea>
+          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3" autocomplete="off">{{$mensProgramActive->keterangan}}</textarea>
         </div>
       </div>
 

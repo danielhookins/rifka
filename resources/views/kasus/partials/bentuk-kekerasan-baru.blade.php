@@ -52,7 +52,7 @@
           <strong>Keterangan</strong>
         </div>
         <div class="form-group">
-          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3"></textarea>
+          <textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="3" autocomplete="off"></textarea>
         </div>
 
       </div>

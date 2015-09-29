@@ -19,8 +19,8 @@
 
       <div class="modal-body">
         <div class="form-group">
-          {!! Form::label('symptom_description', 'Deskripsi gejala', array('class' => 'strongLabel', 'autocomplete' => 'off')) !!}
-          <textarea name="symptom_description" class="form-control" placeholder="Menulis deskripsi gejala disini." rows="{!! ((strlen($symptomActive->symptom_description) / 72) < 5 ) ? '10' : '20'; !!}">{{ $symptomActive->symptom_description}}</textarea>
+          {!! Form::label('symptom_description', 'Deskripsi gejala', array('class' => 'strongLabel')) !!}
+          <textarea name="symptom_description" class="form-control" placeholder="Menulis deskripsi gejala disini." rows="{!! ((strlen($symptomActive->symptom_description) / 72) < 5 ) ? '10' : '20'; !!}" autocomplete="off">{{ $symptomActive->symptom_description}}</textarea>
         </div>
       </div>
 

@@ -173,7 +173,7 @@
           {!! Form::label('jumlah_anak', 'Jumlah Anak', array('class' => 'strongLabel')) !!}
           {!! Form::number('jumlah_anak', null, array(
             'class' => 'form-control',
-            'placeholder' => '', 
+            'placeholder' => 'Jumlah Anak',
             'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">

@@ -22,7 +22,8 @@
 	<div class="form-group">
 		{!! Form::label('nama_konselor', 'Nama Konselor', array('class' => 'strongLabel')) !!}
 		{!! Form::text('nama_konselor', null, array(
-		  'class'     => 'form-control',
+		  'class'     => 'form-control', 
+		  'autocomplete' => 'off',
 		  'placeholder'   => 'Nama Konselor'))
 		!!}
 	</div>
@@ -31,7 +32,7 @@
 		{!! Form::label('email', 'E-mail', array('class' => 'strongLabel')) !!}
 		{!! Form::text('email', null, array(
 		  'class'     => 'form-control',
-		  'placeholder'   => 'E-mail Konselor'))
+		  'placeholder'   => 'E-mail Konselor', 'autocomplete' => 'off'))
 		!!}
 	</div>
 
