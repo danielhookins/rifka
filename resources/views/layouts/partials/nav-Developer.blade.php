@@ -34,3 +34,5 @@
     <li><a href="{{ route('kamus') }}">Kamus Data</a></li>
   </ul>
 </li>
+
+<li><a href="{{ route('laporan.index') }}">Laporan</a></li>

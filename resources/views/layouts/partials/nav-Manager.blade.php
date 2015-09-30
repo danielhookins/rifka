@@ -27,3 +27,5 @@
     <li><a href="{{ route('konselor.index') }}">Manajemen Konselor</a></li>
   </ul>
 </li>
+
+<li><a href="{{ route('laporan.index') }}">Laporan</a></li>

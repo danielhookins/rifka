@@ -45,8 +45,6 @@
 	
 	Route::resource('konselor', 'KonselorController');
 
-
-
 	/*** DELETES  *****************************************************************/
 
 	// Remove client from case
@@ -327,7 +325,31 @@
 		'uses' => 'UserController@update']);
 
 
-	/*** DEVELOPER *************************************************************/
+	/*** LAPORAN ********************************************************/
+
+	/**
+	 * Display the index of reports.
+	 */
+	Route::get('/laporan', [
+		'as' => 'laporan.index', 
+		'uses' => 'LaporanController@index']);
+
+	/**
+	 * Report: Number of cases by type.
+	 */
+	Route::get('/laporan/kasusOlehJenis', [
+		'as' => 'laporan.jenis-kasus', 
+		'uses' => 'LaporanController@kasusOlehJenis']);
+
+	/**
+	 * test.
+	 */
+	Route::get('/laporan/test', [
+		'as' => 'laporan.test', 
+		'uses' => 'LaporanController@test']);
+
+
+	/*** DEVELOPER ******************************************************/
 	
 	/**
 	 *  Show the data dictionary.

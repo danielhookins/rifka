@@ -19,3 +19,4 @@
 <li>
   <a href="{{ route('konselor.index') }}">Konselor</a>
 </li>
+<li><a href="{{ route('laporan.index') }}">Laporan</a></li>
