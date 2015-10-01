@@ -48,7 +48,7 @@
 				</div>
 
 				<div class="form-group">
-          {!! Form::label('created_at', 'Tanggal kasus dibuka', array('class' => 'strongLabel')) !!}
+          {!! Form::label('created_at', 'Tanggal Kasus Dibuka', array('class' => 'strongLabel')) !!}
           {!! Form::text('created_at', Carbon\Carbon::today()->format('Y/m/d'), array('class' => 'form-control date-picker', 'id' => 'created_at', 'autocomplete' => 'off')) !!}
         </div>
 
