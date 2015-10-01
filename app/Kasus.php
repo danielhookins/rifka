@@ -20,7 +20,8 @@ class Kasus extends Model {
     	'seberapa_sering',
     	'harapan_korban',
     	'rencana_korban',
-    	'narasi'];
+    	'narasi',
+        'created_at'];
 	protected $dates = ['deleted_at'];
     protected $searchable = [
         'columns' => [

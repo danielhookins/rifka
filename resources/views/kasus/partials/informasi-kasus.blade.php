@@ -11,6 +11,24 @@
 
 <ul class="list-group">
   
+  @if($kasus->created_at)
+    <li class="list-group-item">
+        <p class="list-group-item-text">
+          <strong>Tanggal Kasus Dibuka</strong>
+          {{$kasus->created_at}}
+        </p>
+    </li>
+  @else
+    <li class="list-group-item">
+      <p class="list-group-item-text">
+        <a class="tambah-link" data-toggle="modal" href="#edit-informasi-kasus">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Tambah Tanggal Kasus Dibuka
+        </a>
+      </p>
+    </li>
+  @endif
+
 	@if($kasus->jenis_kasus)
     <li class="list-group-item">
       	<p class="list-group-item-text">
@@ -128,6 +146,10 @@
 
       <div class="modal-body">
         <div class="form-group">
+          {!! Form::label('created_at', 'Tanggal Kasus Dibuka', array('class' => 'strongLabel')) !!}
+          {!! Form::text('created_at', null, array('class' => 'form-control date-picker')) !!}
+        </div>
+        <div class="form-group">
           <strong>Jenis Kasus:</strong><br />
           {!! Form::select('jenis_kasus', array(
             'Jenis'     =>  'Jenis',
@@ -141,7 +163,7 @@
         </div>
         <div class="form-group">
           {!! Form::label('sejak_kapan', 'Sejak Kapan', array('class' => 'strongLabel')) !!} (kekerasan mulai)
-          {!! Form::date('sejak_kapan', null, array('class' => 'form-control date-picker')) !!}
+          {!! Form::text('sejak_kapan', null, array('class' => 'form-control date-picker')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('seberapa_sering', 'Seberapa Sering', array('class' => 'strongLabel')) !!}

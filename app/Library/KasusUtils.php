@@ -30,6 +30,7 @@ class KasusUtils
 				'hubungan' 				=> $input["hubungan"],
 				'lama_hubungan' 	=> $input['lama_hubungan'],
 				'jenis_lama_hub'  => $input['jenis_lama_hub'],
+				'created_at'			=> $input['created_at']
 				]);
 			
 			return $kasus;
