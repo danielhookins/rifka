@@ -14,6 +14,13 @@ use DB;
 class LaporanUtils
 {
 	
+	public static function getKasusOlehUmur() 
+	{
+		
+ 		return;
+		
+	}
+
 	public static function getKasusOlehJenis($year = null)
 	{
 		$countArray = array();

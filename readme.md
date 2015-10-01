@@ -2,17 +2,13 @@
 ## Client Case Database
 This system is designed to handle case-related information for Rifka Annisa - a women's crisis centre in Yogyakarta, Indonesia.
 
-## Get Started
-Check out the [Wiki page](https://github.com/danielhookins/rifka/wiki/) for more information on getting started, in particular:      
-* [Installing the Application](https://github.com/danielhookins/rifka/wiki/Install-Guide/)
-
 ## Developer Information
 Developed by Daniel Hookins as part of an AVI (Australian Volunteers International) assignment.
 
-For further information please contact:
-Daniel Hookins
-daniel@hookins.net
-+62 812-8812-0234
+For further information please contact:  
+Daniel Hookins  
+daniel@hookins.net  
++62 812-8812-0234  
 
 ## Resources Used
 This project makes use of a number of other projects including:

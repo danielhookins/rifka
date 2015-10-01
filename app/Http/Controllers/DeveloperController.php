@@ -38,8 +38,7 @@ class DeveloperController extends Controller {
 
 	function test() 
 	{
-		var_dump(AlamatUtils::hasClients(1));
-		return;
+		return 'test';
 	}
 
 	function postTest(Request $request)

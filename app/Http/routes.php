@@ -342,6 +342,13 @@
 		'uses' => 'LaporanController@kasusOlehJenis']);
 
 	/**
+	 * Report: Number of cases by type.
+	 */
+	Route::post('/laporan/kasusOlehJenis', [
+		'as' => 'laporan.jenis-kasus.update', 
+		'uses' => 'LaporanController@updateKasusOlehJenis']);
+
+	/**
 	 * test.
 	 */
 	Route::get('/laporan/test', [
