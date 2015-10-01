@@ -1,5 +1,6 @@
 <div class="row">
-
+<div class="col-sm-6">
+	
 	{!! Form::open(array('route' => array('laporan.jenis-kasus.update'), 
 	        'class'=>'form','method' => 'POST')) !!}
 		<h3>
@@ -16,9 +17,7 @@
 			<button type="submit">Update</button>
 		</div>
 	{!! Form::close() !!}
-</div> <!-- /row -->
-<div class="row">
-<div class="col-sm-6">
+
 	<table class="table table-condensed table-hover">
 		<tr>
 			<th>Jenis</th>
@@ -87,7 +86,7 @@
 	    chart.draw(view, options);
 	}
 	</script>
-	<div id="barchart" style="width: 900px; height: 300px;"></div>
+	<div id="barchart" style="width:900px;height:300px;margin-top:40px"></div>
 
 </div> <!-- /col -->
 
