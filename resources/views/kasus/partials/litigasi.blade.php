@@ -81,6 +81,24 @@
         </li>
       @endif
 
+      @if($litigasi->nomor_perkara)
+        <li class="list-group-item">
+            <p class="list-group-item-text">
+              <strong>Nomor Perkara Pengadilan</strong>
+              {{$litigasi->nomor_perkara}}
+            </p>
+        </li>
+      @else
+        <li class="list-group-item">
+          <p class="list-group-item-text">
+            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
+              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              Tambah Nomor Perkara Pengadilan
+            </a>
+          </p>
+        </li>
+      @endif
+
       @if($litigasi->pengadilan_wilayah)
         <li class="list-group-item">
             <p class="list-group-item-text">

@@ -996,6 +996,15 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Litigasi',
+            'name'          => 'nomor_perkara',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'Case number.',
+            'example'       => '123/PID.SUS/2015/PN'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi',
             'name'          => 'nama_hakim',
             'primary_key'   => False,
             'foreign_key'   => '',

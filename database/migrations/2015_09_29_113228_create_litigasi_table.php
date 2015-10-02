@@ -20,6 +20,7 @@ class CreateLitigasiTable extends Migration {
 			$table->string('undang_digunakan')->nullable();
 			$table->string('kepolisian_wilayah')->nullable();
 			$table->string('nama_penyidik')->nullable();
+			$table->string('nomor_perkara')->nullable();
 			$table->string('pengadilan_wilayah')->nullable();
 			$table->string('nama_hakim')->nullable();
 			$table->string('nama_jaksa')->nullable();

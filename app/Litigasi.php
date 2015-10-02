@@ -12,6 +12,7 @@ class Litigasi extends Model {
 							'undang_digunakan',
 							'kepolisian_wilayah',
 							'nama_penyidik',
+							'nomor_perkara',
 							'pengadilan_wilayah',
 							'nama_hakim',
 							'nama_jaksa',

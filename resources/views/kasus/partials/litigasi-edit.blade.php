@@ -41,6 +41,10 @@
           {!! Form::text('nama_penyidik', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
+          {!! Form::label('nomor_perkara', 'Nomor Perkara Pengadilan', array('class' => 'strongLabel')) !!}
+          {!! Form::text('nomor_perkara', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
+        </div>
+        <div class="form-group">
           {!! Form::label('pengadilan_wilayah', 'Pengadilan Wilayah', array('class' => 'strongLabel')) !!}
           {!! Form::text('pengadilan_wilayah', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
