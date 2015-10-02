@@ -14,48 +14,53 @@ use DB;
 class LaporanUtils
 {
 	
-	public static function getKasusOlehUmur() 
-	{
-		
- 		return;
-		
-	}
+  public static function getDistinctCaseTypes($year = null)
+  {
+    $caseTypes = array();
 
-	public static function getKasusOlehJenis($year = null)
-	{
-		$countArray = array();
-		
-		if(isset($year))
-		{
-			$KTI = Kasus::where('jenis_kasus', 'KTI')
-            ->where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->count();
-	    $KDP = Kasus::where('jenis_kasus', 'KDP')
-            ->where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->count();
-    	$Perkosaan = Kasus::where('jenis_kasus', 'Perkosaan')
-            ->where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->count();
-    	$PelSeks = Kasus::where('jenis_kasus', 'Pel-Seks')
-            ->where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->count();
-    	$KDK = Kasus::where('jenis_kasus', 'KTI')
-            ->where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->count();
-      $Lain = Kasus::where('jenis_kasus', 'Lain')
-            ->where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->count();
+    if ($year != null)
+    {
+      $query = Kasus::
+            where(DB::raw('YEAR(created_at)'), '=', $year)
+            ->select('jenis_kasus')->distinct();
+      
+    } else {
+      $query = Kasus::
+            select('jenis_kasus')->distinct();
+    }
 
-      $countArray = array();
-      $countArray["KTI"] = $KTI;
-      $countArray["KDP"] = $KDP;
-      $countArray["Perkosaan"] = $Perkosaan;
-      $countArray["Pel-Seks"] = $PelSeks;
-      $countArray["KDK"] = $KDK;
-      $countArray["Lain"] = $Lain;
-		}
+    foreach($query->get()->toArray() as $record)
+    {
+        array_push($caseTypes, $record["jenis_kasus"]);
+    }
 
-    return $countArray;
-	}
+    return $caseTypes;
+    
+  }
+
+  public static function getCountByCaseType($caseTypeArray, $year = null)
+  {
+    $typeCount = array();
+
+    foreach($caseTypeArray as $type)
+    {
+      if(isset($year))
+      {
+        $typeCount[$type] = Kasus::
+        where(DB::raw('YEAR(created_at)'), '=', $year)
+        ->where('jenis_kasus', $type)
+        ->count();
+      }
+      else {
+        $typeCount[$type] = Kasus::
+        where('jenis_kasus', $type)
+        ->count();
+      }
+      
+    }
+
+    return array_filter($typeCount);
+
+  }
 
 }
