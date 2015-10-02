@@ -335,18 +335,32 @@
 		'uses' => 'LaporanController@index']);
 
 	/**
-	 * Report: Number of cases by type.
+	 * Report: [GET] Number of cases by type.
 	 */
 	Route::get('/laporan/kasusOlehJenis', [
 		'as' => 'laporan.jenis-kasus', 
 		'uses' => 'LaporanController@kasusOlehJenis']);
 
 	/**
-	 * Report: Number of cases by type.
+	 * Report: [POST] Update number of cases by type.
 	 */
 	Route::post('/laporan/kasusOlehJenis', [
 		'as' => 'laporan.jenis-kasus.update', 
 		'uses' => 'LaporanController@updateKasusOlehJenis']);
+
+	/**
+	 * List: [GET] Cases by year
+	 */
+	Route::get('/laporan/listKasusOlehTahun', [
+		'as' => 'laporan.tahun.list',
+		'uses' => 'LaporanController@listKasusOlehTahun']);
+
+	/**
+	 * List: [POST] Update cases by year
+	 */
+	Route::post('/laporan/listKasusOlehTahun', [
+		'as' => 'laporan.tahun.list.update',
+		'uses' => 'LaporanController@updateListKasusOlehTahun']);
 
 	/**
 	 * test.

@@ -1,5 +1,6 @@
 <div class="row">
-
+<div class="col-sm-6">
+	
 	{!! Form::open(array('route' => array('laporan.jenis-kasus.update'), 
 	        'class'=>'form','method' => 'POST')) !!}
 		<h3>
@@ -11,43 +12,21 @@
 			<button class="btn btn-default" @if($year == Carbon\Carbon::today()->format('Y')) disabled @endif type="submit" name="change" value="next">
 				<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
 			</button>
+			<button class="btn btn-default" type="submit">Update</button>
 		</h3>
-		<div class="form-group">
-			<button type="submit">Update</button>
-		</div>
 	{!! Form::close() !!}
-</div> <!-- /row -->
-<div class="row">
-<div class="col-sm-6">
+
 	<table class="table table-condensed table-hover">
 		<tr>
 			<th>Jenis</th>
 			<th>Berapa</th>
 		</tr>
+		@foreach ($countArray as $key => $value)
 		<tr>
-			<td>KTI</td>
-			<td>{{ $countArray["KTI"] }}</td>
+			<td>{{ $key }}</td>
+			<td>{{ $value }}</td>
 		</tr>
-		<tr>
-	    <td>KDP</td>
-			<td>{{ $countArray["KDP"] }}</td>
-		</tr>
-		<tr>
-	    <td>Perkosaan</td>
-			<td>{{ $countArray["Perkosaan"] }}</td>
-		</tr>
-		<tr>
-	    <td>Pel-Seks</td>
-			<td>{{ $countArray["Pel-Seks"] }}</td>
-		</tr>
-		<tr>
-	    <td>KDK</td>
-			<td>{{ $countArray["KDK"] }}</td>
-		</tr>
-		<tr>
-	   	<td>Lain</td>
-			<td>{{ $countArray["Lain"] }}</td>
-		</tr>
+		@endforeach
 	</table>
 </div> <!-- /col -->
 
@@ -58,13 +37,10 @@
 	  google.setOnLoadCallback(drawChart);
 	  function drawChart() {
 	    var data = google.visualization.arrayToDataTable([
-	      ["Jenis Kasus", "Jumlah", { role: "style" } ],
-	      ["KTI", {{ $countArray['KTI'] }}, "#b87333"],
-	      ["KDP", {{ $countArray['KDP'] }}, "silver"],
-	      ["Perkosaan", {{ $countArray['Perkosaan'] }}, "gold"],
-	      ["Pel-Seks", {{ $countArray['Pel-Seks'] }}, "color: #e5e4e2"],
-	      ["KDK", {{ $countArray['KDK'] }}, "blue"],
-	      ["Lain", {{ $countArray["Lain"] }}, "grey"]
+	      ["Jenis Kasus", "Jumlah Kasus", { role: "style" } ],
+	      @foreach ($countArray as $key => $value)
+	      ["{{ $key }}", {{ $value }}, "color: #55aaaa"],
+	      @endforeach
 	    ]);
 
 	    var view = new google.visualization.DataView(data);
@@ -78,16 +54,16 @@
 	    var options = {
 	      title: "{{ $title }}",
 	      width: 500,
-	      height: 300,
+	      height: 400,
 	      bar: {groupWidth: "95%"},
 	      legend: { position: "none" },
-	      chartArea: {'width': '70%', 'height': '80%'}
+	      chartArea: {'width': '65%', 'height': '80%'}
 	    };
 	    var chart = new google.visualization.BarChart(document.getElementById("barchart"));
 	    chart.draw(view, options);
 	}
 	</script>
-	<div id="barchart" style="width: 900px; height: 300px;"></div>
+	<div id="barchart" style="width:900px;height:300px;margin-top:40px"></div>
 
 </div> <!-- /col -->
 

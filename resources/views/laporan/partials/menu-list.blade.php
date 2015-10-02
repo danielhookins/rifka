@@ -9,7 +9,9 @@
 		</div>
 		
 		<ul class="list-group">
+			<li class="list-group-item"><a href="{{ route('laporan.index') }}">Ikhtisar</a></li>
 			<li class="list-group-item"><a href="{{ route('laporan.jenis-kasus') }}">Jenis Kasus</a></li>
+			<li class="list-group-item"><a href="{{ route('laporan.tahun.list') }}">Daftar Tahunan</a></li>
 		</ul>
 
 	</div>

@@ -10,6 +10,10 @@
 
 	@if (isset($laporan))
 		@include('laporan.partials.'.$laporan)
+	@elseif (isset($list))
+		@include('laporan.partials.list-'.$list)
+	@elseif (isset($overview))
+		@include('laporan.partials.overview')
 	@endif
 
 @endsection	
