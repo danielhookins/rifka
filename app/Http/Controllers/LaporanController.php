@@ -8,6 +8,7 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Kasus;
 use rifka\Klien;
+use rifka\Alamat;
 use rifka\Library\LaporanUtils;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
@@ -140,14 +141,57 @@ class LaporanController extends Controller
 
     }
 
+    public function kabupaten()
+    {
+        $tahun = Carbon::today()->format('Y');
+        $jenisKlien = "Korban";
+        $jenisAlamat = "Domisili";
+
+        $kabupaten = LaporanUtils::getKabupaten($tahun, $jenisKlien, $jenisAlamat);
+
+        return view('laporan.index')
+            ->with('laporan', 'kabupaten')
+            ->with('year', $tahun)
+            ->with('title', "Data Kabupaten")
+            ->with('countArray', $kabupaten);
+
+    }
+
+    public function updateKabupaten()
+    {
+        // Year
+        $year = \Input::get('year');
+        if(\Input::get('change') != null)
+        {
+            if(\Input::get('change') == "prev")
+            {
+                $year = $year - 1;
+            }
+            elseif(\Input::get('change') == "next")
+            {
+                $year = $year + 1;
+            }
+        }
+
+        // TODO Client Type
+        $jenisKlien = "Korban";
+
+        // TODO Address Type
+        $jenisAlamat = "Domisili";
+
+        // Update array
+        $kabupaten = LaporanUtils::getKabupaten($year, $jenisKlien, $jenisAlamat);
+
+        return view('laporan.index')
+            ->with('laporan', 'kabupaten')
+            ->with('year', $year)
+            ->with('title', "Data Kabupaten")
+            ->with('countArray', $kabupaten);
+    }
 
     public function test()
     {
-        //
-        dd(LaporanUtils::getCountByCaseType(
-            LaporanUtils::getDistinctCaseTypes(), 2015
-            )
-        );
+        dd("test");
     }
 
 }
