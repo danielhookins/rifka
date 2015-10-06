@@ -24,22 +24,46 @@ class LaporanController extends Controller
     public function index()
     {
         
-        $year = Carbon::today()->format('Y');
+        // Prepare Data for Overview
         $overview = array();
+        $year = Carbon::today()->format('Y');
+        $month = Carbon::today()->format('m');
 
-        $cases = Kasus::all()->count();
-        $casesThisYear = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->count();;
-        $perempuan = Klien::where('kelamin', 'Perempuan')->count();
-        $laki2 = Klien::where('kelamin', 'Laki-laki')->count();
-        $clients = (int)$perempuan + (int)$laki2;
+        // Case Data
+        // Cases this year
+        $casesThisYear = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year)->count();
+        // Cases last year
+        $casesLastYear = Kasus::where(DB::raw('YEAR(created_at)'), '=', ($year - 1))->count();
+        // Cases this month
+        $casesThisMonth = Kasus::where(DB::raw('MONTH(created_at)'), '=', $month)
+        ->where(DB::raw('YEAR(created_at)'), '=', $year)
+        ->count();
+        // Cases this month last year
+        $casesThisMonthLastYear = Kasus::where(DB::raw('MONTH(created_at)'), '=', $month)
+        ->where(DB::raw('YEAR(created_at)'), '=', ($year - 1))
+        ->count();
+        // Data for cases by month graph
+        $casesByMonth = LaporanUtils::getKasusBulanArray($year);
+
+        // Client Data
+        // Clients this year
+        $clientsThisYear = count(LaporanUtils::getKlien($year, "Semua"));
+        // Clients last year
+        $clientsLastYear = count(LaporanUtils::getKlien(($year - 1), "Semua"));
+        // Survivors by case type
+        $survivorJenisKasus = LaporanUtils::getCountByCaseType(
+            LaporanUtils::getDistinctCaseTypes(), $year);
 
         $overview["thisYear"] = $year;
+        $overview["thisMonth"] = $month;
         $overview["casesThisYear"] = $casesThisYear;
-        $overview["cases"] = $cases;
-        $overview["perempuan"] = $perempuan;
-        $overview["laki2"] = $laki2;
-        $overview["clients"] = $clients;
+        $overview["casesLastYear"] = $casesLastYear;
+        $overview["casesThisMonth"] = $casesThisMonth;
+        $overview["casesThisMonthLastYear"] = $casesThisMonthLastYear;
+        $overview["clientsThisYear"] = $clientsThisYear;
+        $overview["clientsLastYear"] = $clientsLastYear;
+        $overview["survivorJenisKasus"] = $survivorJenisKasus;
+        $overview["casesByMonth"] = $casesByMonth;
 
         return view('laporan.index')
             ->with('overview', $overview);
