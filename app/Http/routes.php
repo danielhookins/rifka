@@ -377,6 +377,20 @@
 		'uses' => 'LaporanController@updateKabupaten']);
 
 	/**
+	 * Report: [GET] Kasus-tahun report
+	 */
+	Route::get('/laporan/kasusTahun', [
+		'as' => 'laporan.kasusTahun',
+		'uses' => 'LaporanController@kasusTahun']);
+
+	/**
+	 * Report: [POST] Update Kabupaten report
+	 */
+	Route::post('/laporan/kasusTahun', [
+		'as' => 'laporan.kasusTahun.update',
+		'uses' => 'LaporanController@updateKasusTahun']);
+
+	/**
 	 * test.
 	 */
 	Route::get('/laporan/test', [

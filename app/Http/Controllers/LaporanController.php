@@ -10,6 +10,7 @@ use rifka\Kasus;
 use rifka\Klien;
 use rifka\Alamat;
 use rifka\Library\LaporanUtils;
+use rifka\Library\DateUtils;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
 use DB;
@@ -24,22 +25,7 @@ class LaporanController extends Controller
     public function index()
     {
         
-        $year = Carbon::today()->format('Y');
-        $overview = array();
-
-        $cases = Kasus::all()->count();
-        $casesThisYear = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->count();;
-        $perempuan = Klien::where('kelamin', 'Perempuan')->count();
-        $laki2 = Klien::where('kelamin', 'Laki-laki')->count();
-        $clients = (int)$perempuan + (int)$laki2;
-
-        $overview["thisYear"] = $year;
-        $overview["casesThisYear"] = $casesThisYear;
-        $overview["cases"] = $cases;
-        $overview["perempuan"] = $perempuan;
-        $overview["laki2"] = $laki2;
-        $overview["clients"] = $clients;
+        $overview = LaporanUtils::getOverview();
 
         return view('laporan.index')
             ->with('overview', $overview);
@@ -60,19 +46,7 @@ class LaporanController extends Controller
 
     public function updateKasusOlehJenis()
     {
-        $year = \Input::get('year');
-        
-        if(\Input::get('change') != null)
-        {
-            if(\Input::get('change') == "prev")
-            {
-                $year = $year - 1;
-            }
-            elseif(\Input::get('change') == "next")
-            {
-                $year = $year + 1;
-            }
-        }
+        $year = LaporanUtils::getUpdatedYear(\Input::get());
 
         $countArray = LaporanUtils::getCountByCaseType(
             LaporanUtils::getDistinctCaseTypes(), $year);
@@ -107,19 +81,7 @@ class LaporanController extends Controller
 
     public function updateListKasusOlehTahun()
     {
-        $year = \Input::get('year');
-        
-        if(\Input::get('change') != null)
-        {
-            if(\Input::get('change') == "prev")
-            {
-                $year = $year - 1;
-            }
-            elseif(\Input::get('change') == "next")
-            {
-                $year = $year + 1;
-            }
-        }
+        $year = LaporanUtils::getUpdatedYear(\Input::get());
 
         // TODO: Duplicate code -- move to library
         $casesYear = Kasus::
@@ -159,19 +121,7 @@ class LaporanController extends Controller
 
     public function updateKabupaten()
     {
-        // Year
-        $year = \Input::get('year');
-        if(\Input::get('change') != null)
-        {
-            if(\Input::get('change') == "prev")
-            {
-                $year = $year - 1;
-            }
-            elseif(\Input::get('change') == "next")
-            {
-                $year = $year + 1;
-            }
-        }
+        $year = LaporanUtils::getUpdatedYear(\Input::get());
 
         // TODO Client Type
         $jenisKlien = "Korban";
@@ -187,6 +137,48 @@ class LaporanController extends Controller
             ->with('year', $year)
             ->with('title', "Data Kabupaten")
             ->with('countArray', $kabupaten);
+    }
+
+    public function kasusTahun()
+    {
+        $tahun = Carbon::today()->format('Y');
+        $months = DateUtils::getMonths();
+
+        $kasusBulan = LaporanUtils::getKasusBulanArray($tahun);
+
+        return view('laporan.index')
+            ->with('laporan', 'kasus-tahun')
+            ->with('year', $tahun)
+            ->with('month', $months)
+            ->with('countArray', $kasusBulan);
+    }
+
+    public function updateKasusTahun()
+    {
+        // Year
+        $year = \Input::get('year');
+        if(\Input::get('change') != null)
+        {
+            if(\Input::get('change') == "prev")
+            {
+                $year = $year - 1;
+            }
+            elseif(\Input::get('change') == "next")
+            {
+                $year = $year + 1;
+            }
+        }
+
+        $months = DateUtils::getMonths();
+
+        $kasusBulan = LaporanUtils::getKasusBulanArray($year);
+
+        return view('laporan.index')
+            ->with('laporan', 'kasus-tahun')
+            ->with('year', $year)
+            ->with('month', $months)
+            ->with('countArray', $kasusBulan);
+
     }
 
     public function test()

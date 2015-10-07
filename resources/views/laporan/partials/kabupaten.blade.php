@@ -52,12 +52,13 @@
 	                     2]);
 
 	    var options = {
-	      title: "{{ $title }}",
+	      title: "Jumlah Kasus Untuk Kabupaten",
 	      width: 500,
 	      height: 400,
 	      bar: {groupWidth: "95%"},
 	      legend: { position: "none" },
-	      chartArea: {'width': '65%', 'height': '80%'}
+	      chartArea: {'width': '65%', 'height': '80%'},
+	      hAxis: {textPosition: "none"},
 	    };
 	    var chart = new google.visualization.BarChart(document.getElementById("barchart"));
 	    chart.draw(view, options);
