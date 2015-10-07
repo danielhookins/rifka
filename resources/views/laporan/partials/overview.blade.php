@@ -29,9 +29,9 @@
 	  google.setOnLoadCallback(drawChart);
 	  function drawChart() {
 	    var data = google.visualization.arrayToDataTable([
-	      ["Jenis Kasus", "Jumlah Kasus", { role: "style" } ],
+	      ["Bulan", "Jumlah Kasus", { role: "style" } ],
 	      @foreach ($overview["casesByMonth"] as $key => $value)
-	      ["{{ $key }}", {{ $value }}, "color: #55aaaa"],
+	      ["{{ $overview['month'][$key] }}", {{ $value }}, "color: #55aaaa"],
 	      @endforeach
 	    ]);
 
@@ -44,18 +44,20 @@
 	                     2]);
 
 	    var options = {
-	      title: "Kasus untuk tahun",
+	      title: "Kasus untuk tahun ini",
 	      width: 900,
-	      height: 400,
+	      height: 300,
 	      bar: {groupWidth: "95%"},
-	      legend: { position: "none" },
-	      chartArea: {'width': '80%', 'height': '75%'}
+	      legend: {position: "none" },
+	      chartArea: {'width': '100%', 'height': '75%'},
+	      vAxis: {textPosition: "none"},
 	    };
 	    var chart = new google.visualization.ColumnChart(document.getElementById("colchart"));
 	    chart.draw(view, options);
 	}
 	</script>
 	<div id="colchart" style="display:inline;width:900px;height:300px;margin-top:40px"></div>
+	<p>Lihat laporan <a href="{{ route('laporan.kasusTahun') }}">Kasus Tahun</a></p>
 
 	<h4>Klien Baru</h4>
 		<ul>
