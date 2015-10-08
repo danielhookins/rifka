@@ -391,6 +391,21 @@
 		'uses' => 'LaporanController@updateKasusTahun']);
 
 	/**
+	 * Report: [GET] Usia report
+	 */
+	Route::get('/laporan/usia', [
+		'as' => 'laporan.usia',
+		'uses' => 'LaporanController@kasusOlehUsia']);
+
+	/**
+	 * Report: [POST] Update Usia report
+	 */
+	Route::post('/laporan/usia', [
+		'as' => 'laporan.usia.update',
+		'uses' => 'LaporanController@updateKasusOlehUsia']);
+	
+
+	/**
 	 * test.
 	 */
 	Route::get('/laporan/test', [
