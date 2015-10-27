@@ -11,6 +11,8 @@ use rifka\Klien;
 use rifka\Alamat;
 use rifka\Library\LaporanUtils;
 use rifka\Library\DateUtils;
+use rifka\Library\ExcelUtils;
+use rifka\Library\LaporanExport;
 use Carbon\Carbon;
 use Khill\Lavacharts\Lavacharts;
 use DB;
@@ -205,6 +207,37 @@ class LaporanController extends Controller
             ->with('usia', $usia)
             ->with('typeCases', $typeCases);
     }
+
+    public function exportXLS($jenis) {
+        if($jenis == "kasusbulanan"){
+            //
+        }
+    }
+
+    /**
+     * Export case by age and type data to Excel
+     */
+    public function exporLaporanUsiaXLS() {
+        $input = \Input::get();
+        $years = array();
+
+        if($input["mulai"] == "" && $input["sampai"] == "")
+        {
+            // no input given
+            return redirect()->route('laporan.usia');
+        } else if ($input["mulai"] == "" || $input["sampai"] == "") {
+            $years[] = ($input["mulai"] != "") 
+                ? $input["mulai"] : $input["sampai"];
+        } else {
+            
+            for ($i = (int)$input["mulai"]; $i <= (int)$input["sampai"]; $i++) {
+                $years[] = $i;
+            }
+        }
+
+        LaporanExport::kasusOlehUsia($years);
+    }
+    
 
     public function test()
     {

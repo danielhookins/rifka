@@ -208,6 +208,9 @@
 		'as' => 'kasus.autoupdate',
 		'uses' => "KasusController@autoUpdate"]);
 
+	
+/*** EXPORT TO EXCEL ******************************************/
+
 	/**
 	 *	Export case information to an Excel file.
 	 *
@@ -217,9 +220,15 @@
 		'as' => 'kasus.xls',
 		'uses' => 'KasusController@exportXLS']);
 
+	/**
+	 * Export cases by age data to Excel
+	 */
+	Route::post('laporan/kasusOlehUsia/exportXLS', [
+		'as' => 'kasusOlehUsia.xls',
+		'uses' => 'LaporanController@exporLaporanUsiaXLS']);
 
 
-	/*** KLIEN *****************************************************************/
+	/*** KLIEN ***************************************************/
 	
 	/**
 	 *  Edit a specific section of client information.
