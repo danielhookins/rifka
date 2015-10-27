@@ -257,4 +257,86 @@ class LaporanUtils
     return $year;
   }
 
+  public static function getCaseClientsByAge($year, $caseType="all")
+  {
+    // Define the search query for specific results
+    $kasusQuery = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year);
+
+    if($caseType != "all")
+    {
+      $kasusQuery = $kasusQuery->where("jenis_kasus", $caseType);
+    }
+  
+    $kasusQuery = $kasusQuery->get();
+
+    // Define array variables
+    $anakKecil = array();  // Children (under 12)
+    $remaja12sd15 = array(); // Teenagers (12-15)
+    $remaja16sd17 = array(); // Teenagers (16-17)
+    $dewasa = array();  // Adults (18+)
+
+    // Iterate through cases that match query
+    foreach($kasusQuery as $kasus)
+    {
+        $data = array();
+        
+        // Only work with cases that have a created_at date
+        $data["tgl_buka"] = $kasus->created_at;
+        if(isset($data["tgl_buka"]) && $data["tgl_buka"] != null) {
+            $data["tgl_buka"] = $kasus->created_at;
+            
+            // retrieve the victims
+            $korbankasus = array();
+            foreach($kasus->klienKasus()->get() as $klien)
+            {
+                if($klien["pivot"]["jenis_klien"] == "Korban")
+                {
+                    array_push($korbankasus, $klien);
+                }
+            }
+            $data["korban"] = $korbankasus;
+
+            // Iterate through victims and categorise them
+            //  base on age groups
+            foreach($data["korban"] as $korban)
+            {
+                if(isset($korban->tanggal_lahir) 
+                    && $korban->tanggal_lahir != null)
+                {
+                    if($tgl_lahir = Carbon::createFromFormat('Y-m-d', $korban->tanggal_lahir))
+                    {
+                        // Add those under 12 to anak kecil array
+                        if($tgl_lahir->diff($data["tgl_buka"])->y < 12) 
+                        {
+                            array_push($anakKecil, $korban);
+                        }
+                        // Add those under 16 to remaja 12-15 array
+                        elseif ($tgl_lahir->diff($data["tgl_buka"])->y < 16)
+                        {
+                            array_push($remaja12sd15, $korban);
+                        }
+                        // Add those under 18 to remaja 16-17 array
+                        elseif ($tgl_lahir->diff($data["tgl_buka"])->y < 18)
+                        {
+                            array_push($remaja16sd17, $korban);
+                        }
+                        // Victim is Adult
+                        else {
+                            array_push($dewasa, $korban);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    $usia = array();
+    $usia["anakKecil"] = $anakKecil;
+    $usia["remaja12sd15"] = $remaja12sd15;
+    $usia["remaja16sd17"] = $remaja16sd17;
+    $usia["dewasa"] = $dewasa;
+
+    return $usia;
+  }
+
 }
