@@ -40,6 +40,12 @@ $.fn.modal.Constructor.prototype.enforceFocus = function() {};
 $(document).ready(function () {
 
 
+
+/*
+ * DATA TABLES
+ */
+$("#datatable").DataTable();
+
 /*
  *	SHOW EDIT MODAL
  * 	If JS var set: Show the relevant "edit x" modal

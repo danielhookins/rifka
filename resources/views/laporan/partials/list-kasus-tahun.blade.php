@@ -13,7 +13,8 @@
 	</h3>
 {!! Form::close() !!}
 
-<table class="table table-hover table-condensed">
+<table id="datatable" class="table table-hover table-condensed">
+	<thead>
 	<tr>
 		<th>
 			Kasus ID
@@ -22,17 +23,15 @@
 			Jenis Kasus
 		</th>
 		<th>
-			Hubungan
-		</th>
-		<th>
 			Klien
 		</th>
 	</tr>
+	</thead>
+	<tbody>
 	@foreach ($cases as $kasus)
 	<tr>
 		<td><a href="{{ route('kasus.show', $kasus->kasus_id) }}">{{ $kasus->kasus_id }}</a></td>
 		<td>{{ $kasus->jenis_kasus }}</td>
-		<td>{{ $kasus->hubungan }}</td>
 		<td>
 			<ul>
 			@foreach($kasus->klienKasus()->get() as $klien)
@@ -42,4 +41,5 @@
 		</td>	
 	</tr>
 	@endforeach
+	</tbody>
 </table>

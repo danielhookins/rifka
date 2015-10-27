@@ -33,6 +33,18 @@ body {
         display:none;
     }
 }
+.legroom {
+  margin-bottom:30px;
+}
+
+
+/*
+ * DATA TABLE
+ */
+ .dataTables_paginate {
+  margin-bottom:30px;
+ }
+
 
 /*
  * BACK TO TOP BUTTON

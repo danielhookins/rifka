@@ -2,13 +2,16 @@
 <h3>Daftar Kasus</h3>
 
 <table class="table table-condensed">
-  <tr>
-    <th># Kasus</th>
-    <th class="hidden-xs">Jenis Kasus</th>
-    <th>Klien</th>
-    <th>Arsip</th>
-    <th class="hidden-xs">Tgl. Dibuat</th>
-  </tr>
+  <thead>
+    <tr>
+      <th># Kasus</th>
+      <th class="hidden-xs">Jenis Kasus</th>
+      <th>Klien</th>
+      <th>Arsip</th>
+      <th class="hidden-xs">Tgl. Dibuat</th>
+    </tr>
+  </thead>
+  <tbody>
   @forelse ($semuaKasus as $kasus)
     <tr>
       <td>
@@ -44,6 +47,7 @@
     <th scope="row"><em>Belum ada kasus.</em></th>
     <td colspan=3></td>
   @endforelse
+  </tbody>
   </table>
 
 {!! str_replace('/?', '?', $semuaKasus->render()) !!}
