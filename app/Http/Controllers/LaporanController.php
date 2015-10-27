@@ -80,6 +80,48 @@ class LaporanController extends Controller
             ->with('cases', $casesYear->get());
     }
 
+    /**
+     *  Display a list of cases by age group
+     */
+    public function listKlienOlehUsia()
+    {
+        // Set variable defaults
+        $year = Carbon::today()->format('Y');
+        $age = "dewasa";
+        $caseType = "all";
+
+        $displayModel = array();
+        $displayModel["year"] = $year;
+        $displayModel["age"] = $age;
+
+        // Retrieve clients
+        $clients = LaporanUtils::getCaseClientsByAge($year, $caseType);
+
+        return view('laporan.index')
+            ->with('list', "usia")
+            ->with('displayModel', $displayModel)
+            ->with('klien2', $clients[$age]);
+    }
+
+    public function updateListKlienOlehUsia() {
+        $input = \Input::get();
+        $year = LaporanUtils::getUpdatedYear(\Input::get());
+        $age = $input["age"];
+        $caseType = "all";
+        
+        $displayModel = array();
+        $displayModel["year"] = $year;
+        $displayModel["age"] = $age;
+
+        // Retrieve clients
+        $clients = LaporanUtils::getCaseClientsByAge($year, $caseType);
+
+        return view('laporan.index')
+            ->with('list', "usia")
+            ->with('displayModel', $displayModel)
+            ->with('klien2', $clients[$age]);
+    }
+
     public function updateListKasusOlehTahun()
     {
         $year = LaporanUtils::getUpdatedYear(\Input::get());
@@ -177,8 +219,6 @@ class LaporanController extends Controller
             $typeCases[$type] = LaporanUtils::getCaseClientsByAge($year, $type);
         }
 
-        //dd($typeCases);
-
         return view('laporan.index')
             ->with('laporan', 'usia')
             ->with('year', $year)
@@ -202,12 +242,6 @@ class LaporanController extends Controller
             ->with('year', $year)
             ->with('usia', $usia)
             ->with('typeCases', $typeCases);
-    }
-
-    public function exportXLS($jenis) {
-        if($jenis == "kasusbulanan"){
-            //
-        }
     }
 
     /**

@@ -372,6 +372,20 @@
 		'uses' => 'LaporanController@updateListKasusOlehTahun']);
 
 	/**
+	 * List: [GET] Cases by age
+	 */
+	Route::get('/laporan/listKlienOlehUsia', [
+		'as' => 'laporan.usia.list',
+		'uses' => 'LaporanController@listKlienOlehUsia']);
+
+	/**
+	 * List: [POST] Update cases by age
+	 */
+	Route::post('/laporan/listKasusOlehUsia', [
+		'as' => 'laporan.usia.list.update',
+		'uses' => 'LaporanController@updateListKlienOlehUsia']);
+
+	/**
 	 * Report: [GET] Kabupaten report
 	 */
 	Route::get('/laporan/kabupaten', [
