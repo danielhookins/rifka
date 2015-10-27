@@ -3,7 +3,6 @@
 namespace rifka\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Kasus;
@@ -141,30 +140,27 @@ class LaporanController extends Controller
             ->with('countArray', $kabupaten);
     }
 
-    public function kasusTahun()
+    public function kasusPerBulan()
     {
         $tahun = Carbon::today()->format('Y');
         $months = DateUtils::getMonths();
-
         $kasusBulan = LaporanUtils::getKasusBulanArray($tahun);
 
         return view('laporan.index')
-            ->with('laporan', 'kasus-tahun')
+            ->with('laporan', 'kasus-per-bulan')
             ->with('year', $tahun)
             ->with('month', $months)
             ->with('countArray', $kasusBulan);
     }
 
-    public function updateKasusTahun()
+    public function updateKasusPerBulan()
     {
         $year = LaporanUtils::getUpdatedYear(\Input::get());
-
         $months = DateUtils::getMonths();
-
         $kasusBulan = LaporanUtils::getKasusBulanArray($year);
 
         return view('laporan.index')
-            ->with('laporan', 'kasus-tahun')
+            ->with('laporan', 'kasus-per-bulan')
             ->with('year', $year)
             ->with('month', $months)
             ->with('countArray', $kasusBulan);

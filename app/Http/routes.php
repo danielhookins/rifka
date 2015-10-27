@@ -386,18 +386,18 @@
 		'uses' => 'LaporanController@updateKabupaten']);
 
 	/**
-	 * Report: [GET] Kasus-tahun report
+	 * Report: [GET] Cases by month report
 	 */
-	Route::get('/laporan/kasusTahun', [
-		'as' => 'laporan.kasusTahun',
-		'uses' => 'LaporanController@kasusTahun']);
+	Route::get('/laporan/kasusPerBulan', [
+		'as' => 'laporan.kasusPerBulan',
+		'uses' => 'LaporanController@kasusPerBulan']);
 
 	/**
-	 * Report: [POST] Update Kabupaten report
+	 * Report: [POST] Update Cases by month report
 	 */
-	Route::post('/laporan/kasusTahun', [
-		'as' => 'laporan.kasusTahun.update',
-		'uses' => 'LaporanController@updateKasusTahun']);
+	Route::post('/laporan/kasusPerBulan', [
+		'as' => 'laporan.kasusPerBulan.update',
+		'uses' => 'LaporanController@updateKasusPerBulan']);
 
 	/**
 	 * Report: [GET] Usia report

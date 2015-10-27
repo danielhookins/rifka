@@ -57,7 +57,7 @@
 	}
 	</script>
 	<div id="colchart" style="display:inline;width:900px;height:300px;margin-top:40px"></div>
-	<p>Lihat laporan <a href="{{ route('laporan.kasusTahun') }}">Kasus Tahun</a></p>
+	<p>Lihat laporan <a href="{{ route('laporan.kasusPerBulan') }}">Kasus Per Bulan</a></p>
 
 	<h4>Klien Baru</h4>
 		<ul>
