@@ -13,7 +13,13 @@ use DB;
  */
 class LaporanUtils
 {
-	
+
+  /**
+   * Get an array of statistics that give an
+   * overview of the organisations position this year.
+   *
+   * @return Array $overview
+   */	
   public static function getOverview()
   {
     // Prepare Data for Overview
@@ -62,6 +68,7 @@ class LaporanUtils
     return $overview;
   }
 
+
   public static function getDistinctCaseTypes($year = null)
   {
     $caseTypes = array();
@@ -83,8 +90,8 @@ class LaporanUtils
     }
 
     return $caseTypes;
-    
   }
+
 
   public static function getCountByCaseType($caseTypeArray, $year = null)
   {
@@ -106,10 +113,9 @@ class LaporanUtils
       }
       
     }
-
     return array_filter($typeCount);
-
   }
+
 
   /**
    * Get the number of cases in each kabupaten
@@ -192,16 +198,19 @@ class LaporanUtils
     return $kabupatenKorbanYear;
   }
 
+
   public static function getKasusTahun($tahun)
   {
     return Kasus::where(DB::raw('YEAR(created_at)'), '=', $tahun);
   }
+
 
   public static function getKasusBulanTahun($bulan, $tahun)
   {
     return Kasus::where(DB::raw('MONTH(created_at)'), '=', $bulan)
         ->where(DB::raw('YEAR(created_at)'), '=', $tahun);
   }
+
 
   public static function getKasusBulanArray($tahun)
   {
@@ -213,6 +222,7 @@ class LaporanUtils
     }
     return $kasusBulan;
   }
+
 
   public static function getKlien($tahun, $jenisKlien = "Semua")
   {
@@ -239,23 +249,6 @@ class LaporanUtils
     return $klienCocok;
   }
 
-  public static function getUpdatedYear($input)
-  {
-    $year = $input['year'];
-        
-    if(isset($input['change']))
-    {
-        if($input['change'] == "prev")
-        {
-            $year = $year - 1;
-        }
-        elseif($input['change'] == "next")
-        {
-            $year = $year + 1;
-        }
-    }
-    return $year;
-  }
 
   public static function getCaseClientsByAge($year, $caseType="all")
   {
@@ -270,10 +263,10 @@ class LaporanUtils
     $kasusQuery = $kasusQuery->get();
 
     // Define array variables
-    $anakKecil = array();  // Children (under 12)
-    $remaja12sd15 = array(); // Teenagers (12-15)
-    $remaja16sd17 = array(); // Teenagers (16-17)
-    $dewasa = array();  // Adults (18+)
+    $anakKecil = array();       // Children (under 12)
+    $remaja12sd15 = array();    // Teenagers (12-15)
+    $remaja16sd17 = array();    // Teenagers (16-17)
+    $dewasa = array();          // Adults (18+)
 
     // Iterate through cases that match query
     foreach($kasusQuery as $kasus)

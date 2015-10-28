@@ -12,16 +12,15 @@ use rifka\Library\LaporanUtils;
 use rifka\Library\DateUtils;
 use rifka\Library\ExcelUtils;
 use rifka\Library\LaporanExport;
+use rifka\Library\InputUtils;
 use Carbon\Carbon;
-use Khill\Lavacharts\Lavacharts;
 use DB;
 
 class LaporanController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return Response
+     * Overview page
+     * @return Overview view
      */
     public function index()
     {
@@ -47,7 +46,7 @@ class LaporanController extends Controller
 
     public function updateKasusOlehJenis()
     {
-        $year = LaporanUtils::getUpdatedYear(\Input::get());
+        $year = InputUtils::getUpdatedYear(\Input::get());
 
         $countArray = LaporanUtils::getCountByCaseType(
             LaporanUtils::getDistinctCaseTypes(), $year);
@@ -105,7 +104,7 @@ class LaporanController extends Controller
 
     public function updateListKlienOlehUsia() {
         $input = \Input::get();
-        $year = LaporanUtils::getUpdatedYear(\Input::get());
+        $year = InputUtils::getUpdatedYear(\Input::get());
         $age = $input["age"];
         $caseType = "all";
         
@@ -124,7 +123,7 @@ class LaporanController extends Controller
 
     public function updateListKasusOlehTahun()
     {
-        $year = LaporanUtils::getUpdatedYear(\Input::get());
+        $year = InputUtils::getUpdatedYear(\Input::get());
 
         // TODO: Duplicate code -- move to library
         $casesYear = Kasus::
@@ -164,7 +163,7 @@ class LaporanController extends Controller
 
     public function updateKabupaten()
     {
-        $year = LaporanUtils::getUpdatedYear(\Input::get());
+        $year = InputUtils::getUpdatedYear(\Input::get());
 
         // TODO Client Type
         $jenisKlien = "Korban";
@@ -197,7 +196,7 @@ class LaporanController extends Controller
 
     public function updateKasusPerBulan()
     {
-        $year = LaporanUtils::getUpdatedYear(\Input::get());
+        $year = InputUtils::getUpdatedYear(\Input::get());
         $months = DateUtils::getMonths();
         $kasusBulan = LaporanUtils::getKasusBulanArray($year);
 
@@ -228,7 +227,7 @@ class LaporanController extends Controller
 
     public function updateKasusOlehUsia()
     {
-        $year = LaporanUtils::getUpdatedYear(\Input::get());
+        $year = InputUtils::getUpdatedYear(\Input::get());
         $usia = LaporanUtils::getCaseClientsByAge($year);
 
         $typeCases = array();
@@ -244,28 +243,16 @@ class LaporanController extends Controller
             ->with('typeCases', $typeCases);
     }
 
+
+/***** Export *******/
+
     /**
      * Export case by age and type data to Excel
      */
     public function exporLaporanUsiaXLS() {
         $input = \Input::get();
-        $years = array();
-
-        if($input["mulai"] == "" && $input["sampai"] == "")
-        {
-            // no input given
-            return redirect()->route('laporan.usia');
-        } else if ($input["mulai"] == "" || $input["sampai"] == "") {
-            $years[] = ($input["mulai"] != "") 
-                ? $input["mulai"] : $input["sampai"];
-        } else {
-            
-            for ($i = (int)$input["mulai"]; $i <= (int)$input["sampai"]; $i++) {
-                $years[] = $i;
-            }
-        }
-
-        LaporanExport::kasusOlehUsia($years);
+        $years = InputUtils::getYearsArrayFromInput($input);
+        return LaporanExport::kasusOlehUsia($years);
     }
     
 

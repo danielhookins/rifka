@@ -85,4 +85,50 @@ class InputUtils
 		// no input entered
 		return false;
 	}
+
+
+	/**
+	 * Get the new year from user input
+	 * @return int $year
+	 */
+	public static function getUpdatedYear($input)
+  {
+    $year = $input['year'];
+        
+    if(isset($input['change']))
+    {
+        if($input['change'] == "prev")
+        {
+            $year = $year - 1;
+        }
+        elseif($input['change'] == "next")
+        {
+            $year = $year + 1;
+        }
+    }
+    return $year;
+  }
+
+
+  public function getYearsArrayFromInput($input)
+  {
+  	$years = array();
+
+    if($input["mulai"] == "" && $input["sampai"] == "")
+    {
+      // no input given
+      return; // TODO: redirect to error page
+    } else if ($input["mulai"] == "" || $input["sampai"] == "") {
+        $years[] = ($input["mulai"] != "") 
+            ? $input["mulai"] : $input["sampai"];
+    } else {
+        for ($i = (int)$input["mulai"]; $i <= (int)$input["sampai"]; $i++)
+        {
+          $years[] = $i;
+        }
+    }
+    return $years;
+  }
+
+
 }
