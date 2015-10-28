@@ -110,7 +110,7 @@ class InputUtils
   }
 
 
-  public function getYearsArrayFromInput($input)
+  public static function getYearsArrayFromInput($input)
   {
   	$years = array();
 

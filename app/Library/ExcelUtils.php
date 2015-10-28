@@ -244,19 +244,17 @@ class ExcelUtils{
  	}
 
 	/**
-	 *	Export Age Report data to Excel
+	 *	Export rows data to Excel file
 	 */
- 	public static function exportAgeReport($title, $data) {
+ 	public static function exportRowsData($title, $headers, $data) {
 
  		// Create new Excel file
-		$file = Excel::create($title, function($excel) use ($title, $data) {
+		$file = Excel::create($title, function($excel) use ($title, $headers, $data) {
 
 					// Create one sheet report from data array   
-					$excel->sheet($title, function($sheet) use ($title, $data) {
+					$excel->sheet($title, function($sheet) use ($title, $headers, $data) {
 
-						$sheet->row(1, array(
-							"Tahun", "Jenis Kasus", "Usia", "Jumlah Kasus"
-						));
+						$sheet->row(1, $headers);
 
 						foreach($data as $row) {
 							// Append row

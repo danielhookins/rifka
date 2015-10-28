@@ -57,17 +57,17 @@
 </table>
 
 {!! Form::open(array('route' => array('kasusOlehUsia.xls'),
-		'class'=>'form form-inline well', 'method' => 'POST')) !!}
-		<h3>Expor data usia ke Excel</h3>
-		<label for="mulai">Tahun Mulai</label>
-		<input class="form-control" name="mulai" placeholder="Tahun Mulai" />
-		<label for="sampai">Tahun Sampai</label>
-		<input class="form-control" name="sampai" placeholder="Tahun Sampai" />
-		<button type="submit">
-			<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
-			Download
-		</button>
-	{!! Form::close() !!}
+	'class'=>'form form-inline well', 'method' => 'POST')) !!}
+	<h3>Expor data usia ke Excel</h3>
+	<label for="mulai">Tahun Mulai</label>
+	<input class="form-control" name="mulai" placeholder="Tahun Mulai" />
+	<label for="sampai">Tahun Sampai</label>
+	<input class="form-control" name="sampai" placeholder="Tahun Sampai" />
+	<button type="submit">
+		<span class="glyphicon glyphicon-download" aria-hidden="true"></span>
+		Download
+	</button>
+{!! Form::close() !!}
 
 </div>
 

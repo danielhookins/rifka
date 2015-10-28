@@ -227,6 +227,13 @@
 		'as' => 'kasusOlehUsia.xls',
 		'uses' => 'LaporanController@exporLaporanUsiaXLS']);
 
+	/**
+	 * Export cases by type data to Excel
+	 */
+	Route::post('laporan/kasusOlehJenis/exportXLS', [
+		'as' => 'kasusOlehJenis.xls',
+		'uses' => 'LaporanController@exporLaporanJenisXLS']);
+
 
 	/*** KLIEN ***************************************************/
 	
