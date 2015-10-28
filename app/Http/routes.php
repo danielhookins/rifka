@@ -16,7 +16,7 @@
 		'uses' => 'WelcomeController@index']);
 
 
-/*** RESOURCES ***************************************************************/
+/*** RESOURCES *****************************************************/
 	
 	Route::resource('kasus', 'KasusController');
 	Route::resource('kasus.perkembangan', 'PerkembanganController');
@@ -45,7 +45,7 @@
 	
 	Route::resource('konselor', 'KonselorController');
 
-	/*** DELETES  *****************************************************************/
+	/*** DELETES ****************************************************/
 
 	// Remove client from case
 	Route::post('kasus/{kasus_id}/removeklien2', [
@@ -134,7 +134,7 @@
 
 
 
-/*** SEARCH *****************************************************************/
+/*** SEARCH ******************************************************/
 	
 	// Display the main serach page
 	Route::get('search', [
@@ -158,7 +158,7 @@
 		'as' 		=> 'konselor.search',
 		'uses' 	=> 'Search\SearchController@searchKonselor']);
 
-/*** KASUS *****************************************************************/
+/*** KASUS ****************************************************/
 	
 	// Add a client to a case
 	// TODO: Do this in a more secure way
@@ -278,7 +278,7 @@
 		'as' => 'klien.xls',
 		'uses' => 'KlienController@exportXLS']);
 
-	/*** USER ******************************************************************/
+	/*** USER ********************************************************/
 	
 	/**
 	 *  Laravel 5 built-in authorization controllers.
@@ -372,6 +372,20 @@
 		'uses' => 'LaporanController@updateListKasusOlehTahun']);
 
 	/**
+	 * List: [GET] Cases by case-type
+	 */
+	Route::get('/laporan/listKasusOlehJenis', [
+		'as' => 'laporan.jenis.list',
+		'uses' => 'LaporanController@listKasusOlehJenis']);
+
+	/**
+	 * List: [POST] Update cases by case-type
+	 */
+	Route::post('/laporan/listKasusOlehJenis', [
+		'as' => 'laporan.jenis.list.update',
+		'uses' => 'LaporanController@updateListKasusOlehJenis']);
+
+	/**
 	 * List: [GET] Cases by age
 	 */
 	Route::get('/laporan/listKlienOlehUsia', [
@@ -426,15 +440,6 @@
 	Route::post('/laporan/usia', [
 		'as' => 'laporan.usia.update',
 		'uses' => 'LaporanController@updateKasusOlehUsia']);
-	
-
-	/**
-	 * test.
-	 */
-	Route::get('/laporan/test', [
-		'as' => 'laporan.test', 
-		'uses' => 'LaporanController@test']);
-
 
 
 	/*** DEVELOPER ******************************************************/

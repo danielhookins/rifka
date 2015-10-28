@@ -131,4 +131,15 @@ class InputUtils
   }
 
 
+  public static function toSelectArray($options) {
+  	$selectArray = array();
+
+  	foreach ($options as $option)
+  	{
+  		$selectArray[$option] = $option;
+  	}
+
+  	return $selectArray;
+  }
+
 }

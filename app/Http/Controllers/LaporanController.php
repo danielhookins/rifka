@@ -31,6 +31,7 @@ class LaporanController extends Controller
             ->with('overview', $overview);
     }
 
+
     public function kasusOlehJenis()
     {
         $year = Carbon::today()->format('Y');
@@ -44,6 +45,7 @@ class LaporanController extends Controller
             ->with('title', "Jenis Kasus untuk " . $year);;
     }
 
+    
     public function updateKasusOlehJenis()
     {
         $year = InputUtils::getUpdatedYear(\Input::get());
@@ -79,6 +81,7 @@ class LaporanController extends Controller
             ->with('cases', $casesYear->get());
     }
 
+
     /**
      *  Display a list of cases by age group
      */
@@ -102,6 +105,7 @@ class LaporanController extends Controller
             ->with('klien2', $clients[$age]);
     }
 
+
     public function updateListKlienOlehUsia() {
         $input = \Input::get();
         $year = InputUtils::getUpdatedYear(\Input::get());
@@ -120,6 +124,7 @@ class LaporanController extends Controller
             ->with('displayModel', $displayModel)
             ->with('klien2', $clients[$age]);
     }
+
 
     public function updateListKasusOlehTahun()
     {
@@ -142,9 +147,12 @@ class LaporanController extends Controller
             ->with('list', "kasus-tahun")
             ->with('year', $year)
             ->with('cases', $casesYear->get());
-
     }
 
+    /**
+     * [Report] Cases by Kabupaten
+     * return view kabupaten
+     */
     public function kabupaten()
     {
         $tahun = Carbon::today()->format('Y');
@@ -158,17 +166,17 @@ class LaporanController extends Controller
             ->with('year', $tahun)
             ->with('title', "Data Kabupaten")
             ->with('countArray', $kabupaten);
-
     }
+
 
     public function updateKabupaten()
     {
         $year = InputUtils::getUpdatedYear(\Input::get());
 
-        // TODO Client Type
+        // TODO: Add functionality in view to change Client Type
         $jenisKlien = "Korban";
 
-        // TODO Address Type
+        // TODO: Add functionality in view to change Address Type
         $jenisAlamat = "Domisili";
 
         // Update array
@@ -180,6 +188,7 @@ class LaporanController extends Controller
             ->with('title', "Data Kabupaten")
             ->with('countArray', $kabupaten);
     }
+
 
     public function kasusPerBulan()
     {
@@ -194,6 +203,7 @@ class LaporanController extends Controller
             ->with('countArray', $kasusBulan);
     }
 
+
     public function updateKasusPerBulan()
     {
         $year = InputUtils::getUpdatedYear(\Input::get());
@@ -206,6 +216,7 @@ class LaporanController extends Controller
             ->with('month', $months)
             ->with('countArray', $kasusBulan);
     }
+
 
     public function kasusOlehUsia()
     {
@@ -224,6 +235,7 @@ class LaporanController extends Controller
             ->with('usia', $usia)
             ->with('typeCases', $typeCases);
     }
+
 
     public function updateKasusOlehUsia()
     {
@@ -244,6 +256,51 @@ class LaporanController extends Controller
     }
 
 
+    public function listKasusOlehJenis()
+    {
+        $year = Carbon::today()->format('Y');
+        $caseType = "KTI";
+        $availableTypes = LaporanUtils::getDistinctCaseTypes($year);
+
+        $displayModel = array();
+        $displayModel["year"] = $year;
+        $displayModel["caseType"] = $caseType;
+        $displayModel["availableTypes"] 
+            = InputUtils::toSelectArray($availableTypes);
+        
+        $cases = LaporanUtils::getCasesByCaseType($caseType, $year);
+
+        return view('laporan.index')
+            ->with('list', "jenis-kasus")
+            ->with('displayModel', $displayModel)
+            ->with('cases', $cases)
+            ->with('title', "Jenis Kasus untuk " . $year);
+    }
+
+    
+    public function updateListKasusOlehJenis()
+    {
+        $year = InputUtils::getUpdatedYear(\Input::get());
+        $caseType = \Input::get("caseType");
+        $availableTypes = LaporanUtils::getDistinctCaseTypes($year);
+
+        $displayModel = array();
+        $displayModel["year"] = $year;
+        $displayModel["caseType"] = $caseType;
+        $displayModel["availableTypes"] 
+            = InputUtils::toSelectArray($availableTypes);
+
+        if($caseType == ""){$caseType = null;}        
+        $cases = LaporanUtils::getCasesByCaseType($caseType, $year);
+
+        return view('laporan.index')
+            ->with('list', "jenis-kasus")
+            ->with('displayModel', $displayModel)
+            ->with('cases', $cases)
+            ->with('title', "Jenis Kasus untuk " . $year);
+    }
+
+
 /***** Export *******/
 
     /**
@@ -255,9 +312,4 @@ class LaporanController extends Controller
         return LaporanExport::kasusOlehUsia($years);
     }
     
-
-    public function test()
-    {
-        return "test";
-    }
 }

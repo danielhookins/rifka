@@ -93,27 +93,44 @@ class LaporanUtils
   }
 
 
-  public static function getCountByCaseType($caseTypeArray, $year = null)
+  public static function getCasesByCaseType($caseTypes, $year = null)
   {
-    $typeCount = array();
+    $cases = array();
+
+    if(!is_array($caseTypes))
+    {
+        $caseTypeArray[] = $caseTypes;
+    } else {
+        $caseTypeArray = $caseTypes;
+    }
 
     foreach($caseTypeArray as $type)
     {
       if(isset($year))
       {
-        $typeCount[$type] = Kasus::
+        $cases[$type] = Kasus::
         where(DB::raw('YEAR(created_at)'), '=', $year)
-        ->where('jenis_kasus', $type)
-        ->count();
+        ->where('jenis_kasus', $type)->get();
       }
       else {
-        $typeCount[$type] = Kasus::
-        where('jenis_kasus', $type)
-        ->count();
+        $cases[$type] = Kasus::
+        where('jenis_kasus', $type)->get();
       }
       
     }
-    return array_filter($typeCount);
+    return array_filter($cases);
+  }
+
+
+  public static function getCountByCaseType($caseTypeArray, $year = null)
+  {
+    $cases = LaporanUtils::getCasesByCaseType($caseTypeArray, $year);
+
+    foreach($caseTypeArray as $type)
+    {
+      $cases[$type] = $cases[$type]->count();
+    }
+    return array_filter($cases);
   }
 
 

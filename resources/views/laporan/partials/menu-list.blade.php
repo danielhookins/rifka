@@ -28,6 +28,9 @@
 				<a href="{{ route('laporan.tahun.list') }}">Daftar Tahunan</a>
 			</li>
 			<li class="list-group-item">
+				<a href="{{ route('laporan.jenis.list') }}">Daftar Jenis Kasus</a>
+			</li>
+			<li class="list-group-item">
 				<a href="{{ route('laporan.usia.list') }}">Daftar Usia</a>
 			</li>
 		</ul>

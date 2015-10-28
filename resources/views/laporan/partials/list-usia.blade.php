@@ -11,6 +11,7 @@
         'class' => 'form-control',
         'id' => 'age'
       ))!!}
+      untuk tahun  
 		<button class="btn btn-default" type="submit" name="change" value="prev">
 			<span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
 		</button>
