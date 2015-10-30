@@ -64,30 +64,12 @@ class KonselorController extends Controller {
 
 		// validate input
 		$this->validate($request, [
-			'nama_konselor' => 'required|string|min:3|max:255',
-			'email' => 'email|max:128',
+			'nama_konselor' => 'required|string|min:3|max:255'
 		]);
-
-		// check if email corresponds with user
-		if (\Input::get('email') != null)
-		{
-			
-			$email = \Input::get('email');
-			
-			// if the email corresponds to user,
-			// the user's id will be attached to the counselor record.
-			if (User::where('email', $email)->first()) 
-			{
-				$user = User::where('email', $email)->first();
-				$user_id = $user->id;
-			}
-
-		}
 
 		// create the new counselor
 		if($konselor = \rifka\Konselor::create([
-			'nama_konselor' => \Input::get('nama_konselor'),
-			'user_id' 			=> ($user_id == null) ? null : $user_id
+			'nama_konselor' => \Input::get('nama_konselor')
 			]))
 		{
 			return redirect()->route('konselor.index')->with('konselorMsgs',['Ditambahkan konselor ' . \Input::get('nama_konselor')]);

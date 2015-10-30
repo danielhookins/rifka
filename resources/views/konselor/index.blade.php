@@ -19,42 +19,25 @@
 	<h2>Konselor</h2>
 
 	{!! Form::open(array(
-		'route' => array('konselor.search'),
-		'class' => 'form-inline',
-		'method' => 'POST')) 
-	!!}
-
-	<div class="form-group">
-		{!! Form::text('search_query', null, array(
-		  'class'     => 'form-control',
-		  'autocomplete' => 'off',
-		  'placeholder'   => 'Cari konselor'))
-		!!}
-	</div>
-
-	<div class="form-group">
-  	<button type="submit" class="btn btn-default form-control" id="search-button">
-		  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Penelusuran
-		</button>
-	</div>
-
-	{!! Form::close() !!}
-
-
-	{!! Form::open(array(
 		'route' => array('konselor2.delete'),
 		'class' => 'form-inline',
 		'method' => 'POST')) 
 	!!}
 
 	<div class="daftar-table" style="margin-top:20px">
-		<table class="table table-hover">
+		<table id ="datatable" class="table table-hover table-compact table-striped">
+			<thead>
 			<tr>
-				<th></th>
+				<th style="text-align:center">
+					<button class="" type="submit">
+				    <span class="glyphicon glyphicon-trash" aria-hidden="true" />
+				  </button>
+				</th>
 				<th>Nama Konselor</th>
 				<th>User ID</th>
 			</tr>
-
+			</thead>
+			<tbody>
 			<?php $i = 0; ?>
 			@forelse($konselor2 as $konselor)
 				<tr>
@@ -74,14 +57,13 @@
 					<td colspan=4>Belum ada konselor.</td>
 				</tr>
 			@endforelse
+			</tbody>
+			<a class="btn btn-small" href="{{ route('konselor.create') }}">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				Tambah Konselor
+			</a>
 		</table>
 
-		<a class="btn btn-sm btn-default" href="{{ route('konselor.create') }}">
-			<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-		</a>
-		<button class="btn btn-sm btn-default" type="submit">
-      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-    </button>
 	</div>
 
 	{!! Form::close() !!}

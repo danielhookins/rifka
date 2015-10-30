@@ -1,7 +1,9 @@
 @extends('layouts.records')
 
 @section('content')
-
+<div class="row">
+	<div class="col-sm-6 col-offset-sm-3">
+	
 	<h2>Konselor Baru</h2>
 
 	@if (count($errors) > 0)
@@ -29,14 +31,6 @@
 	</div>
 
 	<div class="form-group">
-		{!! Form::label('email', 'E-mail', array('class' => 'strongLabel')) !!}
-		{!! Form::text('email', null, array(
-		  'class'     => 'form-control',
-		  'placeholder'   => 'E-mail Konselor', 'autocomplete' => 'off'))
-		!!}
-	</div>
-
-	<div class="form-group">
 		{!! Form::submit('Simpan', array('class' => 'btn btn-default')) !!}
 		<a class="btn btn-default" href="{{ route('konselor.index') }}">
 			Batal
@@ -45,4 +39,6 @@
 
 	{!! Form::close() !!}
 
+	</div>
+</div>
 @endsection
