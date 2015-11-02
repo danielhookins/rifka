@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use rifka\User;
 use DB;
 use rifka\KlienKasus;
+use rifka\Library\ResourceUtils;
+use rifka\Library\InputUtils;
+use rifka\Library\UserUtils;
 
 class UserController extends Controller {
 	
@@ -102,18 +105,74 @@ class UserController extends Controller {
 	}
 
 	/**
+	 *	Show the edit user page.
+	 */
+	public function edit($user_id)
+	{
+		$user = User::findOrFail($user_id);
+
+		return view('user.edit')
+			->with('user', $user);
+	}
+
+	/**
+	 *	Show the change password page.
+	 */
+	public function changePassword($user_id) 
+	{
+		$user = User::findOrFail($user_id);
+
+		return view('user.changePassword')
+			->with('user', $user);
+	}
+
+
+	/**
 	 *	Update user details.
 	 *
 	 *	@param int $user_id - The ID of the user.
 	 *	@return redirect back
 	 */
-	public function update($user_id)
+	public function update(Request $request, $user_id)
 	{
-
 		$user = User::findOrFail($user_id);
 
+		// Update button clicked
+		if(\Input::get('updateBtn'))
+		{
+			// Set variables
+			$resource = User::findOrFail($user_id);
+			$fields = ["name", "email", "jenis", "active"];
+			$input = InputUtils::nullifyDefaults(\Input::get());
+			
+			try {
+				ResourceUtils::updateResource($resource, $fields, $input);
+
+				// resource updated
+				return redirect()->route('user.show', $user_id);
+
+			} Catch (Exception $e) {
+				// Could not update resource
+				return $e;
+			}
+		}
+
+		// Change password button clicked
+		else if(\Input::get('changePasswordBtn'))
+		{
+			$passwordNew = \Input::get('passwordNew');
+			$passwordAgain = \Input::get('passwordAgain');
+
+			if (UserUtils::changePassword($user_id, $passwordNew, $passwordAgain))
+			{
+				$request->session()->flash('success', 'Kata sandi sudah digantikan.');
+				return redirect()->route('user.management');
+			}	
+			return "Error. Tidak bisa gantikan kata sandi.";		
+		}
+
 		// Delete button clicked
-		if(\Input::get('deleteBtn'))
+		else if(\Input::get('deleteBtn'))
 		{
 			$this->deleteInactive($user_id);
 		} 

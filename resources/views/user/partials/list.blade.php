@@ -8,8 +8,12 @@
   </h4>
 </div>
 
-<table class="table table-responsive table-hover">
+<div class="panel-body">
+	<a href="#">Tambah User</a>
+</div>
 
+<table id="datatable" class="table table-responsive table-hover">
+<thead>
 	<tr>
 		<th>Name</th>
 		<th>Email</th>
@@ -17,17 +21,22 @@
 		<th>Status</th>
 		<th></th>
 	</tr>
-
+</thead>
+<tbody>
 	@foreach($users as $user)
 		<tr>	
 			<td>{{ $user->name }}</td>
 			<td>{{ $user->email }}</td>
 			<td>{{ $user->jenis }}</td>
   		<td>@if($user->active) Aktif @else Tidak Aktif @endif</td>
-  		<td></td>
+  		<td>
+  			<a href="{{ route('user.edit', $user->id) }}">Edit</a> | 
+  			<a href="{{ route('user.changePassword', $user->id) }}">Ganti Kata Sandi</a> | 
+  			<a href="#">Menghapus</a>
+  		</td>
 		</tr>
 	@endforeach
-
+</tbody>
 </table>
 
 </div> <!-- Panel All Users -->

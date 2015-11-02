@@ -44,6 +44,15 @@ body {
  .dataTables_paginate {
   margin-bottom:30px;
  }
+ .dataTables_wrapper .dataTables_length {
+  padding:10px;
+ }
+ .dataTables_wrapper .dataTables_filter {
+  padding:10px;
+ }
+ .dataTables_wrapper .dataTables_info {
+  padding-left:10px;
+ }
 
 
 /*

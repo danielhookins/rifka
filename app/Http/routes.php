@@ -45,6 +45,8 @@
 	
 	Route::resource('konselor', 'KonselorController');
 
+	Route::resource('user', 'UserController');
+
 	/*** DELETES ****************************************************/
 
 	// Remove client from case
@@ -315,13 +317,12 @@
 		'uses' => 'HomeController@index']);
 
 	/**
-	 *  Show the user's profile page.
-	 *
-	 * @param int user_id The id of the user who's profile to show.
+	 *	Show the user change-password page
 	 */
-	Route::get('user/{user_id}', [
-		'as' => 'user.show',
-		'uses' => 'UserController@show']);
+	Route::get('user/{user_id}/changePassword', [
+		'as' => 'user.changePassword',
+		'uses' => 'UserController@changePassword',
+		'middleware' => ['userType:Manager']]);
 
 	/**
 	 *  Show the user management page
@@ -330,15 +331,6 @@
 	Route::get('manage/users', [
 		'as' => 'user.management',
 		'uses' => 'UserController@showUserManagement']);
-
-	/**
-	 *  Update a user.
-	 *
-	 *  @param int user_id The ID of the user to update
-	 */
-	Route::post('user/{user_id}/update', [
-		'as' => 'user.update',
-		'uses' => 'UserController@update']);
 
 
 	/*** LAPORAN ********************************************************/

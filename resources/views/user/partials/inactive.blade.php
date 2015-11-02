@@ -23,7 +23,7 @@
 	        'route' => array('user.update', 
 	          $user->id), 
 	        'class'=>'form', 
-	        'method' => 'POST')) 
+	        'method' => 'PUT')) 
 	      !!}
 
     <input type="hidden" name="activate" value="1" />
