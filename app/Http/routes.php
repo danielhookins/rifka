@@ -332,6 +332,15 @@
 		'as' => 'user.management',
 		'uses' => 'UserController@showUserManagement']);
 
+	Route::get('user/{user_id}/delete',[
+		'as' => 'user.deleteConfirm',
+		'uses' => 'UserController@deleteConfirm']);
+
+	Route::post('user/deleteUser',[
+		'as' => 'user.deleteUser',
+		'uses' => 'UserController@deleteUser',
+		'middleware' => ['userType:Manager']]);
+
 
 	/*** LAPORAN ********************************************************/
 

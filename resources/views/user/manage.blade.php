@@ -11,7 +11,7 @@
 	</div>
 	@endif
 	
-	@if(!empty($inactive->toArray()))
+	@if(isset($inactive) && !empty($inactive->toArray()))
 		@include('user.partials.inactive')
 	@endif
 

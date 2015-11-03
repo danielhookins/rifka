@@ -8,10 +8,6 @@
   </h4>
 </div>
 
-<div class="panel-body">
-	<a href="#">Tambah User</a>
-</div>
-
 <table id="datatable" class="table table-responsive table-hover">
 <thead>
 	<tr>
@@ -32,7 +28,7 @@
   		<td>
   			<a href="{{ route('user.edit', $user->id) }}">Edit</a> | 
   			<a href="{{ route('user.changePassword', $user->id) }}">Ganti Kata Sandi</a> | 
-  			<a href="#">Menghapus</a>
+  			<a href="{{ route('user.deleteConfirm', $user->id)}}">Menghapus</a>
   		</td>
 		</tr>
 	@endforeach

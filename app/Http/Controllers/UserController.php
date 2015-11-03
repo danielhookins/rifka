@@ -214,4 +214,35 @@ class UserController extends Controller {
 
 	}
 
+	public function deleteConfirm($user_id) 
+	{
+		
+		$user = User::findOrFail($user_id);
+
+		return view('user.delete')
+			->with('user', $user);
+	}
+
+
+	/**
+	 *	Delete a specified user
+	 */
+	public function deleteUser()
+	{
+		
+		$user_id = \Input::get("user_id");
+
+		// TODO add some kind of checks
+		// eg. Does this user have cases
+
+		$user = User::findOrFail($user_id);
+		if($user->delete())
+		{
+			// TODO add success feedback
+		} else {
+			// TODO add failure feedback
+		}
+		return redirect()->route('user.management');
+	}
+
 }
