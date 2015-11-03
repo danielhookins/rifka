@@ -2,6 +2,7 @@
 namespace rifka\Library;
 
 use rifka\User;
+use rifka\Konselor;
 use Hash;
  
 /**
@@ -37,6 +38,23 @@ class UserUtils
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 *	Get  a list of cases the user is a counselor for.
+	 */
+	public static function getUserCases($user_id)
+	{
+		$cases = array();
+		$user = User::findOrFail($user_id);
+		$counselor = Konselor::where('user_id', $user->id)->first();
+
+		if($counselor != null)
+		{
+			$cases = $counselor->kasus()->get();
+		}
+
+		return $cases;
 	}
 
 }

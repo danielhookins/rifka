@@ -31,8 +31,12 @@ class UserController extends Controller {
 	{
 		if ($user = User::find($user_id))
 		{
+			
+			$cases = UserUtils::getUserCases($user_id);
+
 			return view('user.show', [
-				'user' => $user]);	
+				'user' => $user,
+				'cases' => $cases]);	
 		}
 		
 		return redirect('404');

@@ -20,11 +20,11 @@
 
 	@foreach($inactive as $user)
 		{!! Form::open(array(
-	        'route' => array('user.update', 
-	          $user->id), 
-	        'class'=>'form', 
-	        'method' => 'PUT')) 
-	      !!}
+      'route' => array('user.update', 
+        $user->id), 
+      'class'=>'form', 
+      'method' => 'PUT')) 
+    !!}
 
     <input type="hidden" name="activate" value="1" />
 
