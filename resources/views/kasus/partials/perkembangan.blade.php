@@ -7,6 +7,7 @@
   </div>
 
   <table class="table table-responsive table-hover">
+
     @if(!empty($kasus->perkembangan->toArray()))
       
       {!! Form::model($kasus, array('route' => array('perkembangan2.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}

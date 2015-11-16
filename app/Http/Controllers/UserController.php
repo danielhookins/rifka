@@ -63,34 +63,19 @@ class UserController extends Controller {
 	 *
 	 *  @param int user_id The ID of the user to activate.
 	 */
-	private function setActiveStatus($user_id, $status)
+	private function setActiveStatus($request, $user_id, $status)
 	{
 		$user =  User::findOrFail($user_id);
-		$user->active = $status;
-
-		return $user->save();
-	}
-
-	/**
-	 *  Delete an inactive user
-	 *	- ensures user is not active before deleteing.
-	 *
-	 *  @param int user_id The ID fo the inactive user to delete
-	 */
-	private function deleteInactive($user_id)
-	{
-		$user = User::findOrFail($user_id);
 		
-		if($user->active == 0)
-		{
-			$user->delete();
+		try {
+			$user->active = $status;
+			$user->save();
+			$request->session()->flash('success', 'User sudah diaktivasikan');
+		} catch (Exception $e) {
+			$request->session()->flash('error', 'Tidak bisa aktivasikan user');
 		}
 		
 		return;
-
-		// TODO: Add user feedback - eg. User deleted or
-		// user does not exist, or user is active. cannot delete.
-
 	}
 
 	/**
@@ -152,12 +137,14 @@ class UserController extends Controller {
 			try {
 				ResourceUtils::updateResource($resource, $fields, $input);
 
-				// resource updated
+				// Resource updated
+				$request->session()->flash('success', 'Informasi user sudah diupdate');
 				return redirect()->route('user.show', $user_id);
 
 			} Catch (Exception $e) {
 				// Could not update resource
-				return $e;
+				$request->session()->flash('error', 'Tidak bisa update informasi user');
+				return redirect()->route('user.show', $user_id);
 			}
 		}
 
@@ -172,13 +159,13 @@ class UserController extends Controller {
 				$request->session()->flash('success', 'Kata sandi sudah digantikan.');
 				return redirect()->route('user.management');
 			}	
-			return "Error. Tidak bisa gantikan kata sandi.";		
+			return $request->session()->flash('error', 'Tidak bisa gantikan kata sandi');	
 		}
 
 		// Delete button clicked
 		else if(\Input::get('deleteBtn'))
 		{
-			$this->deleteInactive($user_id);
+			return redirect()->route('user.deleteConfirm', $user_id);
 		} 
 		
 		// Activate button clicked
@@ -187,7 +174,7 @@ class UserController extends Controller {
 			if(\Input::get('activate') == '1')
 			{
 				// Activate the user
-				$this->setActiveStatus($user_id, true);
+				$this->setActiveStatus($request, $user_id, true);
 			}
 
 			if(\Input::get('jenis') != null)
@@ -227,7 +214,7 @@ class UserController extends Controller {
 	/**
 	 *	Delete a specified user
 	 */
-	public function deleteUser()
+	public function deleteUser(Request $request)
 	{
 		
 		$user_id = \Input::get("user_id");
@@ -236,11 +223,13 @@ class UserController extends Controller {
 		// eg. Does this user have cases
 
 		$user = User::findOrFail($user_id);
+		$name = $user->name;
+
 		if($user->delete())
 		{
-			// TODO add success feedback
+			$request->session()->flash('success', 'User '.$name.' dihapus');
 		} else {
-			// TODO add failure feedback
+			$request->session()->flash('error', 'Tidak bisa menghapus user');
 		}
 		return redirect()->route('user.management');
 	}
