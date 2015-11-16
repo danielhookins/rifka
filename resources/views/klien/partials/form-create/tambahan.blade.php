@@ -26,6 +26,7 @@
 </div>
 
 <div class="form-group">
+	{!! Form::label('jabatan', 'Jabatan', array('class' => 'strongLabel')) !!}
 	{!! Form::text('jabatan', null, array('class' => 'form-control','placeholder' => 'Jabatan', 'autocomplete' => 'off')) !!}
 </div>
 
@@ -40,10 +41,11 @@
 </div>
 
 <div class="form-group">
-	{!! Form::label('kondisi_klien', 'Lain', array('class' => 'strongLabel')) !!}
+	{!! Form::label('kondisi_klien', 'Kondisi Klien', array('class' => 'strongLabel')) !!}
 	{!! Form::text('kondisi_klien', null, array('class' => 'form-control','placeholder' => 'Kondisi Klien', 'autocomplete' => 'off')) !!}
 </div>
 
 <div class="form-group">
+	{!! Form::label('dirujuk_oleh', 'Dirujuk Oleh', array('class' => 'strongLabel')) !!}
 	{!! Form::text('dirujuk_oleh', null, array('class' => 'form-control','placeholder' => 'Dirujuk Oleh', 'autocomplete' => 'off')) !!}
 </div>
