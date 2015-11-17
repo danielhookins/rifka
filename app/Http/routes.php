@@ -57,6 +57,13 @@
 	Route::post('kasus/{kasus_id}/removekonselor2', [
 		'as' => 'konselor2kasus.delete',
 		'uses' => 'KasusController@deleteKonselor2Kasus']);
+
+	// Delete multiple case details
+	Route::post('kasus/{kasus_id}/deleteSelected/{type}', [
+		'as' => 'selectedDetails.delete',
+		'uses' => 'CaseDetailController@deleteSelectedDetails'
+		]);
+
 	// Delete case developments
 	Route::post('kasus/{kasus_id}/removeperkembangan2', [
 		'as' => 'perkembangan2.delete',
@@ -77,10 +84,6 @@
 	Route::post('kasus/{kasus_id}/removedampak2', [
 		'as' => 'dampak2.delete',
 		'uses' => 'DampakController@deleteDampak2']);
-	// Delete physical record (arsip)
-	Route::post('kasus/{kasus_id}/removearsip2', [
-		'as' => 'arsip2.delete',
-		'uses' => 'ArsipController@deleteArsip2']);
 	// Delete legal activity (kegiatan litigasi)
 	Route::post('kasus/{kasus_id}/litigasi/{litigasi_id}/removekegiatan2', [
 		'as' => 'kegiatan2.delete',
