@@ -49,6 +49,12 @@
 
 	/*** DELETES ****************************************************/
 
+	// Delete multiple case details
+	Route::post('kasus/{kasus_id}/deleteSelected/{type}', [
+		'as' => 'selectedDetails.delete',
+		'uses' => 'CaseDetailController@deleteSelectedDetails'
+		]);
+
 	// Remove client from case
 	Route::post('kasus/{kasus_id}/removeklien2', [
 		'as' => 'klien2kasus.delete',
@@ -58,16 +64,6 @@
 		'as' => 'konselor2kasus.delete',
 		'uses' => 'KasusController@deleteKonselor2Kasus']);
 
-	// Delete multiple case details
-	Route::post('kasus/{kasus_id}/deleteSelected/{type}', [
-		'as' => 'selectedDetails.delete',
-		'uses' => 'CaseDetailController@deleteSelectedDetails'
-		]);
-
-	// Delete case developments
-	Route::post('kasus/{kasus_id}/removeperkembangan2', [
-		'as' => 'perkembangan2.delete',
-		'uses' => 'PerkembanganController@deletePerkembangan2']);
 	// Delete trigger factors
 	Route::post('kasus/{kasus_id}/removepemicu2', [
 		'as' => 'pemicu2.delete',

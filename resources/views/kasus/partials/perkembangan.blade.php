@@ -10,7 +10,7 @@
 
     @if(!empty($kasus->perkembangan->toArray()))
       
-      {!! Form::model($kasus, array('route' => array('perkembangan2.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
+      {!! Form::model($kasus, array('route' => array('selectedDetails.delete', $kasus->kasus_id, "perkembangan"), 'class'=>'form', 'method' => 'POST')) !!}
 
       <tr>
         <th></th>
