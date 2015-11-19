@@ -6,7 +6,7 @@
 
       {!! Form::model($bentukKekerasanActive, array(
       'route' => array(
-        'kasus.bentuk.update',
+        'kasus.bentukKekerasan.update',
         $kasus->kasus_id,
         $bentukKekerasanActive->bentuk_id), 
       'class'=>'form', 

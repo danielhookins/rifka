@@ -93,7 +93,7 @@ class ResourceUtils
 
 		try {
 			// Stored newly created resource
-			$resourceRef = 'rifka\\'.$resourceType;
+			$resourceRef = 'rifka\\'.ucfirst($resourceType);
 			$stored = $resourceRef::create($resource);
 		
 		} catch (Exception $e) {

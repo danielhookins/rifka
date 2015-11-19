@@ -14,7 +14,7 @@ class PerkembanganController extends CaseDetailController {
 	// Get the type
 	public function getType()
 	{
-		return "Perkembangan";
+		return "perkembangan";
 	}
 
 	// Get an array of the editable fields

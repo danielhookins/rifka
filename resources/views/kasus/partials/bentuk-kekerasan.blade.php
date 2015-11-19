@@ -6,10 +6,10 @@
     </h4>
   </div>
   
-    @forelse ($kasus->bentuk as $bentuk)
+    @forelse ($kasus->bentukKekerasan as $bentuk)
     <ul class="list-group">
       <li class="list-group-item" style="margin-bottom:-10px;">
-      	<p class="list-group-item-text">
+        <p class="list-group-item-text">
           <strong>Jenis Kekerasan</strong>
           <div style="margin-top:3px;" class="form-group form-inline">
             <div class="checkbox">
@@ -39,7 +39,7 @@
             </div>
           </div>
         </p>
-    	</li>
+      </li>
       <li class="list-group-item">
         <p class="list-group-item-text">
           <strong>Keterangan</strong><br />
@@ -50,23 +50,23 @@
 
   <div class="panel-body">
     <div class="form-inline">
-      <a class="btn btn-default" data-toggle="modal" href="{{ route('kasus.bentuk.edit', array($bentuk->kasus_id, $bentuk->bentuk_id)) }}">
+      <a class="btn btn-default" data-toggle="modal" href="{{ route('kasus.bentukKekerasan.edit', array($bentuk->kasus_id, $bentuk->bentuk_id)) }}">
         <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
         Edit
       </a>
     </div>
   </div>
-  	
-	@empty
+    
+  @empty
   <ul class="list-group">
-  	<li class="list-group-item">
-	    <a class="tambah-link" data-toggle="modal" href="#tambah-bentuk">
+    <li class="list-group-item">
+      <a class="tambah-link" data-toggle="modal" href="#tambah-bentuk">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         Tambah Bentuk Kekerasan
       </a>
-  	</li>
+    </li>
   </ul>
-	@endforelse
+  @endforelse
 
 </div> <!-- / Bentuk Kekerasan Panel -->
 

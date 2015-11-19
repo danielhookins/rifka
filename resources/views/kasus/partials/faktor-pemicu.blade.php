@@ -9,7 +9,7 @@
   <table class="table table-responsive table-hover">
     @if(!empty($kasus->faktorPemicu->toArray()))
       
-      {!! Form::model($kasus, array('route' => array('pemicu2.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
+      {!! Form::model($kasus, array('route' => array('selectedDetails.delete', $kasus->kasus_id, "faktorPemicu", "pemicu_id"), 'class'=>'form', 'method' => 'POST')) !!}
 
       <tr>
         <th></th>
@@ -68,15 +68,14 @@
 
 </div> <!-- / Faktor Pemicu Panel -->
 
-@if(Session::has('edit-pemicu'))
-  @include('kasus.partials..pemicu-edit')
-
+@if(Session::has('edit-faktorPemicu'))
+  @include('kasus.partials.pemicu-edit')
 @endif
 
-@include('kasus.partials..pemicu-baru')
+@include('kasus.partials.pemicu-baru')
 
 <script type="text/javascript">
-  @if(Session::has('edit-pemicu'))
+  @if(Session::has('edit-faktorPemicu'))
      var edit_pemicu = true;
   @else
      var edit_pemicu = false;

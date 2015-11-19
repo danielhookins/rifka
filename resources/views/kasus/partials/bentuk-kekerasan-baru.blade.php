@@ -4,7 +4,7 @@
 
       {!! Form::open(array(
       'route' => array(
-        'kasus.bentuk.store',
+        'kasus.bentukKekerasan.store',
         $kasus->kasus_id), 
       'class'=>'form', 
       'method' => 'POST'))

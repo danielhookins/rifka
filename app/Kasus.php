@@ -54,7 +54,7 @@ class Kasus extends Model {
         return $this->hasMany('rifka\Arsip', 'kasus_id', 'kasus_id');
     }
 
-    public function bentuk()
+    public function bentukKekerasan()
     {
         return $this->hasMany('rifka\BentukKekerasan', 'kasus_id', 'kasus_id');
     }

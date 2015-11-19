@@ -1,4 +1,4 @@
-<?php $pemicuActive = Session::get('pemicu-active') ?>
+<?php $pemicuActive = Session::get('faktorPemicu-active') ?>
 
 <div class="modal fade" id="pemicu-edit">
   <div class="modal-dialog">

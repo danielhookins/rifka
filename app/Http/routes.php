@@ -20,7 +20,7 @@
 	
 	Route::resource('kasus', 'KasusController');
 	Route::resource('kasus.perkembangan', 'PerkembanganController');
-	Route::resource('kasus.bentuk', 'BentukKekerasanController');
+	Route::resource('kasus.bentukKekerasan', 'BentukKekerasanController');
 	Route::resource('kasus.faktorPemicu', 'FaktorPemicuController');
 	Route::resource('kasus.upayaDilakukan', 'UpayaDilakukanController');
 	Route::resource('kasus.layananDibutuhkan', 'LayananDibutuhkanController');
@@ -50,7 +50,7 @@
 	/*** DELETES ****************************************************/
 
 	// Delete multiple case details
-	Route::post('kasus/{kasus_id}/deleteSelected/{type}', [
+	Route::post('kasus/{kasus_id}/deleteSelected/{model}/{primaryKey?}', [
 		'as' => 'selectedDetails.delete',
 		'uses' => 'CaseDetailController@deleteSelectedDetails'
 		]);
@@ -64,10 +64,6 @@
 		'as' => 'konselor2kasus.delete',
 		'uses' => 'KasusController@deleteKonselor2Kasus']);
 
-	// Delete trigger factors
-	Route::post('kasus/{kasus_id}/removepemicu2', [
-		'as' => 'pemicu2.delete',
-		'uses' => 'FaktorPemicuController@deletePemicu2']);
 	// Delete efforts tried (upaya dilakukan)
 	Route::post('kasus/{kasus_id}/removeupaya2', [
 		'as' => 'upaya2.delete',

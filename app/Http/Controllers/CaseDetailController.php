@@ -47,12 +47,12 @@ class CaseDetailController extends Controller {
 	{
 		// Set variables
 		$detail = $this->findById($detail_id);
-		$type = strtolower($this->getType());
+		$type = $this->getType();
 
 		$request->session()->flash('edit-'.$type, True);
 		$request->session()->flash($type.'-active', $detail);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#'.$type]);
+		return redirect()->route('kasus.show', [$kasus_id, '#'.strtolower($type)]);
 	}
 
 	/**
@@ -86,23 +86,25 @@ class CaseDetailController extends Controller {
 	 * Delete the selected case details from the database.
 	 *
 	 * @param $kasus_id The id of the case from which to delete details
-	 * @param $type The type of details to delete 
+	 * @param $model The Model
+	 * @param $primaryKey The primary key field to use when deletign
 	 */
-	public function deleteSelectedDetails($kasus_id, $type)
+	public function deleteSelectedDetails($kasus_id, $model, $primaryKey = null)
 	{
-		// Set variable
-		$resourceRef = 'rifka\\'.ucfirst($type);
+		// Set variables
+		$primaryKey = ($primaryKey == null) ? $model."_id" : $primaryKey;
+		$resourceRef = 'rifka\\'.ucfirst($model);
 
 		if($toDelete = \Input::get('toDelete'))
 		{
 			foreach($toDelete as $detail_id)
 			{
-				$resourceRef::where($type.'_id', $detail_id)
+				$resourceRef::where($primaryKey, $detail_id)
 					->where('kasus_id', $kasus_id)->delete();
 			}
 		}
 
-		return redirect()->route('kasus.show', [$kasus_id, '#'.$type]);
+		return redirect()->route('kasus.show', [$kasus_id, '#'.strtolower($model)]);
 	}
 
 }

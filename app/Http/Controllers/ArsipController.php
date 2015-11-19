@@ -14,7 +14,7 @@ class ArsipController extends CaseDetailController {
 	// Get the type
 	public function getType()
 	{
-		return "Arsip";
+		return "arsip";
 	}
 
 	// Get an array of the editable fields
