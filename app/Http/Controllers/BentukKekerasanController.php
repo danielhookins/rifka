@@ -38,16 +38,6 @@ class BentukKekerasanController extends Controller {
 	}
 
 	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
@@ -81,7 +71,6 @@ class BentukKekerasanController extends Controller {
 	 */
 	public function show($kasus_id, $bentuk_id)
 	{
-		//
 		$bentuk = \rifka\BentukKekerasan::find($bentuk_id);
 
 		return $bentuk; 
@@ -133,17 +122,6 @@ class BentukKekerasanController extends Controller {
 
 		return 'Error, could not update bentuk kekerasan.';
 
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 }

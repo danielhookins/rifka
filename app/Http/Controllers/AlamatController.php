@@ -24,26 +24,6 @@ class AlamatController extends Controller {
 	}
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index($kasus_id)
-	{
-		return redirect('404');
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create($kasus_id)
-	{
-		return redirect('404');
-	}
-
-	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
@@ -96,18 +76,6 @@ class AlamatController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($kasus_id, $perkembangan_id)
-	{
-
-		return redirect('404');
-	}
-
-	/**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
@@ -156,17 +124,6 @@ class AlamatController extends Controller {
 			return $e;
 		}
 
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($perkembangan_id)
-	{
-		// Not Used
 	}
 
 	/**
