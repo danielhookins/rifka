@@ -1,4 +1,4 @@
-<?php $upayaActive = Session::get('upaya-active') ?>
+<?php $upayaActive = Session::get('upayaDilakukan-active') ?>
 
 <div class="modal fade" id="upaya-edit">
   <div class="modal-dialog">

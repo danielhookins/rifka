@@ -9,7 +9,7 @@
   <table class="table table-responsive table-hover">
     @if(!empty($kasus->upayaDilakukan->toArray()))
       
-      {!! Form::model($kasus, array('route' => array('upaya2.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
+      {!! Form::model($kasus, array('route' => array('selectedDetails.delete', $kasus->kasus_id, "upayaDilakukan", "upaya_id"), 'class'=>'form', 'method' => 'POST')) !!}
 
       <tr>
         <th></th>
@@ -76,15 +76,14 @@
 
 </div> <!-- / Upaya Dilakukan Panel -->
 
-@if(Session::has('edit-upaya'))
+@if(Session::has('edit-upayaDilakukan'))
   @include('kasus.partials.upaya-dilakukan-edit')
-
 @endif
 
 @include('kasus.partials.upaya-dilakukan-baru')
 
 <script type="text/javascript">
-  @if(Session::has('edit-upaya'))
+  @if(Session::has('edit-upayaDilakukan'))
      var edit_upaya = true;
   @else
      var edit_upaya = false;
