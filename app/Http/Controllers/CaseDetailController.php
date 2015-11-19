@@ -1,8 +1,8 @@
 <?php namespace rifka\Http\Controllers;
 
-use Illuminate\Http\Request;
-use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
+use rifka\Http\Requests;
+use Illuminate\Http\Request;
 use rifka\Library\InputUtils;
 use rifka\Library\ResourceUtils;
 
@@ -27,8 +27,6 @@ class CaseDetailController extends Controller {
 
 	/**
 	 * Store a newly created case detail in the database.
-	 *
-	 * @return Response
 	 */
 	public function store($kasus_id)
 	{
@@ -57,9 +55,6 @@ class CaseDetailController extends Controller {
 
 	/**
 	 * Update the specified case detail in the database.
-	 *
-	 * @param  int  $detail_id
-	 * @return Response
 	 */
 	public function update($kasus_id, $detail_id)
 	{
@@ -88,6 +83,7 @@ class CaseDetailController extends Controller {
 	 * @param $kasus_id The id of the case from which to delete details
 	 * @param $model The Model
 	 * @param $primaryKey The primary key field to use when deletign
+	 * @return redirect to the show kasus page
 	 */
 	public function deleteSelectedDetails($kasus_id, $model, $primaryKey = null)
 	{

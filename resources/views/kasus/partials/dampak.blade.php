@@ -9,7 +9,7 @@
   <table class="table table-responsive table-hover">
     @if(!empty($kasus->dampak->toArray()))
       
-      {!! Form::model($kasus, array('route' => array('dampak2.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
+      {!! Form::model($kasus, array('route' => array('selectedDetails.delete', $kasus->kasus_id, "dampak"), 'class'=>'form', 'method' => 'POST')) !!}
 
       <tr>
         <th></th>
