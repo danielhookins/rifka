@@ -21,7 +21,7 @@
 			<h4 class="panel-title">Keterangan</h4>
 		</div>
 		<ul class="list-group">
-			<li class="list-group-item"><a href="#bentukKekerasan">Bentuk Kekerasan</a></li>
+			<li class="list-group-item"><a href="#bentukkekerasan">Bentuk Kekerasan</a></li>
 			<li class="list-group-item"><a href="#faktorpemicu">Faktor Pemicu</a></li>
 			<li class="list-group-item"><a href="#upayadilakukan">Upaya Dilakukan</a></li>
 			<li class="list-group-item"><a href="#layanandibutuhkan">Layanan Dibutuhkan</a></li>

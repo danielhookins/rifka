@@ -1,50 +1,40 @@
 <?php namespace rifka\Http\Controllers;
 
-use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
+use rifka\Http\Controllers\CaseDetailController;
 use rifka\BentukKekerasan;
-use Illuminate\Http\Request;
 
-class BentukKekerasanController extends Controller {
+class BentukKekerasanController extends CaseDetailController {
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
+	// Find by Id
+	public function findById($id)
 	{
-		// Only allow authenticated users
-		$this->middleware('auth');
-		
-		// Only allow active users
-		$this->middleware('active');
+		return BentukKekerasan::findOrFail($id);
+	}
 
-		// Grant access to counsellors, managers and developers
-		$this->middleware('userType:Konselor');
+	// Get the type
+	public function getType()
+	{
+		return "bentukKekerasan";
+	}
+
+	// Get an array of the editable fields
+	public function getFields()
+	{
+		return ['emosional',
+						'fisik',
+						'ekonomi',
+						'seksual',
+						'sosial',
+						'keterangan'];
 	}
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index($kasusID)
-	{
-		//
-		$semuaBentuk = \rifka\BentukKekerasan::where('kasus_id', '=', $kasusID)->get();
-
-		return $semuaBentuk;
-	}
-
-	/**
-	 * Store a newly created resource in storage.
+	 * [Override] Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
 	public function store($kasus_id)
 	{
-		//
 		if($bentuk = \rifka\BentukKekerasan::create([
 			'kasus_id' => $kasus_id,
 			'emosional' => \Input::get('emosional'),
@@ -55,52 +45,21 @@ class BentukKekerasanController extends Controller {
 			'keterangan' => \Input::get('keterangan'),
 		]))
 		{
-			return redirect()->route('kasus.show', [$kasus_id, '#bentuk-kekerasan']);
+			return redirect()->route('kasus.show', [$kasus_id, '#bentukkekerasan']);
 		}
-
+		// TODO: display error in message on show kasus page
 		return 'Error, could not create new bentuk kekerasan';
-
 	}
 
 	/**
-	 * Display the specified resource.
+	 * [Override] Update the specified resource in storage.
 	 *
-	 * @param  int  $kasusID
-	 * @param  int  $bentukID
-	 * @return Response
-	 */
-	public function show($kasus_id, $bentuk_id)
-	{
-		$bentuk = \rifka\BentukKekerasan::find($bentuk_id);
-
-		return $bentuk; 
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit(Request $request, $kasus_id, $bentuk_id)
-	{
-		$bentuk = BentukKekerasan::findOrFail($bentuk_id);
-
-		$request->session()->flash('edit-bentuk', True);
-		$request->session()->flash('bentuk-active', $bentuk);
-
-		return redirect()->route('kasus.show', [$kasus_id, '#bentuk-kekerasan']);
-	}
-
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
+	 * @param $kasus_id
+	 * @param $bentuk_id
 	 * @return Response
 	 */
 	public function update($kasus_id, $bentuk_id)
 	{
-		// UPDATE BENTUK KEKERASAN
 		if ($bentuk = \rifka\BentukKekerasan::find($bentuk_id))
 		{
 			$bentuk->emosional 
@@ -116,12 +75,11 @@ class BentukKekerasanController extends Controller {
 			$bentuk->keterangan
 				= (\Input::get('keterangan')) ? \Input::get('keterangan') : null;
 			$bentuk->save();
-
-			return redirect()->route('kasus.show', [$kasus_id, "#bentuk-kekerasan"]);
+			// TODO: If everything is empty (all checks unchecked and text empty-> delete record)
+			return redirect()->route('kasus.show', [$kasus_id, "#bentukkekerasan"]);
 		}
-
+		// TODO: display error in message on show kasus page
 		return 'Error, could not update bentuk kekerasan.';
-
 	}
-
+	
 }

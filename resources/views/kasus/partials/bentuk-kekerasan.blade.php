@@ -2,7 +2,7 @@
   
   <div class="panel-heading">
     <h4 class="panel-title">
-      <a class="in-link" name="bentuk-kekerasan">Bentuk Kekerasan</a>
+      <a class="in-link" name="bentukkekerasan">Bentuk Kekerasan</a>
     </h4>
   </div>
   
@@ -71,12 +71,12 @@
 </div> <!-- / Bentuk Kekerasan Panel -->
 
 @include('kasus.partials.bentuk-kekerasan-baru')
-@if(Session::has('edit-bentuk'))
+@if(Session::has('edit-bentukKekerasan'))
   @include('kasus.partials.bentuk-kekerasan-edit')
 @endif
 
 <script type="text/javascript">
-  @if(Session::has('edit-bentuk'))
+  @if(Session::has('edit-bentukKekerasan'))
      var edit_bentuk = true;
   @else
      var edit_bentuk = false;

@@ -22,7 +22,6 @@ class ResourceUtils
 		{
 			$resourceArray[$field] = $input[$field];
 		}
-
 		return $resourceArray;
 	}
 
@@ -52,7 +51,6 @@ class ResourceUtils
 	 */
 	public static function storeResource($kasus_id, $resourceType, $input, $fields)
 	{
-
 		// Define array of services given (layanan-diberikan)
 		$layananDiberikan = array(
 			'KonsPsikologi',
@@ -83,7 +81,6 @@ class ResourceUtils
 			// no input from user (fields empty)
 			return redirect()
 				->route('kasus.show', [$kasus_id, $inLink]);
-
 		}
 
 		// create resource array
@@ -101,7 +98,6 @@ class ResourceUtils
 		}
 		return redirect()
 			->route('kasus.show', [$kasus_id, $inLink]);
-
 	}
 
 }
