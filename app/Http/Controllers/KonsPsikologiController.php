@@ -27,25 +27,15 @@ class KonsPsikologiController extends Controller {
 	}
 
 	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
-
-	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
 	public function create(Request $request, $kasus_id)
 	{
-        $request->session()->flash("kons_psikologi-baru", True);
+    $request->session()->flash("kons_psikologi-baru", True);
 
-        return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+    return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 	/**
@@ -61,17 +51,6 @@ class KonsPsikologiController extends Controller {
 		$fields = ["tanggal", "keterangan"];
 
 		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
 	}
 
 	/**
@@ -114,17 +93,6 @@ class KonsPsikologiController extends Controller {
 			return $e;
 		}
 
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 	public function deleteKonsPsikologi2($kasus_id)

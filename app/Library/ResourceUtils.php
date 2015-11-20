@@ -26,7 +26,6 @@ class ResourceUtils
 		return $resourceArray;
 	}
 
-
 	/**
 	 *	Update a specified resource with specified input.
 	 */
@@ -47,7 +46,6 @@ class ResourceUtils
 			return $e;
 		}	
 	}
-
 
 	/**
 	 *	Store a new resource in the DB
