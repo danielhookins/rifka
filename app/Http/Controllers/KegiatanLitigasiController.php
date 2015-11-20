@@ -10,7 +10,7 @@ use rifka\Library\ResourceUtils;
 class KegiatanLitigasiController extends Controller {
 
 	/**
-	 * Create a new controller instance.
+	 * Create a new Kegian Litigasi instance.
 	 *
 	 * @return void
 	 */
@@ -27,29 +27,11 @@ class KegiatanLitigasiController extends Controller {
 	}
 
 	/**
-	 * Display a listing of the resource.
+	 * Store a newly created Kegian Litigasi in the database.
 	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		// not used
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		// not used
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
+	 * @param $kasus_id
+	 * @param $litigasi_id
+	 * @return store the new Kegian Litigasi using ResourceUtils
 	 */
 	public function store($kasus_id, $litigasi_id)
 	{
@@ -63,21 +45,12 @@ class KegiatanLitigasiController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		// not used
-	}
-
-	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param  $kasus_id
+	 * @param  $litigasi_id
+	 * @param  $kegiatan_litigasi_id
+	 * @return redirect to the show kasus page
 	 */
 	public function edit(Request $request, $kasus_id, $litigasi_id, $kegiatan_litigasi_id)
 	{
@@ -92,8 +65,10 @@ class KegiatanLitigasiController extends Controller {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param  $kasus_id
+	 * @param  $litigasi_id
+	 * @param  $kegiatan_id
+	 * @return redirect to the show kasus page
 	 */
 	public function update($kasus_id, $litigasi_id, $kegiatan_id)
 	{
@@ -117,16 +92,12 @@ class KegiatanLitigasiController extends Controller {
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Delete a Kegiatan Litigasi from the database
 	 *
-	 * @param  int  $id
-	 * @return Response
+	 * @param  $kasus_id
+	 * @param  $litigasi_id
+	 * @return redirect to the show kasus page
 	 */
-	public function destroy($id)
-	{
-		// not used
-	}
-
 	public function deleteKegiatan2($kasus_id, $litigasi_id)
 	{
 		if($toDelete = \Input::get('toDelete'))
