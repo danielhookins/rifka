@@ -68,14 +68,6 @@
 	Route::post('kasus/{kasus_id}/removeupaya2', [
 		'as' => 'upaya2.delete',
 		'uses' => 'UpayaDilakukanController@deleteUpaya2']);
-	// Delete required service (layanan dibutuhkan)
-	Route::post('kasus/{kasus_id}/removelayanandbth2', [
-		'as' => 'layanandbth2.delete',
-		'uses' => 'LayananDibutuhkanController@deleteLayananDbth2']);
-	// Delete impact experienced (dampak)
-	Route::post('kasus/{kasus_id}/removedampak2', [
-		'as' => 'dampak2.delete',
-		'uses' => 'DampakController@deleteDampak2']);
 	// Delete legal activity (kegiatan litigasi)
 	Route::post('kasus/{kasus_id}/litigasi/{litigasi_id}/removekegiatan2', [
 		'as' => 'kegiatan2.delete',

@@ -1,4 +1,4 @@
-<?php $layananActive = Session::get('layanan-dbth-active') ?>
+<?php $layananActive = Session::get('layananDibutuhkan-active') ?>
 
 <div class="modal fade" id="layanan-dbth-edit">
   <div class="modal-dialog">

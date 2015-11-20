@@ -9,7 +9,7 @@
   <table class="table table-responsive table-hover">
     @if(!empty($kasus->layananDibutuhkan->toArray()))
       
-      {!! Form::model($kasus, array('route' => array('layanandbth2.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
+      {!! Form::model($kasus, array('route' => array('selectedDetails.delete', $kasus->kasus_id, "layananDibutuhkan", "layanan_dbth_id"), 'class'=>'form', 'method' => 'POST')) !!}
 
       <tr>
         <th></th>
@@ -76,15 +76,14 @@
 
 </div> <!-- / Layanan Dibutuhkan Panel -->
 
-@if(Session::has('edit-layanan-dibutuhkan'))
-  @include('kasus.partials..layanan-dibutuhkan-edit')
-
+@if(Session::has('edit-layananDibutuhkan'))
+  @include('kasus.partials.layanan-dibutuhkan-edit')
 @endif
 
-@include('kasus.partials..layanan-dibutuhkan-baru')
+@include('kasus.partials.layanan-dibutuhkan-baru')
 
 <script type="text/javascript">
-  @if(Session::has('edit-layanan-dibutuhkan'))
+  @if(Session::has('edit-layananDibutuhkan'))
      var edit_layanan_dibutuhkan = true;
   @else
      var edit_layanan_dibutuhkan = false;
