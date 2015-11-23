@@ -77,11 +77,11 @@
 </div> <!-- / Dampak Panel -->
 
 @if(Session::has('edit-dampak'))
-  @include('kasus.partials..dampak-edit')
+  @include('kasus.partials.dampak-edit')
 
 @endif
 
-@include('kasus.partials..dampak-baru')
+@include('kasus.partials.dampak-baru')
 
 <script type="text/javascript">
   @if(Session::has('edit-dampak'))
