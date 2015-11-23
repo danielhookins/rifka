@@ -25,7 +25,7 @@
             'Kekerasan Fisik' => 'Kekerasan Fisik',
             'Kesehatan Jiwa' => 'Kesehatan Jiwa',
             'Perilaku tidak sehat' => 'Perilaku tidak sehat',
-            'Kesehatan reproduks' => 'Kesehatan reproduks',
+            'Kesehatan reproduksi' => 'Kesehatan reproduksi',
             'Kondisi klinis' => 'Kondisi klinis',
             'Ekonomi' => 'Ekonomi',
             'Anak/Keluarga' => 'Anak/Keluarga',
