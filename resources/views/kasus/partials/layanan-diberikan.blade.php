@@ -11,7 +11,7 @@
     {!! Form::open(array('route' => array('kasus.layananDiberikan.create', $kasus->kasus_id), 'class'=>'form', 'method' => 'GET')) !!}
 
 		<div class="form-inline">
-		Tambah Layanan Debierikan 
+		Tambah Layanan Diberikan 
 	
   		<select class="form-control" name="jenis">
 				<option value="jenis">Jenis</option>
