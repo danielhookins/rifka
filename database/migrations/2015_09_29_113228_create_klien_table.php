@@ -16,6 +16,7 @@ class CreateKlienTable extends Migration {
 		{
 			$table->increments('klien_id');
 			$table->string('nama_klien')->nullable();
+			$table->string('nama_orangtua')->nullable();
 			$table->string('kelamin')->nullable();
 			$table->string('tempat_lahir')->nullable();
 			$table->date('tanggal_lahir')->nullable();

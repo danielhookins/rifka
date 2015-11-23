@@ -89,6 +89,7 @@ class KlienController extends Controller {
 		// Create new Client
 		$klienBaru = Klien::create([
 				'nama_klien' 				=> \Input::get('nama_klien'),
+				'nama_orangtua'			=> \Input::get('nama_orangtua'),
 				'kelamin'						=> \Input::get('kelamin'),
 				'tanggal_lahir' 		=> $tanggal_lahir,
 				'agama' 						=> $agama,
@@ -242,7 +243,7 @@ class KlienController extends Controller {
 			// Pribadi (Personal) section
 			if($input["submitBtn"] == "informasi-pribadi")
 			{
-				$fields = array('nama_klien', 'kelamin', 'tanggal_lahir', 'agama', 'status_perkawinan');
+				$fields = array('nama_klien', 'nama_orangtua', 'kelamin', 'tanggal_lahir', 'agama', 'status_perkawinan');
 			}
 			// Kontak (Contact) section
 			elseif($input["submitBtn"] == "informasi-kontak")

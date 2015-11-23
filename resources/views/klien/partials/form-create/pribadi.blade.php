@@ -36,6 +36,20 @@
 	@endif
 </div>
 
+<div class="form-group 
+	@if($errors->has('nama_orangtua')) has-error @endif">
+	{!! Form::label('nama_orangtua', 'Nama Orangtua', array('class' => 'strongLabel')) !!}
+	{!! Form::text('nama_orangtua', null, array(
+		'class' 		=> 'form-control',
+		'placeholder' 	=> 'Nama Orangtua',
+		'autofocus', 'autocomplete' => 'off')) !!}
+	@if($errors->has('nama_orangtua'))
+		<p class="help-block">
+			{{ $errors->first('nama_orangtua') }}
+		</p>
+	@endif
+</div>
+
 <div class="form-group">
 	{!! Form::label('agama', 'Agama', array('class' => 'strongLabel')) !!}
 	{!! Form::select('agama', array(

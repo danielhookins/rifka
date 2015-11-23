@@ -65,6 +65,24 @@
     </li>
   @endif
 
+  @if($klien->nama_orangtua)
+    <li class="list-group-item">
+        <p class="list-group-item-text">
+          <strong>Nama Orangtua</strong>
+          {{$klien->nama_orangtua}}
+        </p>
+    </li>
+  @else
+    <li class="list-group-item">
+      <p class="list-group-item-text">
+        <a class="tambah-link" data-toggle="modal" href="#edit-informasi-pribadi">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+          Tambah Nama Orangtua
+        </a>
+      </p>
+    </li>
+  @endif
+
   @if($klien->agama)
     <li class="list-group-item">
         <p class="list-group-item-text">
@@ -152,6 +170,13 @@
         <div class="form-group">
           {!! Form::label('tanggal_lahir', 'Tanggal Lahir', array('class' => 'strongLabel')) !!}
           {!! Form::date('tanggal_lahir', null, array('class' => 'form-control date-picker')) !!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('nama_orangtua', 'Nama Orangtua', array('class' => 'strongLabel')) !!}
+          {!! Form::text('nama_orangtua', null, array(
+            'class' => 'form-control',
+            'placeholder' => 'Nama Orangtua', 
+            'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('agama', 'Agama', array('class' => 'strongLabel')) !!}

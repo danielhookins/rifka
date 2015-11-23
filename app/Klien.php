@@ -13,6 +13,7 @@ class Klien extends Model {
 	protected $primaryKey = 'klien_id';
 	protected $fillable = ['jenis_klien',
 							'nama_klien',
+							'nama_orangtua',
 							'kelamin',
 							'tempat_lahir',
 							'tanggal_lahir',

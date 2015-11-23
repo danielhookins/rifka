@@ -30,6 +30,15 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Klien',
+            'name'          => 'nama_orangtua',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The name of the client\'s parents.',
+            'example'       => '"Novia Mawar"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Klien',
             'name'          => 'kelamin',
             'primary_key'   => False,
             'foreign_key'   => '',
