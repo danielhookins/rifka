@@ -14,6 +14,7 @@ use rifka\BentukKekerasan;
 use rifka\LayananDibutuhkan;
 use rifka\Library\ExcelUtils;
 use rifka\Library\KasusUtils;
+use rifka\Library\AIUtils;
 
 
 class KasusController extends Controller {
@@ -104,7 +105,7 @@ class KasusController extends Controller {
 		$kasus = \rifka\Kasus::findOrFail($kasus_id);
 	
 		// Flash suggestions to aid user-experience
-		$request->session()->flash("suggestions", KasusUtils::getSuggestions($kasus));
+		$request->session()->flash("suggestions", AIUtils::getSuggestions($kasus));
 		
 		return view('kasus.show', array('kasus' => $kasus));
 	}
