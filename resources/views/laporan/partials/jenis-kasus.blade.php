@@ -19,7 +19,7 @@
 	<table class="table table-condensed table-hover">
 		<tr>
 			<th>Jenis</th>
-			<th>Berapa</th>
+			<th>Jumlah</th>
 		</tr>
 		@foreach ($countArray as $key => $value)
 		<tr>
