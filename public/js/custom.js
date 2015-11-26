@@ -30,7 +30,17 @@ $(function() {
 		firstDay: 0,
 		isRTL: false,
 		showMonthAfterYear: false,
-		yearSuffix: ''
+		yearSuffix: '',
+		onChangeMonthYear: function (year, month, inst) {
+          var curDate = $(this).datepicker("getDate");
+          if (curDate == null)
+          return; 
+          if (curDate.getYear() != year || curDate.getMonth() != month - 1) {
+              curDate.setYear(year);
+              curDate.setMonth(month - 1);
+              $(this).datepicker("setDate", curDate);
+          }
+        }
   });
 });
 
@@ -108,7 +118,7 @@ if(typeof edit_alamat !== 'undefined' && edit_alamat) {
 	$("#alamat-edit").modal({show:true});
 }
 if(typeof edit_bentuk !== 'undefined' && edit_bentuk) {
-	$("#bentuk-edit").modal({show:true});
+	$("#bentukKekerasan-edit").modal({show:true});
 }
 if(typeof edit_symptom !== 'undefined' && edit_symptom) {
 	$("#symptom-edit").modal({show:true});
