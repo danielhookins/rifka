@@ -140,9 +140,6 @@
 	Route::post('klien/search', [
 		'as'		=> 'klien.search',
 		'uses'	=> 'Search\SearchController@searchKlien']);
-	Route::post('alamat/search', [
-		'as'		=> 'alamat.search',
-		'uses'	=> 'AlamatController@search']);
 	Route::post('konselor/search', [
 		'as' 		=> 'konselor.search',
 		'uses' 	=> 'Search\SearchController@searchKonselor']);

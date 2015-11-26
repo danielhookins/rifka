@@ -2,7 +2,6 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
 class SearchController extends Controller {
@@ -46,9 +45,6 @@ class SearchController extends Controller {
 			elseif($searchType == 'kasus'){
 				$results = \rifka\Kasus::search($query)->orderBy('relevance', 'DESC')->get();
 			}
-			elseif($searchType == 'alamat'){
-				$results = \rifka\Alamat::search($query)->orderBy('relevance', 'DESC')->get();
-			}
 			elseif($searchType == 'arsip'){
 				$results = \rifka\Arsip::search($query)->orderBy('relevance', 'DESC')->get();
 			}
@@ -59,7 +55,6 @@ class SearchController extends Controller {
 				));
 		
 		}
-    	
     	return redirect('home');
 	}
 

@@ -1,7 +1,6 @@
 <?php namespace rifka;
 
 use Illuminate\Database\Eloquent\Model;
-use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Alamat extends Model {
 
@@ -14,14 +13,6 @@ class Alamat extends Model {
 		'kecamatan',
 		'kabupaten'];
 	public $timestamps = false;
-	
-	protected $searchable = [
-        'columns' => [
-            'alamat' => 10,
-            'kecamatan' => 7,
-            'kabupaten' => 5,
-        ],
-    ];  
 
     public function alamatKlien()
     {

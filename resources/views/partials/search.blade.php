@@ -12,12 +12,10 @@
   
   <div class="form-group">
     <label for="searchType">Untuk</label>
-    
     @if(isset($user) && $user->jenis != "Front Office")
       {!! Form::select('searchType', array(
         'klien' =>  'Klien', 
         'kasus' =>  'Kasus',
-        'alamat' => 'Alamat',
         'arsip' =>  'Arsip'
       ), null, array(
         'class' => 'form-control',
@@ -26,19 +24,17 @@
     @else
       {!! Form::select('searchType', array(
         'klien' =>  'Klien', 
-        'alamat' => 'Alamat'
       ), null, array(
         'class' => 'form-control',
         'id' => 'searchType'
       ))!!}
     @endif
-
-
   </div>
 
   <div class="form-group">
-  	<button type="submit" class="btn btn-success form-control" id="search-button">
-	  <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Penelusuran
-	</button>
+    <button type="submit" class="btn btn-success form-control" id="search-button">
+      <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Penelusuran
+    </button>
   </div>
+
 {!! Form::close() !!}
