@@ -1,6 +1,6 @@
 <?php $bentukKekerasanActive = Session::get('bentukKekerasan-active') ?>
 
-<div class="modal fade" id="bentuk-edit">
+<div class="modal fade" id="bentukKekerasan-edit">
   <div class="modal-dialog">
     <div class="modal-content">
 
