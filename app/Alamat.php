@@ -4,8 +4,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alamat extends Model {
 
-    use SearchableTrait;
-	
     protected $table = 'alamat';
 	protected $primaryKey = 'alamat_id';
 	protected $fillable = [
