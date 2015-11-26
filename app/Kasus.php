@@ -18,6 +18,7 @@ class Kasus extends Model {
         'jenis_lama_hub',
     	'sejak_kapan',
     	'seberapa_sering',
+        'jenis_seberapa_sering',
     	'harapan_korban',
     	'rencana_korban',
     	'narasi',

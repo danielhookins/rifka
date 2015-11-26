@@ -69,7 +69,7 @@
     <li class="list-group-item">
         <p class="list-group-item-text">
           <strong>Seberapa Sering</strong>
-          {{$kasus->seberapa_sering}}
+          {{$kasus->seberapa_sering}} {{$kasus->jenis_seberapa_sering}}
         </p>
     </li>
   @else
@@ -167,8 +167,16 @@
         </div>
         <div class="form-group">
           {!! Form::label('seberapa_sering', 'Seberapa Sering', array('class' => 'strongLabel')) !!}
-          {!! Form::number('seberapa_sering', null, array('class' => 'form-control',
-          'placeholder'   => 'Seberapa Sering')) !!}
+          <div class="form-inline">
+            {!! Form::number('seberapa_sering', null, array('class' => 'form-control',
+            'placeholder'   => 'Seberapa Sering')) !!}
+            {!! Form::select('jenis_seberapa_sering', array(
+              'kali'     =>  'kali',
+              'kali per hari'     =>  'kali per hari',
+              'kali per bulan'     =>  'kali per bulan',
+              'kali per tahun'     =>  'kali per tahun'
+            ), null, array('class' => 'form-control'))!!}
+          </div>
         </div>
         <div class="form-group">
           {!! Form::label('harapan_korban', 'Harapan Korban', array('class' => 'strongLabel')) !!}

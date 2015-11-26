@@ -476,6 +476,15 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Kasus',
+            'name'          => 'jenis_seberapa_sering',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'More detail about the number of times',
+            'example'       => 'kali per tahun'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
             'name'          => 'harapan_korban',
             'primary_key'   => False,
             'foreign_key'   => '',

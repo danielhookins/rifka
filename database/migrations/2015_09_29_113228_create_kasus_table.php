@@ -21,6 +21,7 @@ class CreateKasusTable extends Migration {
 			$table->string('jenis_lama_hub')->nullable();
 			$table->date('sejak_kapan')->nullable();
 			$table->integer('seberapa_sering')->nullable();
+			$table->string('jenis_seberapa_sering')->nullable();
 			$table->string('harapan_korban')->nullable();
 			$table->string('rencana_korban')->nullable();
 			$table->longText('narasi')->nullable();
