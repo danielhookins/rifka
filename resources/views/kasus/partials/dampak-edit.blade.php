@@ -23,7 +23,7 @@
           {!! Form::select('jenis_dampak', array(
             'Dampak' =>  'Dampak',
             'Kekerasan Fisik' => 'Kekerasan Fisik',
-            'Kesehatan Jiwa' => 'Kesehatan Jiwa',
+            'Kekerasan Jiwa' => 'Kekerasan Jiwa',
             'Perilaku tidak sehat' => 'Perilaku tidak sehat',
             'Kesehatan reproduksi' => 'Kesehatan reproduksi',
             'Kondisi klinis' => 'Kondisi klinis',

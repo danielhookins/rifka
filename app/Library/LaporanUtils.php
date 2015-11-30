@@ -5,6 +5,7 @@ use rifka\Laporan;
 use rifka\Library\InputUtils;
 use Carbon\Carbon;
 use rifka\Kasus;
+use rifka\BentukKekerasan;
 use DB;
 
  
@@ -347,6 +348,40 @@ class LaporanUtils
     $usia["dewasa"] = $dewasa;
 
     return $usia;
+  }
+
+  public static function getBentukKekerasan($year)
+  {
+    // Define counters - set to 0
+    $emosional  = 0;
+    $fisik      = 0;
+    $ekonomi    = 0;
+    $seksual    = 0;
+    $sosial     = 0;
+
+    $kasus2 = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year)->get();
+    foreach ($kasus2 as $kasus) 
+    {
+        $bentuk = BentukKekerasan::where('kasus_id', $kasus->kasus_id)->first();
+        
+        $emosional = (isset($bentuk->emosional) && $bentuk->emosional != null) 
+            ? $emosional + $bentuk->emosional : $emosional;
+        $fisik = (isset($bentuk->fisik) && $bentuk->fisik != null) 
+            ? $fisik + $bentuk->fisik : $fisik;
+        $ekonomi = (isset($bentuk->ekonomi) && $bentuk->ekonomi != null) 
+            ? $ekonomi + $bentuk->ekonomi : $ekonomi;
+        $seksual = (isset($bentuk->seksual) && $bentuk->seksual != null) 
+            ? $seksual + $bentuk->seksual : $seksual;
+        $sosial = (isset($bentuk->sosial) && $bentuk->sosial != null) 
+            ? $sosial + $bentuk->sosial : $sosial;
+
+    }
+    $results["emosional"] = $emosional;
+    $results["fisik"] = $fisik;
+    $results["ekonomi"] = $ekonomi;
+    $results["seksual"] = $seksual;
+    $results["sosial"] = $sosial;
+    return $results;
   }
 
 }

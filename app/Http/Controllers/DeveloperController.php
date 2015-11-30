@@ -10,6 +10,7 @@ use rifka\Library\ExcelUtils;
 use rifka\Library\UserUtils;
 use rifka\Library\AlamatUtils;
 use rifka\Library\Rifka;
+use rifka\Library\LaporanUtils;
 use Excel;
 use rifka\Klien;
 
@@ -38,7 +39,7 @@ class DeveloperController extends Controller {
 
 	function test() 
 	{
-		return 'test';
+		return LaporanUtils::getBentukKekerasan(2015);
 	}
 
 	function postTest(Request $request)
