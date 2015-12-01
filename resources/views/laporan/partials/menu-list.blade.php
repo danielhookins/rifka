@@ -33,6 +33,9 @@
 			<li class="list-group-item">
 				<a href="{{ route('laporan.usia.list') }}">Daftar Usia</a>
 			</li>
+			<li class="list-group-item">
+				<a href="{{ route('laporan.kabupaten.list') }}">Daftar Kabupaten</a>
+			</li>
 		</ul>
 
 	</div>

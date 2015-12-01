@@ -141,7 +141,7 @@ class LaporanUtils
    * @param string $clientType {"Korban", "Pelaku"}
    * @param string $addressType {"KTP", "Domisili", "Semua"}
    */
-  public static function getKabupaten($year, $clientType, $addressType)
+  public static function getKabupatenCount($year, $clientType, $addressType)
   {
     // Get cases for the year
     $kasus = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year);
@@ -172,7 +172,7 @@ class LaporanUtils
             
             // Check address type matches
             $continue = false;
-            if ($addressType =- "Semua")
+            if ($addressType == "Semua")
             {
               $continue = true;
             }
@@ -212,7 +212,6 @@ class LaporanUtils
 
         }
     }
-
     return $kabupatenKorbanYear;
   }
 
@@ -242,9 +241,8 @@ class LaporanUtils
   }
 
 
-  public static function getKlien($tahun, $jenisKlien = "Semua")
+  public static function getKlien($tahun, $jenisKlien)
   {
-
     $kasusTahun = LaporanUtils::getKasusTahun($tahun);
     $klienKasus = $kasusTahun->with('klienKasus')->get();
     
@@ -254,13 +252,13 @@ class LaporanUtils
     {
         foreach ($kasus->klienKasus as $klien)
         {
-            if ($jenisKlien = "Semua")
+            if ($jenisKlien == "Semua")
             {
-              array_push($klienCocok, $klien);
+              $klienCocok[] = $klien;
             }
-            elseif ($klien["pivot"]["jenis_klien"] == $clientType)
+            elseif ($klien["pivot"]["jenis_klien"] == $jenisKlien)
             {
-              array_push($klienCocok, $klien);
+              $klienCocok[] = $klien;
             }
         }
     }
@@ -382,6 +380,35 @@ class LaporanUtils
     $results["seksual"] = $seksual;
     $results["sosial"] = $sosial;
     return $results;
+  }
+
+  public static function getAlamatKorban($year)
+  {
+    $rows = array();
+
+    $klien2 = LaporanUtils::getKlien($year, 'Korban');
+    foreach($klien2 as $klien) 
+    {
+        $dataKasus = array();
+        
+        $kasus2 = $klien->klienKasus;
+        foreach($kasus2 as $kasus)
+        {
+            $dataKasus["kasus_id"] = $kasus->kasus_id;
+            $dataKasus["jenis_kasus"] = $kasus->jenis_kasus;
+            
+            // TODO: add dates to addresses so that if a 
+            // client moves address the history address 
+            // (that matches the case) is recorded
+            $alamat = $klien->alamatKlien->first();
+            $dataKasus["kabupaten"] = $alamat->kabupaten;
+            $dataKasus["kecamatan"] = $alamat->kecamatan;
+            $dataKasus["alamat"] = $alamat->alamat;
+            
+            $rows[] = $dataKasus;
+        }
+    }
+    return $rows;
   }
 
 }

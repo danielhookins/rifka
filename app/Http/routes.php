@@ -406,6 +406,20 @@
 		'uses' => 'LaporanController@updateKabupaten']);
 
 	/**
+	 * List: [GET] Cases by Kabupaten
+	 */
+	Route::get('/laporan/listKasusOlehKabupaten', [
+		'as' => 'laporan.kabupaten.list',
+		'uses' => 'LaporanController@listKasusOlehKabupaten']);
+
+	/**
+	 * List: [POST] Update cases by Kabupaten
+	 */
+	Route::post('/laporan/listKasusOlehKabupaten', [
+		'as' => 'laporan.kabupaten.list.update',
+		'uses' => 'LaporanController@updateListKasusOlehKabupaten']);
+
+	/**
 	 * Report: [GET] Cases by month report
 	 */
 	Route::get('/laporan/kasusPerBulan', [

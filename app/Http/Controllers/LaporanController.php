@@ -159,7 +159,7 @@ class LaporanController extends Controller
         $jenisKlien = "Korban";
         $jenisAlamat = "Domisili";
 
-        $kabupaten = LaporanUtils::getKabupaten($tahun, $jenisKlien, $jenisAlamat);
+        $kabupaten = LaporanUtils::getKabupatenCount($tahun, $jenisKlien, $jenisAlamat);
 
         return view('laporan.index')
             ->with('laporan', 'kabupaten')
@@ -180,7 +180,7 @@ class LaporanController extends Controller
         $jenisAlamat = "Domisili";
 
         // Update array
-        $kabupaten = LaporanUtils::getKabupaten($year, $jenisKlien, $jenisAlamat);
+        $kabupaten = LaporanUtils::getKabupatenCount($year, $jenisKlien, $jenisAlamat);
 
         return view('laporan.index')
             ->with('laporan', 'kabupaten')
@@ -298,6 +298,36 @@ class LaporanController extends Controller
             ->with('displayModel', $displayModel)
             ->with('cases', $cases)
             ->with('title', "Jenis Kasus untuk " . $year);
+    }
+
+
+    public function listKasusOlehKabupaten()
+    {
+        $year = Carbon::today()->format('Y');
+        $rows = LaporanUtils::getAlamatKorban($year);
+
+        $displayModel = array();
+        $displayModel["year"] = $year;
+
+        return view('laporan.index')
+            ->with('list', "kabupaten")
+            ->with('displayModel', $displayModel)
+            ->with('rows', $rows);
+    }
+
+    
+    public function updateListKasusOlehKabupaten()
+    {
+        $year = InputUtils::getUpdatedYear(\Input::get());
+        $rows = LaporanUtils::getAlamatKorban($year);
+
+        $displayModel = array();
+        $displayModel["year"] = $year;
+
+        return view('laporan.index')
+            ->with('list', "kabupaten")
+            ->with('displayModel', $displayModel)
+            ->with('rows', $rows);
     }
 
 

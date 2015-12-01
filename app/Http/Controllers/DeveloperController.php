@@ -39,7 +39,7 @@ class DeveloperController extends Controller {
 
 	function test() 
 	{
-		return LaporanUtils::getBentukKekerasan(2015);
+		return 'test';
 	}
 
 	function postTest(Request $request)
