@@ -113,7 +113,12 @@ class KamusTablesSeeder extends Seeder {
 
         // Untuk Litigasi
         rifka\Kamus_table::create([
-            'name'          => 'Litigasi',
+            'name'          => 'Litigasi_Pidana',
+            'type'          => 'Litigasi',
+            'description'   => 'A litigation process.'
+            ]);
+        rifka\Kamus_table::create([
+            'name'          => 'Litigasi_Perdata',
             'type'          => 'Litigasi',
             'description'   => 'A litigation process.'
             ]);

@@ -948,10 +948,10 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // Litigasi Attributes
+        // Litigasi_Pidana Attributes
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
-            'name'          => 'litigasi_id',
+            'table'         => 'Litigasi_Pidana',
+            'name'          => 'litigasi_pidana_id',
             'primary_key'   => True,
             'foreign_key'   => '',
             'type'          => 'increments',
@@ -959,7 +959,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '045'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'kasus_id',
             'primary_key'   => False,
             'foreign_key'   => 'kasus_id',
@@ -968,16 +968,16 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '3245'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
-            'name'          => 'jenis_litigasi',
+            'table'         => 'Litigasi_Pidana',
+            'name'          => 'pidana_jenis',
             'primary_key'   => False,
             'foreign_key'   => '',
             'type'          => 'string',
-            'description'   => 'The type of litigation:<ul><li>Pidana langsung</li><li>Pidana tidak langsung</li><li>Perdata</li></ul>',
+            'description'   => 'The type of litigation:<ul><li>Pidana langsung</li><li>Pidana tidak langsung</li></ul>',
             'example'       => 'Pidana langsung'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'undang_digunakan',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -986,7 +986,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'kepolisian_wilayah',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -995,7 +995,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'nama_penyidik',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -1004,7 +1004,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'pengadilan_wilayah',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -1013,7 +1013,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'nomor_perkara',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -1022,7 +1022,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '123/PID.SUS/2015/PN'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'nama_hakim',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -1031,7 +1031,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'nama_jaksa',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -1040,7 +1040,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'tuntutan',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -1049,12 +1049,104 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'Litigasi',
+            'table'         => 'Litigasi_Pidana',
             'name'          => 'putusan',
             'primary_key'   => False,
             'foreign_key'   => '',
             'type'          => 'string',
             'description'   => 'The verdict given.',
+            'example'       => 'TODO'
+            ]);
+
+        // Litigasi_Perdata Attributes
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'litigasi_perdata_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'A unique identifier of the litigation.',
+            'example'       => '045'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'A reference to the case.',
+            'example'       => '3245'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'nomor_perkara',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'Case number.',
+            'example'       => '123/PID.SUS/2015/PN'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'pengadilan_wilayah_jenis',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The district court type.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'pengadilan_wilayah_kabupaten',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The district court kabupaten.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'nama_hakim',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The name of the judge.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'cerai',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'cerai gugat atau cerai talak.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'putusan_status',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'Diterima atau Ditolak.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'diterima',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'Kalau putusan diterima',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Litigasi_Perdata',
+            'name'          => 'nafkah',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'Nafkah.',
             'example'       => 'TODO'
             ]);
 

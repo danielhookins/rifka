@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLitigasiTable extends Migration {
+class CreateLitigasiPidanaTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,11 +12,11 @@ class CreateLitigasiTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('litigasi', function(Blueprint $table)
+		Schema::create('litigasi_pidana', function(Blueprint $table)
 		{
-			$table->increments('litigasi_id');
+			$table->increments('litigasi_pidana_id');
 			$table->integer('kasus_id')->nullable()->unsigned();
-			$table->string('jenis_litigasi')->nullable();
+			$table->string('pidana_jenis')->nullable();
 			$table->string('undang_digunakan')->nullable();
 			$table->string('kepolisian_wilayah')->nullable();
 			$table->string('nama_penyidik')->nullable();
@@ -36,7 +36,7 @@ class CreateLitigasiTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('litigasi');
+		Schema::drop('litigasi_pidana');
 	}
 
 }

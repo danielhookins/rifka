@@ -1,35 +1,36 @@
 <?php namespace rifka\Http\Controllers;
 
-use rifka\Http\Controllers\CaseDetailController;
-use rifka\Litigasi;
+use Illuminate\Http\Request;
+use rifka\Http\Requests;
+use rifka\Http\Controllers\Controller;
 
-class LitigasiController extends CaseDetailController {
+class LitigasiController extends Controller
+{
+    
+    /**
+     * Create a new controller instance.
+     */
+    public function __construct()
+    {
+        // Only allow authenticated users
+        $this->middleware('auth');
+        
+        // Only allow active users
+        $this->middleware('active');
 
-	// Find by Id
-	public function findById($id)
-	{
-		return Litigasi::findOrFail($id);
-	}
+        // Grant access to counsellors, managers and developers
+        $this->middleware('userType:Konselor');
+    }
 
-	// Get the type
-	public function getType()
-	{
-		return "litigasi";
-	}
+    /**
+     * Show the form for creating a new Litigasi record.
+     */
+    public function create(Request $request, $kasus_id)
+    {
+        $pageStatus = $_GET['jenis']."-baru";
+        $request->session()->flash($pageStatus, True);
 
-	// Get an array of the editable fields
-	public function getFields()
-	{
-		return ["jenis_litigasi", 
-						"undang_digunakan",
-						"kepolisian_wilayah",
-						"nama_penyidik",
-						"nomor_perkara",
-						"pengadilan_wilayah",
-						"nama_hakim",
-						"nama_jaksa",
-						"tuntutan",
-						"putusan"];
-	}
+        return redirect()->route('kasus.show', [$kasus_id, '#litigasi']);
+    }
 
 }

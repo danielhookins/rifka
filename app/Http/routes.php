@@ -17,7 +17,6 @@
 
 
 /*** RESOURCES *****************************************************/
-	
 	Route::resource('kasus', 'KasusController');
 	Route::resource('kasus.perkembangan', 'PerkembanganController');
 	Route::resource('kasus.bentukKekerasan', 'BentukKekerasanController');
@@ -38,7 +37,9 @@
 	Route::resource('kasus.shelter', 'ShelterController');
 	Route::resource('kasus.symptom', 'SymptomController');
 	Route::resource('kasus.litigasi', 'LitigasiController');
-	Route::resource('kasus.litigasi.kegiatan', 'KegiatanLitigasiController');
+	Route::resource('kasus.litigasiPidana', 'LitigasiPidanaController');
+	Route::resource('kasus.litigasiPerdata', 'LitigasiPerdataController');
+	//Route::resource('kasus.litigasi.kegiatan', 'KegiatanLitigasiController');
 
 	Route::resource('klien', 'KlienController');
 	Route::resource('klien.alamat', 'AlamatController');
@@ -68,10 +69,20 @@
 	Route::post('kasus/{kasus_id}/removeupaya2', [
 		'as' => 'upaya2.delete',
 		'uses' => 'UpayaDilakukanController@deleteUpaya2']);
+
+	// Delete LitigasiPidana Service given Record
+	Route::post('kasus/{kasus_id}/removeLitigasiPidana2', [
+		'as' => 'litigasiPidana2.delete',
+		'uses' => 'LitigasiPidanaController@deleteLitigasiPidana2']);
+	// Delete LitigasiPerdata Service given Record
+	Route::post('kasus/{kasus_id}/removeLitigasiPerdata2', [
+		'as' => 'litigasiPerdata2.delete',
+		'uses' => 'LitigasiPerdataController@deleteLitigasiPerdata2']);
 	// Delete legal activity (kegiatan litigasi)
-	Route::post('kasus/{kasus_id}/litigasi/{litigasi_id}/removekegiatan2', [
-		'as' => 'kegiatan2.delete',
-		'uses' => 'KegiatanLitigasiController@deleteKegiatan2']);
+	//Route::post('kasus/{kasus_id}/litigasi/{litigasi_id}/removekegiatan2', [
+	//	'as' => 'kegiatan2.delete',
+	//	'uses' => 'KegiatanLitigasiController@deleteKegiatan2']);
+	//
 	// Delete Psycological counselling (konseling psikologi) Service given Record
 	Route::post('kasus/{kasus_id}/removekons_psikologi2', [
 		'as' => 'konsPsikologi2.delete',

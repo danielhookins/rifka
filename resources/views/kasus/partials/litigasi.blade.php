@@ -5,227 +5,57 @@
       <a class="in-link" name="litigasi">Litigasi</a>
     </h4>
   </div>
-  
-    @forelse ($kasus->litigasi as $litigasi)
-    <ul class="list-group">
-      
-      @if($litigasi->jenis_litigasi)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Jenis Litigasi</strong>
-              {{$litigasi->jenis_litigasi}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Jenis Litigasi
-            </a>
-          </p>
-        </li>
-      @endif
 
-      @if($litigasi->undang_digunakan)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Undang Digunakan</strong>
-              {{$litigasi->undang_digunakan}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Undang Digunakan
-            </a>
-          </p>
-        </li>
-      @endif
+  <div class="panel-body" style="background-color:#cbf5cb;">
+    
+    {!! Form::open(array('route' => array('kasus.litigasi.create', $kasus->kasus_id), 'class'=>'form', 'method' => 'GET')) !!}
 
-      @if($litigasi->kepolisian_wilayah)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Kepolisian Wilayah</strong>
-              {{$litigasi->kepolisian_wilayah}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Kepolisian Wilayah
-            </a>
-          </p>
-        </li>
-      @endif
-
-      @if($litigasi->nama_penyidik)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Nama Penyidik</strong>
-              {{$litigasi->nama_penyidik}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Nama Penyidik
-            </a>
-          </p>
-        </li>
-      @endif
-
-      @if($litigasi->nomor_perkara)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Nomor Perkara Pengadilan</strong>
-              {{$litigasi->nomor_perkara}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Nomor Perkara Pengadilan
-            </a>
-          </p>
-        </li>
-      @endif
-
-      @if($litigasi->pengadilan_wilayah)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Pengadilan Wilayah</strong>
-              {{$litigasi->pengadilan_wilayah}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Pengadilan Wilayah
-            </a>
-          </p>
-        </li>
-      @endif
-
-      @if($litigasi->nama_hakim)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Nama Hakim</strong>
-              {{$litigasi->nama_hakim}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Nama Hakim
-            </a>
-          </p>
-        </li>
-      @endif
-
-      @if($litigasi->nama_jaksa)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Nama Jaksa</strong>
-              {{$litigasi->nama_jaksa}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Nama Jaksa
-            </a>
-          </p>
-        </li>
-      @endif
-
-      @if($litigasi->tuntutan)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Tuntutan</strong>
-              {{$litigasi->tuntutan}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Tuntutan
-            </a>
-          </p>
-        </li>
-      @endif
-
-      @if($litigasi->putusan)
-        <li class="list-group-item">
-            <p class="list-group-item-text">
-              <strong>Putusan</strong>
-              {{$litigasi->putusan}}
-            </p>
-        </li>
-      @else
-        <li class="list-group-item">
-          <p class="list-group-item-text">
-            <a class="tambah-link" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Tambah Putusan
-            </a>
-          </p>
-        </li>
-      @endif
-
-  </ul>
-
-  <div class="panel-body">
     <div class="form-inline">
-      <a class="btn btn-default" href="{{ route('kasus.litigasi.edit', array($litigasi->kasus_id, $litigasi->litigasi_id)) }}">
-        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-        Edit
-      </a>
+    Tambah Litigasi 
+  
+      <select class="form-control" name="jenis">
+        <option value="litigasiPidana">Pidana</option>
+        <option value="litigasiPerdata">Perdata</option>
+      </select> 
+      <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
     </div>
+  
+    {!! Form::close() !!}
+  
   </div>
 
-  @include('kasus.partials.kegiatan-litigasi')
+</div> <!-- / Layanan Diberikan Panel -->
 
-  @empty
-  <ul class="list-group">
-    <li class="list-group-item">
-      <a class="tambah-link" data-toggle="modal" href="#litigasi-baru">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        Tambah Litigasi
-      </a>
-    </li>
-  </ul>
-  @endforelse
 
-</div> <!-- / Litigasi Panel -->
-
-@if(Session::has('edit-litigasi'))
-  @include('kasus.partials.litigasi-edit')
-
+<? // If Service information exists display the relevant partial ?>
+@if(!empty($kasus->litigasiPidana->toArray()))
+  @include('kasus.partials.litigasiPidana')
+@endif
+@if(!empty($kasus->litigasiPerdata->toArray()))
+  @include('kasus.partials.litigasiPerdata')
 @endif
 
-@include('kasus.partials.litigasi-baru')
+<? // Show the relevant 'new x' modal based on the user input ?>
+@if(Session::has('litigasiPidana-baru'))
+  @include('kasus.partials.litigasiPidana-baru')
+@elseif(Session::has('litigasiPerdata-baru'))
+  @include('kasus.partials.litigasiPerdata-baru')
+@endif
 
 <script type="text/javascript">
-  @if(Session::has('edit-litigasi'))
-     var edit_litigasi = true;
+  
+  // Set variables so JS knows to display the 'new x' modal
+
+  @if(Session::has('litigasiPidana-baru'))
+    var litigasiPidana_baru = true;
   @else
-     var edit_litigasi = false;
+    var litigasiPidana_baru = false;
   @endif
+
+  @if(Session::has('litigasiPerdata-baru'))
+    var litigasiPerdata_baru = true;
+  @else
+    var litigasiPerdata_baru = false;
+  @endif
+
 </script>

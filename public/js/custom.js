@@ -123,6 +123,13 @@ if(typeof edit_bentuk !== 'undefined' && edit_bentuk) {
 if(typeof edit_symptom !== 'undefined' && edit_symptom) {
 	$("#symptom-edit").modal({show:true});
 }
+if(typeof edit_litigasiPidana !== 'undefined' && edit_litigasiPidana) {
+	$("#litigasiPidana-edit").modal({show:true});
+}
+if(typeof edit_litigasiPerdata !== 'undefined' && edit_litigasiPerdata) {
+	$("#litigasiPerdata-edit").modal({show:true});
+}
+
 
 /*
  *	SHOW NEW MODAL
@@ -158,7 +165,12 @@ if(typeof shelter_baru !== 'undefined' && shelter_baru) {
 if(typeof symptom_baru !== 'undefined' && symptom_baru) {
 	$("#symptom-baru").modal({show:true});
 }
-
+if(typeof litigasiPidana_baru !== 'undefined' && litigasiPidana_baru) {
+	$("#litigasiPidana-baru").modal({show:true});
+}
+if(typeof litigasiPerdata_baru !== 'undefined' && litigasiPerdata_baru) {
+	$("#litigasiPerdata-baru").modal({show:true});
+}
 
 
 /*
