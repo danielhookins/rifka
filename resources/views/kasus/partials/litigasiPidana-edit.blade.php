@@ -21,8 +21,6 @@
         <div class="form-group">
           {!! Form::label('pidana_jenis', 'Jenis Litigasi', array('class' => 'strongLabel')) !!}
           {!! Form::select('pidana_jenis', array(
-            'Jenis Litigasi'
-              =>  'Jenis Litigasi',
             'Pidana langsung' => 'Pidana langsung',
             'Pidana tidak langsung' => 'Pidana tidak langsung'
           ), null, array('class' => 'form-control'))!!}

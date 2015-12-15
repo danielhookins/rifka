@@ -14,6 +14,7 @@
     <tr>
       <th></th>
       <th>Nomor Perkara</th>
+      <th>Pengadilan Wilayah</th>
     </tr>
 
     <?php $i = 0; ?>
@@ -28,6 +29,12 @@
       <td>
         <a href="{{ route('kasus.litigasiPerdata.edit', array($litigasiPerdata->kasus_id, $litigasiPerdata->litigasi_perdata_id)) }}">
           {{ $litigasiPerdata->nomor_perkara }}
+        </a>
+      </td>
+      <td>
+        <a href="{{ route('kasus.litigasiPerdata.edit', array($litigasiPerdata->kasus_id, $litigasiPerdata->litigasi_perdata_id)) }}">
+          Pengadilan {{ $litigasiPerdata->pengadilan_wilayah_jenis }}
+          {{ $litigasiPerdata->pengadilan_wilayah_kabupaten }}
         </a>
       </td>
     </tr>   
