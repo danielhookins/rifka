@@ -1,20 +1,30 @@
-<div class="modal fade" id="litigasiPidana-baru">
+<?php $litigasiPidanaActive = Session::get('litigasiPidana-active') ?>
+
+<div class="modal fade" id="litigasiPidana-edit">
   <div class="modal-dialog">
     <div class="modal-content">
 
-      {!! Form::open(array('route' => array('kasus.litigasiPidana.store', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
+      {!! Form::model($litigasiPidanaActive, array(
+        'route' => array('kasus.litigasiPidana.update', 
+          $litigasiPidanaActive->kasus_id, 
+          $litigasiPidanaActive->litigasi_pidana_id), 
+        'class'=>'form', 
+        'method' => 'PUT')) 
+      !!}
 
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Tambah Litigasi Pidana</h4>
+        <h4 class="modal-title">Edit Litigasi</h4>
       </div>
 
       <div class="modal-body">
         <div class="form-group">
           {!! Form::label('pidana_jenis', 'Jenis Litigasi', array('class' => 'strongLabel')) !!}
           {!! Form::select('pidana_jenis', array(
+            'Jenis Litigasi'
+              =>  'Jenis Litigasi',
             'Pidana langsung' => 'Pidana langsung',
-            'Pidana tidak langsung' => 'Pidana tidak langsung',
+            'Pidana tidak langsung' => 'Pidana tidak langsung'
           ), null, array('class' => 'form-control'))!!}
         </div>
         <div class="form-group">
@@ -53,6 +63,7 @@
           {!! Form::label('putusan', 'Putusan', array('class' => 'strongLabel')) !!}
           {!! Form::text('putusan', null, array('class' => 'form-control', 'autocomplete' => 'off')) !!}
         </div>
+
       </div>
 
       <div class="modal-footer">

@@ -2,7 +2,7 @@
 
   <div class="panel-heading">
   <h4 class="panel-title">
-    <a class="in-link" name="litigasiPidana">Litigasi Pidana</a>
+    <a class="in-link" name="litigasipidana">Litigasi Pidana</a>
   </h4>
   </div>
 
@@ -14,6 +14,7 @@
     <tr>
       <th></th>
       <th>Pidana Jenis</th>
+      <th>Nomor Perkara</th>
     </tr>
 
     <?php $i = 0; ?>
@@ -30,6 +31,12 @@
           {{ $litigasiPidana->pidana_jenis }}
         </a>
       </td>
+      <td>
+        <a href="{{ route('kasus.litigasiPidana.edit', array($litigasiPidana->kasus_id, $litigasiPidana->litigasi_pidana_id)) }}">
+          {{ $litigasiPidana->nomor_perkara }}
+        </a>
+      </td>
+  
     </tr>   
     @endforeach
 
