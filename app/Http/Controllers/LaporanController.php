@@ -1,6 +1,4 @@
-<?php
-
-namespace rifka\Http\Controllers;
+<?php namespace rifka\Http\Controllers;
 
 use Illuminate\Http\Request;
 use rifka\Http\Requests;
@@ -328,6 +326,15 @@ class LaporanController extends Controller
             ->with('list', "kabupaten")
             ->with('displayModel', $displayModel)
             ->with('rows', $rows);
+    }
+
+    public function jumlahJenisKasusOlehKabupatenUsia()
+    {
+        
+        // TODO
+
+        return view('laporan.index')
+            ->with('laporan', "kab-usia-jenis");
     }
 
 

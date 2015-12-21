@@ -141,10 +141,18 @@ class LaporanUtils
    * @param string $clientType {"Korban", "Pelaku"}
    * @param string $addressType {"KTP", "Domisili", "Semua"}
    */
-  public static function getKabupatenCount($year, $clientType, $addressType)
+  public static function getKabupatenCount($year, $clientType, $addressType, $caseType = 'Semua', $age = 'Semua')
   {
     // Get cases for the year
-    $kasus = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year);
+    if (isset($caseType) && $caseType != "Semua")
+    {   
+        $kasus = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year)
+            ->where('jenis_kasus', $caseType);
+    } else {
+        $kasus = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year);
+    }
+
+    dd($kasus->get());
 
     // Get clients for the year
     // clients must match $clientType

@@ -1,5 +1,6 @@
 <?php namespace rifka\Library;
 
+use DB;
 use rifka\Kasus;
 use rifka\KlienKasus;
 use rifka\Library\InputUtils;
@@ -133,5 +134,123 @@ class KasusUtils
 		}
 
 	}
+
+	 /**
+   *  Get cases based on specific parameters
+   *	Note: Performance will suffer if using this for multiple queries
+   *
+   *  @param $year      - Year of cases (default: current year)
+   *  @param $month     - Month of cases
+   *  @param $type      - Type of cases
+   *  @param $age       - The age group of the victim
+   *  @param $kabupaten - The kabupaten of the victim
+   *
+   *  @return Cases as query builder
+   */
+  public static function getCases(
+    $year = null, 
+    $month = null, 
+    $type = null, 
+    $age = null, 
+    $kabupaten = null)
+  {
+    // Define cases variable
+    $cases = DB::table('kasus');
+    
+    // Year is this year by default
+    $year = ($year == null) ? Carbon::today()->format('Y') : $year;
+
+    // Cases for the specified year
+    $cases->where(DB::raw('YEAR(kasus.created_at)'), '=', $year);
+
+    // Cases for the specified month
+    if ($month != null)
+    {
+        $cases->where(DB::raw('MONTH(kasus.created_at)'), '=', $month);
+    }
+
+    // Cases for the specified type
+    if ($type != null)
+    {
+        $cases->where('jenis_kasus', $type);
+    }
+
+    // Cases for the specified age
+    if ($age != null) 
+    {
+        // Join the client table using the pivot table
+        $cases->join('klien_kasus', 'kasus.kasus_id', '=', 'klien_kasus.kasus_id');
+        $cases->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
+        
+        // Only get victims
+        $cases->where('klien_kasus.jenis_klien', 'Korban');
+
+        // Get adults
+        if ($age == "Dewasa")
+        {
+            $cases->where(DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d'))"), '>=', 18);
+        }
+        // Get teenagers 16-17
+        if ($age == "Remaja16sd17")
+        {
+            $cases->whereBetween(DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d'))"), [16, 17]);
+        }
+        // Get teenagers 12-15
+        if ($age == "Remaja12sd15")
+        {
+            $cases->whereBetween(DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d'))"), [12, 15]);
+        }
+        // Get children 
+        if ($age == "AnakKecil")
+        {
+            $cases->where(DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d'))"), '<', 12);
+        }
+
+    }
+    
+    if ($kabupaten != null)
+    {
+        // Ensure client table joined
+        if ($age == null)
+        {
+            // Join the client table using the pivot table
+            $cases->join('klien_kasus', 'kasus.kasus_id', '=', 'klien_kasus.kasus_id');
+            $cases->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
+            
+            // Only get victims
+            $cases->where('klien_kasus.jenis_klien', 'Korban');
+        }
+
+        // Join the address table using the pivot table
+        $cases->join('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id');
+        $cases->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
+
+        if ($kabupaten != "Semua")
+      	{
+      		$cases->where('alamat.kabupaten', $kabupaten);
+      	}
+
+    }
+
+    return $cases;
+  }
+
+  public static function getCasesAndRelated() 
+  {
+  	// Define cases variable
+    $cases = DB::table('kasus');
+
+    // Join the client table using the pivot table
+    $cases->join('klien_kasus', 'kasus.kasus_id', '=', 'klien_kasus.kasus_id');
+    $cases->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
+
+  	// Join the address table using the pivot table
+    $cases->join('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id');
+    $cases->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
+
+  	return $cases
+  		->select('klien.klien_id', 'kasus.kasus_id', 'alamat.kabupaten')
+  		->where('kasus.jenis_kasus', 'KTI');
+  }
 
 }

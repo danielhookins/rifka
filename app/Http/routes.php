@@ -458,6 +458,13 @@
 		'as' => 'laporan.usia.update',
 		'uses' => 'LaporanController@updateKasusOlehUsia']);
 
+	/**
+	 * Report: [GET] Number of cases by type for kabupaten and age.
+	 */
+	Route::get('/laporan/jenisKasusOlehKabupatenUsia', [
+		'as' => 'laporan.kab-usia-jenis', 
+		'uses' => 'LaporanController@jumlahJenisKasusOlehKabupatenUsia']);
+
 
 	/*** DEVELOPER ******************************************************/
 	
