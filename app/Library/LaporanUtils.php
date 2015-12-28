@@ -152,8 +152,6 @@ class LaporanUtils
         $kasus = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year);
     }
 
-    dd($kasus->get());
-
     // Get clients for the year
     // clients must match $clientType
     $test = $kasus->with('klienKasus')->get();
