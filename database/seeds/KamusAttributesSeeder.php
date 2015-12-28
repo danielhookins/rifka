@@ -370,6 +370,15 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'The kabupaten of the address.',
             'example'       => 'Sleman'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Alamat',
+            'name'          => 'provinsi',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The province of the address.',
+            'example'       => 'Jawa Tengah'
+            ]);
 
         // Alamat_Klien Attributes
         rifka\Kamus_attribute::create([

@@ -18,6 +18,7 @@ class CreateAlamatTable extends Migration {
 			$table->string('alamat')->nullable();
 			$table->string('kecamatan')->nullable();
 			$table->string('kabupaten')->nullable();
+			$table->string('provinsi')->nullable();
 		});
 	}
 

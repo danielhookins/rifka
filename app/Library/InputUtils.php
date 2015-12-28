@@ -36,6 +36,8 @@ class InputUtils
 			"status_perkawinan" => "Status Perkawinan",
 			"pendidikan"				=> "Pendidikan",
 			"penghasilan"				=> "Penghasilan"
+			"kecamatan"					=> "Kecamatan"
+			"kabupaten"					=> "kabupaten"
 			);
 
 		foreach ($defaults as $name => $defaultValue)
