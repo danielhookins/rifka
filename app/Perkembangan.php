@@ -11,12 +11,13 @@ class Perkembangan extends Model {
 		'tanggal',
 		'intervensi',
     'kesimpulan',
-    'kesepakatan'];
+    'kesepakatan',
+    'deskripsi'];
 	public $timestamps = false;
 
 	public function kasus()
-    {
-      return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
-    }
+  {
+    return $this->belongsTo('rifka\Kasus', 'kasus_id', 'kasus_id');
+  }
 
 }

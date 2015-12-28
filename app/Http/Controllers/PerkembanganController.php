@@ -20,7 +20,7 @@ class PerkembanganController extends CaseDetailController {
 	// Get an array of the editable fields
 	public function getFields()
 	{
-		return ["tanggal", "intervensi", "kesimpulan", "kesepakatan"];
+		return ["tanggal", "intervensi", "kesimpulan", "kesepakatan", "deskripsi"];
 	}
 
 }

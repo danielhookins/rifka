@@ -18,6 +18,7 @@
         <th>Intervensi</th>
         <th>Kesimpulan</th>
         <th>Kesepakatan</th>
+        <th>Deskripsi</th>
       </tr>
     
       <?php $i = 0; ?>
@@ -49,6 +50,11 @@
             {{ $perkembangan->kesepakatan }}
           </a>
         </td>
+        <td>
+          <a href="{{ route('kasus.perkembangan.edit', array($perkembangan->kasus_id, $perkembangan->perkembangan_id)) }}">
+            {{ $perkembangan->deskripsi }}
+          </a>
+        </td>
       </tr>   
       @endforeach
 
@@ -66,7 +72,7 @@
 
     @if(!empty($kasus->perkembangan->toArray()))
     <tr>
-      <td colspan="5">
+      <td colspan="6">
         <a class="btn btn-sm btn-default" data-toggle="modal" href="#perkembangan-baru">
           <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         </a>

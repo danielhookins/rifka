@@ -38,6 +38,12 @@
           !!}
           <textarea name="kesepakatan" class="form-control" placeholder="Kesepakatan" rows="3" autocomplete="off">{{ $perkembanganActive->kesepakatan }}</textarea>
         </div>
+        <div class="form-group">
+          {!! Form::label('deskripsi', 'Deskripsi', array(
+            'class' => 'strongLabel')) 
+          !!}
+          <textarea name="deskripsi" class="form-control" placeholder="Deskripsi" rows="3" autocomplete="off">{{ $perkembanganActive->deskripsi }}</textarea>
+        </div>
       </div>
 
       <div class="modal-footer">

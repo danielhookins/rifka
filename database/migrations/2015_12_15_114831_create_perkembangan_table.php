@@ -20,6 +20,7 @@ class CreatePerkembanganTable extends Migration {
 			$table->text('intervensi')->nullable();
 			$table->text('kesimpulan')->nullable();
 			$table->text('kesepakatan')->nullable();
+			$table->text('deskripsi')->nullable();
 		});
 	}
 

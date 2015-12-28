@@ -947,6 +947,15 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'The deal reached with the client.',
             'example'       => 'TODO'
             ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Perkembangan',
+            'name'          => 'deskripsi',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'text',
+            'description'   => 'A description of the case development.',
+            'example'       => 'TODO'
+            ]);
 
         // Litigasi_Pidana Attributes
         rifka\Kamus_attribute::create([
