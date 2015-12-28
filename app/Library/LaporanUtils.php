@@ -400,18 +400,18 @@ class LaporanUtils
         $kasus2 = $klien->klienKasus;
         foreach($kasus2 as $kasus)
         {
-            $dataKasus["kasus_id"] = $kasus->kasus_id;
-            $dataKasus["jenis_kasus"] = $kasus->jenis_kasus;
-            
-            // TODO: add dates to addresses so that if a 
-            // client moves address the history address 
-            // (that matches the case) is recorded
             $alamat = $klien->alamatKlien->first();
-            $dataKasus["kabupaten"] = $alamat->kabupaten;
-            $dataKasus["kecamatan"] = $alamat->kecamatan;
-            $dataKasus["alamat"] = $alamat->alamat;
-            
-            $rows[] = $dataKasus;
+
+            if(isset($alamat))
+            {
+                $dataKasus["kasus_id"] = $kasus->kasus_id;
+                $dataKasus["jenis_kasus"] = $kasus->jenis_kasus;
+                $dataKasus["kabupaten"] = $alamat->kabupaten;
+                $dataKasus["kecamatan"] = $alamat->kecamatan;
+                $dataKasus["alamat"] = $alamat->alamat;
+                
+                $rows[] = $dataKasus;
+            }
         }
     }
     return $rows;
