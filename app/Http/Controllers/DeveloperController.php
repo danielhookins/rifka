@@ -25,10 +25,13 @@ class DeveloperController extends Controller {
 	public function __construct()
 	{
 		// Only allow authenticated users
-		//$this->middleware('auth');
+		$this->middleware('auth');
 		
 		// Only allow active users
-		//$this->middleware('active');
+		$this->middleware('active');
+
+		// Grant access to only developers
+		$this->middleware('userType:Developer');
 	}
 
 	//
