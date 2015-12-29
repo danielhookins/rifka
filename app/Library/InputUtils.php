@@ -35,8 +35,8 @@ class InputUtils
 			"agama"							=> "Agama",
 			"status_perkawinan" => "Status Perkawinan",
 			"pendidikan"				=> "Pendidikan",
-			"penghasilan"				=> "Penghasilan"
-			"kecamatan"					=> "Kecamatan"
+			"penghasilan"				=> "Penghasilan",
+			"kecamatan"					=> "Kecamatan",
 			"kabupaten"					=> "kabupaten"
 			);
 

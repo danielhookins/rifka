@@ -152,13 +152,14 @@
         <div class="form-group">
           <strong>Jenis Kasus:</strong><br />
           {!! Form::select('jenis_kasus', array(
-            'Jenis'     =>  'Jenis',
-            'KTI'       =>  'KTI',
-            'KDP'       =>  'KDP',
-            'Perkosaan' =>  'Perkosaan',
-            'Pel-Seks'  =>  'Pel-Seks',
-            'KDK'       =>  'KDK',
-            'Lain'      =>  'Lain'
+            'Jenis'       =>  'Jenis',
+            'KTI'         =>  'KTI',
+            'KDP'         =>  'KDP',
+            'Perkosaan'   =>  'Perkosaan',
+            'Pel-Seks'    =>  'Pel-Seks',
+            'KDK'         =>  'KDK',
+            'Trafficking' =>  'Trafficking',
+            'Lain'        =>  'Lain'
           ), null, array('class' => 'form-control'))!!}
         </div>
         <div class="form-group">
