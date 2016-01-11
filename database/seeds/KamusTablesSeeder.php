@@ -194,6 +194,13 @@ class KamusTablesSeeder extends Seeder {
             'description'   => 'A history of client and case attributes changed by users of the database.'
             ]);
 
+        // Untuk Data Warehouse
+        rifka\Kamus_table::create([
+            'name'          => 'DW_Kab_Jenis_Usia',
+            'type'          => 'Data Warehouse',
+            'description'   => 'The number of cases by Kabupaten, Case Type and Age.'
+            ]);
+
     }
 
 }

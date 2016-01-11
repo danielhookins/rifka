@@ -1982,6 +1982,72 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
+        // DW_Kab_Jenis_Usia
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Kab_Jenis_Usia',
+            'name'          => 'kab_jenis_usia_id',
+            'primary_key'   => True,
+            'foreign_key'   => '',
+            'type'          => 'increments',
+            'description'   => 'The unique identifier of the attribute change.',
+            'example'       => '035'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Kab_Jenis_Usia',
+            'name'          => 'kasus_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the case.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Kab_Jenis_Usia',
+            'name'          => 'klien_id',
+            'primary_key'   => False,
+            'foreign_key'   => 'kasus_id',
+            'type'          => 'integer',
+            'description'   => 'The unique identifier of the client.',
+            'example'       => '4256'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Kab_Jenis_Usia',
+            'name'          => 'kabupaten',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The kabupaten.',
+            'example'       => '"Sleman"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Kab_Jenis_Usia',
+            'name'          => 'jenis_kasus',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The type of case.',
+            'example'       => '"KTI"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Kab_Jenis_Usia',
+            'name'          => 'usia',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'integer',
+            'description'   => 'The age of the client at the time the case was opened.',
+            'example'       => '23'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Kab_Jenis_Usia',
+            'name'          => 'tahun',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'integer',
+            'description'   => 'The year the case was opened.',
+            'example'       => '2003'
+            ]);
+        
+
     }
 
 }

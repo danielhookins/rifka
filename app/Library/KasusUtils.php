@@ -235,22 +235,4 @@ class KasusUtils
     return $cases;
   }
 
-  public static function getCasesAndRelated() 
-  {
-  	// Define cases variable
-    $cases = DB::table('kasus');
-
-    // Join the client table using the pivot table
-    $cases->join('klien_kasus', 'kasus.kasus_id', '=', 'klien_kasus.kasus_id');
-    $cases->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
-
-  	// Join the address table using the pivot table
-    $cases->join('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id');
-    $cases->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
-
-  	return $cases
-  		->select('klien.klien_id', 'kasus.kasus_id', 'alamat.kabupaten')
-  		->where('kasus.jenis_kasus', 'KTI');
-  }
-
 }
