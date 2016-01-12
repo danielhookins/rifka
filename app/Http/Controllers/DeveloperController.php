@@ -46,7 +46,9 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 		
-		return 'test';
+		return ETLUtils::initKabJenisUsia();
+
+		//return 'test';
 	
 	}
 

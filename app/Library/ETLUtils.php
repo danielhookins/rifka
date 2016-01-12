@@ -71,6 +71,8 @@ class ETLUtils
   				'alamat.kabupaten', 
   				DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
 
+    $cases->where('klien_kasus.jenis_klien', 'Korban');
+
 		return $cases;
   }
 
