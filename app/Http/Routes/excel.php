@@ -16,11 +16,11 @@
 		 */
 		Route::post('laporan/kasusOlehUsia/exportXLS', [
 			'as' => 'kasusOlehUsia.xls',
-			'uses' => 'LaporanController@exporLaporanUsiaXLS']);
+			'uses' => 'ExportController@exporLaporanUsiaXLS']);
 
 		/**
 		 * Export cases by type data to Excel
 		 */
 		Route::post('laporan/kasusOlehJenis/exportXLS', [
 			'as' => 'kasusOlehJenis.xls',
-			'uses' => 'LaporanController@exporLaporanJenisXLS']);
+			'uses' => 'ExportController@exporLaporanJenisXLS']);

@@ -337,25 +337,4 @@ class LaporanController extends Controller
             ->with('laporan', "kab-usia-jenis");
     }
 
-
-/***** Export *******/
-
-    /**
-     * Export case by age and type data to Excel
-     */
-    public static function exporLaporanUsiaXLS() {
-        $input = \Input::get();
-        $years = InputUtils::getYearsArrayFromInput($input);
-        return LaporanExport::kasusOlehUsia($years);
-    }
-
-    /**
-     * Export case by type data to Excel
-     */
-    public static function exporLaporanJenisXLS() {
-        $input = \Input::get();
-        $years = InputUtils::getYearsArrayFromInput($input);
-        return LaporanExport::kasusOlehJenis($years);
-    }
-    
 }
