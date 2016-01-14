@@ -1,5 +1,4 @@
-<?php 
-namespace rifka\Library;
+<?php namespace rifka\Library;
 
 use rifka\Laporan;
 use rifka\Library\InputUtils;
@@ -8,7 +7,7 @@ use rifka\Kasus;
 use rifka\BentukKekerasan;
 use DB;
 
- 
+
 /**
  *	A Library of Utilities for Report-Specific Tasks.
  */
@@ -158,13 +157,13 @@ class LaporanUtils
     $korbanYear = array();
     foreach ($test as $case)
     {
-        foreach ($case->klienKasus as $klien)
+      foreach ($case->klienKasus as $klien)
+      {
+        if ($klien["pivot"]["jenis_klien"] == $clientType)
         {
-            if ($klien["pivot"]["jenis_klien"] == $clientType)
-            {
-                array_push($korbanYear, $klien);
-            }
+            array_push($korbanYear, $klien);
         }
+      }
     }
 
     // Get kabupaten for the year

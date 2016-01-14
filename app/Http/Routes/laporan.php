@@ -1,129 +1,69 @@
 <?php
 
-	// Report related routes
+	// REPORT ROUTES
 	
-	/**
-	 * Display the index of reports.
-	 */
 	Route::get('/laporan', [
 		'as' => 'laporan.index', 
 		'uses' => 'LaporanController@index']);
 
-	/**
-	 * Report: [GET] Number of cases by type.
-	 */
+	
+	// Cases by Case Type
 	Route::get('/laporan/kasusOlehJenis', [
 		'as' => 'laporan.jenis-kasus', 
-		'uses' => 'LaporanController@kasusOlehJenis']);
-
-	/**
-	 * Report: [POST] Update number of cases by type.
-	 */
+		'uses' => 'Laporan\KasusOlehJenisController@laporan']);
 	Route::post('/laporan/kasusOlehJenis', [
 		'as' => 'laporan.jenis-kasus.update', 
-		'uses' => 'LaporanController@updateKasusOlehJenis']);
-
-	/**
-	 * List: [GET] Cases by year
-	 */
-	Route::get('/laporan/listKasusOlehTahun', [
-		'as' => 'laporan.tahun.list',
-		'uses' => 'LaporanController@listKasusOlehTahun']);
-
-	/**
-	 * List: [POST] Update cases by year
-	 */
-	Route::post('/laporan/listKasusOlehTahun', [
-		'as' => 'laporan.tahun.list.update',
-		'uses' => 'LaporanController@updateListKasusOlehTahun']);
-
-	/**
-	 * List: [GET] Cases by case-type
-	 */
+		'uses' => 'Laporan\KasusOlehJenisController@updateLaporan']);
 	Route::get('/laporan/listKasusOlehJenis', [
 		'as' => 'laporan.jenis.list',
-		'uses' => 'LaporanController@listKasusOlehJenis']);
-
-	/**
-	 * List: [POST] Update cases by case-type
-	 */
+		'uses' => 'Laporan\KasusOlehJenisController@daftar']);
 	Route::post('/laporan/listKasusOlehJenis', [
 		'as' => 'laporan.jenis.list.update',
-		'uses' => 'LaporanController@updateListKasusOlehJenis']);
+		'uses' => 'Laporan\KasusOlehJenisController@updateDaftar']);
 
-	/**
-	 * List: [GET] Cases by age
-	 */
-	Route::get('/laporan/listKlienOlehUsia', [
-		'as' => 'laporan.usia.list',
-		'uses' => 'LaporanController@listKlienOlehUsia']);
+	
+	// Cases by Year
+	Route::get('/laporan/listKasusPerTahun', [
+		'as' => 'laporan.tahun.list',
+		'uses' => 'Laporan\KasusPerTahunController@daftar']);
+	Route::post('/laporan/listKasusPerTahun', [
+		'as' => 'laporan.tahun.list.update',
+		'uses' => 'Laporan\KasusPerTahunController@updateDaftar']);
 
-	/**
-	 * List: [POST] Update cases by age
-	 */
-	Route::post('/laporan/listKasusOlehUsia', [
-		'as' => 'laporan.usia.list.update',
-		'uses' => 'LaporanController@updateListKlienOlehUsia']);
-
-	/**
-	 * Report: [GET] Kabupaten report
-	 */
-	Route::get('/laporan/kabupaten', [
-		'as' => 'laporan.kabupaten',
-		'uses' => 'LaporanController@kabupaten']);
-
-	/**
-	 * Report: [POST] Update Kabupaten report
-	 */
-	Route::post('/laporan/kabupaten', [
-		'as' => 'laporan.kabupaten.update',
-		'uses' => 'LaporanController@updateKabupaten']);
-
-	/**
-	 * List: [GET] Cases by Kabupaten
-	 */
-	Route::get('/laporan/listKasusOlehKabupaten', [
-		'as' => 'laporan.kabupaten.list',
-		'uses' => 'LaporanController@listKasusOlehKabupaten']);
-
-	/**
-	 * List: [POST] Update cases by Kabupaten
-	 */
-	Route::post('/laporan/listKasusOlehKabupaten', [
-		'as' => 'laporan.kabupaten.list.update',
-		'uses' => 'LaporanController@updateListKasusOlehKabupaten']);
-
-	/**
-	 * Report: [GET] Cases by month report
-	 */
+	// Cases by Month
 	Route::get('/laporan/kasusPerBulan', [
 		'as' => 'laporan.kasusPerBulan',
-		'uses' => 'LaporanController@kasusPerBulan']);
-
-	/**
-	 * Report: [POST] Update Cases by month report
-	 */
+		'uses' => 'Laporan\KasusPerBulanController@laporan']);
 	Route::post('/laporan/kasusPerBulan', [
 		'as' => 'laporan.kasusPerBulan.update',
-		'uses' => 'LaporanController@updateKasusPerBulan']);
+		'uses' => 'Laporan\KasusPerBulanController@updateLaporan']);
 
-	/**
-	 * Report: [GET] Usia report
-	 */
+
+	// Cases by Victim Age (at time of case)
 	Route::get('/laporan/usia', [
 		'as' => 'laporan.usia',
-		'uses' => 'LaporanController@kasusOlehUsia']);
-
-	/**
-	 * Report: [POST] Update Usia report
-	 */
+		'uses' => 'Laporan\KasusOlehUsiaController@laporan']);
 	Route::post('/laporan/usia', [
 		'as' => 'laporan.usia.update',
-		'uses' => 'LaporanController@updateKasusOlehUsia']);
+		'uses' => 'Laporan\KasusOlehUsiaController@updateLaporan']);
+	Route::get('/laporan/listKlienOlehUsia', [
+		'as' => 'laporan.usia.list',
+		'uses' => 'Laporan\KasusOlehUsiaController@daftar']);
+	Route::post('/laporan/listKasusOlehUsia', [
+		'as' => 'laporan.usia.list.update',
+		'uses' => 'Laporan\KasusOlehUsiaController@updateDaftar']);
 
-	/**
-	 * Report: [GET] Number of cases by type for kabupaten and age.
-	 */
-	Route::get('/laporan/jenisKasusOlehKabupatenUsia', [
-		'as' => 'laporan.kab-usia-jenis', 
-		'uses' => 'LaporanController@jumlahJenisKasusOlehKabupatenUsia']);
+
+	// Cases by Regency (Kabupaten)
+	Route::get('/laporan/kabupaten', [
+		'as' => 'laporan.kabupaten',
+		'uses' => 'Laporan\KasusOlehKabupatenController@laporan']);
+	Route::post('/laporan/kabupaten', [
+		'as' => 'laporan.kabupaten.update',
+		'uses' => 'Laporan\KasusOlehKabupatenController@updateLaporan']);
+	Route::get('/laporan/listKasusOlehKabupaten', [
+		'as' => 'laporan.kabupaten.list',
+		'uses' => 'Laporan\KasusOlehKabupatenController@daftar']);
+	Route::post('/laporan/listKasusOlehKabupaten', [
+		'as' => 'laporan.kabupaten.list.update',
+		'uses' => 'Laporan\KasusOlehKabupatenController@updateDaftar']);
