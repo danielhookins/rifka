@@ -2,13 +2,13 @@
 
 use Illuminate\Http\Request;
 use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
+use rifka\Http\Controllers\LaporanController;
 use rifka\Library\LaporanUtils;
 use rifka\Library\InputUtils;
 use Carbon\Carbon;
 
 // Reports for Cases by Case type
-class KasusOlehJenisController extends Controller
+class KasusOlehJenisController extends LaporanController
 {
 
   public function laporan()
@@ -43,7 +43,7 @@ class KasusOlehJenisController extends Controller
   public function daftar()
   {
     $year = Carbon::today()->format('Y');
-    $caseType = "KTI";
+    $caseType = "KTI"; // KTI as default
     $availableTypes = LaporanUtils::getDistinctCaseTypes($year);
 
     $displayModel = array();

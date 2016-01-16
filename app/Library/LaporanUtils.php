@@ -14,56 +14,32 @@ use DB;
 class LaporanUtils
 {
 
-  /**
-   * Get an array of statistics that give an
-   * overview of the organisations position this year.
-   *
-   * @return Array $overview
-   */	
+  // Get an Overview using selected statistics
   public static function getOverview()
   {
-    // Prepare Data for Overview
+    // Prepare Variables
     $overview = array();
-    $year = Carbon::today()->format('Y');
-    $month = Carbon::today()->format('m');
-    $months = DateUtils::getMonths();
+    $overview["thisYear"] = Carbon::today()->format('Y');
+    $overview["thisMonth"] = Carbon::today()->format('m');
+    $overview["month"] = DateUtils::getMonths();
 
-    // Case Data
-    // Cases this year
-    $casesThisYear = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year)->count();
-    // Cases last year
-    $casesLastYear = Kasus::where(DB::raw('YEAR(created_at)'), '=', ($year - 1))->count();
-    // Cases this month
-    $casesThisMonth = Kasus::where(DB::raw('MONTH(created_at)'), '=', $month)
-    ->where(DB::raw('YEAR(created_at)'), '=', $year)
-    ->count();
-    // Cases this month last year
-    $casesThisMonthLastYear = Kasus::where(DB::raw('MONTH(created_at)'), '=', $month)
-    ->where(DB::raw('YEAR(created_at)'), '=', ($year - 1))
-    ->count();
-    // Data for cases by month graph
-    $casesByMonth = LaporanUtils::getKasusBulanArray($year);
-
-    // Client Data
-    // Clients this year
-    $clientsThisYear = count(LaporanUtils::getKlien($year, "Semua"));
-    // Clients last year
-    $clientsLastYear = count(LaporanUtils::getKlien(($year - 1), "Semua"));
-    // Survivors by case type
-    $survivorJenisKasus = LaporanUtils::getCountByCaseType(
-        LaporanUtils::getDistinctCaseTypes(), $year);
-
-    $overview["thisYear"] = $year;
-    $overview["thisMonth"] = $month;
-    $overview["casesThisYear"] = $casesThisYear;
-    $overview["casesLastYear"] = $casesLastYear;
-    $overview["casesThisMonth"] = $casesThisMonth;
-    $overview["casesThisMonthLastYear"] = $casesThisMonthLastYear;
-    $overview["clientsThisYear"] = $clientsThisYear;
-    $overview["clientsLastYear"] = $clientsLastYear;
-    $overview["survivorJenisKasus"] = $survivorJenisKasus;
-    $overview["casesByMonth"] = $casesByMonth;
-    $overview["month"] = $months;
+    // Populate Array
+    $overview["casesThisYear"] = LaporanUtils::
+      getKasusTahun($overview["thisYear"]);
+    $overview["casesLastYear"] = LaporanUtils::
+      getKasusTahun($overview["thisYear"] - 1);
+    $overview["casesThisMonth"] = LaporanUtils::
+      getKasusBulan($overview["thisMonth"], $overview["thisYear"]);
+    $overview["casesThisMonthLastYear"] = LaporanUtils::
+      getKasusBulan($overview["thisMonth"], $overview["thisYear"] - 1);
+    $overview["casesByMonth"] = LaporanUtils::
+      getKasusBulanArray($overview["thisYear"]);
+    $overview["clientsThisYear"] = count(LaporanUtils::
+      getKlien($overview["thisYear"], "Semua"));
+    $overview["clientsLastYear"] = count(LaporanUtils::
+      getKlien(($overview["thisYear"] - 1), "Semua"));
+    $overview["survivorJenisKasus"] = LaporanUtils::
+      getCountByCaseType(LaporanUtils::getDistinctCaseTypes(), $overview["thisYear"]);
 
     return $overview;
   }
@@ -78,7 +54,6 @@ class LaporanUtils
       $query = Kasus::
             where(DB::raw('YEAR(created_at)'), '=', $year)
             ->select('jenis_kasus')->distinct();
-      
     } else {
       $query = Kasus::
             select('jenis_kasus')->distinct();
@@ -221,26 +196,27 @@ class LaporanUtils
   }
 
 
-  public static function getKasusTahun($tahun)
+  public static function getKasusTahun($tahun, $actual = false)
   {
-    return Kasus::where(DB::raw('YEAR(created_at)'), '=', $tahun);
+    $kasus = Kasus::where(DB::raw('YEAR(created_at)'), '=', $tahun);
+    return ($actual) ? $kasus : $kasus->count();
   }
 
 
-  public static function getKasusBulanTahun($bulan, $tahun)
+  public static function getKasusBulan($bulan, $tahun, $actual = false)
   {
-    return Kasus::where(DB::raw('MONTH(created_at)'), '=', $bulan)
+    $kasus = Kasus::where(DB::raw('MONTH(created_at)'), '=', $bulan)
         ->where(DB::raw('YEAR(created_at)'), '=', $tahun);
+    return ($actual) ? $kasus : $kasus->count();
   }
 
 
   public static function getKasusBulanArray($tahun)
   {
     $kasusBulan = array();
-
     for ($i = 1; $i < 13; $i++)
     {
-      $kasusBulan[$i] = LaporanUtils::getKasusBulanTahun($i, $tahun)->count();
+      $kasusBulan[$i] = LaporanUtils::getKasusBulan($i, $tahun);
     }
     return $kasusBulan;
   }
@@ -248,7 +224,7 @@ class LaporanUtils
 
   public static function getKlien($tahun, $jenisKlien)
   {
-    $kasusTahun = LaporanUtils::getKasusTahun($tahun);
+    $kasusTahun = LaporanUtils::getKasusTahun($tahun, true);
     $klienKasus = $kasusTahun->with('klienKasus')->get();
     
     // Get all clients of certain type.

@@ -7,13 +7,22 @@ use rifka\Library\LaporanUtils;
 
 class LaporanController extends Controller
 {
-    /**
-     * Overview page
-     * @return Overview view
-     */
+    
+    public function __construct()
+    {
+        // Only allow authenticated users
+        $this->middleware('auth');
+        
+        // Only allow active users
+        $this->middleware('active');
+
+        // Grant access to counsellors, managers and developers
+        $this->middleware('userType:Konselor');
+    }
+
+    // Overview page
     public function index()
     {
-        
         $overview = LaporanUtils::getOverview();
 
         return view('laporan.index')

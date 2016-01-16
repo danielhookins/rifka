@@ -2,13 +2,15 @@
 
 use Illuminate\Http\Request;
 use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
+use rifka\Http\Controllers\LaporanController;
 use rifka\Library\LaporanUtils;
 use rifka\Library\InputUtils;
 use Carbon\Carbon;
 
 // Reports for Cases by Regency (Kabupaten) of Victim
-class KasusOlehKabupatenController extends Controller
+// TODO: Access data from DataWarehouse table to improve accuracy of
+//  historical data.  See issue#46
+class KasusOlehKabupatenController extends LaporanController
 {
 
   public function laporan()

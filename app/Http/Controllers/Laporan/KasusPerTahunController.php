@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
+use rifka\Http\Controllers\LaporanController;
 //use rifka\Library\LaporanUtils;
 use rifka\Library\InputUtils;
 use Carbon\Carbon;
@@ -10,7 +10,7 @@ use DB;
 use rifka\Kasus;
 
 // Reports for Cases for Year
-class KasusPerTahunController extends Controller
+class KasusPerTahunController extends LaporanController
 {
 
   public function daftar()
