@@ -50,20 +50,24 @@ class KasusOlehKabupatenController extends LaporanController
 
   public function daftar()
   {
-    $year = Carbon::today()->format('Y');
-    $rows = LaporanUtils::getAlamatKorban($year);
+    $data = array();
+    $data["laporan"] = "kabupaten";
+    $data["title"] = "Kasus oleh Kabupaten";
+    $data["year"] = Carbon::today()->format('Y');
+    $data["headers"] = array('x', 'y', 'z');
+    $data["rows"] = array(['x' => 'x data', 'y' => 'y data', 'z' => 'z data']);
+    
+    //$rows = LaporanUtils::getAlamatKorban($year);
 
-    $displayModel = array();
-    $displayModel["year"] = $year;
-
-    return view('laporan.index')
-      ->with('list', "kabupaten")
-      ->with('displayModel', $displayModel)
-      ->with('rows', $rows);
+    return view('laporan.daftar-simple')
+      ->with('data', $data);
   }
 
   public function updateDaftar()
   {
+    
+    dd("Yeah");
+
     $year = InputUtils::getUpdatedYear(\Input::get());
     $rows = LaporanUtils::getAlamatKorban($year);
 
