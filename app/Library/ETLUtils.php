@@ -9,24 +9,18 @@ use rifka\DWKabJenisUsia;
 class ETLUtils
 {
 
-  public static function initKabJenisUsia()
-  {
-    // TODO: break down requests to each year -- as the server cannot process all in under 30seconds
-    $cases = ETLUtils::getKabJenisUsia()->get();
+  public static function initIndex($rows, $model, $attributes) {        
+      
+    $modelRef = 'rifka\\'.$model;
 
-    foreach ($cases as $case) {
-
+    foreach ($rows as $row) {
+      $structure = array();
       try {
-        // Create new DW Record
-      $dwKabJenisUsia = DWKabJenisUsia::create([
-          'kasus_id'  => $case->kasus_id,
-          'klien_id'  => $case->klien_id,
-          'kabupaten' => $case->kabupaten,
-          'jenis_kasus' => $case->jenis_kasus,
-          'usia'  => $case->usia,
-          'tahun' => $case->tahun,
-        ]);
-        
+        foreach ($attributes as $attribute) {
+          $structure[$attribute] = $row->$attribute;
+        }
+        // Create new Index Record
+        $indexRecord = $modelRef::create($structure); 
       } catch (Exception $e) {
         echo $e;
       }
@@ -36,10 +30,10 @@ class ETLUtils
   public static function getKabJenisUsia() 
   {
     // Define cases variable
-    $cases = DB::table('kasus');
+    $rows = DB::table('kasus');
 
     // Select Statement
-    $cases
+    $rows
       ->join('klien_kasus', function ($join) {
             $join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id')
                  ->where('klien_kasus.jenis_klien', '=', 'Korban');
@@ -48,7 +42,7 @@ class ETLUtils
       ->join('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id')
       ->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
       
-    $cases
+    $rows
       ->select(
           'klien.klien_id',
           'klien_kasus.jenis_klien',
@@ -58,7 +52,26 @@ class ETLUtils
           'alamat.kabupaten', 
           DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
 
-    return $cases;
+    return $rows->get();
+  }
+
+  public static function getAlamatKlien()
+  {
+    $rows = DB::table('alamat');
+
+    $rows->join('alamat_klien', 'alamat.alamat_id', '=', 'alamat_klien.alamat_id')
+          ->join('klien', 'alamat_klien.klien_id', '=', 'klien.klien_id');
+
+    $rows->select('klien.klien_id', 'alamat.alamat', 'alamat.kecamatan', 'alamat.kabupaten', 'alamat.provinsi');
+
+    return $rows->get();
+  }
+
+  public static function getKlien()
+  {
+    $rows = DB::table('klien');
+    $rows->select('klien.klien_id', 'klien.nama_klien', 'klien.email', 'klien.no_telp');
+    return $rows->get();
   }
 
 } 
