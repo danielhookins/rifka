@@ -16,7 +16,8 @@
       {!! Form::select('searchType', array(
         'klien' =>  'Klien', 
         'kasus' =>  'Kasus',
-        'arsip' =>  'Arsip'
+        'arsip' =>  'Arsip',
+        'alamat' => 'Alamat'
       ), null, array(
         'class' => 'form-control',
         'id' => 'searchType'

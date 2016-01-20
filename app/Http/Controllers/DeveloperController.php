@@ -2,20 +2,8 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-use DB;
-use rifka\KlienKasus;
-use rifka\DWKabJenisUsia;
 use Illuminate\Http\Request;
-use Session;
-use rifka\Library\ExcelUtils;
-use rifka\Library\UserUtils;
-use rifka\Library\AlamatUtils;
-use rifka\Library\Rifka;
-use rifka\Library\LaporanUtils;
-use rifka\Library\KasusUtils;
 use rifka\Library\ETLUtils;
-use Excel;
-use rifka\Klien;
 
 class DeveloperController extends Controller {
 
@@ -39,16 +27,24 @@ class DeveloperController extends Controller {
 	//
 	function index() 
 	{
-
 		return view('developer.index');
 	}
 
 	function test() 
 	{
-		
-		return ETLUtils::initKabJenisUsia();
 
-		//return 'test';
+		$rows = ETLUtils::getKlien();
+
+		$model = "IndexKlien";
+		$attributes = array(
+							"klien_id",
+							"nama_klien",
+							"email",
+							"no_telp");
+
+		ETLUtils::initIndex($rows, $model, $attributes);
+
+		return 'done';
 	
 	}
 

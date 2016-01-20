@@ -48,6 +48,9 @@ class SearchController extends Controller {
 			elseif($searchType == 'arsip'){
 				$results = \rifka\Arsip::search($query)->orderBy('relevance', 'DESC')->get();
 			}
+			elseif($searchType == 'alamat'){
+				$results = \rifka\IndexAlamat::search($query)->get();
+			}
 
 			return view($searchType.'.searchResults', array(
 					'query' 	=> $query,
@@ -55,7 +58,8 @@ class SearchController extends Controller {
 				));
 		
 		}
-    	return redirect('home');
+    	
+  	return redirect('home');
 	}
 
 }

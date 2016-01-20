@@ -4,40 +4,42 @@
 	
 	<h2>Hasil Pencarian</h2>
 	<p>Menampilkan {{ $results->count() }} hasil untuk "{{ $query }}"</p>
-
-	<table class="table table-hover">
+	
+	<table id="datatable" class="table table-hover table-condensed">
+ 	<thead>
  	<tr>
- 		<th>Alamat</th>
- 		<th>Kecamatan</th>
+ 		<th class="hidden-xs"># ID</th>
+ 		<th>Nama</th>
  		<th>Kabupaten</th>
- 		<th>Klien</th>
+ 		<th>Kecamatan</th>
+ 		<th class="hidden-xs">Alamat</th>
+ 		<th class="hidden-xs">Email</th>
  	</tr>
+	</thead>
+	<tbody>
 	@forelse ($results as $result)
 		<tr>
-			<td>{{ $result->alamat }}</td>
-			<td>{{ $result->kecamatan }}</td>
-			<td>{{ $result->kabupaten }}</td>
+			<td class="hidden-xs"><a href="{{ route('klien.index') }}/{{ $result->klien_id }}">{!! $result->klien_id !!}</a></td>
 			<td>
-				<ul class="no-bullets">
-					@forelse ($result->klien()->get() as $resultKlien)
-						<li>
-							<a href="{{ route('klien.index') }}/{{ $resultKlien->klien_id }}">
-								<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-								&nbsp;
-								{{ $resultKlien->nama_klien }}
-							</a>
-						</li>
-					@empty
-						<li>Tidak ada klien.</li>
-					@endforelse
-				</ul>
+				<a href="{{ route('klien.index') }}/{{ $result->klien_id }}">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					&nbsp;
+					{!! $result->klien->nama_klien !!}
+				</a>
 			</td>
+			<td>{!! $result->kabupaten !!}</td>
+			<td>{!! $result->kecamatan !!}</td>
+			<td class="hidden-xs">{!! $result->alamat !!}</td>
+			<td class="hidden-xs"><a href="mailto:{!! $result->email !!}">{!! $result->email !!}</a></td>
 		</tr>
+		
 		@empty
 		<td></td>
 		<th scope="row"><em>Tidak ada hasil.</em></th>
 		<td colspan=3></td>
+	
 	@endforelse
+	</tbody>
 	</table>
 
 @endsection
