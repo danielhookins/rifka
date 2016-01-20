@@ -49,7 +49,7 @@ class SearchController extends Controller {
 				$results = \rifka\Arsip::search($query)->orderBy('relevance', 'DESC')->get();
 			}
 			elseif($searchType == 'alamat'){
-				$results = \rifka\IndexAlamat::search($query)->get();
+				$results = \rifka\IndexAlamat::search($query)->orderBy('relevance', 'DESC')->get();
 			}
 
 			return view($searchType.'.searchResults', array(
