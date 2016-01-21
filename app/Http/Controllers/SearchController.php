@@ -40,7 +40,7 @@ class SearchController extends Controller {
 		if($searchType = \Input::get('searchType')) {
 			
 			if($searchType == 'klien'){
-				$results = \rifka\Klien::search($query)->orderBy('relevance', 'DESC')->get();
+				$results = \rifka\Klien::search($query)->get();
 			}
 			elseif($searchType == 'kasus'){
 				$results = \rifka\Kasus::search($query)->orderBy('relevance', 'DESC')->get();

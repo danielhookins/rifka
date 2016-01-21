@@ -38,9 +38,9 @@ class Klien extends Model {
     protected $searchable = [
         'columns' => [
             'klien.klien_id' => 10,
-            'klien.nama_klien' => 10,
-            'klien.email' => 7,
-            'klien.no_telp' => 7
+            'klien.nama_klien' => 9,
+            'klien.email' => 3,
+            'klien.no_telp' => 3
         ]
     ];
 

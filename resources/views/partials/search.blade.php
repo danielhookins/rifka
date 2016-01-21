@@ -14,10 +14,10 @@
     <label for="searchType">Untuk</label>
     @if(isset($user) && $user->jenis != "Front Office")
       {!! Form::select('searchType', array(
-        'klien' =>  'Klien', 
-        'kasus' =>  'Kasus',
-        'arsip' =>  'Arsip',
-        'alamat' => 'Alamat'
+        'klien' =>  'Nama Klien', 
+        'alamat' => 'Alamat Klien',
+        'arsip' =>  'Nomor Arsip',
+        'kasus' =>  'Nomor Kasus'
       ), null, array(
         'class' => 'form-control',
         'id' => 'searchType'
