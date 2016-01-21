@@ -2,6 +2,8 @@
 
 use rifka\Laporan;
 use rifka\Library\InputUtils;
+use rifka\Library\AlamatUtils;
+use rifka\DWKabJenisUsia;
 use Carbon\Carbon;
 use rifka\Kasus;
 use rifka\BentukKekerasan;
@@ -109,90 +111,35 @@ class LaporanUtils
   }
 
 
-  /**
-   * Get the number of cases in each kabupaten
-   * @param int $year
-   * @param string $clientType {"Korban", "Pelaku"}
-   * @param string $addressType {"KTP", "Domisili", "Semua"}
-   */
-  public static function getKabupatenCount($year, $clientType, $addressType, $caseType = 'Semua', $age = 'Semua')
+  public static function getKabupatenCount($tahun) 
   {
-    // Get cases for the year
-    if (isset($caseType) && $caseType != "Semua")
-    {   
-        $kasus = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year)
-            ->where('jenis_kasus', $caseType);
-    } else {
-        $kasus = Kasus::where(DB::raw('YEAR(created_at)'), '=', $year);
+    $kabupaten2 = AlamatUtils::getKabupaten();
+
+    $data =  array();
+    foreach ($kabupaten2 as $kabupaten) {
+      $data[$kabupaten] = DWKabJenisUsia::where('tahun', $tahun)
+        ->where('kabupaten', $kabupaten)
+        ->count();
     }
 
-    // Get clients for the year
-    // clients must match $clientType
-    $test = $kasus->with('klienKasus')->get();
-    $korbanYear = array();
-    foreach ($test as $case)
-    {
-      foreach ($case->klienKasus as $klien)
-      {
-        if ($klien["pivot"]["jenis_klien"] == $clientType)
-        {
-            array_push($korbanYear, $klien);
-        }
-      }
+    return $data;
+  }
+
+  public static function getKasusKabupaten($tahun)
+  {
+    $rows = DWKabJenisUsia::where('tahun', 2015)
+      ->get();
+
+    $data = array();
+    foreach ($rows as $row) {
+      $data[] = array(
+                    'Kasus ID' => $row->kasus_id,
+                    'Nama Klien' => $row->nama_klien,
+                    'Kabupaten' => $row->kabupaten,
+                    'Jenis Kasus' => $row->jenis_kasus);
     }
 
-    // Get kabupaten for the year
-    // Kabupaten must match $addressType        
-    $kabupatenKorbanYear = array();
-    foreach ($korbanYear as $korban)
-    {
-        foreach ($korban->alamatKlien as $alamat)
-        {
-            $jenisAlamat = $alamat["pivot"]["jenis"];
-            
-            // Check address type matches
-            $continue = false;
-            if ($addressType == "Semua")
-            {
-              $continue = true;
-            }
-            elseif($addressType == "Domisili")
-            {
-                if($jenisAlamat == "Domisili"
-                    || $jenisAlamat == "KTPDomisili"
-                    || $jenisAlamat == null)
-                {
-                    $continue = true;
-                } else {
-                    $continue = false;
-                }
-            }
-            else if($addressType == "KTP")
-            {
-                if($jenisAlamat == "KTP"
-                    || $jenisAlamat == "KTP&Domisili"
-                    || $jenisAlamat == null)
-                {
-                    $continue = true;
-                } else {
-                    $continue = false;
-                }
-            }
-            if($continue)
-            {
-               if (isset($kabupatenKorbanYear[$alamat->kabupaten]))
-                {
-                    $kabupatenKorbanYear[$alamat->kabupaten]++;
-                }
-                else
-                {
-                    $kabupatenKorbanYear[$alamat->kabupaten] = 1;
-                } 
-            }
-
-        }
-    }
-    return $kabupatenKorbanYear;
+    return $data;
   }
 
 

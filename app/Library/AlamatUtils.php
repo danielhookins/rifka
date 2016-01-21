@@ -77,4 +77,15 @@ class AlamatUtils
 
 	}
 
+	public static function getKabupaten($provinsi = "Yogyakarta") 
+	{
+		$kabupaten = array();
+
+		if($provinsi == "Yogyakarta") {
+			$kabupaten = array("Bantul","Gunungkidul","Kulon Progo","Sleman","Yogyakarta");
+		}
+		
+		return $kabupaten;
+	}
+
 }

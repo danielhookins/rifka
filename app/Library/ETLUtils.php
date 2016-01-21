@@ -43,14 +43,7 @@ class ETLUtils
       ->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
       
     $rows
-      ->select(
-          'klien.klien_id',
-          'klien_kasus.jenis_klien',
-          'kasus.kasus_id',
-          'kasus.jenis_kasus',
-          DB::raw("YEAR(kasus.created_at) AS tahun"), 
-          'alamat.kabupaten', 
-          DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
+      ->select('klien.klien_id','klien.nama_klien','klien_kasus.jenis_klien','kasus.kasus_id','kasus.jenis_kasus',DB::raw("YEAR(kasus.created_at) AS tahun"), 'alamat.kabupaten', DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
 
     return $rows->get();
   }

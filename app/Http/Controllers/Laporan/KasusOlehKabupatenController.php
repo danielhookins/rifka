@@ -5,6 +5,7 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\LaporanController;
 use rifka\Library\LaporanUtils;
 use rifka\Library\InputUtils;
+use rifka\Library\AlamatUtils;
 use Carbon\Carbon;
 
 // Reports for Cases by Regency (Kabupaten) of Victim
@@ -50,17 +51,14 @@ class KasusOlehKabupatenController extends LaporanController
 
   public function daftar()
   {
-    $data = array();
-    $data["laporan"] = "kabupaten";
-    $data["title"] = "Kasus oleh Kabupaten";
-    $data["year"] = Carbon::today()->format('Y');
-    $data["headers"] = array('x', 'y', 'z');
-    $data["rows"] = array(['x' => 'x data', 'y' => 'y data', 'z' => 'z data']);
-    
-    //$rows = LaporanUtils::getAlamatKorban($year);
+    $daftar = array();
+    $daftar["laporan"] = "kabupaten";
+    $daftar["title"] = "Kasus oleh Kabupaten";
+    $daftar["year"] = Carbon::today()->format('Y');
+    $daftar["data"] = LaporanUtils::getKasusKabupaten($daftar["year"]);
 
     return view('laporan.daftar-simple')
-      ->with('data', $data);
+      ->with('daftar', $daftar);
   }
 
   public function updateDaftar()

@@ -33,14 +33,17 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 
-		$rows = ETLUtils::getKlien();
+		$rows = ETLUtils::getKabJenisUsia();
 
-		$model = "IndexKlien";
+		$model = "DWKabJenisUsia";
 		$attributes = array(
-							"klien_id",
-							"nama_klien",
-							"email",
-							"no_telp");
+							'kasus_id',
+							'klien_id',
+							'nama_klien',
+							'kabupaten',
+							'jenis_kasus',
+							'usia',
+							'tahun');
 
 		ETLUtils::initIndex($rows, $model, $attributes);
 
