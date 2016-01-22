@@ -127,7 +127,7 @@ class LaporanUtils
 
   public static function getKasusKabupaten($tahun)
   {
-    $rows = DWKabJenisUsia::where('tahun', 2015)
+    $rows = DWKabJenisUsia::where('tahun', $tahun)
       ->get();
 
     $data = array();
@@ -337,6 +337,13 @@ class LaporanUtils
         }
     }
     return $rows;
+  }
+
+  public static function fixIfEmpty($data) {
+    if (empty($data)) {
+      $data[] = ["Data" => "Belum ada data."];
+    }
+    return $data;
   }
 
 }

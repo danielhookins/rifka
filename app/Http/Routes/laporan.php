@@ -66,4 +66,4 @@
 		'uses' => 'Laporan\KasusOlehKabupatenController@daftar']);
 	Route::post('/laporan/listKasusOlehKabupaten', [
 		'as' => 'laporan.kabupaten.list.update',
-		'uses' => 'Laporan\KasusOlehKabupatenController@updateDaftar']);
+		'uses' => 'Laporan\KasusOlehKabupatenController@daftar']);

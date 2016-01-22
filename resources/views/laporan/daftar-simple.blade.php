@@ -27,6 +27,7 @@
 			</button>
 			<button class="btn btn-default" type="submit">Update</button>
 		</h3>
+		
 
 	{!! Form::close() !!}
 
