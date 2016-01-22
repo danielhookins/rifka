@@ -22,9 +22,34 @@ class KasusOlehKabupatenController extends LaporanController
     return "Kasus oleh Kabupaten";
   }
 
+  public function getControlFeatures()
+  {
+    $features["year"] = InputUtils::getUpdatedYear(\Input::get());
+    $features["dropdown"] = $this->getDropDownArray();
+    $features["kabupaten"] = InputUtils::getUpdatedSelect('kabupaten', \Input::get());
+    return $features; 
+  }
+
+  private function getDropDownArray()
+  {
+    $dropdownArray = array();
+    foreach (AlamatUtils::getKabupaten() as $kabupaten) {
+      $dropdownArray[$kabupaten] = $kabupaten;
+    }
+    return $dropdownArray;
+  }
+
   public function getDaftarData($year)
   {
-    return LaporanUtils::getKasusKabupaten($year);
+    $kabupaten = "";
+    
+    if (\Input::get() == null) {
+      $kabupaten = current($this->getDropDownArray());
+    } else {
+      $kabupaten = \Input::get('kabupaten');
+    }
+
+    return LaporanUtils::getKasusKabupaten($year, $kabupaten);
   }
 
   public function laporan()

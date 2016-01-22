@@ -125,20 +125,19 @@ class LaporanUtils
     return $data;
   }
 
-  public static function getKasusKabupaten($tahun)
+  public static function getKasusKabupaten($tahun, $kabupaten = null)
   {
-    $rows = DWKabJenisUsia::where('tahun', $tahun)
-      ->get();
+    $rows = DWKabJenisUsia::where('tahun', $tahun);
+    $rows = ($kabupaten != null) ? $rows->where('kabupaten', $kabupaten) : $rows;
 
     $data = array();
-    foreach ($rows as $row) {
+    foreach ($rows->get() as $row) {
       $data[] = array(
                     'Kasus ID' => $row->kasus_id,
                     'Nama Klien' => $row->nama_klien,
                     'Kabupaten' => $row->kabupaten,
                     'Jenis Kasus' => $row->jenis_kasus);
     }
-
     return $data;
   }
 

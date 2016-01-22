@@ -5,7 +5,7 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use rifka\Library\LaporanUtils;
 use rifka\Library\InputUtils;
-use Carbon\Carbon;
+
 
 class LaporanController extends Controller
 {
@@ -33,17 +33,10 @@ class LaporanController extends Controller
 
   public function daftar()
   {
-    if (\Input::get() != null)
-    {
-      $daftar["year"] = InputUtils::getUpdatedYear(\Input::get());
-    } else {
-      $daftar["year"] =  Carbon::today()->format('Y');
-    }
-    
     $daftar["laporan"] = $this->getLaporan();
     $daftar["title"] = $this->getTitle();
-    
-    $daftar["data"] = $this->getDaftarData($daftar["year"]);
+    $daftar["control"] = $this->getControlFeatures();
+    $daftar["data"] = $this->getDaftarData($daftar["control"]["year"]);
     $daftar["data"] = LaporanUtils::fixIfEmpty($daftar["data"]);
 
     return view('laporan.daftar-simple')->with('daftar', $daftar);

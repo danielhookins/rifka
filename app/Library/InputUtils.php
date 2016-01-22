@@ -1,5 +1,7 @@
 <?php 
 namespace rifka\Library;
+
+use Carbon\Carbon;
  
 /**
  *	A Library of Utilities for (User)Input-Specific Tasks.
@@ -93,8 +95,11 @@ class InputUtils
 	 * Get the new year from user input
 	 * @return int $year
 	 */
-	public static function getUpdatedYear($input)
+	public static function getUpdatedYear($input = null)
   {
+    
+    if ($input == null) return Carbon::today()->format('Y');
+
     $year = $input['year'];
         
     if(isset($input['change']))
@@ -109,6 +114,12 @@ class InputUtils
         }
     }
     return $year;
+  }
+
+  public static function getUpdatedSelect($selectType, $input = null)
+  {
+    if ($input == null) return null;
+    return $input[$selectType];
   }
 
 
