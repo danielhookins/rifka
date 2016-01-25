@@ -19,7 +19,7 @@ class ETLController extends Controller {
 							"kabupaten",
 							"provinsi");
 
-		ETLUtils::initIndex($rows, $model, $attributes);
+		ETLUtils::initTable($rows, $model, $attributes);
 
 		return 'done';
 	}
@@ -35,9 +35,38 @@ class ETLController extends Controller {
 							"email",
 							"no_telp");
 
-		ETLUtils::initIndex($rows, $model, $attributes);
+		ETLUtils::initTable($rows, $model, $attributes);
 
 		return 'done';
+	}
+
+	function initDWKorbanKasus() 
+	{
+
+		$rows = ETLUtils::getKorbanKasus();
+
+		$model = "DWKorbanKasus";
+		$attributes = array(
+							'kasus_id',
+							'klien_id',
+							'nama_klien',
+							'agama',
+		          'pendidikan',
+		          'pekerjaan',
+		          'penghasilan',
+		          'status_perkawinan',
+		          'kondisi_klien',
+							'kabupaten',
+							'jenis_kasus',
+							'hubungan',
+							'harapan_korban',
+							'usia',
+							'tahun');
+
+		ETLUtils::initTable($rows, $model, $attributes);
+
+		return 'done';
+	
 	}
 
 }

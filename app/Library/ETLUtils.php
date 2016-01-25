@@ -1,7 +1,6 @@
 <?php namespace rifka\Library;
 
 use DB;
-use rifka\DWKabJenisUsia;
  
 /**
  *  A Library of Utilities for ETL-Specific Tasks.
@@ -9,7 +8,7 @@ use rifka\DWKabJenisUsia;
 class ETLUtils
 {
 
-  public static function initIndex($rows, $model, $attributes) {        
+  public static function initTable($rows, $model, $attributes) {        
       
     $modelRef = 'rifka\\'.$model;
 
@@ -27,25 +26,10 @@ class ETLUtils
     }
   }
 
-  public static function getKabJenisUsia() 
+  public static function updateRow($model, $data)
   {
-    // Define cases variable
-    $rows = DB::table('kasus');
+    $modelRef = 'rifka\\'.$model;
 
-    // Select Statement
-    $rows
-      ->join('klien_kasus', function ($join) {
-            $join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id')
-                 ->where('klien_kasus.jenis_klien', '=', 'Korban');
-        })
-      ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id')
-      ->join('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id')
-      ->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
-      
-    $rows
-      ->select('klien.klien_id','klien.nama_klien','klien_kasus.jenis_klien','kasus.kasus_id','kasus.jenis_kasus',DB::raw("YEAR(kasus.created_at) AS tahun"), 'alamat.kabupaten', DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
-
-    return $rows->get();
   }
 
   public static function getAlamatKlien()
@@ -72,7 +56,6 @@ class ETLUtils
     // Define cases variable
     $rows = DB::table('kasus');
 
-    // Select Statement
     $rows
       ->join('klien_kasus', function ($join) {
             $join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id')

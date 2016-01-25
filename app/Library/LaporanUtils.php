@@ -3,7 +3,7 @@
 use rifka\Laporan;
 use rifka\Library\InputUtils;
 use rifka\Library\AlamatUtils;
-use rifka\DWKabJenisUsia;
+use rifka\DWKorbanKasus;
 use Carbon\Carbon;
 use rifka\Kasus;
 use rifka\BentukKekerasan;
@@ -117,7 +117,7 @@ class LaporanUtils
 
     $data =  array();
     foreach ($kabupaten2 as $kabupaten) {
-      $data[$kabupaten] = DWKabJenisUsia::where('tahun', $tahun)
+      $data[$kabupaten] = DWKorbanKasus::where('tahun', $tahun)
         ->where('kabupaten', $kabupaten)
         ->count();
     }
@@ -127,7 +127,7 @@ class LaporanUtils
 
   public static function getKasusKabupaten($tahun, $kabupaten = null)
   {
-    $rows = DWKabJenisUsia::where('tahun', $tahun);
+    $rows = DWKorbanKasus::where('tahun', $tahun);
     $rows = ($kabupaten != null) ? $rows->where('kabupaten', $kabupaten) : $rows;
 
     $data = array();

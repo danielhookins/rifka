@@ -33,29 +33,8 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 
-		$rows = ETLUtils::getKorbanKasus();
-
-		$model = "DWKorbanKasus";
-		$attributes = array(
-							'kasus_id',
-							'klien_id',
-							'nama_klien',
-							'agama',
-		          'pendidikan',
-		          'pekerjaan',
-		          'penghasilan',
-		          'status_perkawinan',
-		          'kondisi_klien',
-							'kabupaten',
-							'jenis_kasus',
-							'hubungan',
-							'harapan_korban',
-							'usia',
-							'tahun');
-
-		ETLUtils::initIndex($rows, $model, $attributes);
-
-		return 'done';
+		//
+		return "test";
 	
 	}
 
