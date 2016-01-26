@@ -33,7 +33,30 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 
-		//
+		$rows = ETLUtils::getIndexSearch();
+
+		$model = "IndexSearch";
+		$attributes = array(
+							'klien_id',
+		          'nama_klien',
+		          'kelamin',
+		          'email',
+		          'no_telp',
+		          'kasus_id',
+		          'jenis_kasus',
+		          'tahun', 
+		          'alamat_id',
+		          'kabupaten',
+		          'kecamatan', 
+		          'alamat',
+		          'arsip_id',
+		          'no_reg',
+		          'media');
+
+		ETLUtils::initTable($rows, $model, $attributes);
+
+		return 'done';
+
 		return "test";
 	
 	}

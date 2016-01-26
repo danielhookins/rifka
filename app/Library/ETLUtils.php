@@ -87,4 +87,37 @@ class ETLUtils
     return $rows->get();
   }
 
+  public static function getIndexSearch() 
+  {
+    // Define cases variable
+    $rows = DB::table('klien');
+
+    $rows
+      ->join('klien_kasus', 'klien.klien_id', '=', 'klien_kasus.klien_id')
+      ->join('kasus', 'klien_kasus.kasus_id', '=', 'kasus.kasus_id')
+      ->join('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id')
+      ->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id')
+      ->join('arsip', 'kasus.kasus_id', '=', 'arsip.kasus_id');
+      
+    $rows
+      ->select(
+          'klien.klien_id',
+          'klien.nama_klien',
+          'klien.kelamin',
+          'klien.email',
+          'klien.no_telp',
+          'kasus.kasus_id',
+          'kasus.jenis_kasus',
+          DB::raw("YEAR(kasus.created_at) AS tahun"), 
+          'alamat.alamat_id',
+          'alamat.kabupaten',
+          'alamat.kecamatan', 
+          'alamat.alamat',
+          'arsip.arsip_id',
+          'arsip.no_reg',
+          'arsip.media');
+
+    return $rows->get();
+  }
+
 } 
