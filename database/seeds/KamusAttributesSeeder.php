@@ -1982,10 +1982,10 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => 'TODO'
             ]);
 
-        // DW_Kab_Jenis_Usia
+        // DW_Korban_Kasus
         rifka\Kamus_attribute::create([
-            'table'         => 'DW_Kab_Jenis_Usia',
-            'name'          => 'kab_jenis_usia_id',
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'korban_kasus_id',
             'primary_key'   => True,
             'foreign_key'   => '',
             'type'          => 'increments',
@@ -1993,7 +1993,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '035'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'DW_Kab_Jenis_Usia',
+            'table'         => 'DW_Korban_Kasus',
             'name'          => 'kasus_id',
             'primary_key'   => False,
             'foreign_key'   => 'kasus_id',
@@ -2002,7 +2002,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '4256'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'DW_Kab_Jenis_Usia',
+            'table'         => 'DW_Korban_Kasus',
             'name'          => 'klien_id',
             'primary_key'   => False,
             'foreign_key'   => 'kasus_id',
@@ -2011,7 +2011,70 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '4256'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'DW_Kab_Jenis_Usia',
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'nama_klien',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The name of the client.',
+            'example'       => '"Maria Mawar"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'agama',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The religion of the client.',
+            'example'       => '"Islam"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'pendidikan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The clients highest level of education.',
+            'example'       => '"S1"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'pekerjaan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The clients job or work.',
+            'example'       => '"Ibu RT"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'penghasilan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The income of the client.',
+            'example'       => '"> 500.000rp"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'status_perkawinan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The marital status of the client.',
+            'example'       => '"Menikah"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'kondisi_klien',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The condition of the client.',
+            'example'       => '"Difabel"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
             'name'          => 'kabupaten',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -2020,7 +2083,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '"Sleman"'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'DW_Kab_Jenis_Usia',
+            'table'         => 'DW_Korban_Kasus',
             'name'          => 'jenis_kasus',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -2029,7 +2092,25 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '"KTI"'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'DW_Kab_Jenis_Usia',
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'hubungan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The relationship of the victim to the perpetrator.',
+            'example'       => '"Tetanga"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'harapan_korban',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The hopes or expectations of the client.',
+            'example'       => '"Cerai"'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
             'name'          => 'usia',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -2038,7 +2119,7 @@ class KamusAttributesSeeder extends Seeder {
             'example'       => '23'
             ]);
         rifka\Kamus_attribute::create([
-            'table'         => 'DW_Kab_Jenis_Usia',
+            'table'         => 'DW_Korban_Kasus',
             'name'          => 'tahun',
             'primary_key'   => False,
             'foreign_key'   => '',
@@ -2046,7 +2127,24 @@ class KamusAttributesSeeder extends Seeder {
             'description'   => 'The year the case was opened.',
             'example'       => '2003'
             ]);
-        
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'created_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time record was created.',
+            'example'       => 'TODO'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'DW_Korban_Kasus',
+            'name'          => 'updated_at',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'timestamp',
+            'description'   => 'date and time record was updated.',
+            'example'       => 'TODO'
+            ]);
 
     }
 

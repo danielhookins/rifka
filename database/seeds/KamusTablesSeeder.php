@@ -196,9 +196,9 @@ class KamusTablesSeeder extends Seeder {
 
         // Untuk Data Warehouse
         rifka\Kamus_table::create([
-            'name'          => 'DW_Kab_Jenis_Usia',
+            'name'          => 'DW_Korban_Kasus',
             'type'          => 'Data Warehouse',
-            'description'   => 'The number of cases by Kabupaten, Case Type and Age.'
+            'description'   => 'A collection of information about victims and their case.'
             ]);
 
     }

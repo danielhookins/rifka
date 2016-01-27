@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDwKabJenisUsiaTable extends Migration {
+class CreateDWKorbanKasusTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,13 +12,22 @@ class CreateDwKabJenisUsiaTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('dw_kab_jenis_usia', function(Blueprint $table)
+		Schema::create('dw_korban_kasus', function(Blueprint $table)
 		{
-			$table->increments('kab_jenis_usia_id');
+			$table->increments('korban_kasus_id');
 			$table->integer('kasus_id')->nullable()->unsigned();
 			$table->integer('klien_id')->nullable()->unsigned();
+			$table->string('nama_klien')->nullable();
+			$table->string('agama')->nullable();
+			$table->string('pendidikan')->nullable();
+			$table->string('pekerjaan')->nullable();
+			$table->string('penghasilan')->nullable();
+			$table->string('status_perkawinan')->nullable();
+			$table->string('kondisi_klien')->nullable();
 			$table->string('kabupaten')->nullable();
 			$table->string('jenis_kasus')->nullable();
+			$table->string('hubungan')->nullable();
+			$table->string('harapan_korban')->nullable();
 			$table->integer('usia')->nullable();
 			$table->integer('tahun')->nullable();
 			$table->timestamp('created_at')->nullable();
@@ -33,7 +42,7 @@ class CreateDwKabJenisUsiaTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('dw_kab_jenis_usia');
+		Schema::drop('dw_korban_kasus');
 	}
 
 }
