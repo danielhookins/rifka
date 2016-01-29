@@ -36,35 +36,44 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 
-		$data["jenis_klien"] = "Pelaku";
-		$data["kasus_id"] = "2";
-		$data["klien_id"] = "1";
-		
+		$klien_id = 1;
 
-		// Update Klien Kasus
-		$klienKasus = KlienKasus::where('klien_id', '=', $data["klien_id"])
-			->where('kasus_id', '=', $data["kasus_id"])
-    	->update(['jenis_klien' => $data["jenis_klien"]]);
-		
-    // Update Data Warehouse
-		$dwCheck = DB::table('dw_korban_kasus')
-											->where('kasus_id', '=', $data["kasus_id"])
-        							->where('klien_id', '=', $data["klien_id"])
-        							->count();
+		// Get Query
+    $query = DB::table('kasus');
 
-		// Add new victim to DW Korban Kasus
-		if(($dwCheck === 0) && ($data["jenis_klien"] == "Korban")) {
-			ETLUtils::addVictim($data["klien_id"]);
-		}
+    $query
+      ->join('klien_kasus', function ($join) {
+            $join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id')
+                 ->where('klien_kasus.jenis_klien', '=', 'Korban');
+        })
+      ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id')
+      ->leftJoin('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id')
+      ->leftJoin('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
 
-		// Remove client from DW Korban Kasus
-		if(($dwCheck !== 0) && ($data["jenis_klien"] == "Pelaku")) {
-			$deletedRows = DWKorbanKasus::where('kasus_id', '=', $data["kasus_id"])
-								->where('klien_id', '=', $data["klien_id"])
-								->delete();
-		}
+    $query
+      ->select(
+          'klien.klien_id',
+          'klien.nama_klien',
+          'klien.agama',
+          'klien.pendidikan',
+          'klien.pekerjaan',
+          'klien.penghasilan',
+          'klien.status_perkawinan',
+          'klien.kondisi_klien',
+          'klien_kasus.jenis_klien',
+          'kasus.kasus_id',
+          'kasus.jenis_kasus',
+          'kasus.hubungan',
+          'kasus.harapan_korban',
+          DB::raw("YEAR(kasus.created_at) AS tahun"), 
+          'alamat.kabupaten', 
+          DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
 
-		return "test";
+    // Use query results to add victim to DW
+    $results = $query->get();
+    dd($results);
+
+    return 'test';
 	
 	}
 

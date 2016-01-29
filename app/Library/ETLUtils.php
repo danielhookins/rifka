@@ -121,7 +121,7 @@ class ETLUtils
     return $rows->get();
   }
 
-  public static function addVictim($klien_id)
+  public static function addVictim($klien_id, $kasus_id)
   {
     // TODO: refactor DRY
     // modify so Where clases can easily be added to 
@@ -136,9 +136,9 @@ class ETLUtils
                  ->where('klien_kasus.jenis_klien', '=', 'Korban');
         })
       ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id')
-      ->join('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id')
-      ->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
-      
+      ->leftJoin('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id')
+      ->leftJoin('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
+
     $query
       ->select(
           'klien.klien_id',
@@ -158,7 +158,8 @@ class ETLUtils
           'alamat.kabupaten', 
           DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
 
-    $query->where('klien.klien_id', '=', $klien_id);
+    $query->where('klien.klien_id', '=', $klien_id)
+          ->where('kasus.kasus_id', '=', $kasus_id);
 
     // Use query results to add victim to DW
     $results = $query->get();

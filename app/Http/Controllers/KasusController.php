@@ -435,7 +435,7 @@ class KasusController extends Controller {
 
 					// Add new victim to DW Korban Kasus
 					if(($dwCheck === 0) && ($data["jenis_klien"] == "Korban")) {
-						ETLUtils::addVictim($data["klien_id"]);
+						ETLUtils::addVictim($data["klien_id"], $data["kasus_id"]);
 					}
 
 					// Remove client from DW Korban Kasus

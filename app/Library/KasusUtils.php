@@ -69,7 +69,7 @@ class KasusUtils
 
 					// Add Victim to the Korban Kasus Data Warehouse
 					// TODO: create a listener to do this automatically
-					ETLUtils::addVictim($korban->klien_id);
+					ETLUtils::addVictim($korban->klien_id, $kasus_id);
 
 				}
 			}
