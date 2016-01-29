@@ -13,10 +13,7 @@ function updateJenisKlienSelected(klien_id, kasus_id) {
 	$.ajax({
 		type: "POST",
 		url: window.location + '/autoUpdate',
-		data: dataString,
-		success: function(data) {
-			console.log(data);
-		}
+		data: dataString
 	});
 
 };

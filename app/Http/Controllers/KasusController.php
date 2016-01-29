@@ -12,9 +12,11 @@ use rifka\KlienKasus;
 use rifka\KonselorKasus;
 use rifka\BentukKekerasan;
 use rifka\LayananDibutuhkan;
+use rifka\DWKorbanKasus;
 use rifka\Library\ExcelUtils;
 use rifka\Library\KasusUtils;
 use rifka\Library\AIUtils;
+use rifka\Library\ETLUtils;
 
 
 class KasusController extends Controller {
@@ -369,36 +371,6 @@ class KasusController extends Controller {
 	}
 
 
-	public function autoUpdate(Request $request)
-	{
-		if($request->ajax()){
-			$data = \Input::all();
-
-			if(isset($data["table"]))
-			{
-				
-				// Store new entry in Klien Kasus Table
-				if($data["table"] == "klien_kasus")
-				{
-
-					$klienKasus = KlienKasus::where('klien_id', (int) $data["klien_id"])
-						->where('kasus_id', (int) $data["kasus_id"])
-          	->update(['jenis_klien' => $data["jenis_klien"]]);
-
-					return var_dump($klienKasus);
-				}
-			}
-			
-
-			return 'no table to update';
-		}
-		else
-		{
-			return 'no ajax';
-		}
-	}
-
-
 	public function deleteKlien2Kasus($kasus_id) 
 	{
 		
@@ -436,6 +408,51 @@ class KasusController extends Controller {
 	public function exportXLS($kasus_id)
 	{
 		return ExcelUtils::exportCaseInfoXLS($kasus_id);
+	}
+
+	
+	// AJAX auto update type of client
+	public function autoUpdate(Request $request)
+	{
+		if($request->ajax()){
+			$data = \Input::all();
+
+			if(isset($data["table"]))
+			{
+				// Store new entry in Klien Kasus Table
+				if($data["table"] == "klien_kasus")
+				{
+					// Update Klien Kasus
+					$klienKasus = KlienKasus::where('klien_id', '=', $data["klien_id"])
+						->where('kasus_id', '=', $data["kasus_id"])
+			    	->update(['jenis_klien' => $data["jenis_klien"]]);
+					
+			    // Update Data Warehouse
+					$dwCheck = DB::table('dw_korban_kasus')
+														->where('kasus_id', '=', $data["kasus_id"])
+			        							->where('klien_id', '=', $data["klien_id"])
+			        							->count();
+
+					// Add new victim to DW Korban Kasus
+					if(($dwCheck === 0) && ($data["jenis_klien"] == "Korban")) {
+						ETLUtils::addVictim($data["klien_id"]);
+					}
+
+					// Remove client from DW Korban Kasus
+					if(($dwCheck !== 0) && ($data["jenis_klien"] != "Korban")) {
+						$deletedRows = DB::table('dw_korban_kasus')
+														->where('kasus_id', '=', $data["kasus_id"])
+			        							->where('klien_id', '=', $data["klien_id"])
+			        							->delete();
+					}
+
+				} // Store new entry
+
+			}
+
+		}
+
+	return;
 	}
 
 }

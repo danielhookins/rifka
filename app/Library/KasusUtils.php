@@ -4,6 +4,7 @@ use DB;
 use rifka\Kasus;
 use rifka\KlienKasus;
 use rifka\Library\InputUtils;
+use rifka\Library\ETLUtils;
 
  
 /**
@@ -65,6 +66,11 @@ class KasusUtils
 						'klien_id' 		=> $korban->klien_id,
 						'kasus_id' 		=> $kasus_id,
 						'jenis_klien' 	=> 'Korban']);
+
+					// Add Victim to the Korban Kasus Data Warehouse
+					// TODO: create a listener to do this automatically
+					ETLUtils::addVictim($korban->klien_id);
+
 				}
 			}
 

@@ -4,6 +4,9 @@ use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use rifka\Library\ETLUtils;
+use rifka\DWKorbanKasus;
+use rifka\KlienKasus;
+use DB;
 
 class DeveloperController extends Controller {
 
@@ -33,29 +36,33 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 
-		$rows = ETLUtils::getIndexSearch();
+		$data["jenis_klien"] = "Pelaku";
+		$data["kasus_id"] = "2";
+		$data["klien_id"] = "1";
+		
 
-		$model = "IndexSearch";
-		$attributes = array(
-							'klien_id',
-		          'nama_klien',
-		          'kelamin',
-		          'email',
-		          'no_telp',
-		          'kasus_id',
-		          'jenis_kasus',
-		          'tahun', 
-		          'alamat_id',
-		          'kabupaten',
-		          'kecamatan', 
-		          'alamat',
-		          'arsip_id',
-		          'no_reg',
-		          'media');
+		// Update Klien Kasus
+		$klienKasus = KlienKasus::where('klien_id', '=', $data["klien_id"])
+			->where('kasus_id', '=', $data["kasus_id"])
+    	->update(['jenis_klien' => $data["jenis_klien"]]);
+		
+    // Update Data Warehouse
+		$dwCheck = DB::table('dw_korban_kasus')
+											->where('kasus_id', '=', $data["kasus_id"])
+        							->where('klien_id', '=', $data["klien_id"])
+        							->count();
 
-		ETLUtils::initTable($rows, $model, $attributes);
+		// Add new victim to DW Korban Kasus
+		if(($dwCheck === 0) && ($data["jenis_klien"] == "Korban")) {
+			ETLUtils::addVictim($data["klien_id"]);
+		}
 
-		return 'done';
+		// Remove client from DW Korban Kasus
+		if(($dwCheck !== 0) && ($data["jenis_klien"] == "Pelaku")) {
+			$deletedRows = DWKorbanKasus::where('kasus_id', '=', $data["kasus_id"])
+								->where('klien_id', '=', $data["klien_id"])
+								->delete();
+		}
 
 		return "test";
 	

@@ -7,6 +7,11 @@ use rifka\Library\ETLUtils;
 
 class ETLController extends Controller {
 
+	function init() {
+		$initType = \Input::get('initType');
+		return $this->$initType();
+	}
+	
 	function initIndexSearch() 
 	{
 		$rows = ETLUtils::getIndexSearch();
