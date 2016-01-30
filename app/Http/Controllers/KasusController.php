@@ -154,24 +154,18 @@ class KasusController extends Controller {
 	/**
 	 *	Remove the specified case from the database.
 	 *	This also removes the related entries in the klien_kasus (client_case) table.
+	 *	And the related entries form the Data Warehouse
 	 *
 	 * @param  int  $kasus_id
 	 * @return redirect home with success or return Exception $e
 	 */
 	public function destroy($kasus_id)
 	{
-		$kasus = Kasus::findOrFail($kasus_id);
-		$klienKasus2 = KlienKasus::where('kasus_id', $kasus_id);
-		
 		try {
 
-			foreach ($klienKasus2->select('kasus_id')->get() as $klienKasus)
-			{
-				$klien_id = $klienKasus->klien_id; // Save id for logging
-				$klienKasus->delete();
-			}
-
-			$kasus->delete();
+			$deletedKasus = Kasus::findOrFail($kasus_id)->delete();
+			$deletedKlienKasus = KlienKasus::where('kasus_id', $kasus_id)->delete();
+			$deletedDataWarehouse = DWKorbanKasus::where('kasus_id', $kasus_id)->delete();
 
 			return redirect()->route('home')
 				->with('success', 'Kasus #'.$kasus_id.' has been deleted.');
@@ -378,7 +372,12 @@ class KasusController extends Controller {
 		{
 			foreach($toDelete as $klien_id)
 			{
+				// Delete from klien kasus
 				$deleted = KlienKasus::where('klien_id', $klien_id)
+						->where('kasus_id', $kasus_id)->delete();
+
+				// Remove from Data Warehouse
+				$remove = DWKorbanKasus::where('klien_id', $klien_id)
 						->where('kasus_id', $kasus_id)->delete();
 			}
 		}
