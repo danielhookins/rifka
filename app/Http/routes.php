@@ -25,3 +25,4 @@
 	require_once('Routes/user.php');
 	require_once('Routes/developer.php');
 	require_once('Routes/laporan.php');
+	require_once('Routes/ETL.php');

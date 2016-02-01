@@ -53,8 +53,16 @@ class LaporanController extends Controller
 
   public function lihat()
   {
-    dd(\Input::get());
-    return view('laporan.lihat');
+    $data["tahun"] = \Input::get("tahun");
+
+    $data["selected"] = LaporanUtils::getSelected(\Input::get());
+    $data["selected"]["kasus_id"] = "Kasus ID";
+    $data["selected"]["klien_id"] = "Klien ID";
+
+    $data["rows"] = LaporanUtils::getSelectedRows($data["selected"], $data["tahun"]);
+
+    return view('laporan.lihat')
+      ->with('data', $data);
   }
 
 }

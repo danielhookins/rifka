@@ -2,6 +2,9 @@
 
 	// REPORT ROUTES
 	
+	/* *** Temporarily disable other reports ***
+		 *****************************************
+
 	Route::get('/laporan', [
 		'as' => 'laporan.index', 
 		'uses' => 'LaporanController@index']);
@@ -74,3 +77,16 @@
 	Route::post('/laporan/listKasusOlehKabupaten', [
 		'as' => 'laporan.kabupaten.list.update',
 		'uses' => 'Laporan\KasusOlehKabupatenController@daftar']);
+*/
+
+	Route::get('/laporan/index', [
+		'as' => 'laporan.index', 
+		'uses' => 'LaporanController@membuat']);
+
+	Route::get('/laporan', [
+		'as' => 'laporan.membuat', 
+		'uses' => 'LaporanController@membuat']);
+
+	Route::post('/laporan', [
+		'as' => 'laporan.lihat', 
+		'uses' => 'LaporanController@lihat']);

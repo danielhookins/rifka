@@ -1,11 +1,5 @@
 @extends('layouts.klien')
 
-@section('menu')
-
-	@include('laporan.partials.menu-list')
-
-@endsection
-
 @section('content')
 
 	{!! Form::open(array('route' => array('laporan.lihat'), 
@@ -25,27 +19,32 @@
 				<div class="form-group">
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('jenis_kasus', 'jenis_kasus', False) !!} Jenis Kasus
+							{!! Form::checkbox('nama_klien', 'Nama Klien', False) !!} Nama Klien
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('usia', 'usia', False) !!} Usia
+							{!! Form::checkbox('jenis_kasus', 'Jenis Kasus', False) !!} Jenis Kasus
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('kabupaten', 'kabupaten', False) !!} Kabupaten
+							{!! Form::checkbox('usia', 'Usia', False) !!} Usia
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('pendidikan', 'pendidikan', False) !!} Pendidikan
+							{!! Form::checkbox('kabupaten', 'Kabupaten', False) !!} Kabupaten
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('pekerjaan', 'pekerjaan', False) !!} Pekerjaan
+							{!! Form::checkbox('pendidikan', 'Pendidikan', False) !!} Pendidikan
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							{!! Form::checkbox('pekerjaan', 'Pekerjaan', False) !!} Pekerjaan
 						</label>
 					</div>
 				</div>
@@ -55,27 +54,27 @@
 				<div class="form-group">
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('agama', 'agama', False) !!} Agama
+							{!! Form::checkbox('agama', 'Agama', False) !!} Agama
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('penghasilan', 'penghasilan', False) !!} Penghasilan
+							{!! Form::checkbox('penghasilan', 'Penghasilan', False) !!} Penghasilan
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('status_perkawinan', 'status_perkawinan', False) !!} Status Perkawinan
+							{!! Form::checkbox('status_perkawinan', 'Status Perkawinan', False) !!} Status Perkawinan
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('hubungan', 'hubungan', False) !!} Hubungan
+							{!! Form::checkbox('hubungan', 'Hubungan', False) !!} Hubungan
 						</label>
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('kondisi_klien', 'kondisi_klien', False) !!} Kondisi Klien
+							{!! Form::checkbox('kondisi_klien', 'Kondisi Klien', False) !!} Kondisi Klien
 						</label>
 					</div>
 				</div>

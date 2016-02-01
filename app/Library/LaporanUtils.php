@@ -345,4 +345,17 @@ class LaporanUtils
     return $data;
   }
 
+  public static function getSelected($input)
+  {
+    return InputUtils::cleanInput($input, array("_method","_token", "tahun"));
+  }
+
+  public static function getSelectedRows($selected, $tahun)
+  {
+    $rows = DWKorbanKasus::where("tahun", $tahun);
+    $rows->select(array_keys($selected));
+
+    return $rows->get();
+  }
+
 }
