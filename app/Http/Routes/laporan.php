@@ -7,6 +7,13 @@
 		'uses' => 'LaporanController@index']);
 
 	
+	Route::get('/laporan/membuat', [
+		'as' => 'laporan.membuat', 
+		'uses' => 'LaporanController@membuat']);
+	Route::post('/laporan/lihat', [
+		'as' => 'laporan.lihat', 
+		'uses' => 'LaporanController@lihat']);
+
 	// Cases by Case Type
 	Route::get('/laporan/kasusOlehJenis', [
 		'as' => 'laporan.jenis-kasus', 
