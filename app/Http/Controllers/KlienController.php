@@ -11,6 +11,7 @@ use rifka\KlienKasus;
 use rifka\Library\ExcelUtils;
 use rifka\Library\AlamatUtils;
 use rifka\Library\KlienUtils;
+use rifka\DWKorbanKasus;
 
 class KlienController extends Controller {
 
@@ -292,9 +293,9 @@ class KlienController extends Controller {
 				$klienKasus->delete();
 		}
 		
+		// Delete client and remove from Data Warehouse
 		$klien->delete();
-		// TODO: Make sure all the associated things are deleted too
-		// (eg. the clients address)
+		$deletedDataWarehouse = DWKorbanKasus::where('klien_id', $klien_id)->delete();
 
 		return redirect()->route('home')
 			->with('success', 'Klien #'.$klien_id.' has been deleted.');
