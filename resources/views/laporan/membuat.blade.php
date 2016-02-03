@@ -19,6 +19,16 @@
 				<div class="form-group">
 					<div class="checkbox">
 						<label>
+							{!! Form::checkbox('kasus_id', 'Kasus ID', False) !!} Kasus ID
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							{!! Form::checkbox('klien_id', 'Klien ID', False) !!} Klien ID
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
 							{!! Form::checkbox('nama_klien', 'Nama Klien', False) !!} Nama Klien
 						</label>
 					</div>
@@ -79,9 +89,32 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> <!-- row -->
 
+		<div class="row">
+			<h3>Pilihan</h3>
+			<div class="form-inline">
+        {!! Form::label('group_by', 'Memperlihatkan', array('class' => 'strongLabel')) !!}
+        {!! Form::select('group_by', array(
+          'semua' =>  'Semua Kasus',
+          'jenis_kasus' => 'Jumlah Jenis Kasus',
+          'usia' => 'Jumlah Usia',
+          'kabupaten' => 'Jumlah Kabupaten',
+          'pendidikan' => 'Jumlah Pendidikan',
+          'pekerjaan' => 'Jumlah Pekerjaan',
+          'panghasilan' => 'Jumlah Penghasilan',
+          'agama' => 'Jumlah Agama',
+          'status_perkawinan' => 'Jumlah Status Perkawinan',
+          'hubungan' => 'Jumlah Hubungan',
+          'kondisi_klien' => 'Jumlah Kondisi Klien'
+        ), null, array('class' => 'form-control'))!!}
+      </div>
+		</div> <!-- row -->
+
+		<div class="row">
+			<br />
 			<button class="btn btn-primary" type="submit">Membuat Laporan</button>
+		</div> <!-- row -->
 	
 	{!! Form::close() !!}
 

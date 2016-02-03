@@ -347,15 +347,53 @@ class LaporanUtils
 
   public static function getSelected($input)
   {
-    return InputUtils::cleanInput($input, array("_method","_token", "tahun"));
+    return InputUtils::cleanInput($input, array("_method","_token", "tahun", "group_by"));
   }
 
-  public static function getSelectedRows($selected, $tahun)
+  public static function getSelectedRows($selected, $tahun, $group_by)
   {
+    // Where
     $rows = DWKorbanKasus::where("tahun", $tahun);
-    $rows->select(array_keys($selected));
+    
+    // Select
+    $select = array_keys($selected);
+    if($group_by != "semua") {
+
+      if (in_array($group_by, $select)) {
+        unset($select[$group_by]);
+      }
+      $custom = DB::raw("COUNT(".$group_by.") AS jumlah");
+      array_push($select, $custom);
+    }
+    $rows->select($select);
+
+    // Group By
+    if($group_by != "semua") {
+      $group = array();
+      $group[] = $group_by;
+      foreach($selected as $key => $value) {
+        if (!in_array($key, $group)) {
+          $group[] = $key;
+        }
+      }
+      $rows->groupBy($group);
+    } else {
+      $rows->groupBy("kasus_id");
+    }
 
     return $rows->get();
+
+/*
+Select
+  usia,
+  agama,
+  kabupaten,
+  count(kabupaten) as Jumlah
+From dw_korban_kasus
+Where tahun = 2016
+Group By kabupaten, agama, usia;
+*/
+
   }
 
 }

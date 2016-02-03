@@ -51,18 +51,27 @@ class LaporanController extends Controller
       ->with('data', $data);
   }
 
-  public function lihat()
+  public function lihat(Request $request)
   {
+    $this->validate($request, [
+        'tahun' => 'required',
+    ]);
+
+    $groupBy = \Input::get("group_by");
     $data["tahun"] = \Input::get("tahun");
 
     $data["selected"] = LaporanUtils::getSelected(\Input::get());
-    $data["selected"]["kasus_id"] = "Kasus ID";
-    $data["selected"]["klien_id"] = "Klien ID";
+    if($data["selected"] == null) return redirect()->route('laporan.membuat');
 
-    $data["rows"] = LaporanUtils::getSelectedRows($data["selected"], $data["tahun"]);
+    if(isset($groupBy) && $groupBy != "semua"){
+      $data["selected"][$groupBy] = "Kumpulan (".$groupBy.")";
+    }
+
+    $data["rows"] = LaporanUtils::getSelectedRows($data["selected"], $data["tahun"], $groupBy);
 
     return view('laporan.lihat')
-      ->with('data', $data);
+      ->with('data', $data)
+      ->with('groupBy', $groupBy);
   }
 
 }
