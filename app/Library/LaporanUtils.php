@@ -382,18 +382,6 @@ class LaporanUtils
     }
 
     return $rows->get();
-
-/*
-Select
-  usia,
-  agama,
-  kabupaten,
-  count(kabupaten) as Jumlah
-From dw_korban_kasus
-Where tahun = 2016
-Group By kabupaten, agama, usia;
-*/
-
   }
 
 }

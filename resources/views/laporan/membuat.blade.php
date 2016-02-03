@@ -102,7 +102,7 @@
           'kabupaten' => 'Jumlah Kabupaten',
           'pendidikan' => 'Jumlah Pendidikan',
           'pekerjaan' => 'Jumlah Pekerjaan',
-          'panghasilan' => 'Jumlah Penghasilan',
+          'penghasilan' => 'Jumlah Penghasilan',
           'agama' => 'Jumlah Agama',
           'status_perkawinan' => 'Jumlah Status Perkawinan',
           'hubungan' => 'Jumlah Hubungan',
