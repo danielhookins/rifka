@@ -1,8 +1,9 @@
-@extends('layouts.klien')
+@extends('layouts.laporan')
 
 @section('content')
 
 	<h2>Laporan</h2>
+	<p>Laporan {!! implode(", ", array_keys($data["selected"])) !!} untuk tahun {{ $data["tahun"] }}.</p>
 
 	<table id="datatable" class="table table-hover table-condensed">
 		<thead>
