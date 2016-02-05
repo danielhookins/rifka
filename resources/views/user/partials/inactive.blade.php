@@ -35,6 +35,7 @@
             'Konselor' 			=> 'Konselor',
             'Manager'  			=> 'Manager',
             'Front Office'	=> 'Front Office',
+            'Media'         => 'Media',
             'Developer'     => 'Developer'
           ), null, array('class' => 'form-control')) !!}</td>
 			<td>
