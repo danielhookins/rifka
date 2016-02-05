@@ -52,11 +52,6 @@
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('tanggal_lahir', 'Tanggal Lahir', False) !!} Tanggal Lahir
-						</label>
-					</div>
-					<div class="checkbox">
-						<label>
 							{!! Form::checkbox('kabupaten', 'Kabupaten', False) !!} Kabupaten
 						</label>
 					</div>
