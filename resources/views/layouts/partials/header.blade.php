@@ -41,8 +41,10 @@
     
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        @if(isset($user) && $user->jenis != "")
-        	@include('layouts.partials.nav-'.str_replace(' ', '', $user->jenis))  
+        @if($user != null)
+        	@include('layouts.partials.nav-'.str_replace(' ', '', $user->jenis))
+        @else
+        	@include('layouts.partials.nav-guest')
       	@endif
       </ul>
 

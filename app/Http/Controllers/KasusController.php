@@ -30,7 +30,7 @@ class KasusController extends Controller {
 	{
 		$this->middleware('auth');
 		$this->middleware('active');
-		$this->middleware('userType:Developer,Manager,Konselor,Media');
+		$this->middleware('userType:Developer,Manager,Konselor');
 	}
 
 	

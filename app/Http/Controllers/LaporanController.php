@@ -6,6 +6,7 @@ use rifka\Http\Controllers\Controller;
 use rifka\Library\LaporanUtils;
 use rifka\Library\InputUtils;
 use Carbon\Carbon;
+use Auth;
 
 class LaporanController extends Controller
 {
@@ -15,6 +16,10 @@ class LaporanController extends Controller
     $this->middleware('auth');
     $this->middleware('active');
     $this->middleware('userType:Developer,Manager,Konselor,Media');
+
+    // Ensure Security Restrictions for Media Division
+    //if(Auth::user()->jenis == "Media" && (\Input::get('klien_id')) != null) return;
+
   }
 
   // Overview page
@@ -39,11 +44,7 @@ class LaporanController extends Controller
 
   public function membuat()
   {
-    $data = array();
-    $data["thisYear"] = Carbon::today()->format('Y');
-
-    return view('laporan.membuat')
-      ->with('data', $data);
+    return view('laporan.membuat');
   }
 
   public function lihat(Request $request)

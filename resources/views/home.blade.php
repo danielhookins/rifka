@@ -11,7 +11,9 @@
 		</div>
 	@endif
 
-	@if($user->jenis != "Front Office")
+	@include('home.'.str_replace(' ', '', strtolower($user->jenis)))
+
+	@if($user->jenis != "Front Office" && $user->jenis != "Media")
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
 				@include('partials.search')
@@ -25,11 +27,17 @@
 				@include('kasus.partials.new')
 			</div>
 		</div>
-	@else
+	@elseif($user->jenis != "Media")
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
 				@include('partials.search')
 				@include('klien.partials.new')
+			</div>
+		</div>
+	@else
+		<div class="row">
+			<div class="col-xs-12">
+				@include('laporan.partials.form-membuat')
 			</div>
 		</div>
 	@endif
