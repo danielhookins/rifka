@@ -8,20 +8,6 @@ use Illuminate\Http\Request;
 class LatarKeluargaController extends Controller {
 
 	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		// Only allow authenticated users
-		$this->middleware('auth');
-		
-		// Only allow active users
-		$this->middleware('active');
-	}
-
-	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response

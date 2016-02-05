@@ -15,14 +15,8 @@ class CaseDetailController extends Controller {
 	 */
 	public function __construct()
 	{
-		// Only allow authenticated users
 		$this->middleware('auth');
-		
-		// Only allow active users
 		$this->middleware('active');
-
-		// Grant access to counsellors, managers and developers
-		$this->middleware('userType:Konselor');
 	}
 
 	/**

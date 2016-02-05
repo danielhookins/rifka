@@ -6,6 +6,9 @@ This system is designed to handle case-related information for Rifka Annisa - a 
 For instructions on how to install this application, please visit the Wiki:
 [Basic Install Guide](https://github.com/danielhookins/rifka/wiki/Install-Guide)
 
+### Requirements
+This project requires PHP 5.6+
+
 ## Developer Information
 Developed by Daniel Hookins as part of an AVI (Australian Volunteers International) assignment.
 

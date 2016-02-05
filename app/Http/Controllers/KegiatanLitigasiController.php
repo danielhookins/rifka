@@ -10,23 +10,6 @@ use rifka\Library\ResourceUtils;
 class KegiatanLitigasiController extends Controller {
 
 	/**
-	 * Create a new Kegian Litigasi instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		// Only allow authenticated users
-		$this->middleware('auth');
-		
-		// Only allow active users
-		$this->middleware('active');
-
-		// Grant access to counsellors, managers and developers
-		$this->middleware('userType:Konselor');
-	}
-
-	/**
 	 * Store a newly created Kegian Litigasi in the database.
 	 *
 	 * @param $kasus_id

@@ -6,51 +6,19 @@ use Closure;
 
 class CheckUserType
 {
+
     /**
-     * Check if the user matches the given user type:
-     * Deny or Accept access request depending on mode variable
-     * (default is to accept request).
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  string $checkType
-     * @param  string $mode
-     * @return mixed
+     * Take an array of allowed user types
+     * NOTE: Php v.5.6 required for this function.
      */
-    public function handle($request, Closure $next, $checkType, $mode = "Accept")
+    public function handle($request, Closure $next, ...$params)
     {
         $userType = $request->user()->jenis;
-
-        if ($mode == "Deny")
-        {
-            
-            // Deny access to the specified usertype
-            if ($userType == $checkType)
-            {
-                return response('Unauthorized.', 401);
-            } 
-            // Accept access request from all other usertypes
-            else
-            {
-                return $next($request);
-            }
-        }
-        else if ($mode == "Accept")
-        {
-
-            // Grant access to all Managers, Developers
-            // and specified type
-            if($userType == "Manager" || 
-            $userType == "Developer" ||
-            $userType == $checkType)
-            {
-                return $next($request);
-            }
-            else
-            {
-                return response('Unauthorized.', 401);
-            }
-        }
         
+        // Correct User Type
+        if (in_array($userType, $params)) return $next($request);
+
+        // Incorrect User Type
+        return response('Unauthorized.', 401);
     }
 }

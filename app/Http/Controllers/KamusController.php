@@ -14,11 +14,9 @@ class KamusController extends Controller {
 	 */
 	public function __construct()
 	{
-		// Only allow authenticated users
 		$this->middleware('auth');
-		
-		// Only allow active users
 		$this->middleware('active');
+		$this->middleware('userType:Developer');
 	}
 	
 	//

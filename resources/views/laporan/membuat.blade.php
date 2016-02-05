@@ -47,7 +47,12 @@
 					</div>
 					<div class="checkbox">
 						<label>
-							{!! Form::checkbox('usia', 'Usia', False) !!} Usia
+							{!! Form::checkbox('usia', 'Usia (Kasus dibuka)', False) !!} Usia (kasus dibuka)
+						</label>
+					</div>
+					<div class="checkbox">
+						<label>
+							{!! Form::checkbox('tanggal_lahir', 'Tanggal Lahir', False) !!} Tanggal Lahir
 						</label>
 					</div>
 					<div class="checkbox">
@@ -107,7 +112,7 @@
 	        {!! Form::select('group_by', array(
 	          'semua' =>  'Semua Kasus',
 	          'jenis_kasus' => 'Jumlah Jenis Kasus',
-	          'usia' => 'Jumlah Usia',
+	          'usia' => 'Jumlah Usia (kasus dibuka)',
 	          'kabupaten' => 'Jumlah Kabupaten',
 	          'pendidikan' => 'Jumlah Pendidikan',
 	          'pekerjaan' => 'Jumlah Pekerjaan',
