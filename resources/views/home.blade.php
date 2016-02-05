@@ -1,3 +1,5 @@
+<?php $user = (Auth::Check()) ? Auth::User() : null; ?>
+
 @extends('layouts.records')
 
 @section('content')
