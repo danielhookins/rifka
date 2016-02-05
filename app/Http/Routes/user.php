@@ -28,7 +28,7 @@
 	Route::get('user/{user_id}/changePassword', [
 		'as' => 'user.changePassword',
 		'uses' => 'UserController@changePassword',
-		'middleware' => ['userType:Manager']]);
+		'middleware' => ['userType:Manager,Developer']]);
 
 	/**
 	 *  Show the user management page
@@ -36,13 +36,15 @@
 	 */
 	Route::get('manage/users', [
 		'as' => 'user.management',
-		'uses' => 'UserController@showUserManagement']);
+		'uses' => 'UserController@showUserManagement',
+		'middleware' => ['userType:Manager,Developer']]);
 
 	Route::get('user/{user_id}/delete',[
 		'as' => 'user.deleteConfirm',
-		'uses' => 'UserController@deleteConfirm']);
+		'uses' => 'UserController@deleteConfirm',
+		'middleware' => ['userType:Manager,Developer']]);
 
 	Route::post('user/deleteUser',[
 		'as' => 'user.deleteUser',
 		'uses' => 'UserController@deleteUser',
-		'middleware' => ['userType:Manager']]);
+		'middleware' => ['userType:Manager,Developer']]);
