@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\URL;
 
 class SearchController extends Controller {	
 
+	public function index() 
+	{
+		return view('search.'.$this->getType());
+	}
+
 	public function searchKlien(Request $request)
 	{
 		$this->validate($request, ['searchQuery' => 'required|max:255']);

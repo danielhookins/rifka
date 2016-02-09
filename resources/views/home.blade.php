@@ -23,9 +23,11 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 col-sm-3 col-sm-offset-3">
+				<a href="{{ route('search.klien') }}">Pencarian Lanjutan Klien</a>
 				@include('klien.partials.new')
 			</div>
 			<div class="col-xs-12 col-sm-3">
+				<a href="{{ route('search.kasus') }}">Pencarian Lanjutan Kasus</a>
 				@include('kasus.partials.new')
 			</div>
 		</div>
@@ -33,6 +35,7 @@
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
 				@include('partials.search')
+				<a href="{{ route('search.klien') }}">Pencarian Lanjutan Klien</a>
 				@include('klien.partials.new')
 			</div>
 		</div>

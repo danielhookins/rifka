@@ -34,16 +34,7 @@ class KlienController extends Controller {
 	 */
 	public function index()
 	{
-		// Retrieve clients from database
-		$semuaKlien = Klien::
-			orderBy('klien_id', 'DESC')	// Order by most recent
-			->paginate(15);							// Display 15 per page
-
-		return view('klien.index', array(
-			'search'	 	 => True, 			// Show the search widget
-			'list'			 => True, 			// Show the list of clients
-			'semuaKlien' => $semuaKlien // The complete list of clients available
-			));
+		return view('search.klien');
 	}
 
 	/**

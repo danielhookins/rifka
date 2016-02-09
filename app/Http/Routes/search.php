@@ -1,25 +1,30 @@
-<?php
-
-	// Search related routes
+<?php 	// Search related routes
 	
-	// Display the main search page
+	// General
 	Route::get('search', [
 		'as'		=> 'search',
 		'uses'	=> 'SearchController@index']);
-
-	// Post search queries to:
 	Route::post('search', [
 		'as' 		=> 'search', 
 		'uses'  => 'SearchController@search']);
 	
-	Route::post('kasus/search', [
-		'as'		=> 'kasus.search',
-		'uses'	=> 'KasusController@search']);
+	// Case
+	Route::get('search/kasus', [
+		'as'		=> 'search.kasus',
+		'uses'	=> 'Search\KasusSearchController@index']);
+	Route::post('search/kasus', [
+		'as'		=> 'search.kasus',
+		'uses'	=> 'Search\KasusSearchController@search']);
+
+	// Client
+	Route::get('search/klien', [
+		'as'		=> 'search.klien',
+		'uses'	=> 'Search\KlienSearchController@index']);
+	Route::post('search/klien', [
+		'as'		=> 'search.klien',
+		'uses'	=> 'Search\KlienSearchController@search']);
 	
-	Route::post('klien/search', [
-		'as'		=> 'klien.search',
-		'uses'	=> 'Search\SearchController@searchKlien']);
-	
+	// Counsellor
 	Route::post('konselor/search', [
 		'as' 		=> 'konselor.search',
 		'uses' 	=> 'Search\SearchController@searchKonselor']);
