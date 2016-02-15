@@ -5,3 +5,5 @@
 /public/favicon.ico
 /database/scripts
 sftp-config.json
+/backups/*.sql
+/backups/*.old
