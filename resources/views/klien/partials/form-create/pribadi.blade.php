@@ -55,7 +55,7 @@
 	{!! Form::select('agama', array(
 		'Agama' 		=>	'Agama', 
 		'Islam' 		=>	'Islam', 
-		'Protestan' 	=>	'Protestan', 
+		'Kristen' 	=>	'Kristen', 
 		'Katolik' 		=>	'Katolik', 
 		'Hindu' 		=>	'Hindu', 
 		'Buddha' 		=>	'Buddha', 
