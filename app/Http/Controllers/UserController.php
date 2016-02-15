@@ -185,12 +185,14 @@ class UserController extends Controller {
 				// Business logic: this assumes that all managers are also counselors
 				if($jenis == "Konselor" || $jenis == "Manager")
 				{
-					$konselor = \rifka\Konselor::create([
+					if(\rifka\Konselor::where('user_id', $user_id)->count() == 0) 
+					{
+						$konselor = \rifka\Konselor::create([
 						'nama_konselor' => $user->name,
 						'user_id' 			=> $user_id
 						]);
+					}
 				}
-
 			}
 		}
 

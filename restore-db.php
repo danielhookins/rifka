@@ -28,7 +28,7 @@
 			
 		} else {
 			echo "Error: could not restore database.\n";
-			echo "No backup file exists.";
+			echo "No backup file exists.\n";
 		}
 
 	} catch (Exception $e) {
