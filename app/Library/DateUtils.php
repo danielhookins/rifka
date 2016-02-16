@@ -1,18 +1,25 @@
-<?php 
-namespace rifka\Library;
+<?php namespace rifka\Library;
 
 use Carbon\Carbon;
  
-/**
- *	A Library of Utilities for Date specific tasks.
- */
-class DateUtils
-{
+class DateUtils {
+
+	/*
+	|--------------------------------------------------------------------------
+	| Date Utilities Library
+	|--------------------------------------------------------------------------
+	|
+	| A Library of Utilities for Date-Specific Tasks.
+	|
+	*/
 	
-	public static function getMonths()
-	{
+	/**
+	 *	Get the months of the year.
+	 *
+	 *	@return Array
+	 */
+	public static function getMonths() {
 		return array("","Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nop","Dec");
 	}
-
 
 }
