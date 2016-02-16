@@ -4,7 +4,7 @@ class AIUtils {
 	
 	/*
 	|--------------------------------------------------------------------------
-	| AI Library
+	| AI Utilities Library
 	|--------------------------------------------------------------------------
 	|
 	| A Library of Inteligent functions to aid user experience.

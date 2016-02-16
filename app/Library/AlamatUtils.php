@@ -7,7 +7,7 @@ class AlamatUtils {
 
 	/*
 	|--------------------------------------------------------------------------
-	| Alamat Library
+	| Alamat Utilities Library
 	|--------------------------------------------------------------------------
 	|
 	| A Library of Utilities for Address-Specific Tasks.

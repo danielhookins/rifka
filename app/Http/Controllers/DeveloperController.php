@@ -31,6 +31,8 @@ class DeveloperController extends Controller {
 	function test() 
 	{
 
+    return \rifka\Library\ETLUtils::getAlamatKlien();
+
     return 'test';
 	
 	}
