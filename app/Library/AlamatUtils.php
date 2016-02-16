@@ -1,15 +1,19 @@
-<?php 
-namespace rifka\Library;
+<?php namespace rifka\Library;
 
 use rifka\Alamat;
 use rifka\AlamatKlien;
-use rifka\Kasus;
  
-/**
- *	A Library of Utilities for Address-Specific Tasks.
- */
-class AlamatUtils
-{
+class AlamatUtils {
+
+	/*
+	|--------------------------------------------------------------------------
+	| Alamat Library
+	|--------------------------------------------------------------------------
+	|
+	| A Library of Utilities for Address-Specific Tasks.
+	|
+	*/
+
 	/**
 	 *	Get an existing address 
 	 *	based on specified alamat, kecamatan and kabupaten.
@@ -19,71 +23,36 @@ class AlamatUtils
 	 *	@param string $kabupaten
 	 *	@return Alamat or null
 	 */
-	public static function getExisting($alamat, $kecamatan, $kabupaten)
-	{
-		
-		$alamat = Alamat::
-			where('alamat', $alamat)
+	public static function getExisting($alamat, $kecamatan, $kabupaten) {
+		$alamat = Alamat::where('alamat', $alamat)
 			->where('kecamatan', $kecamatan)
 			->where('kabupaten', $kabupaten)
 			->first();
-
 		return (!empty($alamat)) ? $alamat : null;
 	}
 
 	/**
 	 *	Check if any clients are attached to a specific address.
+	 *
+	 *	@param int $alamat_id
+	 *	@return Boolean
 	 */
-	public static function hasClients($alamat_id)
-	{
-		try
-		{
-			$alamat = Alamat::find($alamat_id);
-
-			if (!empty($alamatKlien = 
-						AlamatKlien::where('alamat_id', $alamat_id)->get()->toArray()))
-			{
-				// Clients exist had the specified address
-				return true;
-			
-			} else{
-				// No clients exist at the specified address
-				return false;
-			}
-
-		} catch (Exception $e) {
-			// Could not determine if clients exist at address
-			return $e;
-		}
+	public static function hasClients($alamat_id) {
+		return (AlamatKlien::where('alamat_id', $alamat_id)->count() > 0) 
+		 ? true : false;
 	}
 
 	/**
-	 *	Remove client from all associated addresses.
+	 *	Get an array of the recencies within a province.
+	 *
+	 *	@param string $provinsi
+	 *	@return Array
 	 */
-	public static function removeClientFromAll($klien_id)
-	{
-		$alamatKlien = AlamatKlien::where('klien_id', 'klien_id');
-
-		try {
-			
-			dd($alamatKlien);
-			return true;
-
-		} catch (Exception $e) {
-
-			// Could not remove client from all associated addresses
-			return false;
-		}
-
-	}
-
-	public static function getKabupaten($provinsi = "Yogyakarta") 
-	{
+	public static function getKabupaten($provinsi = "Yogyakarta") {
 		$kabupaten = array();
 
-		if($provinsi == "Yogyakarta") {
+		if($provinsi == "Yogyakarta")
 			$kabupaten = array("Bantul","Gunungkidul","Kulon Progo","Sleman","Yogyakarta");
-		}
 		
 		return $kabupaten;
 	}

@@ -26,7 +26,6 @@ class AIUtils {
 			array_push($suggestions, "Kasus ini belum ada klien.  Anda mau <a href='" . route('tambah.klien', 'klien') . "#klien-kasus'>tambah klien</a> sekarang?");
 
 		return $suggestions;
-
 	}
 
 }
