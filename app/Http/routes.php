@@ -1,16 +1,25 @@
 <?php
 	
-	// Application Routes
+	/*
+	|--------------------------------------------------------------------------
+	| Routes File
+	|--------------------------------------------------------------------------
+	|
+	| Here are all of the routes for the application.
+	|
+	*/
+
 	Route::get('/', [
 		'as' => 'root', 
 		'uses' => 'WelcomeController@index']);
+
 	Route::get('home', [
 		'as' => 'home', 
 		'uses' => 'HomeController@index']);
+
 	Route::resource('konselor', 'KonselorController');
 	Route::resource('user', 'UserController');
 
-	// Require Route Files
 	require_once('Routes/kasus.php');
 	require_once('Routes/kasus-resource.php');
 	require_once('Routes/klien-resource.php');

@@ -9,15 +9,6 @@
 
 		<title>Rifka Annisa - Database Kasus</title>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
-	
-		<!-- CSS -->
-		<!-- {!! HTML::style( asset('css/app.css') ) !!} -->
 		{!! HTML::style( asset('css/bootstrap.min.css') ) !!}
 		{!! HTML::style( asset('css/custom.css') ) !!}
 		{!! HTML::style( asset('css/jquery-ui.css') ) !!}
@@ -41,7 +32,7 @@
     
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        @if($user != null)
+        @if($user != null && $user->jenis != null)
         	@include('layouts.partials.nav-'.str_replace(' ', '', $user->jenis))
         @else
         	@include('layouts.partials.nav-guest')
@@ -57,12 +48,10 @@
 					    <li><a href="{{ route('logout') }}">Keluar</a></li>
 					  </ul>
 					</li>
-
         @else
         	<li>
           	<a href="{{ url('/auth/register') }}">Mendaftar</a>
         	</li>
-
         @endif
       </ul>
 			     
