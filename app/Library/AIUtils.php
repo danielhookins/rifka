@@ -1,29 +1,32 @@
 <?php namespace rifka\Library;
  
-/**
- *	A Library of Inteligent functions to aid user experience.
- */
-class AIUtils
-{
+class AIUtils {
 	
+	/*
+	|--------------------------------------------------------------------------
+	| AI Library
+	|--------------------------------------------------------------------------
+	|
+	| A Library of Inteligent functions to aid user experience.
+	|
+	*/
+
 	/**
-	 *	Get case suggestions
+	 * Get suggestions for case input 
+	 * based on currently avaialbe case data.
 	 *
-	 *	@param Kasus $kasus
-	 *	@return array $suggestions;
+	 * @param Kasus $kasus
+	 * @return Array
 	 */
-	public static function getSuggestions($kasus) 
-	{
+	public static function getCaseInputSuggestions($kasus) {
 		$suggestions = array();
 
-		// If no clients are attached to the case
-		// suggest that the user adds a client.
+		// No clients are attached to the case
 		if(empty($kasus->klienKasus->toArray())) 
-		{
-			$suggestion = "Kasus ini belum ada klien.  Anda mau <a href='" . route('tambah.klien', 'klien') . "#klien-kasus'>tambah klien</a> sekarang?";
-			array_push($suggestions, $suggestion);
-		}
+			array_push($suggestions, "Kasus ini belum ada klien.  Anda mau <a href='" . route('tambah.klien', 'klien') . "#klien-kasus'>tambah klien</a> sekarang?");
+
 		return $suggestions;
+
 	}
 
 }

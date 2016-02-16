@@ -102,7 +102,7 @@ class KasusController extends Controller {
 		$kasus = \rifka\Kasus::findOrFail($kasus_id);
 	
 		// Flash suggestions to aid user-experience
-		$request->session()->flash("suggestions", AIUtils::getSuggestions($kasus));
+		$request->session()->flash("suggestions", AIUtils::getCaseInputSuggestions($kasus));
 		
 		return view('kasus.show', array('kasus' => $kasus));
 	}
