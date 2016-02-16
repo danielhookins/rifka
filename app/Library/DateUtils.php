@@ -1,6 +1,4 @@
 <?php namespace rifka\Library;
-
-use Carbon\Carbon;
  
 class DateUtils {
 

@@ -13,7 +13,6 @@ class HomeController extends Controller {
 	{
 		$this->middleware('auth');
 		$this->middleware('active');
-		$this->middleware('userType:Developer,Manager,Konselor,Front Office,Media');
 	}
 
 	/**

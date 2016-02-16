@@ -18,7 +18,6 @@ use rifka\Library\KasusUtils;
 use rifka\Library\AIUtils;
 use rifka\Library\ETLUtils;
 
-
 class KasusController extends Controller {
 
 	/**

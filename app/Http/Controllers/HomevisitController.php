@@ -16,9 +16,8 @@ class HomevisitController extends Controller {
 	 */
 	public function create(Request $request, $kasus_id)
 	{
-        $request->session()->flash("homevisit-baru", True);
-
-        return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+    $request->session()->flash("homevisit-baru", True);
+    return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 	/**

@@ -2,7 +2,6 @@
 
 use rifka\Http\Requests;
 use rifka\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
 
 class KamusController extends Controller {
@@ -12,17 +11,13 @@ class KamusController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		$this->middleware('auth');
 		$this->middleware('active');
 		$this->middleware('userType:Developer');
 	}
 	
-	//
-	function index() 
-	{
-
+	function index() {
 		return view('kamus.index', [
 			'tables'		=> \rifka\Kamus_table::all(),
 			'attributes' 	=> \rifka\Kamus_attribute::all(),
