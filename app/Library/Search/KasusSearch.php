@@ -1,41 +1,34 @@
-<?php namespace rifka\Http\Controllers\Search;
+<?php namespace rifka\Library\Search;
 
-use rifka\Http\Controllers\Search\SearchController;
-use rifka\Http\Requests;
-use Illuminate\Http\Request;
-use rifka\Kasus;
 use DB;
 
-class KasusSearchController extends SearchController {
+class KasusSearch {
+	
+	/*
+	|--------------------------------------------------------------------------
+	| Case (Kasus) Search Utilities Library
+	|--------------------------------------------------------------------------
+	|
+	| A Library of case-search related functions.
+	|
+	*/
 
-	public function getType()
+	/**
+	 * Get the results for a case search.
+	 *
+	 * @return Array
+	 */	
+	public static function getResults($input)
 	{
-		return "kasus";
+		return KasusSearch::buildQuery($input)->get();
 	}
 
-	public function search(Request $request)
-	{
-		$input = \Input::get();
-
-		// Search by case id
-		if ($input["kasus_id"] != null) return $this->searchByID($input["kasus_id"]);
-
-		$query = $this->buildQuery($input);
-
-		return view('search.kasus-results')
-			->with('results', $query->get());
-	}
-
-	private function searchByID($kasus_id)
-	{
-		if ($kasus = Kasus::find($kasus_id)) {
-			return redirect()->route('kasus.show', $kasus->kasus_id);
-		} else {
-			return redirect('404');
-		}
-	}
-
-	private function buildQuery($input)
+	/**
+	 * Build the query of the case search.
+	 *
+	 * @return Illuminate\Database\Query\Builder
+	 */
+	private static function buildQuery($input)
 	{
 		$query = DB::table('kasus');
 		$select = array('kasus.kasus_id', 

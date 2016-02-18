@@ -43,7 +43,8 @@
 				Kasus #{{$kasus->kasus_id}}
 		</h3>
 		
-		@include('kasus.partials.klien-kasus', array('type' => 'Klien'))
+		@include('kasus.partials.klien-kasus',
+			array('type' => 'Klien', 'referPage' => 'edit-case', 'kasus_id' => $kasus->kasus_id))
 		@include('kasus.partials.informasi-kasus')
 		@include('kasus.partials.narasi')
 		@include('kasus.partials.konselor')

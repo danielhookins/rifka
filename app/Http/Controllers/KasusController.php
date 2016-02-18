@@ -222,7 +222,6 @@ class KasusController extends Controller {
 
 		return redirect()->route('kasus.show', $kasus_id)
 			->with('success', 'Client added to case.');
-
 	}
 
 
@@ -281,7 +280,6 @@ class KasusController extends Controller {
 	  	$request->session()->flash('tambahKlien', True);
 	  	return Redirect::to(URL::previous() . "#klien-kasus");
 	  }
-		
 		return redirect()->route('kasus.create');
 	}
 

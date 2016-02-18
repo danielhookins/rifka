@@ -18,7 +18,7 @@
 	@if($user->jenis != "Front Office" && $user->jenis != "Media")
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
-				@include('partials.search')
+				@include('search.partials.general')
 			</div>
 		</div>
 		<div class="row">
@@ -34,7 +34,7 @@
 	@elseif($user->jenis != "Media")
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
-				@include('partials.search')
+				@include('search.partials.general')
 				<a href="{{ route('search.klien') }}">Pencarian Lanjutan Klien</a>
 				@include('klien.partials.new')
 			</div>

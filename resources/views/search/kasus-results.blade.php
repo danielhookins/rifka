@@ -13,14 +13,14 @@
  		<th>Tahun</th>
  		<th>Nama Klien</th>
  		<th>Jenis Klien</th>
- 		@if(isset($results[0]->no_reg))
+ 		@if(isset($data["results"][0]->no_reg))
  			<th>Arsip No.</th>
  			<th>Media</th>
  		@endif
  	</tr>
 	</thead>
 	<tbody>
-	@forelse ($results as $result)
+	@forelse ($data["results"] as $result)
 		<tr>
 			<td>
 				<a href="{{ route('kasus.show', $result->kasus_id) }}">

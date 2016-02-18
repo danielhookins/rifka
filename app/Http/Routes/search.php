@@ -1,28 +1,28 @@
 <?php 	// Search related routes
-	
+
 	// General
 	Route::get('search', [
 		'as'		=> 'search',
-		'uses'	=> 'SearchController@index']);
+		'uses'	=> 'Search\SearchController@index']);
 	Route::post('search', [
 		'as' 		=> 'search', 
-		'uses'  => 'SearchController@search']);
+		'uses'  => 'Search\SearchController@search']);
 	
 	// Case
 	Route::get('search/kasus', [
 		'as'		=> 'search.kasus',
-		'uses'	=> 'Search\KasusSearchController@index']);
+		'uses'	=> 'Search\SearchController@searchKasus']);
 	Route::post('search/kasus', [
 		'as'		=> 'search.kasus',
-		'uses'	=> 'Search\KasusSearchController@search']);
+		'uses'	=> 'Search\SearchController@search']);
 
 	// Client
 	Route::get('search/klien', [
 		'as'		=> 'search.klien',
-		'uses'	=> 'Search\KlienSearchController@index']);
+		'uses'	=> 'Search\SearchController@searchKlien']);
 	Route::post('search/klien', [
 		'as'		=> 'search.klien',
-		'uses'	=> 'Search\KlienSearchController@search']);
+		'uses'	=> 'Search\SearchController@search']);
 	
 	// Counsellor
 	Route::post('konselor/search', [

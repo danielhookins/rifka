@@ -9,7 +9,7 @@
 				@if(Session::has('tambah'.$type))
 					<div class="row">
 						<div class="col-sm-12 opt-leftx">
-							@include('kasus.partials.klien-search')
+							@include('search.partials.klien')
 						</div>
 					</div>
 					<a href="" class="btn btn-danger">Batal</a>

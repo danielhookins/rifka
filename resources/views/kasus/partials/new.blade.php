@@ -1,4 +1,3 @@
-
 <div class="form-group hidden-sm hide-short">
 	<h3>Kasus Baru</h3>
 	<p>Membuka kasus baru.</p>

@@ -8,13 +8,15 @@
 
 		<div class="row">
 			<div class="col-sm-12">
-				@include('kasus.partials.klien-create',['type' => 'Korban'])
+				@include('kasus.partials.klien-create',
+					['type' => 'Korban', 'referPage' => 'new-case'])
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-sm-12">
-				@include('kasus.partials.klien-create',['type' => 'Pelaku'])
+				@include('kasus.partials.klien-create',
+					['type' => 'Pelaku', 'referPage' => 'new-case'])
 			</div>
 		</div>
 

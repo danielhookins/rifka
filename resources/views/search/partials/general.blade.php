@@ -3,8 +3,10 @@
 <h2 class="main-search-title">Penelusuran Database</h2>
 
 {!! Form::open(array('url' => 'search')) !!}
+<input name="searchType" value="general" type="hidden">
+
   <div class="form-group">
-  	{!! Form::text('searchQuery', null, array('class' => 'form-control',
+  	{!! Form::text('queryInput', null, array('class' => 'form-control',
                                               'placeholder' => 'Penelusuran database',
                                               'autocomplete' => 'off',
                                               'autofocus')) !!}
@@ -13,19 +15,19 @@
   <div class="form-group">
     <label for="searchType">Untuk</label>
     @if(isset($user) && $user->jenis != "Front Office")
-      {!! Form::select('searchType', array(
-        'klien' =>  'Nama Klien',
-        'arsip' =>  'Nomor Arsip'
+      {!! Form::select('queryType', array(
+        'nama_klien' =>  'Nama Klien',
+        'no_reg' =>  'Nomor Arsip'
       ), null, array(
         'class' => 'form-control',
-        'id' => 'searchType'
+        'id' => 'queryType'
       ))!!}
     @else
-      {!! Form::select('searchType', array(
-        'klien' =>  'Klien', 
+      {!! Form::select('queryType', array(
+        'nama_klien' =>  'Klien', 
       ), null, array(
         'class' => 'form-control',
-        'id' => 'searchType'
+        'id' => 'queryType'
       ))!!}
     @endif
   </div>
