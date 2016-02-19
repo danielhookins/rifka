@@ -1,24 +1,22 @@
 <?php namespace rifka\Http\Controllers;
 
-use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use rifka\Alamat;
 use rifka\AlamatKlien;
 use rifka\Library\AlamatUtils;
+use rifka\Http\Requests;
+use rifka\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class AlamatController extends Controller {
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-		$this->middleware('active');
-	}
+	/*
+	|--------------------------------------------------------------------------
+	| Alamat Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller handles client address functionality.
+	|
+	*/
 
 	/**
 	 * Store a newly created resource in storage.
@@ -27,49 +25,13 @@ class AlamatController extends Controller {
 	 */
 	public function store($klien_id)
 	{
-		
 		try {
+			$data = AlamatUtils::getVariablesFromInput(\Input::get());
+			$alamat = AlamatUtils::storeNewAddress($data);
+			$alamatKlien = AlamatUtils::storeAlamatKlien($data, $klien_id);
+		} catch(Exception $e) {}
 
-			// set variables from user input
-			$alamat = \Input::get('alamat');
-			$kecamatan = \Input::get('kecamatan');
-			$kabupaten = \Input::get('kabupaten');
-			$jenis = (\Input::get('jenis') == "Jenis") ? null : \Input::get('jenis');
-			$existing = AlamatUtils::getExisting($alamat, $kecamatan, $kabupaten);
-
-			if($existing != null)
-			{
-				
-				// Address already exists in database
-				$alamat = $existing;
-			}
-			else 
-			{
-				
-				// Create new address in database
-				$alamat = \rifka\Alamat::create([
-						'klien_id' 		=> $klien_id,
-						'alamat' 		=> $alamat,
-						'kecamatan' 	=> $kecamatan,
-						'kabupaten'  => $kabupaten
-					]);
-			}
-			
-			// Create new klien-address association
-			$alamatKlien = \rifka\AlamatKlien::create([
-					'klien_id' => $klien_id,
-					'alamat_id' => $alamat->alamat_id,
-					'jenis' => $jenis
-				]);
-
-			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
-
-		} catch (Exception $e) {
-
-			// Could not save new address in DB
-			return $e;
-		}
-
+		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 	}
 
 	/**
@@ -104,6 +66,7 @@ class AlamatController extends Controller {
 			$alamat->alamat = \Input::get('alamat');
 			$alamat->kecamatan = \Input::get('kecamatan');
 			$alamat->kabupaten = \Input::get('kabupaten');
+			$alamat->provinsi = \Input::get('provinsi');
 			$alamat->save();
 
 			// Update the 'type' on the pivot table
@@ -116,7 +79,6 @@ class AlamatController extends Controller {
 			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 
 		} catch (Exception $e) {
-
 			// Could not update address
 			return $e;
 		}

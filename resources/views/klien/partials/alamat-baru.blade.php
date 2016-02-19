@@ -21,7 +21,6 @@
         <div class="form-group">
           {!! Form::label('kecematan', 'Kecematan', array('class' => 'strongLabel')) !!}
           {!! Form::select('kecamatan', array(
-          	'Kecamatan'		=>	'Kecamatan',
           	' '				=>	' ',
           	'Bambanglipuro'	=>	'Bambanglipuro',
           	'Banguntapan'	=>	'Banguntapan',
@@ -105,7 +104,6 @@
         <div class="form-group">
           {!! Form::label('kabupaten', 'Kabupaten', array('class' => 'strongLabel')) !!}
           {!! Form::select('kabupaten', array(
-          	'Kabupaten'	=>	'Kabupaten',
           	' '				=>	' ',
           	'Bantul'		=>	'Bantul',
           	'Gunungkidul'	=>	'Gunungkidul',
@@ -113,6 +111,46 @@
           	'Sleman'		=>	'Sleman',
           	'Yogyakarta'	=>	'Yogyakarta',
           ), null, array('class' => 'form-control'))!!}
+        </div>
+        <div class="form-group">
+          {!! Form::label('provinsi', 'Provinsi', array('class' => 'strongLabel')) !!}
+          {!! Form::select('provinsi', array(
+            '' => '',
+            'Yogyakarta'        =>  'Yogyakarta',
+            'Jakarta'         =>  'Jakarta',
+            'Jawa Barat'        =>  'Jawa Barat',
+            'Jawa Tengah'       =>  'Jawa Tengah',
+            'Jawa Timur'        =>  'Jawa Timur',
+            'Aceh'            =>  'Aceh',
+            'Sumatera Utara'      =>  'Sumatera Utara',
+            'Sumatera Barat'      =>  'Sumatera Barat',
+            'Riau'            =>  'Riau',
+            'Jambi'           =>  'Jambi',
+            'Sumatera Selatan'      =>  'Sumatera Selatan',
+            'Bengkulu'          =>  'Bengkulu',
+            'Lampung'         =>  'Lampung',
+            'Kepulauan Bangka Belitung' =>  'Kepulauan Bangka Belitung',
+            'Kepulauan Riau'      =>  'Kepulauan Riau',
+            'Banten'          =>  'Banten',
+            'Bali'            =>  'Bali',
+            'Nusa Tenggara Timur'   =>  'Nusa Tenggara Timur',
+            'Nusa Tenggara Barat'   =>  'Nusa Tenggara Barat',
+            'Kalimantan Barat'      =>  'Kalimantan Barat',
+            'Kalimantan Tengah'     =>  'Kalimantan Tengah',
+            'Kalimantan Selatan'    =>  'Kalimantan Selatan',
+            'Kalimantan Timur'      =>  'Kalimantan Timur',
+            'Kalimantan Utara'      =>  'Kalimantan Utara',
+            'Sulawesi Utara'      =>  'Sulawesi Utara',
+            'Sulawesi Tengah'     =>  'Sulawesi Tengah',
+            'Sulawesi Selatan'      =>  'Sulawesi Selatan',
+            'Sulawesi Tenggara'     =>  'Sulawesi Tenggara',
+            'Sulawesi Barat'      =>  'Sulawesi Barat',
+            'Gorontalo'         =>  'Gorontalo',
+            'Maluku'          =>  'Maluku',
+            'Maluku Utara'        =>  'Maluku Utara',
+            'Papua'           =>  'Papua',
+            'Papua Barat'       =>  'Papua Barat',
+           ), null, array('class' => 'form-control')) !!}
         </div>
         <div class="form-group">
           {!! Form::label('jenis', 'Jenis', array('class' => 'strongLabel')) !!}

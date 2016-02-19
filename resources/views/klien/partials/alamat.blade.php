@@ -14,6 +14,7 @@
     <th>Alamat</th>
     <th>Kecamatan</th>
     <th>Kabupaten</th>
+    <th>Provinsi</th>
     <th>Jenis</th>
   </tr>
 
@@ -37,6 +38,11 @@
     <td>
       <a href="{{ route('klien.alamat.edit', [$klien->klien_id, $alamat->alamat_id]) }}">
         {{ $alamat->kabupaten }}
+      </a>
+    </td>
+    <td>
+      <a href="{{ route('klien.alamat.edit', [$klien->klien_id, $alamat->alamat_id]) }}">
+        {{ $alamat->provinsi }}
       </a>
     </td>
     <td>
@@ -65,7 +71,7 @@
 
 @if(!empty($klien->alamatKlien->toArray()))
 <tr>
-  <td colspan="5">
+  <td colspan="6">
     <a class="btn btn-sm btn-default" data-toggle="modal" href="#alamat-baru">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </a>

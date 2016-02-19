@@ -9,7 +9,8 @@ class Alamat extends Model {
 	protected $fillable = [
         'alamat',
 		'kecamatan',
-		'kabupaten'];
+		'kabupaten',
+        'provinsi'];
 	public $timestamps = false;
 
     public function alamatKlien()
