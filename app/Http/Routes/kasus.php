@@ -6,6 +6,9 @@
 	Route::get('kasus/{kasus_id}/tambahKlien/{klien_id}', [
 		'as' => 'tambah.kasus.klien', 
 		'uses' => 'KasusController@tambahKasusKlien']);
+	
+	// Add Counsellor to Case
+	// TODO: Do this in a more secure way
 	Route::get('kasus/{kasus_id}/tambahKonselor/{konselor_id}', [
 		'as' => 'tambah.kasus.konselor', 
 		'uses' => 'KasusController@tambahKasusKonselor']);
@@ -14,6 +17,7 @@
 	Route::get('tambahKlien/{type}', [
 		'as' => 'tambah.klien',
 		'uses' => 'KasusController@tambahKlien']);
+	
 	// Show Add Konselor Sections to Edit Case forms.
 	Route::get('tambahKonselor', [
 		'as' => 'tambah.konselor',

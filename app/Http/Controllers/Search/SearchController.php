@@ -61,42 +61,44 @@ class SearchController extends Controller {
 	}
 
 	/**
-	 * Search for clients or cases
-	 *
-	 * @return Response
-	 */
-	public function search()
-	{
-		$data = GeneralSearch::getData(\Input::get());
-		return view($data["view"])->with('data', $data);
-	}
-
-	/**
 	 * Search for counselors
 	 *
 	 * @return Response
 	 */
 	public function searchKonselor(Request $request)
 	{
-		$this->validate($request, ['search_query' => 'required|max:255']);
+		return view('search.konselor');
+	}
+
+	/**
+	 * Show results of search for clients or cases
+	 *
+	 * @return Response
+	 */
+	public function showResults()
+	{
+		$data = GeneralSearch::getData(\Input::get());
+		return view($data["view"])->with('data', $data);
+	}
+
+	/**
+	 * Show results of search for counsellors
+	 *
+	 * @return Response
+	 */
+	public function showKonselorResults()
+	{
+		$data = GeneralSearch::getData(\Input::get());
+		$previous = $this->request->session()->get('_previous');
+
+		if($previous["url"] != route('search.konselor')) {
+			$this->request->session()->flash('data', $data);
+			$this->request->session()->flash('searchKonselor', True);
 		
-		$query = \Input::get('search_query');
-			
-		if($results = \rifka\Konselor::search($query)->get()) {
-			$previous = $request->session()->get('_previous');
-			
-			if($previous["url"] != route('konselor.index')) {
-				$request->session()->flash('query', $query);
-				$request->session()->flash('results', $results);
-				$request->session()->flash('searchKonselor', True);
-			
-				return Redirect::to(URL::previous() . "#konselor");
-			}
-			
-			return view('search.konselor')->with('results', $results);
+			return Redirect::to(URL::previous() . "#konselor");
 		}
 			
-		return redirect()->back()->with('errors', ['Could not retrieve search results.']);
+		return view('search.konselor-results')->with('data', $data);
 	}
 
 }

@@ -1,4 +1,3 @@
-
 <table id="datatable" class="table table-hover table-condensed">
  	<thead>
  	<tr>

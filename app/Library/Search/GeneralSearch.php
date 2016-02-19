@@ -39,12 +39,12 @@ class GeneralSearch {
 	{
 		if ($input["searchType"] == "general")
 			return GeneralSearch::getResults($input);
-
 		elseif ($input["searchType"] == "klien")
 			return KlienSearch::getResults($input);
-
 		elseif ($input["searchType"] == "kasus")
 			return KasusSearch::getResults($input);
+		elseif ($input["searchType"] == "konselor")
+			return KonselorSearch::getResults($input);
 	}
 
 	/**
@@ -75,6 +75,7 @@ class GeneralSearch {
 	 */
 	private static function getSpecificType($input)
 	{
+		if (!isset($input["searchType"]) && !isset($input["queryType"])) return null;
 		if ($input["searchType"] != "general") return $input["searchType"];
 		if ($input["queryType"] == "nama_klien") return "klien";
 		if ($input["queryType"] == "no_reg") return "kasus";

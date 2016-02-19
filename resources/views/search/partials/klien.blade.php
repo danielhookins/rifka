@@ -42,10 +42,6 @@
     ), null, array('class' => 'form-control'))!!}
   </div>
 
-	<div class="form-group">
-		<button type="submit" class="btn btn-success form-control" id="search-button">
-			<span class="glyphicon glyphicon-search" aria-hidden="true"></span> Penelusuran
-		</button>
-	</div>
+	@include('search.partials.btn-penelusuran')
 		
 {!! Form::close() !!}
