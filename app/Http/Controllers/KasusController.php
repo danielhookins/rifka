@@ -13,7 +13,6 @@ use rifka\KonselorKasus;
 use rifka\BentukKekerasan;
 use rifka\LayananDibutuhkan;
 use rifka\DWKorbanKasus;
-use rifka\Library\ExcelUtils;
 use rifka\Library\KasusUtils;
 use rifka\Library\AIUtils;
 use rifka\Library\ETLUtils;
@@ -31,7 +30,6 @@ class KasusController extends Controller {
 		$this->middleware('active');
 		$this->middleware('userType:Developer,Manager,Konselor');
 	}
-
 	
 	/**
 	 * Display a listing of all cases 
@@ -50,7 +48,6 @@ class KasusController extends Controller {
 			));
 	}
 
-
 	/**
 	 * Show the form for creating a new case.
 	 *
@@ -60,7 +57,6 @@ class KasusController extends Controller {
 	{
 		return view('kasus.create');
 	}
-
 
 	/**
 	 * Store a newly created case in the database.
@@ -89,7 +85,6 @@ class KasusController extends Controller {
 
 	}
 
-
 	/**
 	 * Display the specified case.
 	 *
@@ -106,7 +101,6 @@ class KasusController extends Controller {
 		return view('kasus.show', array('kasus' => $kasus));
 	}
 
-
 	/**
 	 *	Show the form for editing the specified case.
 	 *	** This is not currently in use **
@@ -118,7 +112,6 @@ class KasusController extends Controller {
 	{
 		return redirect()->route('kasus.show', $kasus_id);
 	}
-
 
 	/**
 	 * Update the specified case in the database.
@@ -143,7 +136,6 @@ class KasusController extends Controller {
 		}
 		
 	}
-
 
 	/**
 	 *	Remove the specified case from the database.
@@ -172,7 +164,6 @@ class KasusController extends Controller {
 
 	}
 
-
 	/**
 	 *	Show the confirm delete dialog
 	 *	asking the user if they really want to delete?
@@ -185,20 +176,6 @@ class KasusController extends Controller {
 		return view('kasus.destroy', array('kasus_id' => $kasus_id));
 	
 	}
-
-
-	public function search(Request $request)
-	{
-		$this->validate($request, ['searchQuery' => 'required|max:255']);
-
-		$query = \Input::get('searchQuery');		
-		$results = \rifka\Kasus::search($query)->orderBy('relevance', 'DESC')->get();
-
-  	return view('kasus.searchResults', array(
-			'query'		=> $query,
-			'results'	=> $results));
-	}
-
 
 	public function tambahKasusKlien($kasus_id, $klien_id)
 	{
@@ -223,7 +200,6 @@ class KasusController extends Controller {
 		return redirect()->route('kasus.show', $kasus_id)
 			->with('success', 'Client added to case.');
 	}
-
 
 	// add counsellor to case
 	public function tambahKasusKonselor($kasus_id, $konselor_id)
@@ -257,7 +233,6 @@ class KasusController extends Controller {
 		}
 		return 'An error occurred.<br /> Could not add counsellor to case.';
 	}
-	
 
   /**
 	 * Show the section to add a new Victim or Perp
@@ -283,13 +258,11 @@ class KasusController extends Controller {
 		return redirect()->route('kasus.create');
 	}
 
-
 	public function tambahKonselor(Request $request)
 	{
 		$request->session()->flash('tambahKonselor', True);
 		return Redirect::to(URL::previous() . "#konselor");
 	}
-
 
 	public function seshPushKlien(Request $request, $klien_id, $jenis)
 	{
@@ -306,7 +279,6 @@ class KasusController extends Controller {
 
 		return redirect()->route('kasus.create');
 	}
-
 
 	public function seshRemoveKlien(Request $request)
 	{
@@ -356,7 +328,6 @@ class KasusController extends Controller {
 		return redirect()->route('kasus.create');
 	}
 
-
 	public function deleteKlien2Kasus($kasus_id) 
 	{
 		
@@ -376,7 +347,6 @@ class KasusController extends Controller {
 		return redirect()->back();
 	}
 
-
 	public function deleteKonselor2Kasus($kasus_id) 
 	{
 		
@@ -391,17 +361,6 @@ class KasusController extends Controller {
 		return Redirect::to(URL::previous() . "#konselor");
 	}
 
-
-	/**
-	 *  Export case information to an Excel file
-	 *
-	 */
-	public function exportXLS($kasus_id)
-	{
-		return ExcelUtils::exportCaseInfoXLS($kasus_id);
-	}
-
-	
 	// AJAX auto update type of client
 	public function autoUpdate(Request $request)
 	{

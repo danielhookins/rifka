@@ -1,5 +1,4 @@
-<?php 
-namespace rifka\Library;
+<?php namespace rifka\Library;
 
 use rifka\User;
 use rifka\Konselor;

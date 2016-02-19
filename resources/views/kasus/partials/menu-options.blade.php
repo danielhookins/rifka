@@ -10,13 +10,6 @@
   </div>
 	
 		<li class="list-group-item">
-			<a href="{{route('kasus.xls', $kasus->kasus_id)}}">
-				<span class="glyphicon glyphicon-save-file" aria-hidden="true"></span>
-				Ke Excel
-			</a>
-		</li>
-		
-		<li class="list-group-item">
 			<a style="color:red;" href="{{route('kasus.delete', $kasus->kasus_id)}}">
 				<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 				Menghapus
@@ -24,4 +17,4 @@
 		</li>
 	</ul>
 
-</div> <!-- / Options Panel -->	
+</div>

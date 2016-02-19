@@ -1,13 +1,18 @@
-<?php 
-namespace rifka\Library;
+<?php namespace rifka\Library;
 
 use Carbon\Carbon;
  
-/**
- *	A Library of Utilities for (User)Input-Specific Tasks.
- */
-class InputUtils
-{
+class InputUtils {
+
+	/*
+	|--------------------------------------------------------------------------
+	| Input Utilities Library
+	|--------------------------------------------------------------------------
+	|
+	| A Library of Utilities for (User)Input-Specific Tasks.
+	|
+	*/
+
 	/**
 	 *	Make default inputs null:
 	 *	Turn fields used as examples into null
@@ -42,17 +47,12 @@ class InputUtils
 			"kabupaten"					=> "kabupaten"
 			);
 
-		foreach ($defaults as $name => $defaultValue)
-		{
+		foreach ($defaults as $name => $defaultValue) {
 			if(isset($input[$name]))
-			{
-				$input[$name] = ($input[$name] == $defaultValue)
-					? null : $input[$name];
-			}
+				$input[$name] = ($input[$name] == $defaultValue) ? null : $input[$name];
 		}
 		return $input;
 	}
-
 
 	/**
 	 *	Remove _method and _token (or specified array) from input array.
@@ -75,18 +75,12 @@ class InputUtils
 	 */
 	public static function fieldsEntered($fields, $input)
 	{
-		
 		$input = InputUtils::nullifyDefaults($input);
 
-		foreach ($fields as $field)
-		{
-			if($input[$field] != "" || $input[$field] != null) 
-			{
-				return true;
-			}
+		foreach ($fields as $field) {
+			if($input[$field] != "" || $input[$field] != null) return true;
 		}
 
-		// no input entered
 		return false;
 	}
 
@@ -97,21 +91,16 @@ class InputUtils
 	 */
 	public static function getUpdatedYear($input = null)
   {
-    
     if ($input == null) return Carbon::today()->format('Y');
 
     $year = $input['year'];
         
-    if(isset($input['change']))
-    {
-        if($input['change'] == "prev")
-        {
-            $year = $year - 1;
-        }
-        elseif($input['change'] == "next")
-        {
-            $year = $year + 1;
-        }
+    if(isset($input['change'])) {
+      if($input['change'] == "prev") {
+        $year = $year - 1;
+      } elseif($input['change'] == "next") {
+        $year = $year + 1;
+      }
     }
     return $year;
   }
@@ -127,8 +116,7 @@ class InputUtils
   {
   	$years = array();
 
-    if($input["mulai"] == "" && $input["sampai"] == "")
-    {
+    if($input["mulai"] == "" && $input["sampai"] == "") {
       // no input given
       return; // TODO: redirect to error page
     } else if ($input["mulai"] == "" || $input["sampai"] == "") {
@@ -144,11 +132,11 @@ class InputUtils
   }
 
 
-  public static function toSelectArray($options) {
+  public static function toSelectArray($options) 
+  {
   	$selectArray = array();
 
-  	foreach ($options as $option)
-  	{
+  	foreach ($options as $option) {
   		$selectArray[$option] = $option;
   	}
 

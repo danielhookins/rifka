@@ -93,7 +93,7 @@ class SearchController extends Controller {
 				return Redirect::to(URL::previous() . "#konselor");
 			}
 			
-			return view('konselor.search')->with('results', $results);
+			return view('search.konselor')->with('results', $results);
 		}
 			
 		return redirect()->back()->with('errors', ['Could not retrieve search results.']);

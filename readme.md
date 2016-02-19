@@ -24,5 +24,3 @@ This project makes use of a number of other projects including:
 * [JQuery UI](https://github.com/jquery/jquery-ui)
 * [JQuery Block UI](https://github.com/malsup/blockui/)
 * [Twitter Bootstrap](https://github.com/twbs/bootstrap)
-* [Searchable](https://github.com/nicolaslopezj/searchable)
-* [Laravel-Excel](https://github.com/Maatwebsite/Laravel-Excel)

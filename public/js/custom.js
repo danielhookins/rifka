@@ -46,10 +46,7 @@ $(function() {
 
 $.fn.modal.Constructor.prototype.enforceFocus = function() {};
 
-
 $(document).ready(function () {
-
-
 
 /*
  * DATA TABLES
@@ -130,7 +127,6 @@ if(typeof edit_litigasiPerdata !== 'undefined' && edit_litigasiPerdata) {
 	$("#litigasiPerdata-edit").modal({show:true});
 }
 
-
 /*
  *	SHOW NEW MODAL
  *  If JS var set: Show the relevant "new x" modal
@@ -171,7 +167,6 @@ if(typeof litigasiPidana_baru !== 'undefined' && litigasiPidana_baru) {
 if(typeof litigasiPerdata_baru !== 'undefined' && litigasiPerdata_baru) {
 	$("#litigasiPerdata-baru").modal({show:true});
 }
-
 
 /*
  *  BACK TO TOP BUTTON
@@ -215,7 +210,6 @@ $('#search-button').click(function() {
 				color: '#fff' 
 		} }); 
 }); 
-
 
 /*
  * STEPWIZARD

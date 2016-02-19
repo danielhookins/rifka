@@ -1,10 +1,8 @@
-<?php 
-namespace rifka\Library;
+<?php namespace rifka\Library;
 
 use rifka\Klien;
 use rifka\KlienKasus;
 use rifka\Library\InputUtils;
-
  
 /**
  *	A Library of Utilities for Client-Specific Tasks.

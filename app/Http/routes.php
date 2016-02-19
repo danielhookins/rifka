@@ -1,5 +1,5 @@
 <?php
-	
+
 	/*
 	|--------------------------------------------------------------------------
 	| Routes File
@@ -26,7 +26,6 @@
 	require_once('Routes/klien.php');
 	require_once('Routes/deletes.php');
 	require_once('Routes/search.php');
-	require_once('Routes/excel.php');
 	require_once('Routes/user.php');
 	require_once('Routes/laporan.php');
 	require_once('Routes/developer.php');

@@ -16,7 +16,6 @@
 	Route::get('/developer/test', [
 		'as' => 'developer.test',
 		'uses' => 'DeveloperController@test']);
-
 	Route::post('/developer/test', [
 			'as' => 'test.post',
 			'uses' => 'DeveloperController@postTest']);

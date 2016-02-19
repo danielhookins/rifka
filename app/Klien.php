@@ -2,12 +2,10 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Klien extends Model {
 
 	use SoftDeletes;
-	use SearchableTrait;
 	
 	protected $table = 'klien';
 	protected $primaryKey = 'klien_id';
@@ -35,14 +33,6 @@ class Klien extends Model {
 							'created_at',
 							'updated_at'];
     protected $dates = ['deleted_at'];
-    protected $searchable = [
-        'columns' => [
-            'klien.klien_id' => 10,
-            'klien.nama_klien' => 9,
-            'klien.email' => 3,
-            'klien.no_telp' => 3
-        ]
-    ];
 
 		public function klienKasus()
     {
