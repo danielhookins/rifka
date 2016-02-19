@@ -73,41 +73,30 @@ class SearchController extends Controller {
 
 	/**
 	 * Search for counselors
-	 * TODO: Refactor this method
 	 *
 	 * @return Response
 	 */
 	public function searchKonselor(Request $request)
 	{
-		$this->validate($request, [
-			'search_query' => 'required|max:255'
-		]);
-		if($query = \Input::get('search_query'))
-		{
-			if($results = \rifka\Konselor::search($query)->get())
-			{
-				$previous = $request->session()->get('_previous');
-				if($previous["url"] != route('konselor.index'))
-				{
-					$request->session()->flash('query', $query);
-					$request->session()->flash('results', $results);
-					$request->session()->flash('searchKonselor', True);
-					return Redirect::to(URL::previous() . "#konselor");
-				}
-				return view('konselor.search')
-					->with('results', $results);
+		$this->validate($request, ['search_query' => 'required|max:255']);
+		
+		$query = \Input::get('search_query');
+			
+		if($results = \rifka\Konselor::search($query)->get()) {
+			$previous = $request->session()->get('_previous');
+			
+			if($previous["url"] != route('konselor.index')) {
+				$request->session()->flash('query', $query);
+				$request->session()->flash('results', $results);
+				$request->session()->flash('searchKonselor', True);
+			
+				return Redirect::to(URL::previous() . "#konselor");
 			}
-			else
-			{
-				return redirect()->back()
-					->with('errors', ['Could not retrieve search results.']);
-			}
+			
+			return view('konselor.search')->with('results', $results);
 		}
-		else
-		{
-			return redirect()->back()
-				->with('errors', ['Missing search query.']);
-		}
+			
+		return redirect()->back()->with('errors', ['Could not retrieve search results.']);
 	}
 
 }
