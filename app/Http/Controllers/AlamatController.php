@@ -35,9 +35,11 @@ class AlamatController extends Controller {
 	}
 
 	/**
-	 * Show the form for editing the specified resource.
+	 * Show the form for editing the specified address.
 	 *
-	 * @param  int  $id
+	 * @param Request
+	 * @param integer
+	 * @param integer
 	 * @return Response
 	 */
 	public function edit(Request $request, $klien_id, $alamat_id)
@@ -51,38 +53,20 @@ class AlamatController extends Controller {
 	}
 
 	/**
-	 * Update the specified resource in storage.
+	 * Update the specified client's address.
 	 *
-	 * @param  int  $id
+	 * @param integer
+	 * @param integer
 	 * @return Response
 	 */
 	public function update($klien_id, $alamat_id)
 	{
-
 		try {
-			
-			// Update the address
-			$alamat = Alamat::find($alamat_id);
-			$alamat->alamat = \Input::get('alamat');
-			$alamat->kecamatan = \Input::get('kecamatan');
-			$alamat->kabupaten = \Input::get('kabupaten');
-			$alamat->provinsi = \Input::get('provinsi');
-			$alamat->save();
+			$data = AlamatUtils::getVariablesFromInput(\Input::get());
+			AlamatUtils::updateClientAddress($klien_id, $alamat_id, $data);
+		} catch (Exception $e) {}
 
-			// Update the 'type' on the pivot table
-			$alamatKlien = AlamatKlien::Where('klien_id', $klien_id)
-				->Where('alamat_id', $alamat_id)->first();
-			$alamatKlien->jenis = \Input::get('jenis');
-			$alamatKlien->save();
-			
-			// redirect back to client page
-			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
-
-		} catch (Exception $e) {
-			// Could not update address
-			return $e;
-		}
-
+		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 	}
 
 	/**

@@ -120,4 +120,55 @@ class AlamatUtils {
 			]);
 	}
 
+	/**
+	 *	Update a client's address.
+	 *
+	 *	@param integer
+	 *	@param integer
+ 	 *	@param Array
+	 *	@return Alamat
+	 */
+	public static function updateClientAddress($klien_id, $alamat_id, $data)
+	{
+		// Remove client from old address
+		AlamatUtils::removeClientFromAddress($klien_id, $alamat_id);
+
+		// Create/Use new address, attach client.
+		$newAlamat = AlamatUtils::storeNewAddress($data);
+		$newAlamat = AlamatUtils::storeAlamatKlien($data, $klien_id);
+
+		// Clean up old address if no clients attached
+		AlamatUtils::removeClientlessAddress($alamat_id);
+
+		return $newAlamat;
+	}
+
+	/**
+	 *	Remove an address if it no longer has clients.
+	 *
+	 *	@param integer
+	 *	@return Boolean
+	 */
+	public static function removeClientlessAddress($alamat_id)
+	{
+		if(!AlamatUtils::hasClients($alamat_id))
+			return Alamat::findOrFail($alamat_id)->delete();
+
+		return false;
+	}
+
+	/**
+	 * Remove a specific client from a specific address.
+	 *
+	 * @param integer
+	 * @param integer
+	 * @return void
+	 */
+	public static function removeClientFromAddress($klien_id, $alamat_id)
+	{
+		return AlamatKlien::where('alamat_id', $alamat_id)
+			->where('klien_id', $klien_id)
+			->delete();
+	}
+
 }

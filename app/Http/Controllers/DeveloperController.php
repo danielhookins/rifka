@@ -30,6 +30,7 @@ class DeveloperController extends Controller {
 
 	function test() 
 	{
+    
     return 'test';
 	}
 
