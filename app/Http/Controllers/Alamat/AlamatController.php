@@ -1,4 +1,4 @@
-<?php namespace rifka\Http\Controllers;
+<?php namespace rifka\Http\Controllers\Alamat;
 
 use rifka\Alamat;
 use rifka\AlamatKlien;

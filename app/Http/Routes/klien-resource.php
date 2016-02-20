@@ -17,6 +17,6 @@
 		
 		Route::resource('klien', 'KlienController');
 		
-		Route::resource('klien.alamat', 'AlamatController');
+		Route::resource('klien.alamat', 'Alamat\AlamatController');
 
 });

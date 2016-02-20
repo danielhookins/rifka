@@ -30,11 +30,6 @@
 	Route::post('kasus/{kasus_id}/removeLitigasiPerdata2', [
 		'as' => 'litigasiPerdata2.delete',
 		'uses' => 'LitigasiPerdataController@deleteLitigasiPerdata2']);
-	// Delete legal activity (kegiatan litigasi)
-	//Route::post('kasus/{kasus_id}/litigasi/{litigasi_id}/removekegiatan2', [
-	//	'as' => 'kegiatan2.delete',
-	//	'uses' => 'KegiatanLitigasiController@deleteKegiatan2']);
-	//
 	// Delete Psycological counselling (konseling psikologi) Service given Record
 	Route::post('kasus/{kasus_id}/removekons_psikologi2', [
 		'as' => 'konsPsikologi2.delete',
@@ -74,7 +69,7 @@
 	// Delete Alamat
 	Route::post('klien/{klien_id}/removealamat2', [
 		'as' => 'alamat2.delete',
-		'uses' => 'AlamatController@deleteAlamat2']);
+		'uses' => 'Alamat\AlamatController@deleteAlamat2']);
 	// Delete counselors
 	Route::post('deleteKonselor2', [
 		'as' => 'konselor2.delete',
