@@ -144,6 +144,26 @@ class AlamatUtils {
 	}
 
 	/**
+	 * Remove a client from an address 
+	 * and delete address if it no longer has clients.
+	 *
+	 * @param integer
+ 	 * @param integer
+	 * @return Boolean
+	 */
+	public static function removeClientAddress($alamat_id, $klien_id)
+	{
+		// Delete Client-Address record
+		$deleted = AlamatKlien::where('alamat_id', $alamat_id)
+								->where('klien_id', $klien_id)->delete();
+
+		// Delete address if no-clients are associated with it
+		AlamatUtils::removeClientlessAddress($alamat_id);
+
+		return $deleted;
+	}
+
+	/**
 	 *	Remove an address if it no longer has clients.
 	 *
 	 *	@param integer

@@ -70,48 +70,24 @@ class AlamatController extends Controller {
 	}
 
 	/**
-	 *	Delete Selected Addresses
+	 * Delete selected addresses of specified client.
+	 *
+	 * @param integer
+	 * @return Response
 	 */
 	public function deleteAlamat2($klien_id)
 	{
-			
-		// Items are selected for deletion
-		if($toDelete = \Input::get('toDelete'))
-		{
-			try {
+		$toDelete = \Input::get('toDelete');
+		
+		if(sizeof($toDelete) < 1) return redirect()->back();
 
-				foreach($toDelete as $alamat_id)
-				{
-					
-					// Delete Client-Address record
-					$deletedAlamatKlien = 
-						AlamatKlien::where('alamat_id', $alamat_id)
-							->where('klien_id', $klien_id)->delete();
-
-					// Delete address if no-clients are associated with it
-					// (Garbage Collection)
-					if(!AlamatUtils::hasClients($alamat_id))
-					{
-						$deletedAlamat = Alamat::where('alamat_id', $alamat_id)
-							->delete();
-					}
-					
-				}
-				
-				return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
-
-			} catch (Exception $e) {
-
-			// Could not delete address
-			return $e;
+		try {
+			foreach($toDelete as $alamat_id) {
+				AlamatUtils::removeClientAddress($alamat_id, $klien_id);
 			}
+		} catch (Exception $e) {}
 
-		} else {
-
-			// No items were selected for deletion
-			return redirect()->back();
-		}
-
+		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
 	}
 
 }
