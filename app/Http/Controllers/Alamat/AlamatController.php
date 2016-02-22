@@ -29,9 +29,9 @@ class AlamatController extends Controller {
 			$data = AlamatUtils::getVariablesFromInput(\Input::get());
 			$alamat = AlamatUtils::storeNewAddress($data);
 			$alamatKlien = AlamatUtils::storeAlamatKlien($data, $klien_id);
-		} catch(Exception $e) {}
 
-		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+		} catch(Exception $e) { return $e; }
 	}
 
 	/**
@@ -64,9 +64,8 @@ class AlamatController extends Controller {
 		try {
 			$data = AlamatUtils::getVariablesFromInput(\Input::get());
 			AlamatUtils::updateClientAddress($klien_id, $alamat_id, $data);
-		} catch (Exception $e) {}
-
-		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+		} catch (Exception $e) { return $e; }
 	}
 
 	/**
@@ -85,9 +84,8 @@ class AlamatController extends Controller {
 			foreach($toDelete as $alamat_id) {
 				AlamatUtils::removeClientAddress($alamat_id, $klien_id);
 			}
-		} catch (Exception $e) {}
-
-		return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+			return redirect()->route('klien.show', [$klien_id, '#informasi-kontak']);
+		} catch (Exception $e) { return $e; }
 	}
 
 }
