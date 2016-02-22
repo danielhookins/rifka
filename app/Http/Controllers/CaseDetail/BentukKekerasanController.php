@@ -1,23 +1,46 @@
-<?php namespace rifka\Http\Controllers;
+<?php namespace rifka\Http\Controllers\CaseDetail;
 
-use rifka\Http\Controllers\CaseDetailController;
+use rifka\Http\Controllers\CaseDetail\CaseDetailController;
 use rifka\BentukKekerasan;
 
 class BentukKekerasanController extends CaseDetailController {
 
-	// Find by Id
+	/*
+	|--------------------------------------------------------------------------
+	| Shape of Violence Record (BentukKekerasan) Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller handles bentuk kekerasan resource functionality.
+	| TODO: Refactor still needed
+	|
+	*/
+
+	/**
+	 * Retrieve the resource object by it's ID.
+	 *
+	 * @param integer $id
+	 * @return BentukKekerasan
+	 */
 	public function findById($id)
 	{
 		return BentukKekerasan::findOrFail($id);
 	}
 
-	// Get the type
+	/**
+	 * Get the type of Resource.
+	 *
+	 * @return string
+	 */
 	public function getType()
 	{
 		return "bentukKekerasan";
 	}
 
-	// Get an array of the editable fields
+	/**
+	 * Get an array of the editable fields.
+	 *
+	 * @return Array
+	 */
 	public function getFields()
 	{
 		return ['emosional',
