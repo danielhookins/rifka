@@ -47,7 +47,6 @@ class KonselorController extends Controller {
 	 */
 	public function create()
 	{
-		//
 		return view('konselor.create');
 	}
 
@@ -73,8 +72,8 @@ class KonselorController extends Controller {
 			return redirect()->route('konselor.index')->with('konselorMsgs',['Ditambahkan konselor ' . \Input::get('nama_konselor')]);
 		}
 		
-		return redirect()->back()->with('konselorMsgs', ['Error: tidak bisa tambahkan konselor']);
-
+		return redirect()->back()
+			->with('konselorMsgs', ['Error: tidak bisa tambahkan konselor']);
 	}
 
 	/**
@@ -85,15 +84,9 @@ class KonselorController extends Controller {
 	 */
 	public function show($konselor_id)
 	{
-		//
 		if($konselor = \rifka\Konselor::find($konselor_id))
-		{
-			return view('konselor.show')
-				->with('konselor', $konselor);
-		}
-
-		else return redirect('404');
-
+			return view('konselor.show')->with('konselor', $konselor);
+		return redirect('404');
 	}
 
 	/**
@@ -104,14 +97,9 @@ class KonselorController extends Controller {
 	 */
 	public function edit($konselor_id)
 	{
-		//
 		if($konselor = \rifka\Konselor::find($konselor_id))
-		{
 			return view('konselor.edit')->with('konselor', $konselor);
-		}
-
-		else return redirect('404');
-	
+		return redirect('404');
 	}
 
 	/**
@@ -122,7 +110,6 @@ class KonselorController extends Controller {
 	 */
 	public function update($konselor_id)
 	{
-		//
 		if($konselor = \rifka\Konselor::find($konselor_id))
 		{
 			$konselor->nama_konselor = \Input::get('nama_konselor');
@@ -132,10 +119,8 @@ class KonselorController extends Controller {
 			return redirect()->route('konselor.show', $konselor_id)
 				->with('konselorMsgs', ['Konselor diupdate.']);
 		}
-
 		return redirect()->route('konselor.edit', $konselor_id)
 			->with('konselorMsgs', ['Tidak bisa update. Tidak bisa cari konselor.']);
-
 	}
 
 	/**
@@ -146,7 +131,6 @@ class KonselorController extends Controller {
 	 */
 	public function destroy($konselor_id)
 	{
-		//
 		if($konselor = \rifka\Konselor::find($konselor_id))
 		{
 			if($konselor->delete())
@@ -164,7 +148,6 @@ class KonselorController extends Controller {
 		}
 
 		return redirect()->route('konselor.index');
-
 	}
 
 	/**
@@ -173,14 +156,11 @@ class KonselorController extends Controller {
 	 */
 	public function deleteKonselor2()
 	{
-		
 		// declare variable for storing messages
 		$messages = array();
 
-		
 		if($toDelete = \Input::get('toDelete'))
 		{
-			
 			foreach($toDelete as $konselor_id)
 			{
 				$konselor = \rifka\Konselor::where('konselor_id', $konselor_id)->first();
@@ -201,7 +181,6 @@ class KonselorController extends Controller {
 						array_push($messages, "Konselor " . $nama_konselor . " dihapus.") : 
 						array_push($messages, "Konselor " . $nama_konselor . " tidak bisa dihapus.");
 				}
-
 			}
 		} 
 		
@@ -212,7 +191,6 @@ class KonselorController extends Controller {
 		} 
 		
 		return redirect()->route('konselor.index')->with('konselorMsgs', $messages);
-	
 	}
 
 }
