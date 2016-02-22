@@ -88,7 +88,7 @@ class CaseDetailController extends Controller {
 				$resourceRef::where($primaryKey, $detail_id)
 					->where('kasus_id', $kasus_id)->delete();
 			}
-		} catch (Exception $e) { return $e }
+		} catch (Exception $e) { return $e; }
 
 		return redirect()->route('kasus.show', [$kasus_id, '#'.strtolower($model)]);
 	}

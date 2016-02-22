@@ -21,8 +21,6 @@
     Route::resource('kasus.faktorPemicu', 'FaktorPemicuController');
     Route::resource('kasus.upayaDilakukan', 'UpayaDilakukanController');
     Route::resource('kasus.layananDibutuhkan', 'LayananDibutuhkanController');
-    Route::resource('kasus.dampak', 'DampakController');
-    Route::resource('kasus.arsip', 'CaseDetail\ArsipController');
     Route::resource('kasus.layananDiberikan', 'LayananDiberikanController');
     Route::resource('kasus.konsPsikologi', 'KonsPsikologiController');
     Route::resource('kasus.konsHukum', 'KonsHukumController');
@@ -37,6 +35,9 @@
     Route::resource('kasus.litigasi', 'LitigasiController');
     Route::resource('kasus.litigasiPidana', 'LitigasiPidanaController');
     Route::resource('kasus.litigasiPerdata', 'LitigasiPerdataController');
+
+    Route::resource('kasus.dampak', 'CaseDetail\DampakController');
+    Route::resource('kasus.arsip', 'CaseDetail\ArsipController');
  
   });
 
