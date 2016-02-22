@@ -1,8 +1,20 @@
 <?php 
 
-// Case related resources
-Route::group(['middleware' => 'userType:Developer,Manager,Konselor'], function()
-{
+  /*
+  |--------------------------------------------------------------------------
+  | Case (Kasus) Resource Routes
+  |--------------------------------------------------------------------------
+  |
+  | This route group applies 'auth', 'active' and 'userType' middleware.
+  |
+  */
+
+  Route::group(['middleware' => [
+                  'auth', 
+                  'active', 
+                  'userType:Developer,Manager,Konselor']
+                ], function() {
+
     Route::resource('kasus', 'KasusController');
     Route::resource('kasus.perkembangan', 'PerkembanganController');
     Route::resource('kasus.bentukKekerasan', 'BentukKekerasanController');
@@ -10,7 +22,7 @@ Route::group(['middleware' => 'userType:Developer,Manager,Konselor'], function()
     Route::resource('kasus.upayaDilakukan', 'UpayaDilakukanController');
     Route::resource('kasus.layananDibutuhkan', 'LayananDibutuhkanController');
     Route::resource('kasus.dampak', 'DampakController');
-    Route::resource('kasus.arsip', 'ArsipController');
+    Route::resource('kasus.arsip', 'CaseDetail\ArsipController');
     Route::resource('kasus.layananDiberikan', 'LayananDiberikanController');
     Route::resource('kasus.konsPsikologi', 'KonsPsikologiController');
     Route::resource('kasus.konsHukum', 'KonsHukumController');
@@ -25,4 +37,6 @@ Route::group(['middleware' => 'userType:Developer,Manager,Konselor'], function()
     Route::resource('kasus.litigasi', 'LitigasiController');
     Route::resource('kasus.litigasiPidana', 'LitigasiPidanaController');
     Route::resource('kasus.litigasiPerdata', 'LitigasiPerdataController');
-});
+ 
+  });
+

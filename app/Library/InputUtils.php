@@ -73,7 +73,7 @@ class InputUtils {
 	/**
 	 *	Check if fields contain input.
 	 */
-	public static function fieldsEntered($fields, $input)
+	public static function hasFieldsEntered($fields, $input)
 	{
 		$input = InputUtils::nullifyDefaults($input);
 

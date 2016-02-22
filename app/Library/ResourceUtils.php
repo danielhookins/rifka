@@ -2,12 +2,82 @@
 
 use rifka\Library\InputUtils;
  
-/**
- *	A Library of Utilities for Resource-Specific Tasks.
- */
-class ResourceUtils
-{
+class ResourceUtils {
 	
+	/*
+	|--------------------------------------------------------------------------
+	| Resource Utilities Library
+	|--------------------------------------------------------------------------
+	|
+	| A Library of Utilities for Resource-Specific Tasks.
+	|
+	*/
+	
+	/**
+	 * Persist a new specific resource from user inputs.
+	 *
+	 * @param integer $kasus_id
+   * @param string $resourceType
+   * @param Array $input
+   * @param Array $fields
+	 * @return Response
+	 */
+	public static function storeResource($kasus_id, $resourceType, $input, $fields)
+	{ 
+		// Check input entered
+		if(!InputUtils::hasFieldsEntered($fields, $input))
+			return redirect()->route('kasus.show', [$kasus_id, $inLink]);
+
+		// Store newly created resource
+		$resource = ResourceUtils::createResourceArray($kasus_id, $input, $fields);
+		$resourceRef = 'rifka\\'.ucfirst($resourceType);
+		$stored = $resourceRef::create($resource);
+		
+		return redirect()
+			->route('kasus.show', [$kasus_id, ResourceUtils::getInLink($resourceType)]);
+	}
+
+	/**
+	 * Update a new specific resource from user inputs.
+	 *
+   * @param string $resource
+   * @param Array $fields
+   * @param Array $input
+	 * @return Boolean
+	 */
+	public static function updateResource($resource, $fields, $input)
+	{
+		$input = InputUtils::nullifyDefaults($input);
+
+		foreach ($fields as $field) {
+			$resource->$field = $input[$field];
+		}
+
+		return $resource->save();
+	}
+
+	public static function getLayananDiberikan()
+	{
+		return array(
+			'KonsPsikologi',
+			'KonsHukum',
+			'Homevisit',
+			'Medis',
+			'Shelter',
+			'SupportGroup',
+			'Mediasi',
+			'MensProgram',
+			'Rujukan');
+	}
+
+	public static function getInLink($resourceType)
+	{
+		if(in_array($resourceType, ResourceUtils::getLayananDiberikan()))
+			return "#layanan-diberikan";
+
+		return "#".strtolower($resourceType);
+	}
+
 	/**
 	 *	Return an array for a new resource with specified input.
 	 */
@@ -17,86 +87,10 @@ class ResourceUtils
 		$input = InputUtils::nullifyDefaults($input);
 		
 		$resourceArray = array('kasus_id' => $kasus_id);
-		foreach ($fields as $field)
-		{
+		foreach ($fields as $field) {
 			$resourceArray[$field] = $input[$field];
 		}
 		return $resourceArray;
-	}
-
-	/**
-	 *	Update a specified resource with specified input.
-	 */
-	public static function updateResource($resource, $fields, $input)
-	{
-		try {
-			foreach ($fields as $field)
-			{
-				$resource->$field = $input[$field];
-			}
-			$resource->save();
-
-			// resource updated
-			return true;
-
-		} catch (Exception $e) {
-			//could not update resource
-			return $e;
-		}	
-	}
-
-	/**
-	 *	Store a new resource in the DB
-	 */
-	public static function storeResource($kasus_id, $resourceType, $input, $fields)
-	{
-		// Define array of services given (layanan-diberikan)
-		$layananDiberikan = array(
-			'KonsPsikologi',
-			'KonsHukum',
-			'Homevisit',
-			'Medis',
-			'Shelter',
-			'SupportGroup',
-			'Mediasi',
-			'MensProgram',
-			'Rujukan'
-			);
-
-		// set in-link name
-		if(in_array($resourceType, $layananDiberikan))
-		{
-			$inLink = "#layanan-diberikan";
-		} 
-		else
-		{
-			$inLink = "#".strtolower($resourceType);
-		}
-
-		// check fields contain input
-		$fieldsEntered =  InputUtils::fieldsEntered($fields, $input);
-		if(!$fieldsEntered)
-		{
-			// no input from user (fields empty)
-			return redirect()
-				->route('kasus.show', [$kasus_id, $inLink]);
-		}
-
-		// create resource array
-		$resource = ResourceUtils::createResourceArray($kasus_id, $input, $fields);
-
-		try {
-			// Stored newly created resource
-			$resourceRef = 'rifka\\'.ucfirst($resourceType);
-			$stored = $resourceRef::create($resource);
-		
-		} catch (Exception $e) {
-			// Could not create resource
-			return $e;
-
-		}
-		return redirect()
-			->route('kasus.show', [$kasus_id, $inLink]);
 	}
 
 }
