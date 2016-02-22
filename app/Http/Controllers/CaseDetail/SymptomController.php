@@ -20,7 +20,8 @@ class SymptomController extends CaseDetailController {
    * @param integer $id
    * @return Symptom
    */
-  public function findById($id) {
+  public function findById($id) 
+  {
     return Symptom::findOrFail($id);
   }
 
@@ -29,7 +30,8 @@ class SymptomController extends CaseDetailController {
    *
    * @return string
    */
-  public function getType() {
+  public function getType() 
+  {
     return "symptom";
   }
 
@@ -38,7 +40,8 @@ class SymptomController extends CaseDetailController {
    *
    * @return Array
    */
-  public function getFields() {
+  public function getFields() 
+  {
     return ["symptom_description"];
   }
 
