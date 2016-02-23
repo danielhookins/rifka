@@ -19,6 +19,18 @@ class CaseDetailController extends Controller {
 	*/
 
 	/**
+	 * Show the form for creating a new resource.
+	 *
+	 * @return Response
+	 */
+	public function create(Request $request, $kasus_id)
+	{
+    $request->session()->flash($this->getType()."-baru", True);
+    return redirect()
+    	->route('kasus.show', [$kasus_id, ResourceUtils::getInLink($this->getType())]);
+	}
+
+	/**
 	 * Persist a new specific resource from user inputs.
 	 *
 	 * @param integer $kasus_id

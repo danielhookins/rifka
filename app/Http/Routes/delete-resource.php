@@ -22,10 +22,6 @@
 	Route::post('kasus/{kasus_id}/removekons_hukum2', [
 		'as' => 'konsHukum2.delete',
 		'uses' => 'KonsHukumController@deleteKonsHukum2']);
-	// Delete Homevisit Service given Record
-	Route::post('kasus/{kasus_id}/removehomevisit2', [
-		'as' => 'homevisit2.delete',
-		'uses' => 'HomevisitController@deleteHomevisit2']);
 	// Delete SupportGroup Service given Record
 	Route::post('kasus/{kasus_id}/removesupportGroup2', [
 		'as' => 'supportGroup2.delete',

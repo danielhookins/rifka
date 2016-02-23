@@ -9,7 +9,7 @@
   <table class="table table-responsive table-hover">
   @if(!empty($kasus->homevisit->toArray()))
     
-    {!! Form::model($kasus, array('route' => array('homevisit2.delete', $kasus->kasus_id), 'class'=>'form', 'method' => 'POST')) !!}
+    {!! Form::model($kasus, array('route' => array('selectedDetails.delete', $kasus->kasus_id, "homevisit"), 'class'=>'form', 'method' => 'POST')) !!}
 
     <tr>
       <th></th>
@@ -41,7 +41,7 @@
 
   <tr>
     <td colspan="5">
-      <a class="btn btn-sm btn-default" href="{{route('kasus.homevisit.create', $kasus->kasus_id)}}">
+      <a class="btn btn-sm btn-default" href="{{ route('kasus.homevisit.create', $kasus->kasus_id) }}">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
       </a>
       <button class="btn btn-sm btn-default" type="submit">
@@ -55,10 +55,11 @@
 
   </table>
 
-  @if(Session::has('edit-homevisit'))
-  	@include('kasus.partials.homevisit-edit')
-  @endif
 </div>
+
+@if(Session::has('edit-homevisit'))
+  @include('kasus.partials.homevisit-edit')
+@endif
 
 <script type="text/javascript">
 	@if(Session::has('edit-homevisit'))

@@ -92,7 +92,6 @@
 
 @if(Session::has('edit-perkembangan'))
   @include('kasus.partials.perkembangan-edit')
-
 @endif
 
 @include('kasus.partials.perkembangan-baru')

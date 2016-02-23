@@ -20,7 +20,6 @@
     Route::resource('kasus.layananDiberikan', 'LayananDiberikanController');
     Route::resource('kasus.konsPsikologi', 'KonsPsikologiController');
     Route::resource('kasus.konsHukum', 'KonsHukumController');
-    Route::resource('kasus.homevisit', 'HomevisitController');
     Route::resource('kasus.supportGroup', 'SupportGroupController');
     Route::resource('kasus.mensProgram', 'MensProgramController');
     Route::resource('kasus.rujukan', 'RujukanController');
@@ -35,6 +34,7 @@
     Route::resource('kasus.bentukKekerasan', 'CaseDetail\BentukKekerasanController');
     Route::resource('kasus.dampak', 'CaseDetail\DampakController');
     Route::resource('kasus.faktorPemicu', 'CaseDetail\FaktorPemicuController');
+    Route::resource('kasus.homevisit', 'CaseDetail\HomevisitController');
     Route::resource('kasus.layananDibutuhkan', 'CaseDetail\LayananDibutuhkanController');
     Route::resource('kasus.perkembangan', 'CaseDetail\PerkembanganController');
     Route::resource('kasus.symptom', 'CaseDetail\SymptomController');
