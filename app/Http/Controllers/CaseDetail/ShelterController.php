@@ -1,23 +1,13 @@
-<?php namespace rifka\Http\Controllers;
+<?php namespace rifka\Http\Controllers\CaseDetail;
 
+use rifka\Http\Controllers\CaseDetail\CaseDetailController;
 use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
 use rifka\Shelter;
 use Illuminate\Http\Request;
 use rifka\Library\InputUtils;
 use rifka\Library\ResourceUtils;
 
-class ShelterController extends Controller {
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+class ShelterController extends CaseDetailController {
 
 	/**
 	 * Show the form for creating a new resource.
@@ -45,17 +35,6 @@ class ShelterController extends Controller {
 
 	return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
 }
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -97,17 +76,6 @@ class ShelterController extends Controller {
 			return $e;
 		}
 
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
 	}
 
 	public function deleteShelter2($kasus_id)

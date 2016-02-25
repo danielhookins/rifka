@@ -94,14 +94,14 @@ class CaseDetailController extends Controller {
 	{
 		$primaryKey = ($primaryKey == null) ? $model."_id" : $primaryKey;
 		$resourceRef = 'rifka\\'.ucfirst($model);
-
 		try {
-			foreach(\Input::get('toDelete') as $detail_id) {
-				$resourceRef::where($primaryKey, $detail_id)
-					->where('kasus_id', $kasus_id)->delete();
+			if (\Input::get('toDelete') != null) {
+				foreach(\Input::get('toDelete') as $detail_id) {
+					$resourceRef::where($primaryKey, $detail_id)
+						->where('kasus_id', $kasus_id)->delete();
+				}
 			}
 		} catch (Exception $e) { return $e; }
-
 		return redirect()->route('kasus.show', [$kasus_id, '#'.strtolower($model)]);
 	}
 

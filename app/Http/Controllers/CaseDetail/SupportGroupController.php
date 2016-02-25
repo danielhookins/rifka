@@ -1,13 +1,13 @@
-<?php namespace rifka\Http\Controllers;
+<?php namespace rifka\Http\Controllers\CaseDetail;
 
+use rifka\Http\Controllers\CaseDetail\CaseDetailController;
 use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
-use rifka\MensProgram;
+use rifka\SupportGroup;
 use Illuminate\Http\Request;
 use rifka\Library\InputUtils;
 use rifka\Library\ResourceUtils;
 
-class MensProgramController extends Controller {
+class SupportGroupController extends CaseDetailController {
 
 	/**
 	 * Show the form for creating a new resource.
@@ -16,7 +16,7 @@ class MensProgramController extends Controller {
 	 */
 	public function create(Request $request, $kasus_id)
 	{
-    $request->session()->flash("mens_program-baru", True);
+    $request->session()->flash("supportGroup-baru", True);
     return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
@@ -28,7 +28,7 @@ class MensProgramController extends Controller {
 	public function store($kasus_id)
 	{
 		// Set variables
-		$resourceType = "MensProgram";
+		$resourceType = "SupportGroup";
 		$input = \Input::get();
 		$fields = ["tanggal", "keterangan"];
 
@@ -41,14 +41,14 @@ class MensProgramController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit(Request $request, $kasus_id, $mens_program_id)
+	public function edit(Request $request, $kasus_id, $supportGroup_id)
 	{
-		$mensProgram = MensProgram::findOrFail($mens_program_id);
+		$konsHukum = SupportGroup::findOrFail($supportGroup_id);
 
-		$request->session()->flash('edit-mens_program', True);
-		$request->session()->flash('mens_program-active', $mensProgram);
+		$request->session()->flash('edit-supportGroup', True);
+		$request->session()->flash('supportGroup-active', $konsHukum);
 
-		return redirect()->route('kasus.show', [$kasus_id, '#mens_program']);
+		return redirect()->route('kasus.show', [$kasus_id, '#supportGroup']);
 	}
 
 	/**
@@ -57,10 +57,10 @@ class MensProgramController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($kasus_id, $mensprogram_id)
+	public function update($kasus_id, $supportgroup_id)
 	{
 		// Set variables
-		$resource = MensProgram::findOrFail($mensprogram_id);
+		$resource = SupportGroup::findOrFail($supportgroup_id);
 		$fields = ["tanggal", "keterangan"];
 		$input = InputUtils::nullifyDefaults(\Input::get());
 		
@@ -77,13 +77,13 @@ class MensProgramController extends Controller {
 
 	}
 
-	public function deleteMensProgram2($kasus_id)
+	public function deleteSupportGroup2($kasus_id)
 	{
 		if($toDelete = \Input::get('toDelete'))
 		{
-			foreach($toDelete as $mens_program_id)
+			foreach($toDelete as $support_group_id)
 			{
-				$deleted = MensProgram::where('mens_program_id', $mens_program_id)
+				$deleted = SupportGroup::where('support_group_id', $support_group_id)
 						->where('kasus_id', $kasus_id)->delete();
 			}
 		}

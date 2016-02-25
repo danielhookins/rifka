@@ -1,72 +1,61 @@
-<?php namespace rifka\Http\Controllers;
+<?php namespace rifka\Http\Controllers\CaseDetail;
 
-use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
-use rifka\KonsHukum;
 use Illuminate\Http\Request;
+use rifka\Http\Requests;
+use rifka\Http\Controllers\CaseDetail\CaseDetailController;
+use rifka\KonsHukum;
 use rifka\Library\InputUtils;
 use rifka\Library\ResourceUtils;
 
-class KonsHukumController extends Controller {
+class KonsHukumController extends CaseDetailController {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		//
-	}
+	/*
+	|--------------------------------------------------------------------------
+	| Legal Counselling (Kons Hukum) Controller
+	|--------------------------------------------------------------------------
+	|
+	| This controller handles kons hukum resource functionality.
+	|
+	*/
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
+	 * @param  Request  $request
+	 * @param  integer  $kasus_id
 	 * @return Response
 	 */
 	public function create(Request $request, $kasus_id)
 	{
-        $request->session()->flash("kons_hukum-baru", True);
-
-        return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
+    $request->session()->flash("kons_hukum-baru", True);
+    return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
+	 * @param  integer  $kasus_id
 	 * @return Response
 	 */
 	public function store($kasus_id)
 	{
-		// Set variables
 		$resourceType = "KonsHukum";
 		$input = \Input::get();
 		$fields = ["tanggal", "keterangan"];
-
 		return ResourceUtils::storeResource($kasus_id, $resourceType, $input, $fields);
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
 	}
 
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param  Request  $request
+	 * @param  integer  $kasus_id
+	 * @param  integer  $kons_hukum_id
 	 * @return Response
 	 */
 	public function edit(Request $request, $kasus_id, $kons_hukum_id)
 	{
 		$konsHukum = KonsHukum::findOrFail($kons_hukum_id);
-
 		$request->session()->flash('edit-kons_hukum', True);
 		$request->session()->flash('kons_hukum-active', $konsHukum);
 
@@ -76,51 +65,35 @@ class KonsHukumController extends Controller {
 	/**
 	 * Update the specified resource in storage.
 	 *
-	 * @param  int  $id
+	 * @param  integer  $kasus_id
+	 * @param  integer  $kons_hukum_id
 	 * @return Response
 	 */
 	public function update($kasus_id, $kons_hukum_id)
 	{
-		// Set variables
 		$resource = KonsHukum::findOrFail($kons_hukum_id);
 		$fields = ["tanggal", "keterangan"];
 		$input = InputUtils::nullifyDefaults(\Input::get());
-		
+
 		try {
 			ResourceUtils::updateResource($resource, $fields, $input);
-
-			// resource updated
 			return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
-
-		} Catch (Exception $e) {
-			// Could not update resource
-			return $e;
-		}
-
+		} Catch (Exception $e) { return $e; }
 	}
 
 	/**
-	 * Remove the specified resource from storage.
+	 * Delete the specified resources from storage.
 	 *
-	 * @param  int  $id
+	 * @param  integer  $kasus_id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		//
-	}
-
 	public function deleteKonsHukum2($kasus_id)
 	{
-		if($toDelete = \Input::get('toDelete'))
-		{
-			foreach($toDelete as $kons_hukum_id)
-			{
+		if($toDelete = \Input::get('toDelete')) {
+			foreach($toDelete as $kons_hukum_id) {
 				$deleted = KonsHukum::where('kons_hukum_id', $kons_hukum_id)
-						->where('kasus_id', $kasus_id)->delete();
-			}
+						->where('kasus_id', $kasus_id)->delete();}
 		}
-
 		return redirect()->route('kasus.show', [$kasus_id, '#layanan-diberikan']);
 	}
 

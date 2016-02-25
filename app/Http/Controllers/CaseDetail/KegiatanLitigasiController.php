@@ -1,13 +1,13 @@
-<?php namespace rifka\Http\Controllers;
+<?php namespace rifka\Http\Controllers\CaseDetail;
 
 use rifka\Http\Requests;
-use rifka\Http\Controllers\Controller;
+use rifka\Http\Controllers\CaseDetail\CaseDetailController;
 use rifka\KegiatanLitigasi;
 use Illuminate\Http\Request;
 use rifka\Library\InputUtils;
 use rifka\Library\ResourceUtils;
 
-class KegiatanLitigasiController extends Controller {
+class KegiatanLitigasiController extends CaseDetailController {
 
 	/**
 	 * Store a newly created Kegian Litigasi in the database.
