@@ -15,6 +15,15 @@ use rifka\DWKorbanKasus;
 
 class KlienController extends Controller {
 
+  /*
+  |--------------------------------------------------------------------------
+  | Klien (Client) Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles klien functionality.
+  |
+  */
+
 	/**
 	 * Create a new client controller instance.
 	 *

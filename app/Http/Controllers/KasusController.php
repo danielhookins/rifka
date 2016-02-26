@@ -19,6 +19,15 @@ use rifka\Library\ETLUtils;
 
 class KasusController extends Controller {
 
+  /*
+  |--------------------------------------------------------------------------
+  | Kasus (Client) Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles kasus functionality.
+  |
+  */
+
 	/**
 	 * Create a new controller instance.
 	 *

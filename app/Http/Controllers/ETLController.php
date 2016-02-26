@@ -7,6 +7,21 @@ use rifka\Library\ETLUtils;
 
 class ETLController extends Controller {
 
+  /*
+  |--------------------------------------------------------------------------
+  | ETL Controller
+  |--------------------------------------------------------------------------
+  |
+  | This is the controller for the applications 
+  | Extract, Transform and Load (ETL) processes.
+  |
+  */
+
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		$this->middleware('auth');

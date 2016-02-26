@@ -10,9 +10,22 @@ use rifka\Library\InputUtils;
 use rifka\Library\UserUtils;
 use Illuminate\Http\Request;
 
-// Users of the System
 class UserController extends Controller {
-	
+
+  /*
+  |--------------------------------------------------------------------------
+  | User Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles user (registered users) functionality.
+  |
+  */
+
+	/**
+	 * Create a new controller instance.
+	 *
+	 * @return void
+	 */	
 	public function __construct()
 	{
 		$this->middleware('auth');

@@ -2,6 +2,15 @@
 
 class WelcomeController extends Controller {
 
+  /*
+  |--------------------------------------------------------------------------
+  | Welcome Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles display page for guests.
+  |
+  */
+	
 	/**
 	 * Create a new controller instance.
 	 *

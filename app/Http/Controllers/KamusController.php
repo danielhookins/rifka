@@ -5,6 +5,15 @@ use rifka\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class KamusController extends Controller {
+
+  /*
+  |--------------------------------------------------------------------------
+  | Kamus (Dictionary) Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles functionality of kamus data (data-dictionary).
+  |
+  */
 	
 	/**
 	 * Create a new controller instance.

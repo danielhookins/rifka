@@ -8,6 +8,15 @@ use rifka\Library\UserUtils;
 
 class KonselorController extends Controller {
 
+  /*
+  |--------------------------------------------------------------------------
+  | Konselor (Counsellor) Controller
+  |--------------------------------------------------------------------------
+  |
+  | This controller handles konselor functionality.
+  |
+  */
+
 	/**
 	 * Create a new controller instance.
 	 *

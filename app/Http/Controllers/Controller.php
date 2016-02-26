@@ -6,6 +6,15 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 
 abstract class Controller extends BaseController {
 
+  /*
+  |--------------------------------------------------------------------------
+  | Base Controller
+  |--------------------------------------------------------------------------
+  |
+  | This abstract class is the base controller.
+  |
+  */
+
 	use DispatchesCommands, ValidatesRequests;
 
 }

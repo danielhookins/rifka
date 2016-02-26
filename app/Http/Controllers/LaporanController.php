@@ -30,7 +30,7 @@ class LaporanController extends Controller {
   /**
    * Display the generated report.
    *
-   * @param Request
+   * @param Request $request
    * @return Response
    */
   public function lihat(Request $request)

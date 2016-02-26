@@ -4,6 +4,16 @@ use Auth;
 
 class HomeController extends Controller {
 
+  /*
+  |--------------------------------------------------------------------------
+  | Home Controller
+  |--------------------------------------------------------------------------
+  |
+  | This is the controller for the home page for
+  | authorised and active users.
+  |
+  */
+
 	/**
 	 * Create a new controller instance.
 	 *
