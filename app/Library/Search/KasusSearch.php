@@ -30,7 +30,8 @@ class KasusSearch {
 	 */
 	private static function buildQuery($input)
 	{
-		$query = DB::table('kasus');
+		$query = DB::table('kasus')->where('kasus.deleted_at', '=', null);
+
 		$select = array('kasus.kasus_id', 
 										'kasus.jenis_kasus',
 										DB::raw('YEAR(kasus.created_at) AS tahun'),
@@ -38,7 +39,8 @@ class KasusSearch {
 										'klien.nama_klien',
 										'klien_kasus.klien_kasus_id',
 										'klien_kasus.jenis_klien',
-										'kasus.created_at');
+										'kasus.created_at',
+										'kasus.deleted_at');
 
 		// Case
 		if(isset($input["jenis_kasus"]) && $input["jenis_kasus"] != null) {
