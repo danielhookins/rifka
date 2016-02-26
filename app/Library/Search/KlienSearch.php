@@ -30,7 +30,7 @@ class KlienSearch {
 	 */
 	private static function buildQuery($input)
 	{
-		$query = DB::table('klien');
+		$query = DB::table('klien')->where('klien.deleted_at', '=', null);
 
 		if(isset($input["klien_id"]) && $input["klien_id"] != null) {
 			$query->where('klien.klien_id', $input["klien_id"]);
