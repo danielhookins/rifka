@@ -33,6 +33,8 @@
 		@if(isset($result->no_reg))
 			<td>{{ $result->no_reg }}</td>
 			<td>{{ $result->media }}</td>
+		@else
+			<td>-</td><td>-</td>
 		@endif
 	</tr>
 	

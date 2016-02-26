@@ -36,6 +36,7 @@ class KasusSearch {
 										DB::raw('YEAR(kasus.created_at) AS tahun'),
 										'klien.klien_id',
 										'klien.nama_klien',
+										'klien_kasus.klien_kasus_id',
 										'klien_kasus.jenis_klien',
 										'kasus.created_at');
 
@@ -50,7 +51,7 @@ class KasusSearch {
 		// Arsip
 		if(isset($input["no_reg"]) || isset($input["media"])) 
 		{
-			$query->join('arsip', 'kasus.kasus_id', '=', 'arsip.kasus_id');
+			$query->leftJoin('arsip', 'kasus.kasus_id', '=', 'arsip.kasus_id');
 			array_push($select, 'no_reg');
 			array_push($select, 'media');
 
@@ -63,8 +64,12 @@ class KasusSearch {
 		}
 
 		// Client
-		$query->join('klien_kasus', 'kasus.kasus_id', '=', 'klien_kasus.kasus_id')
-						->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
+		$query->join('klien_kasus', function ($join) {
+            	$join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id');
+        		})
+					->join('klien', function ($join) {
+            	$join->on('klien_kasus.klien_id', '=', 'klien.klien_id');
+        		});
 		if(isset($input["jenis_klien"]) && $input["jenis_klien"] != null) {
 			$query->where('jenis_klien', '=', $input["jenis_klien"]);
 		}
@@ -72,7 +77,7 @@ class KasusSearch {
 			$query->where('nama_klien', 'LIKE', $input["nama_klien"]);
 		}
 
-		$query->select($select);
+		$query->select($select); 
 
 		return $query;
 	}
