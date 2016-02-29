@@ -27,18 +27,6 @@ class KasusController extends Controller {
   | This controller handles kasus functionality.
   |
   */
-
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-		$this->middleware('active');
-		$this->middleware('userType:Developer,Manager,Konselor');
-	}
 	
 	/**
 	 * Show the default kasus page.
@@ -67,7 +55,6 @@ class KasusController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-
 		try {
 			// Create the new case with user input
 			$kasus = KasusUtils::createNewCase(\Input::get());
@@ -80,17 +67,15 @@ class KasusController extends Controller {
 			->with('success', 'New case created.');
 
 		} catch (Exception $e) {
-
 			return redirect()->back();
-
 		}
-
 	}
 
 	/**
 	 * Display the specified case.
 	 *
-	 * @param  int  $kasus_id
+	 * @param Request $request
+	 * @param integer  $kasus_id
 	 * @return Response
 	 */
 	public function show(Request $request, $kasus_id)
@@ -98,8 +83,8 @@ class KasusController extends Controller {
 		$kasus = \rifka\Kasus::findOrFail($kasus_id);
 	
 		// Flash suggestions to aid user-experience
-		$request->session()->flash("suggestions", AIUtils::getCaseInputSuggestions($kasus));
-		
+		$request->session()
+			->flash("suggestions", AIUtils::getCaseInputSuggestions($kasus));
 		return view('kasus.show', array('kasus' => $kasus));
 	}
 
@@ -107,8 +92,8 @@ class KasusController extends Controller {
 	 *	Show the form for editing the specified case.
 	 *	** This is not currently in use **
 	 *
-	 *	@param int $kasus_id
-	 *	@return redirect - To Case Page.
+	 *	@param integer $kasus_id
+	 *	@return Response
 	 */
 	public function edit($kasus_id)
 	{
@@ -118,25 +103,16 @@ class KasusController extends Controller {
 	/**
 	 * Update the specified case in the database.
 	 *
-	 * @param  int  $kasus_id
-	 * @return redirect to the specified case page.
+	 * @param  integer  $kasus_id
+	 * @return Response
 	 */
 	public function update($kasus_id)
 	{
-
 		try {
-	
 			KasusUtils::updateCase($kasus_id, \Input::get());
-			
 			return redirect()->route('kasus.show', $kasus_id)
 				->with('success', 'Kasus updated.');
-	
-		} Catch (Exception $e) {
-			
-			return $e;
-	
-		}
-		
+		} catch (Exception $e) { return $e; }
 	}
 
 	/**
@@ -174,9 +150,7 @@ class KasusController extends Controller {
 	 */
 	public function confirmDestroy($kasus_id)
 	{
-	
 		return view('kasus.destroy', array('kasus_id' => $kasus_id));
-	
 	}
 
 	public function tambahKasusKlien($kasus_id, $klien_id)
