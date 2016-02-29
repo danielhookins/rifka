@@ -41,20 +41,13 @@ class KasusController extends Controller {
 	}
 	
 	/**
-	 * Display a listing of all cases 
-	 * and the ability to search for a specific case.
+	 * Show the default kasus page.
 	 *
-	 * @return view - The case index page
+	 * @return Response
 	 */
 	public function index()
 	{
-		$semuaKasus = \rifka\Kasus::orderBy('kasus_id', 'DESC')->paginate(15);
-
-		return view('kasus.index', array(
-			'search'	 => true, // show the search widget 
-			'list'		 => true, // show a list of all cases
-			'semuaKasus' => $semuaKasus,
-			));
+		return view('search.kasus');
 	}
 
 	/**
