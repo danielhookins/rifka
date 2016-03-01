@@ -521,6 +521,33 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Kasus',
+            'name'          => 'kabupaten',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The kabupaten the case took palce in',
+            'example'       => 'Sleman'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
+            'name'          => 'jenis_lokasi',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'The type of place the case took palce in',
+            'example'       => 'Tempat Umum'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
+            'name'          => 'desktripsi_lokasi',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'string',
+            'description'   => 'A description of the location the case took palce in',
+            'example'       => 'Rumah teman.'
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Kasus',
             'name'          => 'created_at',
             'primary_key'   => False,
             'foreign_key'   => '',

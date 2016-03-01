@@ -9,6 +9,7 @@
 		<ul class="list-group">
 			<li class="list-group-item"><a href="#klien-kasus">Klien Kasus</li>
 			<li class="list-group-item"><a href="#informasi-kasus">Informasi Kasus</a></li>
+			<li class="list-group-item"><a href="#lokasi-kasus">Lokasi Kasus</a></li>
 			<li class="list-group-item"><a href="#konselor">Konselor</a></li>
 			<li class="list-group-item"><a href="#narasi">Narasi</a></li>
 			<li class="list-group-item"><a href="#perkembangan">Perkembangan</a></li>

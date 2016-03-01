@@ -46,6 +46,7 @@
 		@include('kasus.partials.klien-kasus',
 			array('type' => 'Klien', 'referPage' => 'edit-case', 'kasus_id' => $kasus->kasus_id))
 		@include('kasus.partials.informasi-kasus')
+		@include('kasus.partials.lokasi-kasus')
 		@include('kasus.partials.narasi')
 		@include('kasus.partials.konselor')
 		@include('kasus.partials.perkembangan')

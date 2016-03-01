@@ -20,6 +20,9 @@ class Kasus extends Model {
     	'harapan_korban',
     	'rencana_korban',
     	'narasi',
+        'kabupaten',
+        'jenis_lokasi',
+        'deskripsi_lokasi',
         'created_at'];
 	protected $dates = ['deleted_at'];
 
