@@ -314,13 +314,4 @@ class KlienController extends Controller {
 		return view('klien.destroy', array('klien_id' => $klien_id));
 	}
 
-	/**
-	 *  Export a client's information to an Excel file
-	 *
-	 */
-	public function exportXLS($klien_id)
-	{
-		return ExcelUtils::exportClientInfoXLS($klien_id);
-	}
-
 }
