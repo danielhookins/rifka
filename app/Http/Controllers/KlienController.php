@@ -136,9 +136,14 @@ class KlienController extends Controller {
 				//TODO: Move this duplicate code to library
 				// Duplicate with AlamatController 
 
+				$data["alamat"] = $alamat;
+				$data["kecamatan"] = $kecamatan;
+				$data["kabupaten"] = $kabupaten;
+				$data["provinsi"] = $provinsi;
+
 				// Check if address already exists
 				if(($existing = AlamatUtils::
-						getExisting($alamat, $kecamatan, $kabupaten)) != null)
+						getExisting($data)) != null)
 				{
 					// Define as existing address
 					$alamatBaru = $existing;
@@ -149,7 +154,8 @@ class KlienController extends Controller {
 					$alamatBaru = \rifka\Alamat::create([
 						'alamat' 	=> $alamat,
 						'kecamatan' => $kecamatan,
-						'kabupaten' => $kabupaten
+						'kabupaten' => $kabupaten,
+						'provinsi' => $provinsi
 					]);
 				}
 				
