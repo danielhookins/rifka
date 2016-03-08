@@ -88,9 +88,7 @@ class ETLUtils {
             $join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id')
                  ->where('klien_kasus.jenis_klien', '=', 'Korban');
             })
-          ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id')
-          ->join('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id')
-          ->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
+          ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
       
     $rows->select(
           'klien.klien_id',
@@ -107,7 +105,7 @@ class ETLUtils {
           'kasus.hubungan',
           'kasus.harapan_korban',
           DB::raw("YEAR(kasus.created_at) AS tahun"), 
-          'alamat.kabupaten', 
+          'kasus.kabupaten', 
           DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
 
     return $rows->get();
@@ -161,9 +159,7 @@ class ETLUtils {
             $join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id')
                  ->where('klien_kasus.jenis_klien', '=', 'Korban');
         })
-      ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id')
-      ->leftJoin('alamat_klien', 'klien.klien_id', '=', 'alamat_klien.klien_id')
-      ->leftJoin('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
+      ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
 
     $query
       ->select(
@@ -181,7 +177,7 @@ class ETLUtils {
           'kasus.hubungan',
           'kasus.harapan_korban',
           DB::raw("YEAR(kasus.created_at) AS tahun"), 
-          'alamat.kabupaten', 
+          'kasus.kabupaten', 
           DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
 
     $query->where('klien.klien_id', '=', $klien_id)
@@ -190,8 +186,37 @@ class ETLUtils {
     // Use query results to add victim to DW
     $results = $query->get();
     $resultArray = (array) $results[0]; 
-    return DWKorbanKasus::create($resultArray);
 
+    return DWKorbanKasus::create($resultArray);
+  }
+
+  public static function setKabupatenKasusFromDW()
+  {
+    $query = DB::table('kasus')->get();
+    
+    foreach ($query as $kasus_row) {
+      $dw_row = DB::table('dw_korban_kasus')
+        ->where('kasus_id', $kasus_row->kasus_id)->first();
+      
+      if(
+          ($dw_row != null) && 
+          ($kasus = \rifka\Kasus::find($kasus_row->kasus_id)) != null
+      ) {
+        $kasus->kabupaten = $dw_row->kabupaten;
+        $kasus->save();
+      }
+    }
+    
+    return "done";
+  }
+
+  public static function updateKasusKabupaten($kasus_id, $kabupaten)
+  {
+    try {
+      $dw_table = DWKorbanKasus::where('kasus_id', $kasus_id)->first();
+      $dw_table->kabupaten = $kabupaten;
+      $dw_table->save();
+    } catch (Exception $e) { return $e; }
   }
 
 } 

@@ -22,6 +22,8 @@ class DeveloperController extends Controller {
 
 	function test() 
 	{
+    return \rifka\Library\ETLUtils::setKabupatenKasusFromDW();
+
     return 'test';
 	}
 

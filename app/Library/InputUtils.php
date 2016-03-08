@@ -26,6 +26,7 @@ class InputUtils {
 		// Define the default inputs that will NOT be saved
 		$defaults = array(
 			"jenis" 						=> "Jenis",
+			"jenis_lokasi"			=> "Jenis",
 			"jenis_kasus" 			=> "Jenis",
 			"jenis_pemicu" 			=> "Jenis",
 			"jenis_upaya" 			=> "Upaya Dilakukan",
