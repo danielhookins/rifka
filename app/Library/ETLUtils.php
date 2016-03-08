@@ -199,14 +199,17 @@ class ETLUtils {
         ->where('kasus_id', $kasus_row->kasus_id)->first();
       
       if(
-          ($dw_row != null) && 
-          ($kasus = \rifka\Kasus::find($kasus_row->kasus_id)) != null
+          ($dw_row != null)
+          && ($kasus = \rifka\Kasus::find($kasus_row->kasus_id)) != null
       ) {
-        $kasus->kabupaten = $dw_row->kabupaten;
-        $kasus->save();
+        
+        if (($kasus->kabupaten == null) || ($kasus->kabupaten == "")) {
+          $kasus->kabupaten = $dw_row->kabupaten;
+          $kasus->save();
+        }
       }
     }
-    
+ 
     return "done";
   }
 
