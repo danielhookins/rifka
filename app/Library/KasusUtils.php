@@ -134,7 +134,8 @@ class KasusUtils
 			}
 
 			// Update the Kasus Kabupaten in the Data Warehouse Table
-			ETLUtils::updateKasusKabupaten($kasus_id, $input["kabupaten"]);
+			if (isset($input["kabupaten"]) && $input["kabupaten"] != null)
+				ETLUtils::updateKasusKabupaten($kasus_id, $input["kabupaten"]);
 
 			return true;
 
