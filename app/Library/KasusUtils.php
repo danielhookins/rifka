@@ -56,7 +56,6 @@ class KasusUtils
 	public static function createClientCaseFromSession($request, $kasus_id)
 	{
 		try {
-
 			// Create a new client case record for 
 			// victims added to session data
 			if($korban2 = $request->session()->pull('korban2'))
@@ -71,7 +70,6 @@ class KasusUtils
 					// Add Victim to the Korban Kasus Data Warehouse
 					// TODO: create a listener to do this automatically
 					ETLUtils::addVictim($korban->klien_id, $kasus_id);
-
 				}
 			}
 
@@ -86,17 +84,9 @@ class KasusUtils
 						'kasus_id' 		=> $kasus_id,
 						'jenis_klien' => 'Pelaku']);
 				}
-
 			}
-
 			return true;
-
-		} catch (Exception $e) {
-
-			return $e;
-
-		}
-
+		} catch (Exception $e) { return $e; }
 	}
 
 	/**
@@ -104,7 +94,6 @@ class KasusUtils
 	 */
 	public static function updateCase($kasus_id, $input)
 	{
-
 		$kasus = Kasus::findOrFail($kasus_id);
 
 		// Ensure defaults are not saved.
@@ -139,10 +128,7 @@ class KasusUtils
 
 			return true;
 
-		} catch (Exception $e) {
-			return $e;
-		}
-
+		} catch (Exception $e) { return $e; }
 	}
 
 }
