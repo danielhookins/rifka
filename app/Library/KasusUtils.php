@@ -131,4 +131,32 @@ class KasusUtils
 		} catch (Exception $e) { return $e; }
 	}
 
+	/**
+	 *	Check if client is attached to a case
+	 *
+	 *	@param integer $kasus_id
+	 *	@param integer $klien_id
+	 *  @return boolean
+	 */
+	public static function isKlienKasus($kasus_id, $klien_id)
+	{
+		if (KlienKasus::where('kasus_id', $kasus_id)
+			->where('klien_id', $klien_id)
+			->count() > 0) return true;
+		
+		return false;
+	}
+
+	public static function addKlienKasus($input)
+	{
+		if(!KasusUtils::isKlienKasus($input["kasus_id"], $input["klien_id"])) {
+			return \rifka\KlienKasus::create([
+					'klien_id' 		=> $input["klien_id"],
+					'kasus_id' 		=> $input["kasus_id"],
+					'jenis_klien' 	=> null]);
+		}
+		return null;
+	}
+
+
 }

@@ -30,11 +30,20 @@
 				<td>{{ $result->kabupaten }}</td>
 				<td>{{ $result->kecamatan }}</td>
 			@endif
+
 			@if($data["referPage"] == "new-case")
 				<td><a class="btn btn-primary" href="{{ route('seshPushKlien', array($result->klien_id, $data['type'])) }}">Menambahkan</a></td>
 			@elseif($data["referPage"] == "edit-case")
-				<td><a class="btn btn-primary" href="{{ route('tambah.kasus.klien', array($data['kasus_id'], $result->klien_id)) }}">Menambahkan</a></td>
+				{!! Form::open(
+					array('route' => array('tambah.kasus.klien'), 
+					'class'=>'form', 'method' => 'POST')
+				)!!}
+					<input type="hidden" name="klien_id" value="{{ $result->klien_id }}">
+					<input type="hidden" name="kasus_id" value="{{ $data['kasus_id'] }}">
+					<td><button class="btn btn-primary" type="submit">Menambahkan</button></td>
+				{!! Form::close() !!}	
 			@endif
+			
 		</tr>
 		
 		@empty

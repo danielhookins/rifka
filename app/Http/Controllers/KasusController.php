@@ -41,7 +41,7 @@ class KasusController extends Controller {
 	/**
 	 * Show the form for creating a new case.
 	 *
-	 * @return view - The create new case form
+	 * @return Response
 	 */
 	public function create()
 	{
@@ -51,24 +51,17 @@ class KasusController extends Controller {
 	/**
 	 * Store a newly created case in the database.
 	 *
-	 * @return redirect - To the newly created case page
+	 * @return Response
 	 */
 	public function store(Request $request)
 	{
 		try {
-			// Create the new case with user input
 			$kasus = KasusUtils::createNewCase(\Input::get());
-
-			// Create the new client-case(s) 
-			// for clients stored in session data.
-			KasusUtils::createClientCaseFromSession($request, $kasus->kasus_id);
+			$klienKasus = KasusUtils::createClientCaseFromSession($request, $kasus->kasus_id);
 
 			return redirect('kasus/'.$kasus->kasus_id)
-			->with('success', 'New case created.');
-
-		} catch (Exception $e) {
-			return redirect()->back();
-		}
+				->with('success', 'New case created.');
+		} catch (Exception $e) { return redirect()->back();	}
 	}
 
 	/**
@@ -81,23 +74,10 @@ class KasusController extends Controller {
 	public function show(Request $request, $kasus_id)
 	{
 		$kasus = \rifka\Kasus::findOrFail($kasus_id);
-	
-		// Flash suggestions to aid user-experience
 		$request->session()
 			->flash("suggestions", AIUtils::getCaseInputSuggestions($kasus));
+	
 		return view('kasus.show', array('kasus' => $kasus));
-	}
-
-	/**
-	 *	Show the form for editing the specified case.
-	 *	** This is not currently in use **
-	 *
-	 *	@param integer $kasus_id
-	 *	@return Response
-	 */
-	public function edit($kasus_id)
-	{
-		return redirect()->route('kasus.show', $kasus_id);
 	}
 
 	/**
@@ -117,64 +97,47 @@ class KasusController extends Controller {
 
 	/**
 	 *	Remove the specified case from the database.
-	 *	This also removes the related entries in the klien_kasus (client_case) table.
+	 *	This also removes the related entries in the 
+	 *  klien_kasus (client_case) table.
 	 *	And the related entries form the Data Warehouse
 	 *
-	 * @param  int  $kasus_id
-	 * @return redirect home with success or return Exception $e
+	 * @param  integer  $kasus_id
+	 * @return Response
 	 */
 	public function destroy($kasus_id)
 	{
 		try {
-
 			$deletedKasus = Kasus::findOrFail($kasus_id)->delete();
 			$deletedKlienKasus = KlienKasus::where('kasus_id', $kasus_id)->delete();
 			$deletedDataWarehouse = DWKorbanKasus::where('kasus_id', $kasus_id)->delete();
-
 			return redirect()->route('home')
 				->with('success', 'Kasus #'.$kasus_id.' has been deleted.');
-
-		} catch (Exception $e) {
-
-			return $e;
-
-		}
-
+		} catch (Exception $e) {	return $e; }
 	}
 
 	/**
 	 *	Show the confirm delete dialog
 	 *	asking the user if they really want to delete?
 	 *
-	 *	@param int $kasus_id
+	 *	@param integer $kasus_id
+	 *  @return Response
 	 */
 	public function confirmDestroy($kasus_id)
 	{
 		return view('kasus.destroy', array('kasus_id' => $kasus_id));
 	}
 
-	public function tambahKasusKlien($kasus_id, $klien_id)
+	/**
+	 *	Add a client to a case
+	 *
+	 *	@param integer $kasus_id
+	 *	@param integer $klien_id
+	 *  @return Response
+	 */
+	public function tambahKasusKlien()
 	{
-		$kasus = \rifka\Kasus::findOrFail($kasus_id);
-		$klien = \rifka\Klien::findOrFail($klien_id);
-
-		// Check client not already added
-		foreach($kasus->klienKasus()->get() as $klienKasus) 
-		{
-			if($klienKasus->klien_id == $klien_id)
-			{
-				return 'Client already exists in case';
-			}
-		}
-
-		// Add client to case.
-		$klienKasus = \rifka\KlienKasus::create([
-				'klien_id' 		=> $klien_id,
-				'kasus_id' 		=> $kasus_id,
-				'jenis_klien' 	=> null]);
-
-		return redirect()->route('kasus.show', $kasus_id)
-			->with('success', 'Client added to case.');
+		KasusUtils::addKlienKasus(\Input::get());
+		return redirect()->route('kasus.show', \Input::get("kasus_id"));
 	}
 
 	// add counsellor to case
@@ -214,20 +177,17 @@ class KasusController extends Controller {
 	 * Show the section to add a new Victim or Perp
 	 * to the New Case form.
 	 *
-	 * @return Redirect back to the create page.
+	 * @param Request $request
+	 * @param String $type
+	 * @return Response
 	 */
 	public function tambahKlien(Request $request, $type)
 	{
-	  if($type == "korban")
-	  {
+	  if($type == "korban") 
 	  	$request->session()->flash('tambahKorban', True);
-	  }
 	  else if($type == "pelaku")
-	  {
 	  	$request->session()->flash('tambahPelaku', True);
-	  }
-	  else if($type == "klien")
-	  {
+	  else if($type == "klien") {
 	  	$request->session()->flash('tambahKlien', True);
 	  	return Redirect::to(URL::previous() . "#klien-kasus");
 	  }

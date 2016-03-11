@@ -16,8 +16,7 @@
                 ], function() {
 
 		// Add a client to a case
-		// TODO: Change this to POST
-		Route::get('kasus/{kasus_id}/tambahKlien/{klien_id}', [
+		Route::post('kasus/tambahKlien', [
 			'as' => 'tambah.kasus.klien', 
 			'uses' => 'KasusController@tambahKasusKlien']);
 		

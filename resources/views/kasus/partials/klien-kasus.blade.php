@@ -17,15 +17,6 @@
 		  </a>
 		</div>
 
-	@elseif(Session::has(lcfirst($type).'Search'))
-		<div class="panel-body">
-			@include('kasus.partials.klien-search-results')
-			<a class="btn btn-default" href="">
-		    <span class="glyphicon glyphicon-remove" aria-hidden="true" href=""></span>
-		    Batal
-		  </a>
-		</div>
-
 	@else
 		<table class="table table-hover table-responsive">
 		
