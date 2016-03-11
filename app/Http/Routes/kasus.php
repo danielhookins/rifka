@@ -27,7 +27,7 @@
 			'uses' => 'KasusController@tambahKasusKonselor']);
 		
 		// Show Add Victim or Add Perp Sections to New/Edit Case forms.
-		Route::get('tambahKlien/{type}', [
+		Route::get('kasus/tambahKlien/{type}', [
 			'as' => 'tambah.klien',
 			'uses' => 'KasusController@tambahKlien']);
 		

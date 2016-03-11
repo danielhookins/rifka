@@ -47,9 +47,25 @@
 		</tr>
 		
 		@empty
-		<td></td>
-		<th scope="row"><em>Tidak ada hasil.</em></th>
-		<td colspan=2></td>
+		</tbody>
+		<table class="table table-striped">
+		<tr>
+			<td colspan="3"><h2>Maaf, Tidak ada hasil.</h2></td>
+		</tr>
+		<tr>
+			<td><a href="
+				@if($data["referPage"] == "new-case")
+					{{ route('kasus.create') }}
+				@elseif($data["referPage"] == "edit-case")
+					{{ route('kasus.show', $data['kasus_id']) }}
+				@endif "><- Kembali</a></td>
+			<td>atau</td>
+			<td>
+				<a href="{{ route('klien.create') }}">Membuat Klien Baru</a>
+			</td>
+			
+		</tr>
+		
 	
 	@endforelse
 	</tbody>
