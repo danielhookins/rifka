@@ -1,4 +1,6 @@
 # Rifka Annisa Women's Crisis Centre
+Version 1.0
+
 ## Client Case Database
 This system is designed to handle case-related information for Rifka Annisa - a women's crisis centre in Yogyakarta, Indonesia.
 
