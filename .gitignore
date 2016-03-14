@@ -7,3 +7,5 @@
 sftp-config.json
 /backups/*.sql
 /backups/*.old
+desktop.ini
+.dropbox
