@@ -36,6 +36,7 @@
             'Manager'  			=> 'Manager',
             'Front Office'	=> 'Front Office',
             'Media'         => 'Media',
+            'Sudah Resign'  => 'Sudah Resign',
             'Developer'     => 'Developer'
           ), null, array('class' => 'form-control')) !!}</td>
 			<td>

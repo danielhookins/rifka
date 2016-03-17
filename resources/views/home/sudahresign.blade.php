@@ -1,0 +1,1 @@
+<h2>Maaf, Anda tidak bisa mengakses database ini.</h2>
