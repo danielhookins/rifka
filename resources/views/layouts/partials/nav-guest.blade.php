@@ -15,7 +15,7 @@
       </ul>
 			<ul class="nav navbar-nav navbar-right">
         <li>
-          <a href="{{ url('/auth/register') }}">Minta Login</a>
+          <a href="{{ url('/auth/register') }}">Mendaftar</a>
         </li>
       </ul>
     </div><!--/.nav-collapse -->

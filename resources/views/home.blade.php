@@ -15,7 +15,7 @@
 
 	@include('home.'.str_replace(' ', '', strtolower($user->jenis)))
 
-	@if($user->jenis != "Front Office" && $user->jenis != "Media")
+	@if($user->jenis != "Front Office" && $user->jenis != "Media" && $user->jenis != "Sudah Resign")
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
 				@include('search.partials.general')
@@ -31,7 +31,7 @@
 				@include('kasus.partials.new')
 			</div>
 		</div>
-	@elseif($user->jenis != "Media")
+	@elseif($user->jenis != "Media" && $user->jenis != "Sudah Resign")
 		<div class="row">
 			<div class="col-xs-12 col-sm-6 col-sm-offset-3">
 				@include('search.partials.general')
@@ -39,7 +39,7 @@
 				@include('klien.partials.new')
 			</div>
 		</div>
-	@else
+	@elseid($user->jenis != "Sudah Resign")
 		<div class="row">
 			<div class="col-xs-12">
 				@include('laporan.partials.form-membuat')
