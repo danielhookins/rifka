@@ -23,8 +23,8 @@
           {!! Form::select('jenis_upaya', array(
             'Upaya Dilakukan'
               =>  'Upaya Dilakukan',
-            'Mendiskusikan dengan pesangan/pelaku'
-              => 'Mendiskusikan dengan pesangan/pelaku',
+            'Mendiskusikan dengan pasangan/pelaku'
+              => 'Mendiskusikan dengan pasangan/pelaku',
             'Musyawarah yang melibatkan keluarga besar' 
               => 'Musyawarah yang melibatkan keluarga besar',
             'Melaporkan pada pihak kepolisian' 
