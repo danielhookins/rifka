@@ -31,6 +31,8 @@
               =>  'Melaporkan pada pihak kepolisian',
             'Melibatkan pemuka agama'  
               =>  'Melibatkan pemuka agama',
+            'Melaporkan pada atasan'
+              => 'Melaporkan pada atasan',
             'Lain-lain' 
               =>  'Lain-lain'
           ), null, array('class' => 'form-control'))!!}
