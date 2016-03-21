@@ -14,6 +14,7 @@ use rifka\BentukKekerasan;
 use rifka\LayananDibutuhkan;
 use rifka\DWKorbanKasus;
 use rifka\Library\KasusUtils;
+use rifka\Library\ResourceUtils;
 use rifka\Library\AIUtils;
 use rifka\Library\ETLUtils;
 
@@ -58,6 +59,10 @@ class KasusController extends Controller {
 		try {
 			$kasus = KasusUtils::createNewCase(\Input::get());
 			$klienKasus = KasusUtils::createClientCaseFromSession($request, $kasus->kasus_id);
+
+			if (\Input::get('no_reg') != null) {
+				$arsip = ResourceUtils::storeResource($kasus->kasus_id, "arsip", \Input::get(), array('no_reg','media', 'lokasi'));
+			}
 
 			return redirect('kasus/'.$kasus->kasus_id)
 				->with('success', 'New case created.');
