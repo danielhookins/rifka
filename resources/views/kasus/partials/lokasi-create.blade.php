@@ -25,7 +25,7 @@
           {!! Form::select('jenis_lokasi', array(
             'Jenis'         =>  'Jenis',
             'Tempat Umum'   =>  'Tempat Umum',
-            'Tempat Prifat' =>  'Tempat Prifat',
+            'Tempat Privat' =>  'Tempat Privat',
             'Lain'          =>  'Lain'
           ), null, array('class' => 'form-control'))!!}
         </div>
