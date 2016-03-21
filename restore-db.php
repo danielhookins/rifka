@@ -2,6 +2,7 @@
 
 /**
  * Restore DB from backup file
+ * Assumes client is using XAMPP on windows.
  */ 
 
 	// Load .env file
@@ -21,8 +22,8 @@
 		if(file_exists($dbBackupPath."bak.sql"))
 		{
 			// Create the mysql command
-			$mysqlCmd = "mysql -h ".$dbHost." -D ".$dbDatabase." -u ".$dbUsername." -p".$dbPassword." < ".$dbBackupPath."bak.sql";
-
+			$mysqlCmd = "c:\\xampp\\mysql\\bin\\mysql.exe -h ".$dbHost." -D ".$dbDatabase." -u ".$dbUsername." -p".$dbPassword." < ".$dbBackupPath."bak.sql";
+			
 			// Execute the command
 			exec($mysqlCmd);
 			
