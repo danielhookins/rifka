@@ -11,7 +11,7 @@
     <li class="list-group-item">
       <p class="list-group-item-text">
         <strong>Narasi Kasus</strong><br />
-        {{$kasus->narasi}}
+        {!! nl2br($kasus->narasi) !!}
       </p>
     </li>
   </ul>
