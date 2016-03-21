@@ -184,6 +184,15 @@ class KamusAttributesSeeder extends Seeder {
             ]);
         rifka\Kamus_attribute::create([
             'table'         => 'Klien',
+            'name'          => 'keterangan',
+            'primary_key'   => False,
+            'foreign_key'   => '',
+            'type'          => 'longText',
+            'description'   => 'Additional information about the client.',
+            'example'       => ''
+            ]);
+        rifka\Kamus_attribute::create([
+            'table'         => 'Klien',
             'name'          => 'created_at',
             'primary_key'   => False,
             'foreign_key'   => '',

@@ -51,3 +51,8 @@
 	{!! Form::label('dirujuk_oleh', 'Dirujuk Oleh', array('class' => 'strongLabel')) !!}
 	{!! Form::text('dirujuk_oleh', null, array('class' => 'form-control','placeholder' => 'Dirujuk Oleh', 'autocomplete' => 'off')) !!}
 </div>
+
+<div class="form-group">
+	{!! Form::label('keterangan', 'Keterangan', array('class' => 'strongLabel')) !!}
+	<textarea name="keterangan" class="form-control" placeholder="Keterangan" rows="10" autocomplete="off"></textarea>
+</div>

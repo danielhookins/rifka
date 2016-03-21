@@ -12,6 +12,7 @@
 			<li class="list-group-item"><a href="#informasi-pribadi">Informasi Pribadi</a></li>
 			<li class="list-group-item"><a href="#informasi-kontak">Informasi Kontak</a></li>
 			<li class="list-group-item"><a href="#informasi-tambahan">Informasi Tambahan</a></li>
+			<li class="list-group-item"><a href="#informasi-keterangan">Keterangan</a></li>
 		</ul>
 
 

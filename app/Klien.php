@@ -30,6 +30,7 @@ class Klien extends Model {
 							'jumlah_anak',
 							'kondisi_klien',
 							'dirujuk_oleh',
+							'keterangan',
 							'created_at',
 							'updated_at'];
     protected $dates = ['deleted_at'];

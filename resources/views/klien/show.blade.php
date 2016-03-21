@@ -42,5 +42,6 @@
 		@include('klien.partials.pribadi')
 		@include('klien.partials.kontak')
 		@include('klien.partials.tambahan')
+		@include('klien.partials.keterangan')
 
 @endsection	

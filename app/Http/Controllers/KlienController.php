@@ -102,7 +102,8 @@ class KlienController extends Controller {
 				'jabatan' 					=> \Input::get('jabatan'),
 				'penghasilan' 			=> $penghasilan,
 				'kondisi_klien' 		=> \Input::get('kondisi_klien'),
-				'dirujuk_oleh' 			=> \Input::get('dirujuk_oleh')
+				'dirujuk_oleh' 			=> \Input::get('dirujuk_oleh'),
+				'keterangan'				=> \Input::get('keterangan')
 			]);
 
 		// Create new Address
@@ -259,6 +260,9 @@ class KlienController extends Controller {
 			elseif($input["submitBtn"] == "informasi-tambahan")
 			{
 				$fields = array('jumlah_anak', 'pendidikan', 'pekerjaan', 'jabatan', 'penghasilan', 'kondisi_klien', 'dirujuk_oleh');
+			}elseif($input["submitBtn"] == "informasi-keterangan")
+			{
+				$fields = array('keterangan');
 			}
 
 			try {
