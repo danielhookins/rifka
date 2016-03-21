@@ -19,7 +19,7 @@
           	'autocomplete' => 'off')) !!}
         </div>
         <div class="form-group">
-          {!! Form::label('kecematan', 'Kecematan', array('class' => 'strongLabel')) !!}
+          {!! Form::label('kecamatan', 'Kecamatan', array('class' => 'strongLabel')) !!}
           {!! Form::select('kecamatan', array(
           	' '				=>	' ',
           	'Bambanglipuro'	=>	'Bambanglipuro',
