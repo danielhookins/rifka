@@ -26,6 +26,7 @@
 			<div class="col-sm-12">
 				@include('kasus.partials.informasi-create')
 				@include('kasus.partials.lokasi-create')
+				@include('kasus.partials.arsip-create')
 			</div>
 		</div>
 
