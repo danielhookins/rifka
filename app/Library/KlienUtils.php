@@ -10,7 +10,6 @@ use rifka\Library\InputUtils;
 class KlienUtils
 {
 
-	//
 	public static function updateKlien($klien_id, $fields, $input) 
 	{
 		$klien = Klien::findOrFail($klien_id);

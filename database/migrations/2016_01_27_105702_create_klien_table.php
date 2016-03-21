@@ -33,6 +33,7 @@ class CreateKlienTable extends Migration {
 			$table->integer('jumlah_anak')->nullable();
 			$table->string('kondisi_klien')->nullable();
 			$table->string('dirujuk_oleh')->nullable();
+			$tabel->longText('keterangan')->nullable();
 			$table->timestamp('created_at')->nullable();
 			$table->timestamp('updated_at')->nullable();
 			$table->timestamp('deleted_at')->nullable();
