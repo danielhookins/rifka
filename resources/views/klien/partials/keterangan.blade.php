@@ -14,7 +14,7 @@
     <li class="list-group-item">
         <p class="list-group-item-text">
           <strong>Keterangan</strong>
-          {{$klien->keterangan}}
+          {!! nl2br($klien->keterangan) !!}
         </p>
     </li>
   @else
