@@ -40,7 +40,15 @@
     	'Sleman'		=>	'Sleman',
     	'Yogyakarta'	=>	'Yogyakarta'
     ), null, array('class' => 'form-control'))!!}
-  </div>
+  	</div>
+
+  	<div class="form-group">
+  		{!! Form::label('tahun', 'Tahun pertama kali klien ke Rifka', array('class' => 'strongLabel')) !!}
+  		{!! Form::text('tahun', null, array(
+  			'class' => 'form-control',
+  			'placeholder' => 'Tahun pertama kali klien ke Rifka',
+  			'autocomplete' => 'off' )) !!}
+  	</div>
 
 	@include('search.partials.btn-penelusuran')
 		

@@ -1,12 +1,13 @@
 <?php namespace rifka\Http\Controllers;
 
-use Illuminate\Http\Request;
 use rifka\Http\Requests;
+use Illuminate\Http\Request;
 use rifka\Http\Controllers\Controller;
 
-class DeveloperController extends Controller {
+class DeveloperController extends Controller
+{
 
-  /*
+ /*
   |--------------------------------------------------------------------------
   | Developer Controller
   |--------------------------------------------------------------------------
@@ -15,19 +16,18 @@ class DeveloperController extends Controller {
   |
   */
 
-	function index() 
-	{
-		return view('developer.index');
-	}
+    public function index()
+    {
+        return view('developer.index');
+    }
 
-	function test() 
-	{
-    return 'test';
-	}
+    public function test()
+    {
+        return 'test';
+    }
 
-	function postTest(Request $request)
-	{
-		return $request;
-	}
-
+    public function postTest(Request $request)
+    {
+        return $request;
+    }
 }
