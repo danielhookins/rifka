@@ -118,7 +118,7 @@ class KlienController extends Controller {
 		// Address is not Yogyakarta
 		else 
 		{
-			$kecamatan = '';
+			$kecamatan = 'Lain';
 			$kabupaten = \Input::get('provinsi');
 		}
 
