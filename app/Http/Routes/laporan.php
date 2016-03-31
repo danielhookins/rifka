@@ -25,4 +25,14 @@
 			'as' => 'laporan.lihat', 
 			'uses' => 'LaporanController@lihat']);
 
+		// Bentuk Kekerasan Report
+		Route::get('/laporan/bentukkekerasan', [
+			'as' => 'laporan.bentukkekerasan', 
+			'uses' => 'LaporanController@bentukKekerasanLaporan'
+		]);
+		Route::post('/laporan/bentukkekerasan', [
+			'as' => 'laporan.bentukkekerasan', 
+			'uses' => 'LaporanController@bentukKekerasanLaporan'
+		]);
+
 	});

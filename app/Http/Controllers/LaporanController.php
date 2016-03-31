@@ -57,4 +57,15 @@ class LaporanController extends Controller {
     return view('laporan.lihat')->with('data', $data)->with('groupBy', $groupBy);
   }
 
+  public function bentukKekerasanLaporan()
+  {
+    $year = (\Input::get('year') != null) 
+      ? \Input::get('year') : \Carbon\Carbon::today()->format('Y');
+
+    $data = LaporanUtils::getBentukKekerasanData($year);
+    return view('laporan.bentukkekerasan')
+      ->with('data', $data)
+      ->with('year', $year);
+  }
+
 }
