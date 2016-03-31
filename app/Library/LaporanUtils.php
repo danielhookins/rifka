@@ -43,4 +43,28 @@ class LaporanUtils {
     return $rows->get();
   }
 
+  public static function getBentukKekerasanData($year)
+  {
+    $jenisKasusList = array(
+      'KTI','KDP','Perkosaan','Pel-Seks','KDK','Trafficking','Lain'
+    );
+    $bentukKekerasanList = array(
+      'Emosional','Fisik','Ekonomi','Seksual','Sosial'
+    );
+
+    // Populate Data
+    foreach ($jenisKasusList as $jenisKasus) {
+      foreach ($bentukKekerasanList as $bentukKekerasan) {
+        $data[$jenisKasus][$bentukKekerasan] = 
+          \rifka\Kasus::where('jenis_kasus', $jenisKasus)
+            ->where(DB::raw("YEAR(kasus.created_at)"), $year)
+            ->Join('bentuk_kekerasan', 'kasus.kasus_id', '=', 'bentuk_kekerasan.kasus_id')
+            ->where('bentuk_kekerasan.'.$bentukKekerasan, '>', 0)
+            ->count();
+      }
+    }
+      
+    return $data;
+  }
+
 }
