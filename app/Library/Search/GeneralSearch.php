@@ -21,6 +21,8 @@ class GeneralSearch {
 	 */
 	public static function getData($input)
 	{
+		$input = GeneralSearch::makeSeachFuzzy($input);
+
 		$data["results"] = GeneralSearch::searchByType($input);
 		$data["view"] = GeneralSearch::getView($input);
 		$data["referPage"] = GeneralSearch::getReferPage($input);
@@ -45,6 +47,25 @@ class GeneralSearch {
 			return KasusSearch::getResults($input);
 		elseif ($input["searchType"] == "konselor")
 			return KonselorSearch::getResults($input);
+	}
+
+	private static function makeSeachFuzzy($input)
+	{
+		if (isset($input["fuzzy"]) && $input["fuzzy"] == "fuzzy")
+		{
+			if (isset($input["queryInput"])) 
+			{
+				$input["queryInput"] = "%" . $input["queryInput"] . "%";
+			}
+
+			if (isset($input["nama_klien"]))
+			{
+				$input["nama_klien"] = "%" . $input["nama_klien"] . "%";
+			}
+			
+		}
+
+		return $input;
 	}
 
 	/**

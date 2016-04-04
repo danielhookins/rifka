@@ -12,6 +12,11 @@
                                               'autofocus')) !!}
   </div>
   
+  <div class="form-group form-inline">
+    {!! Form::radio('fuzzy', 'exact', true) !!} Pas 
+    {!! Form::radio('fuzzy', 'fuzzy') !!} Kira-kira
+  </div>
+
   <div class="form-group">
     <label for="searchType">Untuk</label>
     @if(isset($user) && $user->jenis != "Front Office")

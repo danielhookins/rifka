@@ -29,12 +29,12 @@ class KlienSearch
      * @return Illuminate\Database\Query\Builder
      */
     private static function buildQuery($input)
-    {
+    { 
         $query = DB::table('klien')->where('klien.deleted_at', '=', null);
 
         if (isset($input["klien_id"]) && $input["klien_id"] != null) {
             $query->where('klien.klien_id', $input["klien_id"]);
-        }
+        }   
         if (isset($input["nama_klien"]) && $input["nama_klien"] != null) {
             $query->where('nama_klien', 'LIKE', $input["nama_klien"]);
         }
@@ -49,7 +49,7 @@ class KlienSearch
               ->join('alamat', 'alamat_klien.alamat_id', '=', 'alamat.alamat_id');
             $query->where('alamat.kabupaten', $input["kabupaten"]);
         }
-        if (isset($input["tahun"]) && $input["tahun"] != " ") {
+        if (isset($input["tahun"]) && $input["tahun"] != null) {
             $query->where(DB::raw('YEAR(klien.created_at)'), '=', $input["tahun"]);
         }
 
