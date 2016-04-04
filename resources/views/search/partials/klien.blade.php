@@ -18,9 +18,17 @@
 	</div>
 
 	<div class="form-group form-inline">
-		{!! Form::radio('kelamin', 'Perempuan') !!} Perempuan 
-		{!! Form::radio('kelamin', 'Laki-laki') !!} Laki-laki
-	</div>
+	    {!! Form::radio('fuzzy', 'exact', true) !!} Pas 
+	    {!! Form::radio('fuzzy', 'fuzzy') !!} Kira-kira
+	  </div>
+	
+	<div class="form-group">
+	    {!! Form::label('kelamin', 'Kelamin', array('class' => 'strongLabel')) !!}
+	    {!! Form::select('kelamin', array(
+	    	'Perempuan'		=>	'Perempuan',
+	    	'Laki-laki'		=>	'Laki-laki'
+	    ), null, array('class' => 'form-control'))!!}
+  	</div>
 
 	<div class="form-group">
 		{!! Form::label('email', 'E-mail Klien', array('class' => 'strongLabel')) !!}

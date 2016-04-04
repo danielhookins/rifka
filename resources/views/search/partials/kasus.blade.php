@@ -33,6 +33,11 @@
   		'autocomplete' => 'off')) !!}
   </div>
 
+	<div class="form-group form-inline">
+	    {!! Form::radio('fuzzy', 'exact', true) !!} Pas 
+	    {!! Form::radio('fuzzy', 'fuzzy') !!} Kira-kira
+	</div>
+
   <div class="form-group">
 		{!! Form::label('jenis_klien', 'Jenis Klien', array('class' => 'strongLabel')) !!}
 		{!! Form::select('jenis_klien', array(
