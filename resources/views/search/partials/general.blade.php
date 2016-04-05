@@ -13,8 +13,8 @@
   </div>
   
   <div class="form-group form-inline">
-    {!! Form::radio('fuzzy', 'exact', true) !!} Pas 
-    {!! Form::radio('fuzzy', 'fuzzy') !!} Kira-kira
+    {!! Form::radio('fuzzy', 'exact', true) !!} Sama persis 
+    {!! Form::radio('fuzzy', 'fuzzy') !!} Perkiraan
   </div>
 
   <div class="form-group">
