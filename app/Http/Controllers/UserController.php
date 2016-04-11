@@ -142,7 +142,8 @@ class UserController extends Controller {
 	{
 		$user = User::findOrFail($user_id);		
 		$user->jenis = $jenis;
-		$this->createNewKonselorFromUser($user, $jenis);
+		// Automatically create a new counselor if the user is set as a manager or counselor
+		//$this->createNewKonselorFromUser($user, $jenis); 
 		return $user->save();
 	}
 
