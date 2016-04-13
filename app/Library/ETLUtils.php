@@ -2,6 +2,7 @@
 
 use DB;
 use rifka\DWKorbanKasus;
+use rifka\DWPelakuKasus;
  
 class ETLUtils {
 
@@ -223,6 +224,49 @@ class ETLUtils {
     $resultArray = (array) $results[0]; 
 
     return DWKorbanKasus::create($resultArray);
+  }
+	
+	public static function addPerp($klien_id, $kasus_id)
+  {
+    // TODO: refactor DRY
+
+    // Get Query
+    $query = DB::table('kasus');
+
+    $query
+      ->join('klien_kasus', function ($join) {
+            $join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id')
+                 ->where('klien_kasus.jenis_klien', '=', 'Pelaku');
+        })
+      ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
+
+    $query
+      ->select(
+          'klien.klien_id',
+          'klien.nama_klien',
+          'klien.agama',
+          'klien.pendidikan',
+          'klien.pekerjaan',
+          'klien.penghasilan',
+          'klien.status_perkawinan',
+          'klien.kondisi_klien',
+          'klien_kasus.jenis_klien',
+          'kasus.kasus_id',
+          'kasus.jenis_kasus',
+          'kasus.hubungan',
+          'kasus.harapan_korban',
+          DB::raw("YEAR(kasus.created_at) AS tahun"), 
+          'kasus.kabupaten', 
+          DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
+
+    $query->where('klien.klien_id', '=', $klien_id)
+          ->where('kasus.kasus_id', '=', $kasus_id);
+
+    // Use query results to add victim to DW
+    $results = $query->get();
+    $resultArray = (array) $results[0]; 
+
+    return DWPelakuKasus::create($resultArray);
   }
 
   public static function setKabupatenKasusFromDW()
