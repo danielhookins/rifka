@@ -39,6 +39,7 @@ class LaporanController extends Controller {
 
     // Set Variables
     $groupBy = \Input::get("group_by");
+		$jenisKlien = \Input::get("jenis_klien");
     $data["tahun"] = \Input::get("tahun");
     $data["selected"] = LaporanUtils::getSelected(\Input::get());
 
@@ -52,9 +53,12 @@ class LaporanController extends Controller {
 
     // Set Row Data
     $data["rows"] = LaporanUtils::getSelectedRows(
-        $data["selected"], $data["tahun"], $groupBy);
+        $data["selected"], $data["tahun"], $groupBy, $jenisKlien);
 
-    return view('laporan.lihat')->with('data', $data)->with('groupBy', $groupBy);
+    return view('laporan.lihat')
+			->with('data', $data)
+			->with('groupBy', $groupBy)
+			->with('jenisKlien', $jenisKlien);
   }
 
   public function bentukKekerasanLaporan()

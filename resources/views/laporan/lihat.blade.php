@@ -3,6 +3,7 @@
 @section('content')
 
 	<h2>Laporan</h2>
+	<h4>{{ $jenisKlien }}</h4>
 	<p>Laporan {!! implode(", ", array_keys($data["selected"])) !!} untuk tahun {{ $data["tahun"] }}.</p>
 	<p>
 		<a href="{{ route('laporan.index') }}">Membuat Laporan Baru</a>
