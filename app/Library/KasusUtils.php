@@ -84,6 +84,10 @@ class KasusUtils
 						'kasus_id' 		=> $kasus_id,
 						'jenis_klien' => 'Pelaku']);
 				}
+				
+				// Add Perp to the Perp Kasus Data Warehouse
+				// TODO: create a listener to do this automatically
+				ETLUtils::addPerp($pelaku->klien_id, $kasus_id);
 			}
 			return true;
 		} catch (Exception $e) { return $e; }
