@@ -122,5 +122,34 @@ class ETLController extends Controller {
 		return 'done';
 	
 	}
+	
+	function initDWPelakuKasus() 
+	{
+
+		$rows = ETLUtils::getPelakuKasus();
+
+		$model = "DWPelakuKasus";
+		$attributes = array(
+							'kasus_id',
+							'klien_id',
+							'nama_klien',
+							'agama',
+		          'pendidikan',
+		          'pekerjaan',
+		          'penghasilan',
+		          'status_perkawinan',
+		          'kondisi_klien',
+							'kabupaten',
+							'jenis_kasus',
+							'hubungan',
+							'harapan_korban',
+							'usia',
+							'tahun');
+
+		ETLUtils::initTable($rows, $model, $attributes);
+
+		return 'done';
+	
+	}
 
 }

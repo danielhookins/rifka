@@ -3,6 +3,7 @@
 use DB;
 use rifka\Library\InputUtils;
 use rifka\DWKorbanKasus;
+use rifka\DWPelakuKasus;
 
 /**
  *	A Library of Utilities for Report-Specific Tasks.
@@ -11,13 +12,17 @@ class LaporanUtils {
 
   public static function getSelected($input)
   {
-    return InputUtils::cleanInput($input, array("_method","_token", "tahun", "group_by"));
+    return InputUtils::cleanInput($input, array("_method","_token", "tahun", "group_by", "jenis_klien"));
   }
 
-  public static function getSelectedRows($selected, $tahun, $group_by)
+  public static function getSelectedRows($selected, $tahun, $group_by, $jenis_klien)
   {
     // Where
-    $rows = DWKorbanKasus::where("tahun", $tahun);
+    if($jenis_klien == "Pelaku") {
+			$rows = DWPelakuKasus::where("tahun", $tahun);
+		} else {
+			$rows = DWKorbanKasus::where("tahun", $tahun);
+		}
     
     // Select
     $select = array_keys($selected);

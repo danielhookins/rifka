@@ -110,6 +110,41 @@ class ETLUtils {
 
     return $rows->get();
   }
+	
+	/**
+   * Get basic details about case-perps.
+   *
+   * @return Array
+   */
+  public static function getPelakuKasus() {
+    $rows = DB::table('kasus');
+    
+    $rows->join('klien_kasus', function ($join) {
+            $join->on('kasus.kasus_id', '=', 'klien_kasus.kasus_id')
+                 ->where('klien_kasus.jenis_klien', '=', 'Pelaku');
+            })
+          ->join('klien', 'klien_kasus.klien_id', '=', 'klien.klien_id');
+      
+    $rows->select(
+          'klien.klien_id',
+          'klien.nama_klien',
+          'klien.agama',
+          'klien.pendidikan',
+          'klien.pekerjaan',
+          'klien.penghasilan',
+          'klien.status_perkawinan',
+          'klien.kondisi_klien',
+          'klien_kasus.jenis_klien',
+          'kasus.kasus_id',
+          'kasus.jenis_kasus',
+          'kasus.hubungan',
+          'kasus.harapan_korban',
+          DB::raw("YEAR(kasus.created_at) AS tahun"), 
+          'kasus.kabupaten', 
+          DB::raw("YEAR(kasus.created_at) - YEAR(klien.tanggal_lahir) - (DATE_FORMAT(kasus.created_at, '%m%d') < DATE_FORMAT(klien.tanggal_lahir, '%m%d')) AS usia"));
+
+    return $rows->get();
+  }
 
   /**
    * Get rows for an advanced search index.

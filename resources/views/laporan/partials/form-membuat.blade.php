@@ -10,6 +10,16 @@
 			</div>
 		</div>
 	</div>
+	
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<h3>Jenis Klien</h3>
+			<div class="form-group form-inline">
+				{!! Form::radio('jenis_klien', 'Korban', true) !!} Korban
+				{!! Form::radio('jenis_klien', 'Pelaku') !!} Pelaku
+			</div>
+		</div>
+	</div>
 
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-2">
